@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="map_title_label" type="id" />
+
+    <item name="especie_info_relative_layout" type="id" />
+    <item name="camera_title_label" type="id" />
+    <item name="encyclopedia_title_label" type="id" />
+    <item name="settings_title_label" type="id" />
+    <item name="gallery_title_label" type="id" />
+
+    <item name="gallery_choose_btn" type="id" />
+    <item name="gallery_chosen_image_view" type="id" />
+
+    <item name="camera_btn" type="id" />
+    <item name="camera_chosen_image_view" type="id" />
+
+    <item name="captura_chosen_image_view" type="id" />
+    <item name="captura_botones_container" type="id" />
+    <item name="captura_divider_hor" type="id" />
+    <item name="captura_gallery_btn" type="id" />
+    <item name="captura_divider_vert" type="id" />
+    <item name="captura_camera_btn" type="id" />
+    <item name="captura_fruta_toggle" type="id" />
+    <item name="captura_arbol_toggle" type="id" />
+    <item name="captura_corteza_toggle" type="id" />
+    <item name="captura_hoja_toggle" type="id" />
+    <item name="captura_flor_toggle" type="id" />
+    <item name="captura_animal_toggle" type="id">captura_animal_toggle</item>
+    <item name="captura_info_label" type="id" />
+    <item name="captura_save_btn" type="id" />
+    <item name="captura_comentarios_txt" type="id" />
+    <item name="captura_comentarios_label" type="id" />
+    <item name="captura_color1_spinner" type="id" />
+    <item name="captura_color2_spinner" type="id" />
+    <item name="captura_color1_label" type="id" />
+    <item name="captura_color2_label" type="id" />
+    <item name="captura_row_color_label" type="id" />
+    <item name="captura_nombre_familia_label" type="id" />
+    <item name="captura_nombre_familia_txt" type="id" />
+    <item name="captura_nombre_genero_label" type="id" />
+    <item name="captura_nombre_genero_txt" type="id" />
+    <item name="captura_nombre_especie_label" type="id" />
+    <item name="captura_nombre_especie_txt" type="id" />
+    <item name="captura_nombre_comun_label" type="id" />
+    <item name="captura_nombre_comun_txt" type="id" />
+    <item name="captura_divider_hor2" type="id">captura_divider_hor2</item>
+    <item name="captura_save_upload_btn" type="id">captura_save_upload_btn</item>
+    <item name="captura_divider_vert2" type="id">captura_divider_vert2</item>
+    <item name="settings_btn_reset_achievements" type="id" />
+    <item name="busqueda_color_spinner" type="id">busqueda_color_spinner</item>
+    <item name="busqueda_divider_hor" type="id">busqueda_divider_hor</item>
+    <item name="busqueda_buscar_btn" type="id">busqueda_buscar_btn</item>
+    <item name="ruta_frame_fecha" type="id">Fecha:</item>
+    <item name="settings_btn_estadisticas" type="id">settings_btn_estadisticas</item>
+    <item name="descarga_busqueda_divider_hor" type="id">descarga_busqueda_divider_hor</item>
+    <item name="descarga_busqueda_buscar_btn" type="id">descarga_busqueda_buscar_btn</item>
+    <item name="settings_btn_show_logros" type="id">settings_btn_logros</item>
+    <item name="captura_cautiverio_label" type="id">captura_cautiverio_label</item>
+</resources>

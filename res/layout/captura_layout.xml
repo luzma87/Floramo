@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
+
+    <RelativeLayout
+        android:id="@+id/captura_botones_container"
+
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentTop="true">
+
+        <View
+            android:id="@id/captura_divider_hor"
+
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:layout_marginLeft="4dip"
+            android:layout_marginRight="4dip"
+            android:background="?android:attr/dividerVertical"
+            android:layout_alignParentBottom="true" />
+
+        <View
+            android:id="@id/captura_divider_vert"
+
+            android:layout_width="1dip"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="4dip"
+            android:layout_marginTop="4dip"
+            android:background="?android:attr/dividerVertical"
+            android:layout_centerHorizontal="true" />
+
+        <ImageButton
+            android:id="@id/captura_gallery_btn"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@android:string/cancel"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/ic_action_new_picture"
+
+            android:layout_toLeftOf="@id/captura_divider_vert" />
+
+        <ImageButton
+            android:id="@id/captura_camera_btn"
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@android:string/ok"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/ic_action_camera"
+
+            android:layout_toRightOf="@id/captura_divider_vert" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/captura_cientifico_scroll_view"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/captura_botones_container"
+        android:layout_above="@+id/captura_guardar_container"
+
+        android:paddingTop="12dp"
+
+        android:layout_alignParentStart="true">
+
+        <RelativeLayout
+            android:id="@+id/relative_layout"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@id/captura_chosen_image_view"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:layout_alignParentStart="true"
+                android:maxHeight="100dp"
+                android:maxWidth="100dp"
+                android:minHeight="100dp"
+                android:minWidth="100dp" />
+
+            <ToggleButton
+                android:id="@id/captura_animal_toggle"
+
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="@string/captura_es_animal"
+                android:checked="false"
+                android:background="@drawable/ic_menu_animal"
+                android:textOff="@string/global_no"
+                android:textOn="@string/global_yes"
+                android:textStyle="bold"
+                android:textColor="#ffffffff"
+
+                android:layout_toLeftOf="@+id/captura_arbol_toggle" />
+
+            <ToggleButton
+                android:id="@id/captura_arbol_toggle"
+
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="@string/captura_tiene_arbol"
+                android:checked="false"
+                android:background="@drawable/ic_menu_tree"
+                android:textOff="@string/global_no"
+                android:textOn="@string/global_yes"
+                android:textStyle="bold"
+                android:textColor="#ffffffff"
+
+                android:layout_toLeftOf="@+id/captura_corteza_toggle" />
+
+            <ToggleButton
+                android:id="@id/captura_corteza_toggle"
+
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="@string/captura_tiene_corteza"
+                android:checked="false"
+                android:background="@drawable/ic_menu_bark"
+                android:textOff="@string/global_no"
+                android:textOn="@string/global_yes"
+                android:textStyle="bold"
+                android:textColor="#ffffffff"
+
+                android:layout_alignParentRight="true" />
+
+            <ToggleButton
+                android:id="@id/captura_hoja_toggle"
+
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="@string/captura_tiene_hoja"
+                android:checked="false"
+                android:background="@drawable/ic_menu_leaf"
+                android:textOff="@string/global_no"
+                android:textOn="@string/global_yes"
+                android:textStyle="bold"
+
+                android:layout_below="@id/captura_animal_toggle"
+                android:layout_alignStart="@id/captura_animal_toggle"
+                android:enabled="true" />
+
+            <ToggleButton
+                android:id="@id/captura_flor_toggle"
+
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="@string/captura_tiene_flor"
+                android:checked="false"
+                android:background="@drawable/ic_menu_flower"
+                android:textOff="@string/global_no"
+                android:textOn="@string/global_yes"
+                android:textStyle="bold"
+
+                android:layout_below="@id/captura_arbol_toggle"
+                android:layout_alignTop="@id/captura_hoja_toggle"
+                android:layout_toRightOf="@id/captura_hoja_toggle" />
+
+            <ToggleButton
+                android:id="@id/captura_fruta_toggle"
+
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="@string/captura_tiene_fruta"
+                android:background="@drawable/ic_menu_apple"
+                android:textOff="@string/global_no"
+                android:textOn="@string/global_yes"
+                android:checked="false"
+                android:textStyle="bold"
+
+                android:layout_below="@id/captura_corteza_toggle"
+                android:layout_alignTop="@id/captura_hoja_toggle"
+                android:layout_toRightOf="@id/captura_flor_toggle" />
+
+            <TextView
+                android:id="@id/captura_info_label"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:visibility="gone"
+
+                android:layout_below="@id/captura_flor_toggle"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="15dp" />
+
+            <TextView
+                android:id="@id/captura_color1_label"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/captura_color1_label"
+                android:textStyle="bold|italic"
+
+                android:layout_below="@id/captura_info_label"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@id/captura_color2_label"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/captura_color2_label"
+
+                android:layout_below="@id/captura_info_label"
+                android:layout_toRightOf="@id/captura_color1_label"
+                android:layout_alignStart="@id/captura_color2_spinner"
+                android:textStyle="bold|italic" />
+
+            <Spinner
+                android:id="@id/captura_color1_spinner"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/captura_color1_label"
+                android:layout_alignParentStart="true"
+                android:spinnerMode="dialog" />
+
+            <Spinner
+                android:id="@id/captura_color2_spinner"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/captura_color2_label"
+                android:layout_toRightOf="@id/captura_color1_spinner"
+                android:spinnerMode="dialog"
+                android:layout_marginLeft="15dp" />
+
+            <TextView
+                android:id="@id/captura_nombre_comun_label"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/captura_nombre_comun_label"
+                android:textStyle="bold|italic"
+
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/captura_color1_spinner"
+                android:layout_alignParentLeft="true" />
+
+            <com.lzm.Cajas.capturaAutocomplete.CustomAutoCompleteView
+                android:id="@+id/captura_autocomplete_nombre_comun"
+
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:autoText="true"
+                android:hint="@string/captura_nombre_comun_label"
+
+                android:layout_toRightOf="@id/captura_nombre_comun_label"
+                android:layout_below="@id/captura_color1_spinner" />
+
+            <TextView
+                android:id="@id/captura_nombre_familia_label"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/captura_nombre_familia_label"
+                android:textStyle="bold|italic"
+
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/captura_nombre_comun_label"
+                android:layout_alignParentLeft="true" />
+
+            <com.lzm.Cajas.capturaAutocomplete.CustomAutoCompleteView
+                android:id="@+id/captura_autocomplete_nombre_familia"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoText="true"
+                android:hint="@string/captura_nombre_familia_label"
+
+                android:layout_below="@id/captura_autocomplete_nombre_comun"
+                android:layout_toRightOf="@id/captura_nombre_familia_label" />
+
+            <TextView
+                android:id="@id/captura_nombre_genero_label"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/captura_nombre_genero_label"
+                android:textStyle="bold|italic"
+
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/captura_nombre_familia_label"
+                android:layout_alignParentLeft="true" />
+
+            <com.lzm.Cajas.capturaAutocomplete.CustomAutoCompleteView
+                android:id="@+id/captura_autocomplete_nombre_genero"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoText="true"
+                android:hint="@string/captura_nombre_genero_label"
+
+                android:layout_below="@id/captura_autocomplete_nombre_familia"
+                android:layout_toRightOf="@id/captura_nombre_genero_label" />
+
+            <TextView
+                android:id="@id/captura_nombre_especie_label"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/captura_nombre_especie_label"
+                android:textStyle="bold|italic"
+
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/captura_nombre_genero_label"
+                android:layout_alignParentLeft="true" />
+
+            <com.lzm.Cajas.capturaAutocomplete.CustomAutoCompleteView
+                android:id="@+id/captura_autocomplete_nombre_especie"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoText="true"
+                android:hint="@string/captura_nombre_especie_label"
+
+                android:layout_below="@id/captura_autocomplete_nombre_genero"
+                android:layout_toRightOf="@id/captura_nombre_especie_label" />
+
+            <TextView
+                android:id="@id/captura_cautiverio_label"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/captura_cautiverio_label"
+                android:textStyle="bold|italic"
+
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/captura_nombre_especie_label"
+                android:layout_alignParentLeft="true" />
+
+            <CheckBox
+                android:id="@+id/captura_cautiverio_check"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_below="@id/captura_autocomplete_nombre_especie"
+                android:text=""
+                android:layout_toRightOf="@id/captura_cautiverio_label"/>
+
+            <EditText
+                android:id="@id/captura_comentarios_txt"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:minLines="8"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/captura_cautiverio_label"
+                android:gravity="top"
+                android:password="false"
+                android:hint="@string/captura_comentarios_label" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/captura_guardar_container"
+
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true">
+
+        <View
+            android:id="@id/captura_divider_hor"
+
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:layout_marginLeft="4dip"
+            android:layout_marginRight="4dip"
+            android:background="?android:attr/dividerVertical"
+            android:layout_alignParentTop="true" />
+
+        <ImageButton
+            android:id="@id/captura_save_upload_btn"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/global_upload"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/ic_action_upload"
+
+            android:layout_toLeftOf="@id/captura_divider_vert2" />
+
+        <View
+            android:id="@id/captura_divider_vert2"
+
+            android:layout_width="1dip"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="4dip"
+            android:layout_marginTop="4dip"
+            android:background="?android:attr/dividerVertical"
+            android:layout_centerHorizontal="true" />
+
+        <ImageButton
+            android:id="@id/captura_save_btn"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/global_save"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/ic_action_accept"
+
+            android:layout_toRightOf="@id/captura_divider_vert2" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,186 @@
+<!--
+  Copyright 2013 The Android Open Source Project
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+
+<resources>
+    <string name="app_name">Cajas</string>
+    <string name="menu_title">Navegación</string>
+
+    <string name="web_app_not_available">Lo siento, no hay un navegador configurado</string>
+    <string name="gallery_app_not_available">Lo siento, no hay una galería configurada</string>
+    <string name="camera_app_not_available">Lo siento, no hay una cámara configurada</string>
+
+    <string name="encyclopedia_title">Enciclopedia</string>
+    <string name="settings_title">Configuración</string>
+    <string name="camera_title">Cámara</string>
+    <string name="captura_title">Nueva captura</string>
+    <string name="gallery_title">Galería</string>
+    <string name="map_title">Mapa</string>
+    <string name="tools_title">Herramientas</string>
+    <string name="busqueda_title">Búsqueda</string>
+    <string name="rutas_title">Rutas</string>
+    <string name="login_title">Ingresar</string>
+    <string name="ikiam_web_title">Ikiam web</string>
+    <string name="logro_title">Logros</string>
+    <string name="notepad_title">Notas</string>
+    <string name="nota_create_title">Nueva nota</string>
+    <string name="nota_edit_title">Modificar nota</string>
+    <string name="especie_info_title">Info. especie</string>
+    <string name="estadisticas_title">Estadísticas</string>
+
+    <string-array name="options_array">
+        <item>Enciclopedia</item>
+        <item>Nueva captura</item>
+        <item>Notas</item>
+        <item>Nueva nota</item>
+        <item>Herramientas</item>
+        <item>Configuración</item>
+    </string-array>
+    <string name="drawer_open">Abrir menú de navegación</string>
+    <string name="drawer_close">Cerrar menú de navegación</string>
+    <string name="search_btn_label">Búsqueda</string>
+
+    <string name="help_help">help_help</string>
+    <string name="help_captura">Ayuda captura</string>
+    <string name="help_enciclopedia">Ayuda enciclopedia</string>
+    <string name="help_notepad">Ayuda notas</string>
+    <string name="help_configuracion">Ayuda configuracion</string>
+    <string name="help_busqueda">Ayuda búsqueda</string>
+    <string name="help_tools">Ayuda tools</string>
+
+    <string name="dialog_btn_cerrar">Cerrar</string>
+    <string name="dialog_btn_anterior">Anterior</string>
+    <string name="dialog_btn_siguiente">Siguiente</string>
+
+    <string name="global_yes">Sí</string>
+    <string name="global_no">No</string>
+    <string name="global_ok">Aceptar</string>
+    <string name="global_save">Guardar</string>
+    <string name="global_upload">Guardar y enviar al servidor</string>
+    <string name="global_cancel">Cancelar</string>
+    <string name="global_placeHolder">placeHolder</string>
+    <string name="global_min">min.</string>
+    <string name="global_max">max.</string>
+
+    <string name="global_color_none">-Ninguno-</string>
+    <string name="global_color_blue">Azul</string>
+    <string name="global_color_brown">Café</string>
+    <string name="global_color_green">Verde</string>
+    <string name="global_color_orange">Naranja</string>
+    <string name="global_color_pink">Rosa</string>
+    <string name="global_color_purple">Violeta</string>
+    <string name="global_color_red">Rojo</string>
+    <string name="global_color_white">Blanco</string>
+    <string name="global_color_yellow">Amarillo</string>
+
+    <string name="global_forma_vida_none">-Ninguna-</string>
+    <string name="global_forma_vida_cushion">Cushion</string>
+    <string name="global_forma_vida_shrub">Shrub</string>
+    <string name="global_forma_vida_herb">Herb</string>
+    <string name="global_forma_vida_grass">Grass</string>
+    <string name="global_forma_vida_rosette">Rosette</string>
+    <string name="global_forma_vida_acquatic">Aquatic</string>
+    <string name="global_forma_vida_liana">Liana</string>
+    <string name="global_forma_vida_tree">Tree</string>
+
+    <string name="global_error_no_connection">No se pudo conectar a Internet.</string>
+
+    <string name="captura_es_animal">Es un animal</string>
+    <string name="captura_es_planta">Es una planta</string>
+    <string name="captura_tiene_fruta">Se ve la fruta</string>
+    <string name="captura_tiene_arbol">Se ve el árbol completo</string>
+    <string name="captura_tiene_corteza">Se ve la corteza</string>
+    <string name="captura_tiene_hoja">Se ven las hojas</string>
+    <string name="captura_tiene_flor">Se ven las flores</string>
+    <string name="captura_keyWord_animal">Animal</string>
+    <string name="captura_keyWord_fruta">Fruta</string>
+    <string name="captura_keyWord_arbol">Árbol</string>
+    <string name="captura_keyWord_corteza">Corteza</string>
+    <string name="captura_keyWord_hoja">Hojas</string>
+    <string name="captura_keyWord_flor">Flores</string>
+
+    <string name="captura_comentarios_label">Comentarios</string>
+    <string name="captura_nombre_familia_label">Familia</string>
+    <string name="captura_nombre_genero_label">Género</string>
+    <string name="captura_nombre_especie_label">Especie</string>
+    <string name="captura_nombre_comun_label">Nombre común</string>
+    <string name="captura_color1_label">Color principal</string>
+    <string name="captura_color2_label">Color secundario</string>
+    <string name="captura_cautiverio_label">Especimen en cautiverio</string>
+
+    <string name="captura_error_nombre_comun">Por favor, ingresa el nombre común de la especie</string>
+    <string name="captura_error_nombre_familia">Por favor, ingresa la familia de la especie</string>
+    <string name="captura_error_nombre_genero">Por favor, ingresa el género de la especie</string>
+    <string name="captura_error_nombre_especie">Por favor, ingresa el nombre de la especie</string>
+    <string name="captura_error_keywords">Por favor, selecciona un tipo de foto</string>
+    <string name="captura_error_seleccion">Por favor, selecciona o toma una foto primero</string>
+    <string name="captura_error_tag_gps">La foto no tiene información geográfica. Ubíquela en el mapa en el siguiente paso.</string>
+    <string name="captura_success_tag_gps">La foto tiene información geográfica. Será ubicada en el mapa.</string>
+    <string name="captura_error_gps_upload">La foto no tiene información geográfica. Por favor súbala después de ubicarla.</string>
+
+    <string name="captura_success">La foto ha sido guardada.</string>
+
+    <string name="busqueda_nombre_cientifico">Nombre científico</string>
+    <string name="busqueda_color">Color</string>
+    <string name="busqueda_nombre_comun">Nombre común</string>
+
+    <string name="buscar_buscar">Buscar fotos</string>
+    <string name="buscar_donde">donde se vea</string>
+    <string name="buscar_es_animal">de animales</string>
+    <string name="buscar_es_planta">de plantas</string>
+    <string name="buscar_es_animal_y_planta">de animales y plantas</string>
+    <string name="buscar_tiene_fruta">la fruta</string>
+    <string name="buscar_tiene_arbol">el árbol completo</string>
+    <string name="buscar_tiene_corteza">la corteza</string>
+    <string name="buscar_tiene_hoja">las hojas</string>
+    <string name="buscar_tiene_flor">las flores</string>
+    <string name="buscar_nombre_comun">de nombre común</string>
+    <string name="buscar_color">con color</string>
+
+    <string name="nota_create_title_label">Título</string>
+    <string name="nota_create_contenido_label">Contenido</string>
+
+    <string name="nota_create_dlg_delete_title">Eliminar nota</string>
+    <string name="nota_create_dlg_delete_contenido">¿Está seguro de querer eliminar esta nota?</string>
+    <string name="nota_create_delete">Nota eliminada</string>
+    <string name="nota_create_saved">Nota guardada</string>
+
+    <string name="encyclopedia_especie_info_ver_mapa">Ver habitat</string>
+    <string name="especie_info_altura">Altitud</string>
+    <string name="especie_info_altura_min">Altitud mínima</string>
+    <string name="especie_info_altura_max">Altitud máxima</string>
+    <string name="especie_info_altura_avg">Altitud promedio</string>
+    <string name="especie_info_color_lbl">Color</string>
+    <string name="especie_info_forma_vida_lbl">Forma de vida</string>
+    <!--<string name="especie_info_foto">%1$d foto, mostrando %2$d</string>-->
+    <!--<string name="especie_info_fotos">%1$d fotos, mostrando %2$d</string>-->
+    <plurals name="especie_info_fotos">
+        <item quantity="one">1 foto, mostrando 1</item>
+        <item quantity="other">%1$d fotos, mostrando %2$d</item>
+    </plurals>
+    <!--<string name="encyclopedia_entries_dialog_title">Foto(s)</string>-->
+    <plurals name="encyclopedia_entries_dialog_title">
+        <item quantity="one">Foto</item>
+        <item quantity="other">Fotos</item>
+    </plurals>
+
+    <string name="tools_latitud">Latitud</string>
+    <string name="tools_longitud">Longitud</string>
+
+    <string name="ruta_lbl_fotos">Fotos:</string>
+
+    <string name="especies_info_flora">Flora web</string>
+    <string name="especie_info_tropicos">Tropicos</string>
+</resources>
