@@ -15,7 +15,7 @@
   -->
 
 <resources>
-    <string name="app_name">Cajas</string>
+    <string name="app_name">Flóramo</string>
     <string name="menu_title">Navegación</string>
 
     <string name="web_app_not_available">Lo siento, no hay un navegador configurado</string>
