@@ -1,0 +1,1040 @@
+package com.lzm.Cajas;
+
+import android.app.*;
+import android.content.*;
+import android.content.res.Configuration;
+import android.graphics.*;
+import android.graphics.Color;
+import android.location.Location;
+import android.os.*;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.*;
+import android.widget.*;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesClient;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.location.LocationClient;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.*;
+import com.lzm.Cajas.db.*;
+import com.lzm.Cajas.image.*;
+import com.lzm.Cajas.listeners.FieldListener;
+import com.lzm.Cajas.utils.*;
+import java.util.*;
+
+public class MapActivity extends Activity implements Button.OnClickListener, GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener {
+    /*DRAWER*/
+    private DrawerLayout mDrawerLayout;
+    private ListView mDrawerList;
+    private ActionBarDrawerToggle mDrawerToggle;
+    private CharSequence mDrawerTitle;
+    private CharSequence mTitle;
+    private String[] mOptionsArray;
+
+    public final int MAP_POS = 0;
+    public final int CAPTURA_POS = 1;
+    public final int ENCYCLOPEDIA_POS = 2;
+    public final int GALERIA_POS = -1;
+    public final int RUTAS_POS = 3;
+    public final int IKIAM_WEB_POS = 4;
+    public final int NOTEPAD_POS = 5;
+    public final int NOTA_POS = 6;
+    public final int SETTINGS_POS = 7;
+    public final int LOGIN_POS = 8;
+    public final int SCANER_POS = 9;
+
+    public final int MAP_POS_T = 0;
+    public final int CAPTURA_POS_T = 1;
+    public final int ENCYCLOPEDIA_POS_T = 2;
+    public final int GALERIA_POS_T = 3;
+    public final int RUTAS_POS_T = 4;
+    public final int IKIAM_WEB_POS_T = 5;
+    public final int NOTEPAD_POS_T = 6;
+    public final int NOTA_POS_T = 7;
+    public final int SETTINGS_POS_T = 8;
+    public final int LOGIN_POS_T = 9;
+    public final int SCANER_POS_T = 10;
+
+    public final int TOOLS_POS = 17;
+    public final int BUSQUEDA_POS = 18;
+
+    public int activeFragment = 0;
+
+    public final int ACHIEV_FOTOS = 1;
+    public final int ACHIEV_DISTANCIA = 2;
+    public final int ACHIEV_UPLOADS = 3;
+    public final int ACHIEV_SHARE = 4;
+
+    public final int INTENT_LOGRO = 1;
+
+    private static final int CAMERA_REQUEST = 1337;
+    /*Interfaz*/
+    private Button[] botones;
+    boolean continente = true;
+    Activity activity;
+    /*Mapa*/
+    private static GoogleMap map;
+    private Polyline polyLine;
+    private PolylineOptions rectOptions = new PolylineOptions().color(Color.RED);
+    private static LatLng location;
+    LocationClient locationClient;
+    Marker lastPosition;
+    HashMap<Marker, Foto> data;
+    HashMap<Marker, Foto> dataUsuario;
+    Marker selected;
+    int tipoMapa = 0;
+    /*Google services*/
+    private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
+    /*Fin mapa*/
+
+
+
+    //    String imagePathUpload = "";
+    Foto imageToUpload;
+    AlertDialog dialog;
+    View myView;
+    public int screenHeight;
+    public int screenWidth;
+    public static final String PREFS_NAME = "IkiamSettings";
+    public String userId;
+    public String name;
+    public String titulo;
+    public String type;
+    public String email;
+    public String esCientifico;
+    public String errorMessage;
+    public String ruta_remote_id;
+    public String old_id;
+
+    List<FieldListener> listeners = new ArrayList<FieldListener>();
+
+
+    public Foto fotoSinCoords;
+
+
+    public void setRuta_remote_id(String id) {
+        fireEvent("ruta_remote_id", id);
+        old_id = ruta_remote_id;
+        this.ruta_remote_id = id;
+    }
+
+    public void setUserId(String id) {
+        fireEvent("userId", id);
+        this.userId = id;
+    }
+
+    public void setType(String type) {
+        fireEvent("type", type);
+        this.type = type;
+    }
+
+    public void setErrorMessage(String msg) {
+        // System.out.println("::: SET ERROR MESSAGE::: " + msg);
+        fireEvent("errorMessage", msg);
+        this.errorMessage = msg;
+    }
+
+    public void addListener(FieldListener l) {
+        if (l != null) listeners.add(l);
+    }
+
+    public void fireEvent(String fieldName, String newValue) {
+        for (FieldListener l : listeners) {
+            l.fieldValueChanged(fieldName, newValue);
+        }
+    }
+
+    public void showToast(final String msg) {
+        final Activity a = this;
+        if (a != null) {
+            a.runOnUiThread(new Runnable() {
+
+                @Override
+                public void run() {
+                    Toast.makeText(a, msg, Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+    }
+
+
+
+
+
+
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        DbHelper helper = new DbHelper(this);
+        helper.getWritableDatabase();
+
+        fotoSinCoords = null;
+        imageToUpload = null;
+
+        /*preferencias*/
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        userId = settings.getString("user", "-1");
+        name = settings.getString("name", "-1");
+        type = settings.getString("type", "-1");
+        email = settings.getString("email", "-1");
+        esCientifico = settings.getString("esCientifico", "-1");
+        titulo = settings.getString("titulo", "-1");
+        //System.out.println("variables name "+userId+"  name "+name);
+        setContentView(R.layout.activity_map);
+
+
+        this.activity = this;
+
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        this.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        screenHeight = displaymetrics.heightPixels;
+        screenWidth = displaymetrics.widthPixels;
+
+
+        /*CORE*/
+        locationClient = new LocationClient(this, this, this);
+        locationClient.connect();
+        setUpMapIfNeeded();
+        data = new HashMap<Marker, Foto>();
+        dataUsuario = new HashMap<Marker, Foto>();
+        //atracciones = new HashMap<Marker, AtraccionUi>();
+
+
+        botones = new Button[9];
+        botones[0] = (Button) this.findViewById(R.id.btnGalapagos);
+        botones[1] = (Button) this.findViewById(R.id.btnService);
+        botones[2] = (Button) this.findViewById(R.id.btnAtraccion);
+        botones[3] = (Button) this.findViewById(R.id.btnEspecies);
+        botones[4] = (Button) this.findViewById(R.id.btnCamara);
+        botones[5] = (Button) this.findViewById(R.id.btnLimpiar);
+        botones[6] = (Button) this.findViewById(R.id.btnTools);
+        botones[7] = (Button) this.findViewById(R.id.btnTipo);
+        botones[8] = (Button) this.findViewById(R.id.btnSocial);
+//        System.out.println("TYPE::::: " + type + "    " + type.equalsIgnoreCase("Ikiam"));
+//        System.out.println("ES CIENTIFICO::::: >" + esCientifico.trim() + "<     >" + esCientifico.equalsIgnoreCase("S") + "<");
+        if (type.equalsIgnoreCase("Ikiam")) {
+            if (esCientifico.trim().equalsIgnoreCase("S")) {
+//                System.out.println("TYPE::::: " + type);
+//                System.out.println("ES CIENTIFICO::::: " + esCientifico);
+                botones[2].setVisibility(View.GONE);
+                botones[3].setVisibility(View.GONE);
+                botones[8].setVisibility(View.GONE);
+            }
+        }
+        for (int i = 0; i < botones.length; i++) {
+            botones[i].setOnClickListener(this);
+        }
+        restoreMe(savedInstanceState);
+
+        /*fin*/
+
+        /*DRAWER*/
+        mTitle = mDrawerTitle = getTitle();
+
+            mOptionsArray = getResources().getStringArray(R.array.options_array);
+
+
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout2);
+        mDrawerList = (ListView) findViewById(R.id.left_drawer2);
+        mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+        mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, mOptionsArray));
+        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+        // enable ActionBar app icon to behave as action to toggle nav drawer
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setHomeButtonEnabled(true);
+        // ActionBarDrawerToggle ties together the the proper interactions
+        // between the sliding drawer and the action bar app icon
+        mDrawerToggle = new ActionBarDrawerToggle(
+                this,                  /* host Activity */
+                mDrawerLayout,         /* DrawerLayout object */
+                R.drawable.ic_drawer,  /* nav drawer image to replace 'Up' caret */
+                R.string.drawer_open,  /* "open drawer" description for accessibility */
+                R.string.drawer_close  /* "close drawer" description for accessibility */
+        ) {
+            /**
+             * Called when a drawer has settled in a completely closed state.
+             */
+            public void onDrawerClosed(View view) {
+                getActionBar().setTitle(mTitle);
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+            }
+
+            /**
+             * Called when a drawer has settled in a completely open state.
+             */
+            public void onDrawerOpened(View drawerView) {
+//                getActionBar().setTitle(mDrawerTitle);
+                getActionBar().setTitle(R.string.menu_title);
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+            }
+        };
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+//        if (savedInstanceState == null) {
+//            selectItem(0);
+//        }
+        /*FinDrawer*/
+
+
+
+    }
+
+    private void restoreMe(Bundle state) {
+        if (state != null) {
+                /*Implementar el restor*/
+        }
+
+    }
+
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+
+    }
+
+    @Override
+    public void onResume() {
+
+        super.onStart();
+//        // TODO Auto-generated method stub
+
+    }
+
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        // Save the user's current game state
+
+        super.onSaveInstanceState(savedInstanceState);
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == botones[0].getId()) {
+            //Continente --> Galapagos
+
+
+        }
+
+        if (v.getId() == botones[1].getId()) {
+            //service de rutas
+
+
+        }
+
+
+    }
+
+    /*Google services*/
+    private boolean servicesConnected() {
+        // Check that Google Play services is available
+        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+        // If Google Play services is available
+        if (ConnectionResult.SUCCESS == resultCode) {
+            // In debug mode, log the status
+            Log.d("Location Updates",
+                    "Google Play services is available.");
+            // Continue
+            return true;
+            // Google Play services was not available for some reason
+        } else {
+            // Get the error code
+
+            return false;
+        }
+    }
+
+    /*location services*/
+    @Override
+    public void onConnected(Bundle dataBundle) {
+        System.out.println("connected");
+        Location mCurrentLocation;
+        mCurrentLocation = locationClient.getLastLocation();
+        map.getMyLocation();
+    }
+
+    @Override
+    public void onDisconnected() {
+        // Display the connection status
+        // Toast.makeText(this, "Disconnected. Please re-connect.",
+        //Toast.LENGTH_SHORT).show();
+    }
+
+    /*
+     * Called by Location Services if the attempt to
+     * Location Services fails.
+     */
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+        /*
+         * Google Play services can resolve some errors it detects.
+         * If the error has a resolution, try sending an Intent to
+         * start a Google Play services activity that can resolve
+         * error.
+         */
+        System.out.println("error connection failed");
+    }
+
+
+    /*MAPS*/
+    private void updatePolyLine(LatLng latLng) {
+        List<LatLng> points = polyLine.getPoints();
+        points.add(latLng);
+        polyLine.setPoints(points);
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        for (LatLng l : points) {
+            builder.include(l);
+        }
+        LatLngBounds bounds = builder.build();
+        int padding = (100);
+        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+        map.animateCamera(cu);
+    }
+
+    public void setPing(final String title, final int likes, final double latitud, final double longitud, final Bitmap foto, final Bitmap fotoDialog, final String url, final String descripcion) {
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                final LatLng pos = new LatLng(latitud, longitud);
+                Bitmap.Config conf = Bitmap.Config.ARGB_8888;
+                Bitmap bmp = Bitmap.createBitmap(170, 126, conf);
+                Canvas canvas1 = new Canvas(bmp);
+                Paint color = new Paint();
+                color.setTextSize(35);
+                color.setColor(Color.BLACK);//modify canvas
+                canvas1.drawBitmap(BitmapFactory.decodeResource(getResources(),
+                        R.drawable.pin3), 0, 0, color);
+                canvas1.drawBitmap(foto, 5, 4, color);
+                Marker marker = map.addMarker(new MarkerOptions().position(pos)
+                        .icon(BitmapDescriptorFactory.fromBitmap(bmp))
+                        .anchor(0.5f, 1).title(title));
+                //AtraccionUi atraccion = new AtraccionUi(title, fotoDialog, likes, url, descripcion);
+                //atracciones.put(marker, atraccion);
+            }
+        });
+
+    }
+
+    public void setPingEspecie(final String title, final int likes, final double latitud, final double longitud, final Bitmap foto, final Bitmap fotoDialog, final String desc, final String nombreEspecie) {
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                final LatLng pos = new LatLng(latitud, longitud);
+                Bitmap.Config conf = Bitmap.Config.ARGB_8888;
+                Bitmap bmp = Bitmap.createBitmap(170, 126, conf);
+                Canvas canvas1 = new Canvas(bmp);
+                Paint color = new Paint();
+                color.setTextSize(10);
+                color.setColor(Color.BLACK);//modify canvas
+                canvas1.drawBitmap(BitmapFactory.decodeResource(getResources(),
+                        R.drawable.pin3), 0, 0, color);
+                canvas1.drawBitmap(foto, 5, 4, color);
+                Marker marker = map.addMarker(new MarkerOptions().position(pos)
+                        .icon(BitmapDescriptorFactory.fromBitmap(bmp))
+                        .title(title));
+                //EspecieUi especieUi = new EspecieUi(title, nombreEspecie, fotoDialog, likes, desc);
+                //especies.put(marker, especieUi);
+            }
+        });
+
+    }
+
+
+
+
+
+
+    public void setUpMapIfNeeded() {
+        //System.out.println("setUpMap if needed" +map);
+        map = ((MapFragment) getFragmentManager().findFragmentById(R.id.mapF)).getMap();
+        //System.out.println("setUpMap if needed despues" +map);
+        // Do a null check to confirm that we have not already instantiated the map.
+        if (map == null) {
+            // Try to obtain the map from the SupportMapFragment.
+            map = ((MapFragment) getFragmentManager().findFragmentById(R.id.mapF)).getMap();
+            // Check if we were successful in obtaining the map.
+            if (map != null)
+                setUpMap();
+        } else {
+            setUpMap();
+        }
+    }
+
+    private void setUpMap() {
+        //locationClient.getLastLocation();
+        location = new LatLng(-1.6477220517969353, -78.46435546875);
+        CameraUpdate update = CameraUpdateFactory.newLatLngZoom(location, 7);
+        map.setMyLocationEnabled(true);
+        map.animateCamera(update);
+        map.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+        map.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            @Override
+            public void onMapLongClick(LatLng latLng) {
+
+            }
+        });
+        final Context context = this;
+        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(final Marker marker) {
+
+                return true;
+            }
+        });
+
+    }
+
+    private void updateFotoSinCoords(LatLng pos) {
+     /*   Coordenada coord = new Coordenada(this);
+        markerSubir.hideInfoWindow();
+        coord.latitud = pos.latitude;
+        coord.longitud = pos.longitude;
+        coord.altitud = 0;
+        coord.save();
+        fotoSinCoords.setCoordenada(coord);
+        fotoSinCoords.save();
+        Toast.makeText(this, getString(R.string.map_foto_ubicada), Toast.LENGTH_LONG).show();
+        if (markerSubir.isInfoWindowShown())
+            markerSubir.hideInfoWindow();
+        markerSubir.remove();
+        markerSubir = null;
+        fotoSinCoords = null;*/
+    }
+
+
+
+
+
+    public Bitmap getFotoDialog(Foto image, int width, int heigth) {
+        if (image != null) {
+            // System.out.println("path "+imageItem.imagePath);
+            //System.out.println("images " + image.imagePath+"  "+width+"  "+heigth);
+            Bitmap b = ImageUtils.decodeFile(image.path, width, heigth);
+            return b;
+
+        }
+        return null;
+
+    }
+
+
+
+    /*DRAWER*/
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    /* Called whenever we call invalidateOptionsMenu() */
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        // If the nav drawer is open, hide action items related to the content view
+        boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
+        menu.findItem(R.id.search_btn_label).setVisible(!drawerOpen);
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // The action bar home/up action should open or close the drawer.
+        // ActionBarDrawerToggle will take care of this.
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        // Handle action buttons
+        switch (item.getItemId()) {
+            case R.id.search_btn_label:
+                Fragment fragment = new BusquedaFragment();
+                Bundle args = new Bundle();
+                Utils.openFragment(this, fragment, getString(R.string.busqueda_title), args);
+                //args.putString("pathFolder", pathFolder);
+//                fragment.setArguments(args);
+//
+//                FragmentManager fragmentManager = getFragmentManager();
+//                RelativeLayout mainLayout = (RelativeLayout) this.findViewById(R.id.rl2);
+//                mainLayout.setVisibility(LinearLayout.GONE);
+//                fragmentManager.beginTransaction()
+//                        .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+//                        .replace(R.id.content_frame, fragment)
+//                        .commit();
+                activeFragment = BUSQUEDA_POS;
+                return true;
+            case R.id.menu_help:
+                LayoutInflater inflater = getLayoutInflater();
+                View v = inflater.inflate(R.layout.help_layout, null);
+
+                final AlertDialog.Builder builder = new AlertDialog.Builder(this).setView(v)
+                        .setTitle(getString(R.string.help_help));
+                builder.setPositiveButton(R.string.dialog_btn_cerrar, null);
+
+                final AlertDialog d = builder.create();
+                final TextView txt = (TextView) v.findViewById(R.id.help_container);
+                /*
+                    switch (activeFragment) {
+                        case MAP_POS_T:
+                            txt.setText(getString(R.string.help_map));
+                            break;
+                        case CAPTURA_POS_T:
+                            txt.setText(getString(R.string.help_captura_turista));
+                            break;
+                        case ENCYCLOPEDIA_POS_T:
+                            txt.setText(getString(R.string.help_enciclopedia));
+                            break;
+                        case GALERIA_POS_T:
+                            txt.setText(getString(R.string.help_galeria));
+                            break;
+                        case RUTAS_POS_T:
+                            txt.setText(getString(R.string.help_rutas));
+                            break;
+                        case IKIAM_WEB_POS_T:
+                            txt.setText(getString(R.string.help_ikiam_web));
+                            break;
+                        case NOTEPAD_POS_T:
+                        case NOTA_POS_T:
+                            txt.setText(getString(R.string.help_notepad));
+                            break;
+                        case SETTINGS_POS_T:
+                            txt.setText(getString(R.string.help_configuracion));
+                            break;
+                        case LOGIN_POS_T:
+                            txt.setText(getString(R.string.help_login));
+                            break;
+                        case BUSQUEDA_POS:
+                            txt.setText(getString(R.string.help_busqueda));
+                            break;
+                        case TOOLS_POS:
+                            txt.setText(getString(R.string.help_tools));
+                            break;
+                        case SCANER_POS_T:
+                            txt.setText(getString(R.string.help_scanner));
+                            break;
+                    }
+
+                }
+*/
+                d.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface dialog) {
+                        Button cerrar = d.getButton(AlertDialog.BUTTON_POSITIVE);
+                        cerrar.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                d.dismiss();
+                            }
+                        });
+
+                    }
+                });
+                d.show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    /* The click listner for ListView in the navigation drawer */
+    private class DrawerItemClickListener implements ListView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            // System.out.println("entro?");
+            selectItem(position);
+        }
+    }
+
+    public void selectItem(int position) {
+        selectItem(position, true);
+    }
+
+    public void selectItem(int position, boolean drawer) {
+        // update the main content by replacing fragments
+        System.out.println("pos? " + position + "   cientifico? " + esCientifico.trim());
+        String title = "";
+        Utils.hideSoftKeyboard(this);
+        Fragment fragment = null;
+        Bundle args = null;
+
+            switch (position) {
+                case MAP_POS:
+                    fragment = null;
+                    title = getString(R.string.map_title);
+                    activeFragment = MAP_POS;
+                    break;
+                case CAPTURA_POS:
+
+                    this.addListener((FieldListener) fragment);
+                    title = getString(R.string.captura_title);
+                    activeFragment = CAPTURA_POS;
+                    break;
+                case ENCYCLOPEDIA_POS:
+                    fragment = new EncyclopediaFragment();
+                    title = getString(R.string.encyclopedia_title);
+                    activeFragment = ENCYCLOPEDIA_POS;
+                    break;
+                case GALERIA_POS:
+
+                    break;
+                case RUTAS_POS:
+
+                    break;
+                case IKIAM_WEB_POS:
+
+                    break;
+                case NOTEPAD_POS:
+                    fragment = new NotepadFragment();
+                    title = getString(R.string.notepad_title);
+                    activeFragment = NOTEPAD_POS;
+                    break;
+                case NOTA_POS:
+                    fragment = new NotaCreateFrgment();
+                    args = new Bundle();
+                    args.putLong("nota", -1);
+                    title = getString(R.string.nota_create_title);
+                    activeFragment = NOTA_POS;
+                    break;
+                case SETTINGS_POS:
+                    fragment = new SettingsFragment();
+                    this.addListener((FieldListener) fragment);
+                    title = getString(R.string.settings_title);
+                    activeFragment = SETTINGS_POS;
+                    break;
+                case LOGIN_POS:
+
+                    activeFragment = LOGIN_POS;
+                    break;
+
+                default:
+                    fragment = null;
+                    break;
+            }
+
+
+        Utils.openFragment(this, fragment, title, args);
+
+        if (drawer) {
+            mDrawerList.setItemChecked(position, true);
+            mDrawerLayout.closeDrawer(mDrawerList);
+        }
+    }
+
+    @Override
+    public void setTitle(CharSequence title) {
+        mTitle = title;
+        getActionBar().setTitle(mTitle);
+    }
+
+    /**
+     * When using the ActionBarDrawerToggle, you must call it during
+     * onPostCreate() and onConfigurationChanged()...
+     */
+
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        mDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // Pass any configuration change to the drawer toggls
+        mDrawerToggle.onConfigurationChanged(newConfig);
+    }
+
+
+
+
+    public void showMap() {
+        selectItem(MAP_POS);
+    }
+
+
+/*
+    public void mostrarEspecie(Especie especie) {
+        map.clear();
+        List<Entry> entry = Entry.findAllByEspecie(this, especie);
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        int padding = (100);
+        PolygonOptions poly = new PolygonOptions();
+        int fillColor = Color.argb(150, 68, 134, 246);
+        poly.strokeColor(fillColor);
+        poly.fillColor(fillColor);
+
+        List<LatLng> puntos = new ArrayList<LatLng>();
+        List<LatLng> puntosfinal = new ArrayList<LatLng>();
+        for (int i = 0; i < entry.size(); i++) {
+            Entry current = entry.get(i);
+            List<Foto> fotos = Foto.findAllByEntry(activity, current);
+            for (int j = 0; j < fotos.size(); j++) {
+                Bitmap.Config conf = Bitmap.Config.ARGB_8888;
+                Bitmap bmp = Bitmap.createBitmap(170, 126, conf);
+                ;
+                Canvas canvas1 = new Canvas(bmp);
+                Paint color = new Paint();
+                color.setTextSize(35);
+                color.setColor(Color.BLACK);//modify canvas
+                canvas1.drawBitmap(BitmapFactory.decodeResource(getResources(),
+                        R.drawable.pin3), 0, 0, color);
+                Bitmap b = ImageUtils.decodeFile(fotos.get(j).path);
+                canvas1.drawBitmap(b, 5, 4, color);
+                Coordenada co = fotos.get(j).getCoordenada(activity);
+                location = new LatLng(co.getLatitud(), co.getLongitud());
+                puntos.add(location);
+                builder.include(location);
+                Marker marker = map.addMarker(new MarkerOptions().position(location)
+                        .icon(BitmapDescriptorFactory.fromBitmap(bmp))
+                        .anchor(0.5f, 1).title(getString(R.string.map_activity_captura) + " " + fotos.get(j).fecha));
+                // Marker marker = map.addMarker(new MarkerOptions().position(location)
+                //       .icon(BitmapDescriptorFactory.fromBitmap(bmp))
+                //     .anchor(0.5f, 1).title(" "+location.latitude+" , "+location.longitude));
+                //marker.showInfoWindow();
+                data.put(marker, fotos.get(j));
+            }
+        }
+        if (puntos.size() > 2) {
+            LatLng masAlto = null;
+            LatLng masBajo = null;
+            LatLng masDer = null;
+            LatLng masIzq = null;
+            double maxX = 0;
+            double minX = 0;
+            double minY = 0;
+            double maxY = 0;
+            for (int i = 0; i < puntos.size(); i++) {
+                double x1 = (puntos.get(i).longitude + 180) * 360;
+                double y1 = (puntos.get(i).latitude + 90) * 180;
+                if (minX == 0) {
+                    minX = x1;
+                    masIzq = puntos.get(i);
+                }
+                if (minY == 0) {
+                    minY = y1;
+                    masBajo = puntos.get(i);
+                }
+                if (maxX == 0) {
+                    maxX = x1;
+                    masDer = puntos.get(i);
+                }
+                if (maxY == 0) {
+                    maxY = y1;
+                    masAlto = puntos.get(i);
+                }
+                if (x1 > maxX) {
+                    maxX = x1;
+                    masDer = puntos.get(i);
+                }
+                if (y1 > maxY) {
+                    maxY = y1;
+                    masAlto = puntos.get(i);
+                }
+                if (x1 < minX) {
+                    minX = x1;
+                    masIzq = puntos.get(i);
+                }
+                if (y1 < minY) {
+                    minY = y1;
+                    masBajo = puntos.get(i);
+                }
+
+            }
+            // System.out.println("mas alto "+masAlto.latitude+" , "+masDer.longitude);
+            // System.out.println("mas izq "+masIzq.latitude+" , "+masIzq.longitude);
+            // System.out.println("mas bajo "+masBajo.latitude+" , "+masDer.longitude);
+            // System.out.println("mas der "+masDer.latitude+" , "+masDer.longitude);
+
+            puntosfinal.add(masAlto);
+            puntosfinal.add(masIzq);
+            puntosfinal.add(masBajo);
+            puntosfinal.add(masDer);
+            double maxDis = distancia(masAlto, masBajo);
+
+            for (int i = 0; i < puntosfinal.size() - 1; i++) {
+                LatLng current = puntosfinal.get(i);
+                poly.add(current);
+                LatLng next = puntosfinal.get(i + 1);
+                double x1 = (current.longitude + 180) * 360;
+                double y1 = (current.latitude + 90) * 180;
+                double x2 = (next.longitude + 180) * 360;
+                double y2 = (next.latitude + 90) * 180;
+                LatLng nuevo = null;
+                double nuevoX = 0;
+                switch (i) {
+                    case 0:
+                        nuevo = null;
+                        nuevoX = 0;
+                        // System.out.println("current "+current.latitude+" ; "+current.longitude+"  --->  "+x1+" ; "+y1);
+                        //System.out.println("next "+next.latitude+" ; "+next.longitude+"  --->  "+x2+" ; "+y2);
+                        for (int j = 0; j < puntos.size(); j++) {
+                            if (puntos.get(j) != masIzq) {
+                                double x3 = (puntos.get(j).longitude + 180) * 360;
+                                double y3 = (puntos.get(j).latitude + 90) * 180;
+                                // System.out.println("ietracion "+puntos.get(j).latitude+" ; "+puntos.get(j).longitude+"  --->  "+x3+" ; "+y3);
+                                if (x3 < x1 && y2 < y3) {
+                                    //System.out.println("paso es mas!");
+                                    if (nuevo == null) {
+                                        nuevo = puntos.get(j);
+                                        nuevoX = x3;
+                                    } else {
+                                        if (x3 < nuevoX) {
+                                            nuevo = puntos.get(j);
+                                            nuevoX = x3;
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        if (nuevo != null)
+                            poly.add(nuevo);
+                        break;
+                    case 1:
+                        nuevo = null;
+                        nuevoX = 0;
+                        // System.out.println("current "+current.latitude+" ; "+current.longitude+"  --->  "+x1+" ; "+y1);
+                        //System.out.println("next "+next.latitude+" ; "+next.longitude+"  --->  "+x2+" ; "+y2);
+                        for (int j = 0; j < puntos.size(); j++) {
+                            if (puntos.get(j) != masBajo) {
+                                double x3 = (puntos.get(j).longitude + 180) * 360;
+                                double y3 = (puntos.get(j).latitude + 90) * 180;
+                                // System.out.println("ietracion "+puntos.get(j).latitude+" ; "+puntos.get(j).longitude+"  --->  "+x3+" ; "+y3);
+                                if (x3 < x2 && y3 > y2) {
+                                    //System.out.println("paso es mas!");
+                                    if (nuevo == null) {
+                                        nuevo = puntos.get(j);
+                                        nuevoX = x3;
+                                    } else {
+                                        if (x3 < nuevoX) {
+                                            nuevo = puntos.get(j);
+                                            nuevoX = x3;
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        if (nuevo != null)
+                            poly.add(nuevo);
+                        break;
+                    case 2:
+                        nuevo = null;
+                        nuevoX = 0;
+                        // System.out.println("current "+current.latitude+" ; "+current.longitude+"  --->  "+x1+" ; "+y1);
+                        //System.out.println("next "+next.latitude+" ; "+next.longitude+"  --->  "+x2+" ; "+y2);
+                        for (int j = 0; j < puntos.size(); j++) {
+                            if (puntos.get(j) != masAlto) {
+                                double x3 = (puntos.get(j).longitude + 180) * 360;
+                                double y3 = (puntos.get(j).latitude + 90) * 180;
+                                // System.out.println("ietracion "+puntos.get(j).latitude+" ; "+puntos.get(j).longitude+"  --->  "+x3+" ; "+y3);
+                                if (x3 > x1 && y3 > y1) {
+                                    //System.out.println("paso es mas!");
+                                    if (nuevo == null) {
+                                        nuevo = puntos.get(j);
+                                        nuevoX = x3;
+                                    } else {
+                                        if (x3 > nuevoX) {
+                                            nuevo = puntos.get(j);
+                                            nuevoX = x3;
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        if (nuevo != null)
+                            poly.add(nuevo);
+                        break;
+                }
+
+            }
+            Polygon polygon = map.addPolygon(poly);
+        }
+
+
+        LatLngBounds bounds = builder.build();
+        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+        map.animateCamera(cu);
+        showMap();
+        setTitle(getString(R.string.captura_nombre_especie_label) + ": " + especie.nombre);
+
+    }
+*/
+    public double pendiente(LatLng p1, LatLng p2) {
+        double x1 = (p1.longitude + 180) * 360;
+        double y1 = (p1.latitude + 90) * 180;
+        double x2 = (p2.longitude + 180) * 360;
+        double y2 = (p2.latitude + 90) * 180;
+        double dX = x2 - x1;
+        double dY = y2 - y1;
+        return dY / dX;
+    }
+
+    public double distancia(LatLng p1, LatLng p2) {
+        double x1 = (p1.longitude + 180) * 360;
+        double y1 = (p1.latitude + 90) * 180;
+        double x2 = (p2.longitude + 180) * 360;
+        double y2 = (p2.latitude + 90) * 180;
+        double dX = x2 - x1;
+        double dY = y2 - y1;
+        return Math.sqrt((dX * dX) + (dY * dY));
+    }
+
+    public int pointSort(LatLng p1, LatLng p2, LatLng upper) {
+        // Exclude the 'upper' point from the sort (which should come first).
+        if (p1 == upper) return -1;
+        if (p2 == upper) return 1;
+
+        // Find the slopes of 'p1' and 'p2' when a line is
+        // drawn from those points through the 'upper' point.
+        double m1 = pendiente(p1, upper);
+        double m2 = pendiente(p2, upper);
+
+        // 'p1' and 'p2' are on the same line towards 'upper'.
+        if (m1 == m2) {
+            // The point closest to 'upper' will come first.
+//            return p1.distance(upper) < p2.distance(upper) ? -1 : 1;
+            return (distancia(p1, upper) < distancia(p2, upper)) ? -1 : 1;
+        }
+
+        // If 'p1' is to the right of 'upper' and 'p2' is the the left.
+        if (m1 <= 0 && m2 > 0) return -1;
+
+        // If 'p1' is to the left of 'upper' and 'p2' is the the right.
+        if (m1 > 0 && m2 <= 0) return 1;
+
+        // It seems that both slopes are either positive, or negative.
+        return m1 > m2 ? -1 : 1;
+    }
+
+
+
+
+}

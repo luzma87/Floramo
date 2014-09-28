@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 import com.lzm.Cajas.MainActivity;
+import com.lzm.Cajas.MapActivity;
 import com.lzm.Cajas.R;
 import com.lzm.Cajas.db.Color;
 
@@ -29,6 +30,20 @@ public class Utils {
     }
 
     public static void openFragment(MainActivity context, Fragment fragment, String title, Bundle args) {
+        context.setTitle(title);
+        FragmentManager fragmentManager = context.getFragmentManager();
+        if (args != null) {
+            fragment.setArguments(args);
+        }
+//                fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+                .replace(R.id.content_frame, fragment)
+                .addToBackStack("")
+                .commit();
+    }
+
+    public static void openFragment(MapActivity context, Fragment fragment, String title, Bundle args) {
         context.setTitle(title);
         FragmentManager fragmentManager = context.getFragmentManager();
         if (args != null) {
