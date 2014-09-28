@@ -38,41 +38,20 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     private CharSequence mTitle;
     private String[] mOptionsArray;
 
+    public int activeFragment = 0;
+
     public final int MAP_POS = 0;
-    public final int CAPTURA_POS = 1;
-    public final int ENCYCLOPEDIA_POS = 2;
-    public final int GALERIA_POS = -1;
+    public final int ENCYCLOPEDIA_POS = 1;
+    public final int CAPTURA_POS = 2;
     public final int RUTAS_POS = 3;
-    public final int IKIAM_WEB_POS = 4;
+    public final int TROPICOS_POS = 4;
     public final int NOTEPAD_POS = 5;
     public final int NOTA_POS = 6;
     public final int SETTINGS_POS = 7;
-    public final int LOGIN_POS = 8;
-    public final int SCANER_POS = 9;
-
-    public final int MAP_POS_T = 0;
-    public final int CAPTURA_POS_T = 1;
-    public final int ENCYCLOPEDIA_POS_T = 2;
-    public final int GALERIA_POS_T = 3;
-    public final int RUTAS_POS_T = 4;
-    public final int IKIAM_WEB_POS_T = 5;
-    public final int NOTEPAD_POS_T = 6;
-    public final int NOTA_POS_T = 7;
-    public final int SETTINGS_POS_T = 8;
-    public final int LOGIN_POS_T = 9;
-    public final int SCANER_POS_T = 10;
-
-    public final int TOOLS_POS = 17;
     public final int BUSQUEDA_POS = 18;
 
-    public int activeFragment = 0;
 
-    public final int ACHIEV_FOTOS = 1;
-    public final int ACHIEV_DISTANCIA = 2;
-    public final int ACHIEV_UPLOADS = 3;
-    public final int ACHIEV_SHARE = 4;
 
-    public final int INTENT_LOGRO = 1;
 
     private static final int CAMERA_REQUEST = 1337;
     /*Interfaz*/
@@ -91,7 +70,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     Marker selected;
     int tipoMapa = 0;
     /*Google services*/
-    private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
+
     /*Fin mapa*/
 
 
@@ -181,7 +160,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         fotoSinCoords = null;
         imageToUpload = null;
 
-        /*preferencias*/
+        /*preferencias
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         userId = settings.getString("user", "-1");
         name = settings.getString("name", "-1");
@@ -189,6 +168,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         email = settings.getString("email", "-1");
         esCientifico = settings.getString("esCientifico", "-1");
         titulo = settings.getString("titulo", "-1");
+        */
         //System.out.println("variables name "+userId+"  name "+name);
         setContentView(R.layout.activity_map);
 
@@ -241,7 +221,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         /*DRAWER*/
         mTitle = mDrawerTitle = getTitle();
 
-            mOptionsArray = getResources().getStringArray(R.array.options_array);
+        mOptionsArray = getResources().getStringArray(R.array.options_array);
 
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout2);
@@ -675,65 +655,59 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
 
     public void selectItem(int position, boolean drawer) {
         // update the main content by replacing fragments
-        System.out.println("pos? " + position + "   cientifico? " + esCientifico.trim());
+        //System.out.println("pos? " + position + "   cientifico? " + esCientifico.trim());
         String title = "";
         Utils.hideSoftKeyboard(this);
         Fragment fragment = null;
         Bundle args = null;
 
-            switch (position) {
-                case MAP_POS:
-                    fragment = null;
-                    title = getString(R.string.map_title);
-                    activeFragment = MAP_POS;
-                    break;
-                case CAPTURA_POS:
+        switch (position) {
+            case MAP_POS:
+                fragment = null;
+                title = getString(R.string.map_title);
+                activeFragment = MAP_POS;
+                break;
+            case CAPTURA_POS:
 
-                    this.addListener((FieldListener) fragment);
-                    title = getString(R.string.captura_title);
-                    activeFragment = CAPTURA_POS;
-                    break;
-                case ENCYCLOPEDIA_POS:
-                    fragment = new EncyclopediaFragment();
-                    title = getString(R.string.encyclopedia_title);
-                    activeFragment = ENCYCLOPEDIA_POS;
-                    break;
-                case GALERIA_POS:
+                this.addListener((FieldListener) fragment);
+                title = getString(R.string.captura_title);
+                activeFragment = CAPTURA_POS;
+                break;
+            case ENCYCLOPEDIA_POS:
+                fragment = new EncyclopediaFragment();
+                title = getString(R.string.encyclopedia_title);
+                activeFragment = ENCYCLOPEDIA_POS;
+                break;
+            case RUTAS_POS:
 
-                    break;
-                case RUTAS_POS:
+                break;
+            case TROPICOS_POS:
 
-                    break;
-                case IKIAM_WEB_POS:
+                break;
+            case NOTEPAD_POS:
+                fragment = new NotepadFragment();
+                title = getString(R.string.notepad_title);
+                activeFragment = NOTEPAD_POS;
+                break;
+            case NOTA_POS:
+                fragment = new NotaCreateFrgment();
+                args = new Bundle();
+                args.putLong("nota", -1);
+                title = getString(R.string.nota_create_title);
+                activeFragment = NOTA_POS;
+                break;
+            case SETTINGS_POS:
+                fragment = new SettingsFragment();
+                this.addListener((FieldListener) fragment);
+                title = getString(R.string.settings_title);
+                activeFragment = SETTINGS_POS;
+                break;
+           
 
-                    break;
-                case NOTEPAD_POS:
-                    fragment = new NotepadFragment();
-                    title = getString(R.string.notepad_title);
-                    activeFragment = NOTEPAD_POS;
-                    break;
-                case NOTA_POS:
-                    fragment = new NotaCreateFrgment();
-                    args = new Bundle();
-                    args.putLong("nota", -1);
-                    title = getString(R.string.nota_create_title);
-                    activeFragment = NOTA_POS;
-                    break;
-                case SETTINGS_POS:
-                    fragment = new SettingsFragment();
-                    this.addListener((FieldListener) fragment);
-                    title = getString(R.string.settings_title);
-                    activeFragment = SETTINGS_POS;
-                    break;
-                case LOGIN_POS:
-
-                    activeFragment = LOGIN_POS;
-                    break;
-
-                default:
-                    fragment = null;
-                    break;
-            }
+            default:
+                fragment = null;
+                break;
+        }
 
 
         Utils.openFragment(this, fragment, title, args);
@@ -778,215 +752,215 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     }
 
 
-/*
-    public void mostrarEspecie(Especie especie) {
-        map.clear();
-        List<Entry> entry = Entry.findAllByEspecie(this, especie);
-        LatLngBounds.Builder builder = new LatLngBounds.Builder();
-        int padding = (100);
-        PolygonOptions poly = new PolygonOptions();
-        int fillColor = Color.argb(150, 68, 134, 246);
-        poly.strokeColor(fillColor);
-        poly.fillColor(fillColor);
+    /*
+        public void mostrarEspecie(Especie especie) {
+            map.clear();
+            List<Entry> entry = Entry.findAllByEspecie(this, especie);
+            LatLngBounds.Builder builder = new LatLngBounds.Builder();
+            int padding = (100);
+            PolygonOptions poly = new PolygonOptions();
+            int fillColor = Color.argb(150, 68, 134, 246);
+            poly.strokeColor(fillColor);
+            poly.fillColor(fillColor);
 
-        List<LatLng> puntos = new ArrayList<LatLng>();
-        List<LatLng> puntosfinal = new ArrayList<LatLng>();
-        for (int i = 0; i < entry.size(); i++) {
-            Entry current = entry.get(i);
-            List<Foto> fotos = Foto.findAllByEntry(activity, current);
-            for (int j = 0; j < fotos.size(); j++) {
-                Bitmap.Config conf = Bitmap.Config.ARGB_8888;
-                Bitmap bmp = Bitmap.createBitmap(170, 126, conf);
-                ;
-                Canvas canvas1 = new Canvas(bmp);
-                Paint color = new Paint();
-                color.setTextSize(35);
-                color.setColor(Color.BLACK);//modify canvas
-                canvas1.drawBitmap(BitmapFactory.decodeResource(getResources(),
-                        R.drawable.pin3), 0, 0, color);
-                Bitmap b = ImageUtils.decodeFile(fotos.get(j).path);
-                canvas1.drawBitmap(b, 5, 4, color);
-                Coordenada co = fotos.get(j).getCoordenada(activity);
-                location = new LatLng(co.getLatitud(), co.getLongitud());
-                puntos.add(location);
-                builder.include(location);
-                Marker marker = map.addMarker(new MarkerOptions().position(location)
-                        .icon(BitmapDescriptorFactory.fromBitmap(bmp))
-                        .anchor(0.5f, 1).title(getString(R.string.map_activity_captura) + " " + fotos.get(j).fecha));
-                // Marker marker = map.addMarker(new MarkerOptions().position(location)
-                //       .icon(BitmapDescriptorFactory.fromBitmap(bmp))
-                //     .anchor(0.5f, 1).title(" "+location.latitude+" , "+location.longitude));
-                //marker.showInfoWindow();
-                data.put(marker, fotos.get(j));
+            List<LatLng> puntos = new ArrayList<LatLng>();
+            List<LatLng> puntosfinal = new ArrayList<LatLng>();
+            for (int i = 0; i < entry.size(); i++) {
+                Entry current = entry.get(i);
+                List<Foto> fotos = Foto.findAllByEntry(activity, current);
+                for (int j = 0; j < fotos.size(); j++) {
+                    Bitmap.Config conf = Bitmap.Config.ARGB_8888;
+                    Bitmap bmp = Bitmap.createBitmap(170, 126, conf);
+                    ;
+                    Canvas canvas1 = new Canvas(bmp);
+                    Paint color = new Paint();
+                    color.setTextSize(35);
+                    color.setColor(Color.BLACK);//modify canvas
+                    canvas1.drawBitmap(BitmapFactory.decodeResource(getResources(),
+                            R.drawable.pin3), 0, 0, color);
+                    Bitmap b = ImageUtils.decodeFile(fotos.get(j).path);
+                    canvas1.drawBitmap(b, 5, 4, color);
+                    Coordenada co = fotos.get(j).getCoordenada(activity);
+                    location = new LatLng(co.getLatitud(), co.getLongitud());
+                    puntos.add(location);
+                    builder.include(location);
+                    Marker marker = map.addMarker(new MarkerOptions().position(location)
+                            .icon(BitmapDescriptorFactory.fromBitmap(bmp))
+                            .anchor(0.5f, 1).title(getString(R.string.map_activity_captura) + " " + fotos.get(j).fecha));
+                    // Marker marker = map.addMarker(new MarkerOptions().position(location)
+                    //       .icon(BitmapDescriptorFactory.fromBitmap(bmp))
+                    //     .anchor(0.5f, 1).title(" "+location.latitude+" , "+location.longitude));
+                    //marker.showInfoWindow();
+                    data.put(marker, fotos.get(j));
+                }
             }
+            if (puntos.size() > 2) {
+                LatLng masAlto = null;
+                LatLng masBajo = null;
+                LatLng masDer = null;
+                LatLng masIzq = null;
+                double maxX = 0;
+                double minX = 0;
+                double minY = 0;
+                double maxY = 0;
+                for (int i = 0; i < puntos.size(); i++) {
+                    double x1 = (puntos.get(i).longitude + 180) * 360;
+                    double y1 = (puntos.get(i).latitude + 90) * 180;
+                    if (minX == 0) {
+                        minX = x1;
+                        masIzq = puntos.get(i);
+                    }
+                    if (minY == 0) {
+                        minY = y1;
+                        masBajo = puntos.get(i);
+                    }
+                    if (maxX == 0) {
+                        maxX = x1;
+                        masDer = puntos.get(i);
+                    }
+                    if (maxY == 0) {
+                        maxY = y1;
+                        masAlto = puntos.get(i);
+                    }
+                    if (x1 > maxX) {
+                        maxX = x1;
+                        masDer = puntos.get(i);
+                    }
+                    if (y1 > maxY) {
+                        maxY = y1;
+                        masAlto = puntos.get(i);
+                    }
+                    if (x1 < minX) {
+                        minX = x1;
+                        masIzq = puntos.get(i);
+                    }
+                    if (y1 < minY) {
+                        minY = y1;
+                        masBajo = puntos.get(i);
+                    }
+
+                }
+                // System.out.println("mas alto "+masAlto.latitude+" , "+masDer.longitude);
+                // System.out.println("mas izq "+masIzq.latitude+" , "+masIzq.longitude);
+                // System.out.println("mas bajo "+masBajo.latitude+" , "+masDer.longitude);
+                // System.out.println("mas der "+masDer.latitude+" , "+masDer.longitude);
+
+                puntosfinal.add(masAlto);
+                puntosfinal.add(masIzq);
+                puntosfinal.add(masBajo);
+                puntosfinal.add(masDer);
+                double maxDis = distancia(masAlto, masBajo);
+
+                for (int i = 0; i < puntosfinal.size() - 1; i++) {
+                    LatLng current = puntosfinal.get(i);
+                    poly.add(current);
+                    LatLng next = puntosfinal.get(i + 1);
+                    double x1 = (current.longitude + 180) * 360;
+                    double y1 = (current.latitude + 90) * 180;
+                    double x2 = (next.longitude + 180) * 360;
+                    double y2 = (next.latitude + 90) * 180;
+                    LatLng nuevo = null;
+                    double nuevoX = 0;
+                    switch (i) {
+                        case 0:
+                            nuevo = null;
+                            nuevoX = 0;
+                            // System.out.println("current "+current.latitude+" ; "+current.longitude+"  --->  "+x1+" ; "+y1);
+                            //System.out.println("next "+next.latitude+" ; "+next.longitude+"  --->  "+x2+" ; "+y2);
+                            for (int j = 0; j < puntos.size(); j++) {
+                                if (puntos.get(j) != masIzq) {
+                                    double x3 = (puntos.get(j).longitude + 180) * 360;
+                                    double y3 = (puntos.get(j).latitude + 90) * 180;
+                                    // System.out.println("ietracion "+puntos.get(j).latitude+" ; "+puntos.get(j).longitude+"  --->  "+x3+" ; "+y3);
+                                    if (x3 < x1 && y2 < y3) {
+                                        //System.out.println("paso es mas!");
+                                        if (nuevo == null) {
+                                            nuevo = puntos.get(j);
+                                            nuevoX = x3;
+                                        } else {
+                                            if (x3 < nuevoX) {
+                                                nuevo = puntos.get(j);
+                                                nuevoX = x3;
+                                            }
+                                        }
+                                    }
+                                }
+
+                            }
+                            if (nuevo != null)
+                                poly.add(nuevo);
+                            break;
+                        case 1:
+                            nuevo = null;
+                            nuevoX = 0;
+                            // System.out.println("current "+current.latitude+" ; "+current.longitude+"  --->  "+x1+" ; "+y1);
+                            //System.out.println("next "+next.latitude+" ; "+next.longitude+"  --->  "+x2+" ; "+y2);
+                            for (int j = 0; j < puntos.size(); j++) {
+                                if (puntos.get(j) != masBajo) {
+                                    double x3 = (puntos.get(j).longitude + 180) * 360;
+                                    double y3 = (puntos.get(j).latitude + 90) * 180;
+                                    // System.out.println("ietracion "+puntos.get(j).latitude+" ; "+puntos.get(j).longitude+"  --->  "+x3+" ; "+y3);
+                                    if (x3 < x2 && y3 > y2) {
+                                        //System.out.println("paso es mas!");
+                                        if (nuevo == null) {
+                                            nuevo = puntos.get(j);
+                                            nuevoX = x3;
+                                        } else {
+                                            if (x3 < nuevoX) {
+                                                nuevo = puntos.get(j);
+                                                nuevoX = x3;
+                                            }
+                                        }
+                                    }
+                                }
+
+                            }
+                            if (nuevo != null)
+                                poly.add(nuevo);
+                            break;
+                        case 2:
+                            nuevo = null;
+                            nuevoX = 0;
+                            // System.out.println("current "+current.latitude+" ; "+current.longitude+"  --->  "+x1+" ; "+y1);
+                            //System.out.println("next "+next.latitude+" ; "+next.longitude+"  --->  "+x2+" ; "+y2);
+                            for (int j = 0; j < puntos.size(); j++) {
+                                if (puntos.get(j) != masAlto) {
+                                    double x3 = (puntos.get(j).longitude + 180) * 360;
+                                    double y3 = (puntos.get(j).latitude + 90) * 180;
+                                    // System.out.println("ietracion "+puntos.get(j).latitude+" ; "+puntos.get(j).longitude+"  --->  "+x3+" ; "+y3);
+                                    if (x3 > x1 && y3 > y1) {
+                                        //System.out.println("paso es mas!");
+                                        if (nuevo == null) {
+                                            nuevo = puntos.get(j);
+                                            nuevoX = x3;
+                                        } else {
+                                            if (x3 > nuevoX) {
+                                                nuevo = puntos.get(j);
+                                                nuevoX = x3;
+                                            }
+                                        }
+                                    }
+                                }
+
+                            }
+                            if (nuevo != null)
+                                poly.add(nuevo);
+                            break;
+                    }
+
+                }
+                Polygon polygon = map.addPolygon(poly);
+            }
+
+
+            LatLngBounds bounds = builder.build();
+            CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+            map.animateCamera(cu);
+            showMap();
+            setTitle(getString(R.string.captura_nombre_especie_label) + ": " + especie.nombre);
+
         }
-        if (puntos.size() > 2) {
-            LatLng masAlto = null;
-            LatLng masBajo = null;
-            LatLng masDer = null;
-            LatLng masIzq = null;
-            double maxX = 0;
-            double minX = 0;
-            double minY = 0;
-            double maxY = 0;
-            for (int i = 0; i < puntos.size(); i++) {
-                double x1 = (puntos.get(i).longitude + 180) * 360;
-                double y1 = (puntos.get(i).latitude + 90) * 180;
-                if (minX == 0) {
-                    minX = x1;
-                    masIzq = puntos.get(i);
-                }
-                if (minY == 0) {
-                    minY = y1;
-                    masBajo = puntos.get(i);
-                }
-                if (maxX == 0) {
-                    maxX = x1;
-                    masDer = puntos.get(i);
-                }
-                if (maxY == 0) {
-                    maxY = y1;
-                    masAlto = puntos.get(i);
-                }
-                if (x1 > maxX) {
-                    maxX = x1;
-                    masDer = puntos.get(i);
-                }
-                if (y1 > maxY) {
-                    maxY = y1;
-                    masAlto = puntos.get(i);
-                }
-                if (x1 < minX) {
-                    minX = x1;
-                    masIzq = puntos.get(i);
-                }
-                if (y1 < minY) {
-                    minY = y1;
-                    masBajo = puntos.get(i);
-                }
-
-            }
-            // System.out.println("mas alto "+masAlto.latitude+" , "+masDer.longitude);
-            // System.out.println("mas izq "+masIzq.latitude+" , "+masIzq.longitude);
-            // System.out.println("mas bajo "+masBajo.latitude+" , "+masDer.longitude);
-            // System.out.println("mas der "+masDer.latitude+" , "+masDer.longitude);
-
-            puntosfinal.add(masAlto);
-            puntosfinal.add(masIzq);
-            puntosfinal.add(masBajo);
-            puntosfinal.add(masDer);
-            double maxDis = distancia(masAlto, masBajo);
-
-            for (int i = 0; i < puntosfinal.size() - 1; i++) {
-                LatLng current = puntosfinal.get(i);
-                poly.add(current);
-                LatLng next = puntosfinal.get(i + 1);
-                double x1 = (current.longitude + 180) * 360;
-                double y1 = (current.latitude + 90) * 180;
-                double x2 = (next.longitude + 180) * 360;
-                double y2 = (next.latitude + 90) * 180;
-                LatLng nuevo = null;
-                double nuevoX = 0;
-                switch (i) {
-                    case 0:
-                        nuevo = null;
-                        nuevoX = 0;
-                        // System.out.println("current "+current.latitude+" ; "+current.longitude+"  --->  "+x1+" ; "+y1);
-                        //System.out.println("next "+next.latitude+" ; "+next.longitude+"  --->  "+x2+" ; "+y2);
-                        for (int j = 0; j < puntos.size(); j++) {
-                            if (puntos.get(j) != masIzq) {
-                                double x3 = (puntos.get(j).longitude + 180) * 360;
-                                double y3 = (puntos.get(j).latitude + 90) * 180;
-                                // System.out.println("ietracion "+puntos.get(j).latitude+" ; "+puntos.get(j).longitude+"  --->  "+x3+" ; "+y3);
-                                if (x3 < x1 && y2 < y3) {
-                                    //System.out.println("paso es mas!");
-                                    if (nuevo == null) {
-                                        nuevo = puntos.get(j);
-                                        nuevoX = x3;
-                                    } else {
-                                        if (x3 < nuevoX) {
-                                            nuevo = puntos.get(j);
-                                            nuevoX = x3;
-                                        }
-                                    }
-                                }
-                            }
-
-                        }
-                        if (nuevo != null)
-                            poly.add(nuevo);
-                        break;
-                    case 1:
-                        nuevo = null;
-                        nuevoX = 0;
-                        // System.out.println("current "+current.latitude+" ; "+current.longitude+"  --->  "+x1+" ; "+y1);
-                        //System.out.println("next "+next.latitude+" ; "+next.longitude+"  --->  "+x2+" ; "+y2);
-                        for (int j = 0; j < puntos.size(); j++) {
-                            if (puntos.get(j) != masBajo) {
-                                double x3 = (puntos.get(j).longitude + 180) * 360;
-                                double y3 = (puntos.get(j).latitude + 90) * 180;
-                                // System.out.println("ietracion "+puntos.get(j).latitude+" ; "+puntos.get(j).longitude+"  --->  "+x3+" ; "+y3);
-                                if (x3 < x2 && y3 > y2) {
-                                    //System.out.println("paso es mas!");
-                                    if (nuevo == null) {
-                                        nuevo = puntos.get(j);
-                                        nuevoX = x3;
-                                    } else {
-                                        if (x3 < nuevoX) {
-                                            nuevo = puntos.get(j);
-                                            nuevoX = x3;
-                                        }
-                                    }
-                                }
-                            }
-
-                        }
-                        if (nuevo != null)
-                            poly.add(nuevo);
-                        break;
-                    case 2:
-                        nuevo = null;
-                        nuevoX = 0;
-                        // System.out.println("current "+current.latitude+" ; "+current.longitude+"  --->  "+x1+" ; "+y1);
-                        //System.out.println("next "+next.latitude+" ; "+next.longitude+"  --->  "+x2+" ; "+y2);
-                        for (int j = 0; j < puntos.size(); j++) {
-                            if (puntos.get(j) != masAlto) {
-                                double x3 = (puntos.get(j).longitude + 180) * 360;
-                                double y3 = (puntos.get(j).latitude + 90) * 180;
-                                // System.out.println("ietracion "+puntos.get(j).latitude+" ; "+puntos.get(j).longitude+"  --->  "+x3+" ; "+y3);
-                                if (x3 > x1 && y3 > y1) {
-                                    //System.out.println("paso es mas!");
-                                    if (nuevo == null) {
-                                        nuevo = puntos.get(j);
-                                        nuevoX = x3;
-                                    } else {
-                                        if (x3 > nuevoX) {
-                                            nuevo = puntos.get(j);
-                                            nuevoX = x3;
-                                        }
-                                    }
-                                }
-                            }
-
-                        }
-                        if (nuevo != null)
-                            poly.add(nuevo);
-                        break;
-                }
-
-            }
-            Polygon polygon = map.addPolygon(poly);
-        }
-
-
-        LatLngBounds bounds = builder.build();
-        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
-        map.animateCamera(cu);
-        showMap();
-        setTitle(getString(R.string.captura_nombre_especie_label) + ": " + especie.nombre);
-
-    }
-*/
+    */
     public double pendiente(LatLng p1, LatLng p2) {
         double x1 = (p1.longitude + 180) * 360;
         double y1 = (p1.latitude + 90) * 180;

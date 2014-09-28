@@ -41,8 +41,11 @@
     <string name="estadisticas_title">Estadísticas</string>
 
     <string-array name="options_array">
+        <item>Mapa</item>
         <item>Enciclopedia</item>
         <item>Nueva captura</item>
+        <item>Rutas</item>
+        <item>Tropicos</item>
         <item>Notas</item>
         <item>Nueva nota</item>
         <item>Herramientas</item>
