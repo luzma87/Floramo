@@ -15,7 +15,7 @@ import com.lzm.Cajas.utils.Utils;
  * Created by DELL on 03/09/2014.
  */
 public class NotaCreateFrgment extends Fragment implements Button.OnClickListener {
-    MainActivity context;
+    MapActivity context;
     Button btnSave;
     TextView txtTitulo;
     TextView txtContenido;
@@ -23,7 +23,7 @@ public class NotaCreateFrgment extends Fragment implements Button.OnClickListene
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        context = (MainActivity) getActivity();
+        context = (MapActivity) getActivity();
         Utils.hideSoftKeyboard(context);
         View view = inflater.inflate(R.layout.nota_create_layout, container, false);
 

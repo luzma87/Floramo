@@ -14,12 +14,14 @@ public class Foto {
 
     public Long especie_id;
 
-//    public Long color1_id;
-//    public Long color2_id;
+    public Long color1_id;
+    public Long color2_id;
 
     public double latitud;
     public double longitud;
     public double altitud = 0;
+
+    public Long coordenada_id;
 
     public Long lugar_id;
 
@@ -69,6 +71,10 @@ public class Foto {
         }
     }
 
+    public Long getLugar_id() {
+        return lugar_id;
+    }
+
     public Long getEspecie_id() {
         return especie_id;
     }
@@ -87,6 +93,26 @@ public class Foto {
 
     public String getPath() {
         return path;
+    }
+
+    public Long getCoordenada_id() {
+        return coordenada_id;
+    }
+
+    public void setCoordenada_id(Long coordenada_id) {
+        this.coordenada_id = coordenada_id;
+    }
+
+    public Coordenada getCoordenada() {
+        if (especie_id != null) {
+            return Coordenada.get(context, coordenada_id);
+        } else {
+            return null;
+        }
+    }
+
+    public void setCoordenada(Coordenada coordenada) {
+        this.coordenada_id = coordenada.id;
     }
 
     public double getLatitud() {

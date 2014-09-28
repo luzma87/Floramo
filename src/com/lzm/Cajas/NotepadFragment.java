@@ -20,14 +20,14 @@ import java.util.List;
  */
 public class NotepadFragment extends ListFragment {
 
-    MainActivity activity;
+    MapActivity activity;
     List<Nota> notasList;
     NotasListAdapter adapter;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        activity = (MainActivity) getActivity();
+        activity = (MapActivity) getActivity();
 
         Utils.hideSoftKeyboard(activity);
 

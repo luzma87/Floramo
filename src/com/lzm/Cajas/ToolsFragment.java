@@ -26,7 +26,7 @@ public class ToolsFragment extends Fragment implements SensorEventListener {
 
     // Acquire a reference to the system Location Manager
     LocationManager locationManager;
-    MainActivity activity;
+    MapActivity activity;
     View view;
     TextView latitud;
     TextView longitud;
@@ -73,7 +73,7 @@ public class ToolsFragment extends Fragment implements SensorEventListener {
 //        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000*60*2, 10, locationListener);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 100 * 30, 5, locationListener);
         Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        activity = (MainActivity) getActivity();
+        activity = (MapActivity) getActivity();
         //myCompass = (Compass)view.findViewById(R.id.mycompass);
         latitud = (TextView) view.findViewById(R.id.lbl_valor_latitud);
         longitud = (TextView) view.findViewById(R.id.lbl_valor_longitud);

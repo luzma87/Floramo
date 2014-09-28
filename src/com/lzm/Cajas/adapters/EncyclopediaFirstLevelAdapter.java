@@ -22,13 +22,13 @@ import java.util.List;
  */
 public class EncyclopediaFirstLevelAdapter extends BaseExpandableListAdapter {
 
-    MainActivity activity;
-    EncyclopediaFragment fragment;
+    MapActivity activity;
+    EnciclopediaFragment fragment;
 
     List<Familia> familias;
 //    List<Genero> generos;
 
-    public EncyclopediaFirstLevelAdapter(MainActivity activity, EncyclopediaFragment fragment, List<Familia> familias) {
+    public EncyclopediaFirstLevelAdapter(MapActivity activity, EnciclopediaFragment fragment, List<Familia> familias) {
         this.familias = familias;
         this.activity = activity;
         this.fragment = fragment;
@@ -66,7 +66,7 @@ public class EncyclopediaFirstLevelAdapter extends BaseExpandableListAdapter {
                 Especie selected = especies.get(childPosition);
 
 //                ListFragment fragment = new EncyclopediaEntriesFragment();
-                Fragment fragment = new EncyclopediaEspecieInfoFragment();
+                Fragment fragment = new EspecieInfoFragment();
                 Bundle args = new Bundle();
                 args.putLong("especie", selected.id);
                 fragment.setArguments(args);

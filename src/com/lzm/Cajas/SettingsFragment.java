@@ -25,7 +25,7 @@ import java.util.concurrent.Executors;
  */
 public class SettingsFragment extends Fragment implements Button.OnClickListener {
 
-    MainActivity context;
+    MapActivity context;
 
     CheckBox checkAchievements;
 
@@ -35,7 +35,7 @@ public class SettingsFragment extends Fragment implements Button.OnClickListener
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        context = (MainActivity) getActivity();
+        context = (MapActivity) getActivity();
         View view = inflater.inflate(R.layout.settings_layout, container, false);
 
         return view;

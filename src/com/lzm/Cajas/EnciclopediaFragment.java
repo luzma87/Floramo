@@ -15,20 +15,20 @@ import java.util.List;
 /**
  * Created by DELL on 23/07/2014.
  */
-public class EncyclopediaFragment extends Fragment {
+public class EnciclopediaFragment extends Fragment {
 
-    MainActivity context;
+    MapActivity context;
     String pathFolder;
 
     ExpandableListView expandableListView;
 
-    public EncyclopediaFragment() {
+    public EnciclopediaFragment() {
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        context = (MainActivity) getActivity();
+        context = (MapActivity) getActivity();
 //        pathFolder = getArguments().getString("pathFolder");
 
         pathFolder = Utils.getFolder(context);

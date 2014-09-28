@@ -27,6 +27,7 @@ import com.lzm.Cajas.db.*;
 import com.lzm.Cajas.image.*;
 import com.lzm.Cajas.listeners.FieldListener;
 import com.lzm.Cajas.utils.*;
+
 import java.util.*;
 
 public class MapActivity extends Activity implements Button.OnClickListener, GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener {
@@ -41,17 +42,16 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     public int activeFragment = 0;
 
     public final int MAP_POS = 0;
-    public final int ENCYCLOPEDIA_POS = 1;
+    public final int ENCICLOPEDIA_POS = 1;
     public final int CAPTURA_POS = 2;
     public final int RUTAS_POS = 3;
     public final int TROPICOS_POS = 4;
     public final int NOTEPAD_POS = 5;
     public final int NOTA_POS = 6;
-    public final int SETTINGS_POS = 7;
+    public final int TOOLS_POS = 7;
+    public final int SETTINGS_POS = 8;
+
     public final int BUSQUEDA_POS = 18;
-
-
-
 
     private static final int CAMERA_REQUEST = 1337;
     /*Interfaz*/
@@ -72,7 +72,6 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     /*Google services*/
 
     /*Fin mapa*/
-
 
 
     //    String imagePathUpload = "";
@@ -144,12 +143,6 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     }
 
 
-
-
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -202,15 +195,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         botones[8] = (Button) this.findViewById(R.id.btnSocial);
 //        System.out.println("TYPE::::: " + type + "    " + type.equalsIgnoreCase("Ikiam"));
 //        System.out.println("ES CIENTIFICO::::: >" + esCientifico.trim() + "<     >" + esCientifico.equalsIgnoreCase("S") + "<");
-        if (type.equalsIgnoreCase("Ikiam")) {
-            if (esCientifico.trim().equalsIgnoreCase("S")) {
-//                System.out.println("TYPE::::: " + type);
-//                System.out.println("ES CIENTIFICO::::: " + esCientifico);
-                botones[2].setVisibility(View.GONE);
-                botones[3].setVisibility(View.GONE);
-                botones[8].setVisibility(View.GONE);
-            }
-        }
+
         for (int i = 0; i < botones.length; i++) {
             botones[i].setOnClickListener(this);
         }
@@ -222,7 +207,6 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         mTitle = mDrawerTitle = getTitle();
 
         mOptionsArray = getResources().getStringArray(R.array.options_array);
-
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout2);
         mDrawerList = (ListView) findViewById(R.id.left_drawer2);
@@ -263,7 +247,6 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
 //            selectItem(0);
 //        }
         /*FinDrawer*/
-
 
 
     }
@@ -446,10 +429,6 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     }
 
 
-
-
-
-
     public void setUpMapIfNeeded() {
         //System.out.println("setUpMap if needed" +map);
         map = ((MapFragment) getFragmentManager().findFragmentById(R.id.mapF)).getMap();
@@ -497,7 +476,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         coord.longitud = pos.longitude;
         coord.altitud = 0;
         coord.save();
-        fotoSinCoords.setCoordenada(coord);
+        fotoSinCoords.setCoordenada_id(coord);
         fotoSinCoords.save();
         Toast.makeText(this, getString(R.string.map_foto_ubicada), Toast.LENGTH_LONG).show();
         if (markerSubir.isInfoWindowShown())
@@ -506,9 +485,6 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         markerSubir = null;
         fotoSinCoords = null;*/
     }
-
-
-
 
 
     public Bitmap getFotoDialog(Foto image, int width, int heigth) {
@@ -522,7 +498,6 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         return null;
 
     }
-
 
 
     /*DRAWER*/
@@ -577,49 +552,38 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
 
                 final AlertDialog d = builder.create();
                 final TextView txt = (TextView) v.findViewById(R.id.help_container);
-                /*
-                    switch (activeFragment) {
-                        case MAP_POS_T:
-                            txt.setText(getString(R.string.help_map));
-                            break;
-                        case CAPTURA_POS_T:
-                            txt.setText(getString(R.string.help_captura_turista));
-                            break;
-                        case ENCYCLOPEDIA_POS_T:
-                            txt.setText(getString(R.string.help_enciclopedia));
-                            break;
-                        case GALERIA_POS_T:
-                            txt.setText(getString(R.string.help_galeria));
-                            break;
-                        case RUTAS_POS_T:
-                            txt.setText(getString(R.string.help_rutas));
-                            break;
-                        case IKIAM_WEB_POS_T:
-                            txt.setText(getString(R.string.help_ikiam_web));
-                            break;
-                        case NOTEPAD_POS_T:
-                        case NOTA_POS_T:
-                            txt.setText(getString(R.string.help_notepad));
-                            break;
-                        case SETTINGS_POS_T:
-                            txt.setText(getString(R.string.help_configuracion));
-                            break;
-                        case LOGIN_POS_T:
-                            txt.setText(getString(R.string.help_login));
-                            break;
-                        case BUSQUEDA_POS:
-                            txt.setText(getString(R.string.help_busqueda));
-                            break;
-                        case TOOLS_POS:
-                            txt.setText(getString(R.string.help_tools));
-                            break;
-                        case SCANER_POS_T:
-                            txt.setText(getString(R.string.help_scanner));
-                            break;
-                    }
 
+                switch (activeFragment) {
+                    case MAP_POS:
+                        txt.setText(getString(R.string.help_map));
+                        break;
+                    case CAPTURA_POS:
+                        txt.setText(getString(R.string.help_captura));
+                        break;
+                    case ENCICLOPEDIA_POS:
+                        txt.setText(getString(R.string.help_enciclopedia));
+                        break;
+                    case RUTAS_POS:
+                        txt.setText(getString(R.string.help_rutas));
+                        break;
+                    case TROPICOS_POS:
+                        txt.setText(getString(R.string.help_tropicos));
+                        break;
+                    case NOTEPAD_POS:
+                    case NOTA_POS:
+                        txt.setText(getString(R.string.help_notepad));
+                        break;
+                    case SETTINGS_POS:
+                        txt.setText(getString(R.string.help_configuracion));
+                        break;
+                    case BUSQUEDA_POS:
+                        txt.setText(getString(R.string.help_busqueda));
+                        break;
+                    case TOOLS_POS:
+                        txt.setText(getString(R.string.help_tools));
+                        break;
                 }
-*/
+
                 d.setOnShowListener(new DialogInterface.OnShowListener() {
                     @Override
                     public void onShow(DialogInterface dialog) {
@@ -647,6 +611,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
             // System.out.println("entro?");
             selectItem(position);
         }
+
     }
 
     public void selectItem(int position) {
@@ -655,7 +620,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
 
     public void selectItem(int position, boolean drawer) {
         // update the main content by replacing fragments
-        //System.out.println("pos? " + position + "   cientifico? " + esCientifico.trim());
+//        System.out.println("SELECT ITEM:::::: pos:::::: " + position + " Enciclopedia=" + ENCICLOPEDIA_POS);
         String title = "";
         Utils.hideSoftKeyboard(this);
         Fragment fragment = null;
@@ -668,15 +633,14 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                 activeFragment = MAP_POS;
                 break;
             case CAPTURA_POS:
-
                 this.addListener((FieldListener) fragment);
                 title = getString(R.string.captura_title);
                 activeFragment = CAPTURA_POS;
                 break;
-            case ENCYCLOPEDIA_POS:
-                fragment = new EncyclopediaFragment();
+            case ENCICLOPEDIA_POS:
+                fragment = new EnciclopediaFragment();
                 title = getString(R.string.encyclopedia_title);
-                activeFragment = ENCYCLOPEDIA_POS;
+                activeFragment = ENCICLOPEDIA_POS;
                 break;
             case RUTAS_POS:
 
@@ -696,20 +660,21 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                 title = getString(R.string.nota_create_title);
                 activeFragment = NOTA_POS;
                 break;
+            case TOOLS_POS:
+                fragment = new ToolsFragment();
+                title = getString(R.string.tools_title);
+                activeFragment = TOOLS_POS;
+                break;
             case SETTINGS_POS:
                 fragment = new SettingsFragment();
-                this.addListener((FieldListener) fragment);
+//                this.addListener((FieldListener) fragment);
                 title = getString(R.string.settings_title);
                 activeFragment = SETTINGS_POS;
                 break;
-           
-
             default:
                 fragment = null;
                 break;
         }
-
-
         Utils.openFragment(this, fragment, title, args);
 
         if (drawer) {
@@ -745,8 +710,6 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     }
 
 
-
-
     public void showMap() {
         selectItem(MAP_POS);
     }
@@ -780,7 +743,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                             R.drawable.pin3), 0, 0, color);
                     Bitmap b = ImageUtils.decodeFile(fotos.get(j).path);
                     canvas1.drawBitmap(b, 5, 4, color);
-                    Coordenada co = fotos.get(j).getCoordenada(activity);
+                    Coordenada co = fotos.get(j).getCoordenada_id(activity);
                     location = new LatLng(co.getLatitud(), co.getLongitud());
                     puntos.add(location);
                     builder.include(location);
@@ -1007,8 +970,6 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         // It seems that both slopes are either positive, or negative.
         return m1 > m2 ? -1 : 1;
     }
-
-
 
 
 }

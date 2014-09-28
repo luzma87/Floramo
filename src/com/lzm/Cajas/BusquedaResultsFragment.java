@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class BusquedaResultsFragment extends ListFragment {
 
-    MainActivity activity;
+    MapActivity activity;
     List<Especie> especiesList;
 
     int fotoPos = 0;
@@ -27,9 +27,9 @@ public class BusquedaResultsFragment extends ListFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        activity = (MainActivity) getActivity();
+        activity = (MapActivity) getActivity();
 
-        especiesList = activity.especiesBusqueda;
+//        especiesList = activity.especiesBusqueda;
 
 //        for (Foto foto : fotoList) {
 //            System.out.println("--------------------------- " + foto.id);
@@ -42,7 +42,7 @@ public class BusquedaResultsFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         Especie selected = especiesList.get(position);
-        Fragment fragment = new EncyclopediaEspecieInfoFragment();
+        Fragment fragment = new EspecieInfoFragment();
         Bundle args = new Bundle();
         args.putLong("especie", selected.id);
 //        fragment.setArguments(args);

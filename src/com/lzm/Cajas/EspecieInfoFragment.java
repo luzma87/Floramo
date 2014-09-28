@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import com.lzm.Cajas.db.*;
-import com.lzm.Cajas.image.ImageUtils;
 import com.lzm.Cajas.utils.Utils;
 
 import java.util.List;
@@ -20,8 +19,8 @@ import java.util.List;
 /**
  * Created by DELL on 15/08/2014.
  */
-public class EncyclopediaEspecieInfoFragment extends Fragment implements Button.OnClickListener, View.OnTouchListener {
-    MainActivity context;
+public class EspecieInfoFragment extends Fragment implements Button.OnClickListener, View.OnTouchListener {
+    MapActivity context;
 
     TextView txtEspecieInfoNombreComun;
     TextView txtEspecieInfoNombreCientifico;
@@ -53,8 +52,8 @@ public class EncyclopediaEspecieInfoFragment extends Fragment implements Button.
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        context = (MainActivity) getActivity();
-        View view = inflater.inflate(R.layout.encyclopedia_especie_info_layout, container, false);
+        context = (MapActivity) getActivity();
+        View view = inflater.inflate(R.layout.especie_info_layout, container, false);
 
         txtEspecieInfoNombreComun = (TextView) view.findViewById(R.id.especie_info_nombre_comun);
         txtEspecieInfoNombreCientifico = (TextView) view.findViewById(R.id.especie_info_nombre_cientifico);

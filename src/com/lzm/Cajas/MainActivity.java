@@ -230,7 +230,7 @@ public class MainActivity extends Activity {
                 activeFragment = CAPTURA_POS;
                 break;
             case ENCYCLOPEDIA_POS:
-                fragment = new EncyclopediaFragment();
+                fragment = new EnciclopediaFragment();
                 title = getString(R.string.encyclopedia_title);
                 activeFragment = ENCYCLOPEDIA_POS;
                 break;
@@ -261,7 +261,7 @@ public class MainActivity extends Activity {
                 break;
         }
 
-        Utils.openFragment(this, fragment, title, args);
+//        Utils.openFragment(this, fragment, title, args);
         mDrawerList.setItemChecked(position, true);
         mDrawerLayout.closeDrawer(mDrawerList);
     }

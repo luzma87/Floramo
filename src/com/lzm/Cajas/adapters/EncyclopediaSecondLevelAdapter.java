@@ -8,6 +8,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.lzm.Cajas.MainActivity;
+import com.lzm.Cajas.MapActivity;
 import com.lzm.Cajas.R;
 import com.lzm.Cajas.db.Especie;
 import com.lzm.Cajas.db.FormaVida;
@@ -30,14 +31,14 @@ public class EncyclopediaSecondLevelAdapter extends BaseExpandableListAdapter {
 
     List<Genero> generos;
     List<Especie> especies;
-    MainActivity context;
+    MapActivity context;
     EncyclopediaSecondLevelListView vista;
 
 //    int total;
 //    Vector<Especie> vEspecies;
 //    Vector<ImageView> vImageViews;
 
-    public EncyclopediaSecondLevelAdapter(MainActivity context, int position, List<Genero> generos, EncyclopediaSecondLevelListView vista) {
+    public EncyclopediaSecondLevelAdapter(MapActivity context, int position, List<Genero> generos, EncyclopediaSecondLevelListView vista) {
         this.context = context;
         this.position = position;
         this.generos = generos;

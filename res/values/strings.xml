@@ -186,4 +186,7 @@
 
     <string name="especies_info_flora">Flora web</string>
     <string name="especie_info_tropicos">Tropicos</string>
+    <string name="help_map">help map</string>
+    <string name="help_rutas">help rutas</string>
+    <string name="help_tropicos">help tropicos</string>
 </resources>
