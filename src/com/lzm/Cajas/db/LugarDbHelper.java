@@ -17,8 +17,9 @@ public class LugarDbHelper extends DbHelper {
 
     private static final String KEY_NOMBRE = "nombre";
     private static final String KEY_NOMBRE_NORM = "nombre_norm";
+    private static final String KEY_PATH = "path";
 
-    public static final String[] KEYS_LUGAR = {KEY_NOMBRE, KEY_NOMBRE_NORM};
+    public static final String[] KEYS_LUGAR = {KEY_NOMBRE, KEY_NOMBRE_NORM, KEY_PATH};
 
     public LugarDbHelper(Context context) {
         super(context);
@@ -167,6 +168,7 @@ public class LugarDbHelper extends DbHelper {
         cl.setId(c.getLong((c.getColumnIndex(KEY_ID))));
         cl.setFecha(c.getString(c.getColumnIndex(KEY_FECHA)));
         cl.setNombre(c.getString(c.getColumnIndex(KEY_NOMBRE)));
+        cl.setPath(c.getString(c.getColumnIndex(KEY_PATH)));
         return cl;
     }
 
@@ -177,6 +179,7 @@ public class LugarDbHelper extends DbHelper {
         }
         values.put(KEY_NOMBRE, lugar.nombre);
         values.put(KEY_NOMBRE_NORM, lugar.nombreNorm);
+        values.put(KEY_PATH, lugar.path);
         return values;
     }
 

@@ -93,14 +93,14 @@
     <string name="global_color_yellow">Amarillo</string>
 
     <string name="global_forma_vida_none">-Ninguna-</string>
-    <string name="global_forma_vida_cushion">Cushion</string>
-    <string name="global_forma_vida_shrub">Shrub</string>
-    <string name="global_forma_vida_herb">Herb</string>
-    <string name="global_forma_vida_grass">Grass</string>
-    <string name="global_forma_vida_rosette">Rosette</string>
-    <string name="global_forma_vida_acquatic">Aquatic</string>
-    <string name="global_forma_vida_liana">Liana</string>
-    <string name="global_forma_vida_tree">Tree</string>
+    <string name="global_forma_vida_cushion">Almohadilla</string>
+    <string name="global_forma_vida_shrub">Arbusto</string>
+    <string name="global_forma_vida_herb">Hierba</string>
+    <string name="global_forma_vida_grass">Pasto</string>
+    <string name="global_forma_vida_rosette">Roseta</string>
+    <string name="global_forma_vida_acquatic">Acuática</string>
+    <string name="global_forma_vida_liana">Bejuco</string>
+    <string name="global_forma_vida_tree">Árbol</string>
 
     <string name="global_error_no_connection">No se pudo conectar a Internet.</string>
 
@@ -193,4 +193,20 @@
     <string name="help_map">help map</string>
     <string name="help_rutas">help rutas</string>
     <string name="help_tropicos">help tropicos</string>
+
+    <string name="about">
+        Se presentan 100 especies nativas de plantas que crecen en el páramo del Cajas, provincia del Azuay, Ecuador.
+        El páramo es un ecosistema único dominado por pajonales, sobre el límite del bosque en la cordillera de los Andes.
+        No necesariamente son las plantas más comunes, pero si llamativas, fáciles de encontrar y relativamente fáciles de identificar.
+        Pensamos que al reconocer y nombrar las plantas silvestres se puede apreciar mejor la flora del país,
+        y se hará un esfuerzo para protegerlas así como a el medio ambiente páramo en que viven.
+    </string>
+
+    <string name="credits">
+        Este proyecto es una colaboración entre el Missouri Botanical Garden, el Herbario Azuay (Universidad del Azuay)
+        con el Parque Nacional Cajas.
+        Contacto del proyecto: carmen.ulloa@mobot.org.
+        Diseñadora: L.M. Unda, Quito (sugerencias: xxxx ).
+        Todos los derechos reservados.
+    </string>
 </resources>

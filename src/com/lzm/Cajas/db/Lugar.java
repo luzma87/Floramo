@@ -14,6 +14,7 @@ public class Lugar {
     public String fecha;
     public String nombre;
     public String nombreNorm;
+    public String path;
 
     LugarDbHelper lugarDbHelper;
 
@@ -46,6 +47,14 @@ public class Lugar {
 
     public String getFecha() {
         return fecha;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 
     //setters
