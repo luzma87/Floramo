@@ -30,6 +30,14 @@
     <string name="ruta_nueva">Nueva ruta</string>
     <string name="ruta_nombre">Ruta</string>
     <string name="ruta_parar">Parar</string>
+    <string name="ruta_plural">Rutas</string>
+    <string name="ruta_ver_mapa">Mapa</string>
+    <string name="ruta_lbl_distancia">Distancia</string>
+    <string name="ruta_lbl_altura">Altitud</string>
+    <string name="ruta_datos_guardados">Datos guardados</string>
+    <string name="ruta_error_datos">Error al guardar los datos</string>
+    <string name="ruta_nueva_foto">Nueva foto</string>
+    <string name="ruta_lbl_foto">Fotos</string>
     <string name="gallery_title">Galería</string>
     <string name="map_title">Mapa</string>
     <string name="tools_title">Herramientas</string>
