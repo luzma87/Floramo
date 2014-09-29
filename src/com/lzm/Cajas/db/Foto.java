@@ -20,7 +20,7 @@ public class Foto {
     public double latitud;
     public double longitud;
     public double altitud = 0;
-
+    public Long ruta_id;
     public Long coordenada_id;
 
     public Long lugar_id;
@@ -223,6 +223,29 @@ public class Foto {
     public static void empty(Context context) {
         FotoDbHelper e = new FotoDbHelper(context);
         e.deleteAllFotos();
+    }
+
+    public void setRuta(Ruta ruta) {
+        this.ruta_id = ruta.id;
+    }
+
+    public void setRuta_id(long id) {
+        this.ruta_id = id;
+    }
+    public Ruta getRuta(Context context) {
+        if (ruta_id != null) {
+            return Ruta.get(context, this.ruta_id);
+        } else {
+            return null;
+        }
+    }
+    public long getRutaId() {
+        return this.ruta_id;
+    }
+
+    public static List<Foto> findAllByRuta(Context context, Ruta ruta) {
+        FotoDbHelper e = new FotoDbHelper(context);
+        return e.getAllFotosByRuta(ruta);
     }
 
 }

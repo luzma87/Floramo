@@ -340,4 +340,15 @@ public class ImageUtils {
         }
 
     }
+
+    public static Bitmap decodeBitmapPath(String  path, int w, int h) {
+        try {
+            File f = new File(path);
+            Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
+            return Bitmap.createScaledBitmap(b, w, h, false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

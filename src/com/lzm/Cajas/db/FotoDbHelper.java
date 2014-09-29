@@ -20,14 +20,14 @@ public class FotoDbHelper extends DbHelper {
     private static final String KEY_ESPECIE_ID = "especie_id";
     private static final String KEY_KEYWORDS = "keywords";
     private static final String KEY_PATH = "path";
-
+    public static final String KEY_RUTA_ID = "ruta_id";
     private static final String KEY_LONGITUD = "longitud";
     private static final String KEY_LATITUD = "latitud";
     private static final String KEY_ALTITUD = "altitud";
     private static final String KEY_LUGAR_ID = "lugar_id";
 
     public static final String[] KEYS_FOTO = {KEY_ESPECIE_ID, KEY_KEYWORDS, KEY_PATH,
-            KEY_LATITUD, KEY_LONGITUD, KEY_ALTITUD, KEY_LUGAR_ID};
+            KEY_LATITUD, KEY_LONGITUD, KEY_ALTITUD, KEY_LUGAR_ID, KEY_RUTA_ID};
 
     public FotoDbHelper(Context context) {
         super(context);
@@ -236,6 +236,7 @@ public class FotoDbHelper extends DbHelper {
         f.setAltitud(c.getDouble(c.getColumnIndex(KEY_ALTITUD)));
         f.setKeywords((c.getString(c.getColumnIndex(KEY_KEYWORDS))));
         f.setPath((c.getString(c.getColumnIndex(KEY_PATH))));
+        f.setRuta_id((c.getLong(c.getColumnIndex(KEY_RUTA_ID))));
         return f;
     }
 
@@ -246,6 +247,9 @@ public class FotoDbHelper extends DbHelper {
         }
         if (foto.especie_id != null) {
             values.put(KEY_ESPECIE_ID, foto.especie_id);
+        }
+        if (foto.ruta_id != null) {
+            values.put(KEY_RUTA_ID, foto.ruta_id);
         }
         values.put(KEY_LATITUD, foto.latitud);
         values.put(KEY_LONGITUD, foto.longitud);
@@ -258,6 +262,34 @@ public class FotoDbHelper extends DbHelper {
 
     private ContentValues setValues(Foto foto) {
         return setValues(foto, false);
+    }
+
+    public List<Foto> getAllFotosByRuta(Ruta ruta) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<Foto> fotos = new ArrayList<Foto>();
+
+//        String selectQuery = "SELECT * FROM " + TABLE_FOTO + " tf, " + TABLE_ESPECIE + " te " +
+//                "WHERE tf." + KEY_ESPECIE_ID + "=te." + KEY_ID +
+//                " AND te." + KEY_ID + "='" + especie.id + "' ";
+
+        String selectQuery = "SELECT * FROM " + TABLE_FOTO +
+                " WHERE " + KEY_RUTA_ID + " = " + ruta.id;
+
+        logQuery(LOG, selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                Foto f = setDatos(c);
+
+                // adding to foto list
+                fotos.add(f);
+            } while (c.moveToNext());
+        }
+        db.close();
+        return fotos;
     }
 
 }

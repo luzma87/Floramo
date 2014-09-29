@@ -26,6 +26,7 @@
     <string name="settings_title">Configuración</string>
     <string name="camera_title">Cámara</string>
     <string name="captura_title">Nueva captura</string>
+    <string name="ruta_nueva">Nueva captura</string>
     <string name="gallery_title">Galería</string>
     <string name="map_title">Mapa</string>
     <string name="tools_title">Herramientas</string>

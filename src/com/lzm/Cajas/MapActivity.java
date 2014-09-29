@@ -3,10 +3,14 @@ package com.lzm.Cajas;
 import android.app.*;
 import android.content.*;
 import android.content.res.Configuration;
+import android.database.Cursor;
 import android.graphics.*;
 import android.graphics.Color;
 import android.location.Location;
+import android.net.Uri;
 import android.os.*;
+import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -69,27 +73,40 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     HashMap<Marker, Foto> dataUsuario;
     Marker selected;
     int tipoMapa = 0;
-    /*Google services*/
 
     /*Fin mapa*/
 
 
-    //    String imagePathUpload = "";
+
     Foto imageToUpload;
-    AlertDialog dialog;
-    View myView;
+
     public int screenHeight;
     public int screenWidth;
     public static final String PREFS_NAME = "IkiamSettings";
     public String userId;
     public String name;
-    public String titulo;
     public String type;
-    public String email;
-    public String esCientifico;
     public String errorMessage;
     public String ruta_remote_id;
     public String old_id;
+
+    /*Service */
+    Messenger mService = null;
+    boolean mIsBound;
+    final Messenger mMessenger = new Messenger(new IncomingHandler());
+    Boolean status = false;
+    Boolean attached = false;
+    Ruta ruta;
+
+    /*Images*/
+    private ImageTableObserver camera;
+    int lastestImageIndex = 0;
+    ImageItem imageItem;
+    List<Bitmap> imagenes;
+    int lastIndex = -1;
+    int lastSize = 0;
+    List<Foto> fotos;
+    /*Fin imagenes*/
 
     List<FieldListener> listeners = new ArrayList<FieldListener>();
 
@@ -183,16 +200,12 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         //atracciones = new HashMap<Marker, AtraccionUi>();
 
 
-        botones = new Button[9];
-        botones[0] = (Button) this.findViewById(R.id.btnGalapagos);
-        botones[1] = (Button) this.findViewById(R.id.btnService);
-        botones[2] = (Button) this.findViewById(R.id.btnAtraccion);
-        botones[3] = (Button) this.findViewById(R.id.btnEspecies);
-        botones[4] = (Button) this.findViewById(R.id.btnCamara);
-        botones[5] = (Button) this.findViewById(R.id.btnLimpiar);
-        botones[6] = (Button) this.findViewById(R.id.btnTools);
-        botones[7] = (Button) this.findViewById(R.id.btnTipo);
-        botones[8] = (Button) this.findViewById(R.id.btnSocial);
+        botones = new Button[4];
+
+        botones[0] = (Button) this.findViewById(R.id.btnService);
+        botones[1] = (Button) this.findViewById(R.id.btnEspecies);
+        botones[2] = (Button) this.findViewById(R.id.btnLimpiar);
+        botones[3] = (Button) this.findViewById(R.id.btnTipo);
 //        System.out.println("TYPE::::: " + type + "    " + type.equalsIgnoreCase("Ikiam"));
 //        System.out.println("ES CIENTIFICO::::: >" + esCientifico.trim() + "<     >" + esCientifico.equalsIgnoreCase("S") + "<");
 
@@ -298,17 +311,51 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     @Override
     public void onClick(View v) {
         if (v.getId() == botones[0].getId()) {
-            //Continente --> Galapagos
-
+            //service de rutas
+            if (servicesConnected()) {
+                if (!status) {
+                    map.clear();
+                    ruta = new Ruta(this, "Ruta");
+                    ruta.save();
+                    this.startService(new Intent(this, SvtService.class));
+                    doBindService();
+                    //  sendMessageToService((int)ruta.id);
+                    Location mCurrentLocation;
+                    mCurrentLocation = locationClient.getLastLocation();
+                    location = new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
+                    CameraUpdate update = CameraUpdateFactory.newLatLngZoom(location, 19);
+                    map.animateCamera(update);
+                    polyLine = map.addPolyline(rectOptions);
+                    botones[1].setText("Parar");
+                    camera = new ImageTableObserver(new Handler(), this);
+                    this.getContentResolver().registerContentObserver(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, true, camera);
+                    status = true;
+                } else {
+                    doUnbindService();
+                    this.stopService(new Intent(this, SvtService.class));
+                    botones[1].setText(getString(R.string.ruta_nueva));
+                    ruta = null;
+                    status = false;
+                }
+            }
 
         }
 
         if (v.getId() == botones[1].getId()) {
-            //service de rutas
+        //especies
 
 
         }
+        if (v.getId() == botones[2].getId()) {
+        //tipo
 
+
+        }
+        if (v.getId() == botones[3].getId()) {
+
+            map.clear();
+
+        }
 
     }
 
@@ -334,7 +381,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     /*location services*/
     @Override
     public void onConnected(Bundle dataBundle) {
-        System.out.println("connected");
+       // System.out.println("connected");
         Location mCurrentLocation;
         mCurrentLocation = locationClient.getLastLocation();
         map.getMyLocation();
@@ -487,17 +534,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     }
 
 
-    public Bitmap getFotoDialog(Foto image, int width, int heigth) {
-        if (image != null) {
-            // System.out.println("path "+imageItem.imagePath);
-            //System.out.println("images " + image.imagePath+"  "+width+"  "+heigth);
-            Bitmap b = ImageUtils.decodeFile(image.path, width, heigth);
-            return b;
 
-        }
-        return null;
-
-    }
 
 
     /*DRAWER*/
@@ -971,5 +1008,200 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         return m1 > m2 ? -1 : 1;
     }
 
+
+
+    /*Service de rutas*/
+    class IncomingHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case SvtService.MSG_SET_INT_VALUE:
+                    System.out.println("Int Message: " + msg.arg1);
+                    break;
+                case SvtService.MSG_SET_STRING_VALUE:
+                    String str1 = msg.getData().getString("str1");
+//                    textStrValue.setText("Str Message: " + str1);
+                    System.out.println("Str  Message: " + msg.arg1);
+                    break;
+                case SvtService.MSG_SET_COORDS:
+                    Double latitud = msg.getData().getDouble("latitud");
+                    Double longitud = msg.getData().getDouble("logitud");
+//                    System.out.println("Str  Message recibed: " + latitud+"  "+longitud);
+                    LatLng latlong = new LatLng(latitud, longitud);
+                    if (lastPosition == null)
+                        lastPosition = map.addMarker(new MarkerOptions().position(latlong).title("Última posición registrada"));
+                    else
+                        lastPosition.setPosition(latlong);
+                    updatePolyLine(latlong);
+                    if (lastestImageIndex != 0) {
+                        //System.out.println("Tomo foto " + lastestImageIndex);
+                        imageItem = getLatestItem();
+                        getFoto();
+                        if (imagenes.size() > lastSize) {
+//                            map.addMarker(new MarkerOptions().position(latlong).title("Sydney").snippet("Population: 4,627,300").icon(BitmapDescriptorFactory.fromBitmap(imagenes.get(lastIndex))));
+                            Bitmap.Config conf = Bitmap.Config.ARGB_8888;
+                            Foto foto = new Foto(activity);
+                            Coordenada cord = new Coordenada(activity, latitud, longitud);
+                            cord.save();
+                            foto.setCoordenada(cord);
+                            foto.setRuta(ruta);
+                            foto.path = imageItem.imagePath;
+                            foto.save();
+                            fotos.add(foto);
+                            Bitmap bmp = Bitmap.createBitmap(170, 126, conf);
+                            ;
+                            Canvas canvas1 = new Canvas(bmp);
+                            Paint color = new Paint();
+                            color.setTextSize(35);
+                            color.setColor(Color.BLACK);//modify canvas
+                            canvas1.drawBitmap(BitmapFactory.decodeResource(getResources(),
+                                    R.drawable.pin3), 0, 0, color);
+                            canvas1.drawBitmap(imagenes.get(lastIndex), 5, 4, color);
+
+                            Marker marker = map.addMarker(new MarkerOptions().position(latlong)
+                                    .icon(BitmapDescriptorFactory.fromBitmap(bmp))
+                                    .anchor(0.5f, 1).title("Nueva fotografía"));
+
+                            data.put(marker, foto);
+
+                            lastSize = imagenes.size();
+                            //queue.execute(new ImageUploader(activity, queue, imageItem, 0));
+                        }
+                    }
+                    break;
+                default:
+                    super.handleMessage(msg);
+            }
+        }
+    }
+
+    private ServiceConnection mConnection = new ServiceConnection() {
+        public void onServiceConnected(ComponentName className, IBinder service) {
+            mService = new Messenger(service);
+
+            try {
+                Message msg = Message.obtain(null, SvtService.MSG_REGISTER_CLIENT);
+                msg.replyTo = mMessenger;
+                mService.send(msg);
+                attached = true;
+            } catch (RemoteException e) {
+                // In this case the service has crashed before we could even do anything with it
+            }
+            if (ruta != null) {
+                try {
+                    Message msg = Message.obtain(null, SvtService.MSG_SET_INT_VALUE);
+                    msg.replyTo = mMessenger;
+                    msg.arg1 = (int) ruta.id;
+                    mService.send(msg);
+                    //System.out.println("Mando mensaje de ruta");
+                    attached = true;
+                } catch (RemoteException e) {
+                    // In this case the service has crashed before we could even do anything with it
+                }
+            }
+
+        }
+
+        public void onServiceDisconnected(ComponentName className) {
+            // This is called when the connection with the service has been unexpectedly disconnected - process crashed.
+            mService = null;
+            // System.out.println("Disconnected.");
+        }
+    };
+
+    /*IMAGES*/
+    public void setImageIndex(int index) {
+        //System.out.println("set image index " + index);
+        if (imagenes == null) {
+            imagenes = new ArrayList<Bitmap>();
+        }
+        if (index >= lastestImageIndex) {
+            this.lastestImageIndex = index;
+        } else {
+            /*Borro una foto*/
+            this.lastestImageIndex = 0;
+        }
+        //System.out.println("set image index fin "+this.lastestImageIndex);
+    }
+
+    /*Fotos*/
+    public void getFoto() {
+        if (imageItem != null) {
+            // System.out.println("path "+imageItem.imagePath);
+            //System.out.println("images " + imagenes);
+            Bitmap b = ImageUtils.decodeBitmapPath(imageItem.imagePath, 160, 90);
+            //System.out.println("width " + b.getWidth() + "  " + b.getHeight());
+            imagenes.add(b);
+            lastIndex++;
+            lastestImageIndex = 0;
+        }
+
+    }
+
+    public Bitmap getFotoDialog(Foto image, int width, int heigth) {
+        if (image != null) {
+            // System.out.println("path "+imageItem.imagePath);
+            //System.out.println("images " + image.imagePath+"  "+width+"  "+heigth);
+            Bitmap b = ImageUtils.decodeFile(image.path, width, heigth);
+            return b;
+
+        }
+        return null;
+
+    }
+
+    public ImageItem getLatestItem() {
+        // set vars
+        if (lastestImageIndex > 0) {
+            ImageItem item = null;
+            String columns[] = new String[]{MediaStore.Images.Media._ID, MediaStore.Images.Media.DATA, MediaStore.Images.Media.DISPLAY_NAME, MediaStore.Images.Media.MIME_TYPE, MediaStore.Images.Media.SIZE, MediaStore.Images.Media.MINI_THUMB_MAGIC};
+
+            Uri image = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, lastestImageIndex);
+            Cursor cursor = this.managedQuery(image, columns, null, null, null);
+
+            // check if cursus has rows, if not break and exit loop
+            if (cursor.moveToFirst()) {
+                //System.out.println("tiene rows "+cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.MINI_THUMB_MAGIC)));
+                item = new ImageItem();
+                item.prefs = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
+                item.imageId = cursor.getInt(cursor.getColumnIndex(MediaStore.Images.Media._ID));
+                item.imagePath = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+                item.imageName = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DISPLAY_NAME));
+                item.imageType = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.MIME_TYPE));
+                item.imageSize = cursor.getInt(cursor.getColumnIndex(MediaStore.Images.Media.SIZE));
+            }
+            //cursor.close();
+
+            // System.out.println("salio");
+            return item;
+        }
+
+        return null;
+
+    }
+
+
+    void doBindService() {
+        this.bindService(new Intent(this, SvtService.class), mConnection, Context.BIND_AUTO_CREATE);
+        mIsBound = true;
+    }
+
+    void doUnbindService() {
+        if (mIsBound) {
+            // If we have received the service, and hence registered with it, then now is the time to unregister.
+            if (mService != null) {
+                try {
+                    Message msg = Message.obtain(null, SvtService.MSG_UNREGISTER_CLIENT);
+                    msg.replyTo = mMessenger;
+                    mService.send(msg);
+                } catch (RemoteException e) {
+                    // There is nothing special we need to do if the service has crashed.
+                }
+            }
+            // Detach our existing connection.
+            this.unbindService(mConnection);
+            mIsBound = false;
+        }
+    }
 
 }
