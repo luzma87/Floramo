@@ -89,9 +89,10 @@ public class SvtService extends Service implements  GooglePlayServicesClient.Con
                 // mClients.get(i).send(Message.obtain(null, MSG_SET_INT_VALUE, intvaluetosend, 0));
 
                 //Send data as a String
+                System.out.println("Send data "+location.getLatitude()+" --- "+location.getLongitude());
                 Bundle b = new Bundle();
-                b.putDouble("latitud", location.getLatitude()/*+counter*0.00210*/);
-                b.putDouble("logitud", location.getLongitude()/*+counter*0.00103*/);
+                b.putDouble("latitud", location.getLatitude()+counter*0.00210);
+                b.putDouble("logitud", location.getLongitude()+counter*0.00103);
                 Message msg = Message.obtain(null, MSG_SET_COORDS);
                 msg.setData(b);
                 mClients.get(i).send(msg);

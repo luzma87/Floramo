@@ -315,7 +315,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
             if (servicesConnected()) {
                 if (!status) {
                     map.clear();
-                    ruta = new Ruta(this, "Ruta");
+                    ruta = new Ruta(this, getString(R.string.ruta_nombre));
                     ruta.save();
                     this.startService(new Intent(this, SvtService.class));
                     doBindService();
@@ -326,14 +326,14 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                     CameraUpdate update = CameraUpdateFactory.newLatLngZoom(location, 19);
                     map.animateCamera(update);
                     polyLine = map.addPolyline(rectOptions);
-                    botones[1].setText("Parar");
+                    botones[0].setText(getString(R.string.ruta_parar));
                     camera = new ImageTableObserver(new Handler(), this);
                     this.getContentResolver().registerContentObserver(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, true, camera);
                     status = true;
                 } else {
                     doUnbindService();
                     this.stopService(new Intent(this, SvtService.class));
-                    botones[1].setText(getString(R.string.ruta_nueva));
+                    botones[0].setText(getString(R.string.ruta_nueva));
                     ruta = null;
                     status = false;
                 }

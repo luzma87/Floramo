@@ -16,6 +16,7 @@
 
 <resources>
     <string name="app_name">Flóramo</string>
+    <string name="db_name">Floramo</string>
     <string name="menu_title">Navegación</string>
 
     <string name="web_app_not_available">Lo siento, no hay un navegador configurado</string>
@@ -26,7 +27,9 @@
     <string name="settings_title">Configuración</string>
     <string name="camera_title">Cámara</string>
     <string name="captura_title">Nueva captura</string>
-    <string name="ruta_nueva">Nueva captura</string>
+    <string name="ruta_nueva">Nueva ruta</string>
+    <string name="ruta_nombre">Ruta</string>
+    <string name="ruta_parar">Parar</string>
     <string name="gallery_title">Galería</string>
     <string name="map_title">Mapa</string>
     <string name="tools_title">Herramientas</string>
