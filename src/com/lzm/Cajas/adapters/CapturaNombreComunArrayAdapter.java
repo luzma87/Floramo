@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import com.lzm.Cajas.MainActivity;
+import com.lzm.Cajas.MapActivity;
 import com.lzm.Cajas.R;
 import com.lzm.Cajas.db.Especie;
 
@@ -17,11 +18,11 @@ import java.util.List;
  */
 public class CapturaNombreComunArrayAdapter extends ArrayAdapter<Especie> {
 
-    MainActivity context;
+    MapActivity context;
     List<Especie> especies;
     int layoutResourceId;
 
-    public CapturaNombreComunArrayAdapter(MainActivity context, int layoutResourceId, List<Especie> especies) {
+    public CapturaNombreComunArrayAdapter(MapActivity context, int layoutResourceId, List<Especie> especies) {
         super(context, layoutResourceId, especies);
 
         this.layoutResourceId = layoutResourceId;

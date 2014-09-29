@@ -76,9 +76,8 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
 
     /*Fin mapa*/
 
-
-
     Foto imageToUpload;
+    List<Especie> especiesBusqueda;
     AlertDialog dialog;
     public int screenHeight;
     public int screenWidth;
@@ -344,12 +343,12 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         }
 
         if (v.getId() == botones[1].getId()) {
-        //especies
+            //especies
 
 
         }
         if (v.getId() == botones[2].getId()) {
-        //tipo
+            //tipo
 
 
         }
@@ -383,7 +382,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     /*location services*/
     @Override
     public void onConnected(Bundle dataBundle) {
-       // System.out.println("connected");
+        // System.out.println("connected");
         Location mCurrentLocation;
         mCurrentLocation = locationClient.getLastLocation();
         map.getMyLocation();
@@ -536,9 +535,6 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     }
 
 
-
-
-
     /*DRAWER*/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -672,7 +668,8 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                 activeFragment = MAP_POS;
                 break;
             case CAPTURA_POS:
-                this.addListener((FieldListener) fragment);
+                fragment = new CapturaFragment();
+//                this.addListener((FieldListener) fragment);
                 title = getString(R.string.captura_title);
                 activeFragment = CAPTURA_POS;
                 break;
@@ -1011,7 +1008,6 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         // It seems that both slopes are either positive, or negative.
         return m1 > m2 ? -1 : 1;
     }
-
 
 
     /*Service de rutas*/

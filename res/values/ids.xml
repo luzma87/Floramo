@@ -56,4 +56,6 @@
     <item name="descarga_busqueda_buscar_btn" type="id">descarga_busqueda_buscar_btn</item>
     <item name="settings_btn_show_logros" type="id">settings_btn_logros</item>
     <item name="captura_cautiverio_label" type="id">captura_cautiverio_label</item>
+    <item name="captura_lugar_label" type="id">captura_lugar_label</item>
+    <item name="captura_lugar_spinner" type="id">captura_lugar_spinner</item>
 </resources>

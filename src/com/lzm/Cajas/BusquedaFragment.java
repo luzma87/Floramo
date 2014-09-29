@@ -24,7 +24,7 @@ import java.util.Vector;
  */
 public class BusquedaFragment extends Fragment implements Button.OnClickListener, AdapterView.OnItemSelectedListener,
         TextWatcher, View.OnTouchListener {
-    MainActivity context;
+    MapActivity context;
 
     ImageButton btnBuscar;
     ToggleButton[] toggles;
@@ -45,7 +45,7 @@ public class BusquedaFragment extends Fragment implements Button.OnClickListener
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        context = (MainActivity) getActivity();
+        context = (MapActivity) getActivity();
         View view = inflater.inflate(R.layout.busqueda_layout, container, false);
         view.setOnTouchListener(this);
 

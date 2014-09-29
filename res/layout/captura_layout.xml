@@ -244,29 +244,27 @@
                 android:layout_marginLeft="15dp" />
 
             <TextView
-                android:id="@id/captura_nombre_comun_label"
+                android:id="@id/captura_lugar_label"
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/captura_nombre_comun_label"
-                android:textStyle="bold|italic"
+                android:text="@string/captura_lugar_label"
 
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="10dp"
                 android:layout_below="@id/captura_color1_spinner"
-                android:layout_alignParentLeft="true" />
+                android:layout_alignParentLeft="true"
+                android:textStyle="bold|italic" />
 
-            <com.lzm.Cajas.capturaAutocomplete.CustomAutoCompleteView
-                android:id="@+id/captura_autocomplete_nombre_comun"
+            <Spinner
+                android:id="@id/captura_lugar_spinner"
 
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:autoText="true"
-                android:hint="@string/captura_nombre_comun_label"
+                android:spinnerMode="dialog"
 
-                android:layout_toRightOf="@id/captura_nombre_comun_label"
-                android:layout_below="@id/captura_color1_spinner" />
+                android:layout_below="@id/captura_color1_label"
+                android:layout_toRightOf="@id/captura_lugar_label"
+                android:layout_marginLeft="15dp" />
 
             <TextView
                 android:id="@id/captura_nombre_familia_label"
@@ -279,7 +277,7 @@
 
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="20dp"
-                android:layout_below="@id/captura_nombre_comun_label"
+                android:layout_below="@id/captura_lugar_label"
                 android:layout_alignParentLeft="true" />
 
             <com.lzm.Cajas.capturaAutocomplete.CustomAutoCompleteView
@@ -290,7 +288,7 @@
                 android:autoText="true"
                 android:hint="@string/captura_nombre_familia_label"
 
-                android:layout_below="@id/captura_autocomplete_nombre_comun"
+                android:layout_below="@id/captura_lugar_spinner"
                 android:layout_toRightOf="@id/captura_nombre_familia_label" />
 
             <TextView
@@ -343,30 +341,6 @@
                 android:layout_below="@id/captura_autocomplete_nombre_genero"
                 android:layout_toRightOf="@id/captura_nombre_especie_label" />
 
-            <TextView
-                android:id="@id/captura_cautiverio_label"
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/captura_cautiverio_label"
-                android:textStyle="bold|italic"
-
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="20dp"
-                android:layout_below="@id/captura_nombre_especie_label"
-                android:layout_alignParentLeft="true" />
-
-            <CheckBox
-                android:id="@+id/captura_cautiverio_check"
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:layout_below="@id/captura_autocomplete_nombre_especie"
-                android:text=""
-                android:layout_toRightOf="@id/captura_cautiverio_label"/>
-
             <EditText
                 android:id="@id/captura_comentarios_txt"
 
@@ -375,7 +349,7 @@
                 android:inputType="textMultiLine"
                 android:minLines="8"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/captura_cautiverio_label"
+                android:layout_below="@+id/captura_autocomplete_nombre_especie"
                 android:gravity="top"
                 android:password="false"
                 android:hint="@string/captura_comentarios_label" />

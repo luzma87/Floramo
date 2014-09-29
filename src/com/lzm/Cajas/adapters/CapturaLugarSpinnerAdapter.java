@@ -6,10 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import com.lzm.Cajas.MainActivity;
 import com.lzm.Cajas.MapActivity;
 import com.lzm.Cajas.R;
 import com.lzm.Cajas.db.Color;
+import com.lzm.Cajas.db.Lugar;
 import com.lzm.Cajas.utils.Utils;
 
 import java.util.ArrayList;
@@ -17,25 +17,25 @@ import java.util.ArrayList;
 /**
  * Created by luz on 28/07/14.
  */
-public class CapturaColorSpinnerAdapter extends BaseAdapter {
+public class CapturaLugarSpinnerAdapter extends BaseAdapter {
 
     MapActivity c;
-    ArrayList<Color> colores;
+    ArrayList<Lugar> lugares;
 
-    public CapturaColorSpinnerAdapter(MapActivity context, ArrayList<Color> colores) {
+    public CapturaLugarSpinnerAdapter(MapActivity context, ArrayList<Lugar> lugares) {
         super();
         this.c = context;
-        this.colores = colores;
+        this.lugares = lugares;
     }
 
     @Override
     public int getCount() {
-        return colores.size();
+        return lugares.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return colores.get(position);
+        return lugares.get(position);
     }
 
     @Override
@@ -44,11 +44,12 @@ public class CapturaColorSpinnerAdapter extends BaseAdapter {
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        Color cur_obj = colores.get(position);
+        Lugar cur_obj = lugares.get(position);
         LayoutInflater inflater = ((Activity) c).getLayoutInflater();
         View row = inflater.inflate(R.layout.captura_select_row, parent, false);
         TextView sub = (TextView) row.findViewById(R.id.captura_row_color_label);
-        sub.setText(Utils.getStringResourceByName(c, "global_color_" + cur_obj.getNombre()));
+//        sub.setText(Utils.getStringResourceByName(c, "global_color_" + cur_obj.getNombre()));
+        sub.setText(cur_obj.nombre);
         return row;
     }
 }

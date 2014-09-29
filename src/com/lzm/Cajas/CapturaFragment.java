@@ -56,8 +56,6 @@ public class CapturaFragment extends Fragment implements Button.OnClickListener,
 
     private EditText textoComentarios;
 
-    private CheckBox chkCautiverio;
-
     public CustomAutoCompleteView autocompleteNombreComun;
     public CustomAutoCompleteView autocompleteFamilia;
     public CustomAutoCompleteView autocompleteGenero;
@@ -65,6 +63,7 @@ public class CapturaFragment extends Fragment implements Button.OnClickListener,
 
     private Spinner spinnerColor1;
     private Spinner spinnerColor2;
+    private Spinner spinnerLugar;
 
     public CapturaNombreComunArrayAdapter nombreComunArrayAdapter;
     public CapturaNombreFamiliaArrayAdapter nombreFamiliaArrayAdapter;
@@ -85,15 +84,15 @@ public class CapturaFragment extends Fragment implements Button.OnClickListener,
     boolean hayFoto = false;
     boolean deMapa = false;
 
-    MainActivity context;
+    MapActivity context;
     private String pathFolder;
     private Bitmap bitmap;
-    MainActivity activity;
+    MapActivity activity;
     Foto fotoSubir;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        context = (MainActivity) getActivity();
+        context = (MapActivity) getActivity();
 //        pathFolder = getArguments().getString("pathFolder");
 
         pathFolder = Utils.getFolder(context);
@@ -103,13 +102,12 @@ public class CapturaFragment extends Fragment implements Button.OnClickListener,
 //        view.setOnTouchListener(this);
         scrollview.setOnTouchListener(this);
 
-        activity = (MainActivity) getActivity();
+        activity = (MapActivity) getActivity();
         screenHeight = activity.screenHeight;
         screenWidth = activity.screenWidth;
         selectedImage = (ImageView) view.findViewById(R.id.captura_chosen_image_view);
         lblInfo = (TextView) view.findViewById(R.id.captura_info_label);
         textoComentarios = (EditText) view.findViewById(R.id.captura_comentarios_txt);
-        chkCautiverio = (CheckBox) view.findViewById(R.id.captura_cautiverio_check);
 
         initSpinners(view);
         initAutocompletes(view);
@@ -325,11 +323,16 @@ public class CapturaFragment extends Fragment implements Button.OnClickListener,
         ArrayList<Color> colores1 = Color.listColores(context);
         ArrayList<Color> colores2 = Color.list(context);
 
+        ArrayList<Lugar> lugares = Lugar.list(context);
+
         spinnerColor1 = (Spinner) view.findViewById(R.id.captura_color1_spinner);
         spinnerColor1.setAdapter(new CapturaColorSpinnerAdapter(context, colores1));
 
         spinnerColor2 = (Spinner) view.findViewById(R.id.captura_color2_spinner);
         spinnerColor2.setAdapter(new CapturaColorSpinnerAdapter(context, colores2));
+
+        spinnerLugar = (Spinner) view.findViewById(R.id.captura_lugar_spinner);
+        spinnerLugar.setAdapter(new CapturaLugarSpinnerAdapter(context, lugares));
     }
 
     private void initAutocompletes(View view) {

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import com.lzm.Cajas.MainActivity;
+import com.lzm.Cajas.MapActivity;
 import com.lzm.Cajas.R;
 import com.lzm.Cajas.db.Genero;
 
@@ -17,11 +18,11 @@ import java.util.List;
  */
 public class CapturaNombreGeneroArrayAdapter extends ArrayAdapter<Genero> {
 
-    MainActivity context;
+    MapActivity context;
     List<Genero> generos;
     int layoutResourceId;
 
-    public CapturaNombreGeneroArrayAdapter(MainActivity context, int layoutResourceId, List<Genero> generos) {
+    public CapturaNombreGeneroArrayAdapter(MapActivity context, int layoutResourceId, List<Genero> generos) {
         super(context, layoutResourceId, generos);
 
         this.layoutResourceId = layoutResourceId;

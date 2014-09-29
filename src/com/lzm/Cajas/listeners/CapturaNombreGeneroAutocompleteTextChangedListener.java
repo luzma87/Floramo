@@ -4,6 +4,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import com.lzm.Cajas.CapturaFragment;
 import com.lzm.Cajas.MainActivity;
+import com.lzm.Cajas.MapActivity;
 import com.lzm.Cajas.R;
 import com.lzm.Cajas.adapters.CapturaNombreGeneroArrayAdapter;
 import com.lzm.Cajas.db.Familia;
@@ -17,11 +18,11 @@ import java.util.List;
 public class CapturaNombreGeneroAutocompleteTextChangedListener implements TextWatcher {
 
     public static final String TAG = "CapturaNombreFamiliaAutocompleteTextChangedListener.java";
-    MainActivity context;
+    MapActivity context;
     CapturaFragment fragment;
     Familia familia;
 
-    public CapturaNombreGeneroAutocompleteTextChangedListener(MainActivity context, CapturaFragment fragment, Familia familia) {
+    public CapturaNombreGeneroAutocompleteTextChangedListener(MapActivity context, CapturaFragment fragment, Familia familia) {
         this.context = context;
         this.fragment = fragment;
         this.familia = familia;
