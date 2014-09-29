@@ -68,6 +68,8 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(createTableSql(TABLE_SETTINGS, KEYS_COMMON, SettingsDbHelper.KEYS_SETTINGS));
         db.execSQL(createTableSql(TABLE_FORMA_VIDA, KEYS_COMMON, FormaVidaDbHelper.KEYS_FORMA_VIDA));
         db.execSQL(createTableSql(TABLE_NOTA, KEYS_COMMON, NotaDbHelper.KEYS_NOTA));
+        db.execSQL(createTableSql(TABLE_RUTA, KEYS_COMMON, RutaDbHelper.KEYS_RUTA));
+        db.execSQL(createTableSql(TABLE_COORDENADA, KEYS_COMMON, CoordenadaDbHelper.KEYS_COORDENADA));
 
         checkDb(db);
 

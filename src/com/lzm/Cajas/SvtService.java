@@ -107,7 +107,7 @@ public class SvtService extends Service implements  GooglePlayServicesClient.Con
     @Override
     public void onCreate() {
         super.onCreate();
-
+        System.out.println("on create service");
         this.context=this;
         showNotification();
         locationClient = new LocationClient(this, this, this);
