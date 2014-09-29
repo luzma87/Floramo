@@ -317,7 +317,9 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                     map.clear();
                     ruta = new Ruta(this, getString(R.string.ruta_nombre));
                     ruta.save();
+                    System.out.println("start service");
                     this.startService(new Intent(this, SvtService.class));
+                    System.out.println("start service??");
                     doBindService();
                     //  sendMessageToService((int)ruta.id);
                     Location mCurrentLocation;
