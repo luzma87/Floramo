@@ -161,9 +161,10 @@ public class EspecieInfoFragment extends Fragment implements Button.OnClickListe
             int idHighest = 0;
 
             int i = 0;
-            ImageView curIV = imageViews[i];
             for (Foto foto1 : fotos) {
+                ImageView curIV = imageViews[i];
                 String path1 = foto1.path.replaceAll("\\.jpg", "").replaceAll("-", "_").toLowerCase();
+                path1 = "th_" + path1;
                 curIV.setImageResource(Utils.getImageResourceByName(context, path1));
                 curIV.setVisibility(View.VISIBLE);
                 curIV.setOnClickListener(this);
@@ -356,7 +357,7 @@ public class EspecieInfoFragment extends Fragment implements Button.OnClickListe
                 comentarios = comentarios.trim();
             }
 
-            Foto foto = fotos.get(0);
+            Foto foto = fotos.get(fotoPos);
             String path1 = foto.path.replaceAll("\\.jpg", "").replaceAll("-", "_").toLowerCase();
             img.setImageResource(Utils.getImageResourceByName(context, path1));
 //            img.setImageBitmap(context.getFotoDialog(foto, context.screenWidth, 300));
