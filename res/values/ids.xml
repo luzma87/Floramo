@@ -58,4 +58,8 @@
     <item name="captura_cautiverio_label" type="id">captura_cautiverio_label</item>
     <item name="captura_lugar_label" type="id">captura_lugar_label</item>
     <item name="captura_lugar_spinner" type="id">captura_lugar_spinner</item>
+    <item name="captura_forma_vida_label" type="id">captura_forma_vida_label</item>
+    <item name="captura_forma_vida_spinner" type="id">captura_forma_vida_spinner</item>
+    <item name="captura_row_lugar_label" type="id">captura_row_lugar_label</item>
+    <item name="captura_row_forma_vida_label" type="id">captura_row_forma_vida_label</item>
 </resources>

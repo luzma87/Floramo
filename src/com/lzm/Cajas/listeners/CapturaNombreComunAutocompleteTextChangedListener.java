@@ -55,7 +55,7 @@ public class CapturaNombreComunAutocompleteTextChangedListener implements TextWa
             // update the nombreComunArrayAdapter
             fragment.nombreComunArrayAdapter = new CapturaNombreComunArrayAdapter(context, R.layout.captura_autocomplete_list_item, myObjs);
 
-            fragment.autocompleteNombreComun.setAdapter(fragment.nombreComunArrayAdapter);
+//            fragment.autocompleteNombreComun.setAdapter(fragment.nombreComunArrayAdapter);
 
         } catch (NullPointerException e) {
             e.printStackTrace();
