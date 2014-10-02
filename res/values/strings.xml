@@ -30,6 +30,9 @@
     <string name="ruta_nueva">Nueva ruta</string>
     <string name="ruta_nombre">Ruta</string>
     <string name="ruta_parar">Parar</string>
+    <string name="mapa_especies">Especies</string>
+    <string name="mapa_tipo">Tipo</string>
+    <string name="mapa_limpiar">Limpiar</string>
     <string name="gallery_title">Galería</string>
     <string name="map_title">Mapa</string>
     <string name="tools_title">Herramientas</string>

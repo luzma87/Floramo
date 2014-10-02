@@ -350,7 +350,25 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         }
         if (v.getId() == botones[2].getId()) {
         //tipo
-
+            tipoMapa++;
+            switch (tipoMapa) {
+                case 0:
+                    map.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+                    break;
+                case 1:
+                    map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                    break;
+                case 2:
+                    map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+                    break;
+                case 3:
+                    map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+                    break;
+                default:
+                    map.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+                    tipoMapa = 0;
+                    break;
+            }
 
         }
         if (v.getId() == botones[3].getId()) {
