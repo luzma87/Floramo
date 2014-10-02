@@ -30,6 +30,14 @@
     <string name="ruta_nueva">Nueva ruta</string>
     <string name="ruta_nombre">Ruta</string>
     <string name="ruta_parar">Parar</string>
+    <string name="ruta_plural">Rutas</string>
+    <string name="ruta_ver_mapa">Mapa</string>
+    <string name="ruta_lbl_distancia">Distancia</string>
+    <string name="ruta_lbl_altura">Altitud</string>
+    <string name="ruta_datos_guardados">Datos guardados</string>
+    <string name="ruta_error_datos">Error al guardar los datos</string>
+    <string name="ruta_nueva_foto">Nueva foto</string>
+    <string name="ruta_lbl_foto">Fotos</string>
     <string name="mapa_especies">Especies</string>
     <string name="mapa_tipo">Tipo</string>
     <string name="mapa_limpiar">Limpiar</string>
@@ -192,8 +200,25 @@
     <string name="ruta_lbl_fotos">Fotos:</string>
 
     <string name="especies_info_flora">Flora web</string>
-    <string name="especie_info_tropicos">Tropicos</string>
+    <string name="especie_info_tropicos">Tropicos ®</string>
     <string name="help_map">help map</string>
     <string name="help_rutas">help rutas</string>
     <string name="help_tropicos">help tropicos</string>
+
+    <string name="about">
+        Se presentan 100 especies nativas de plantas que crecen en el páramo del Cajas, provincia del Azuay, Ecuador.
+        El páramo es un ecosistema único dominado por pajonales, sobre el límite del bosque en la cordillera de los Andes.
+        No necesariamente son las plantas más comunes, pero si llamativas, fáciles de encontrar y relativamente fáciles de identificar.
+        Pensamos que al reconocer y nombrar las plantas silvestres se puede apreciar mejor la flora del país,
+        y se hará un esfuerzo para protegerlas así como a el medio ambiente páramo en que viven.
+    </string>
+
+    <string name="credits">
+        Este proyecto es una colaboración entre el Missouri Botanical Garden, el Herbario Azuay (Universidad del Azuay)
+        con el Parque Nacional Cajas.
+        Contacto del proyecto: carmen.ulloa@mobot.org.
+        Diseñadora: L.M. Unda, Quito (sugerencias: xxxx ).
+        Todos los derechos reservados.
+    </string>
+    <string name="captura_forma_vida_label">Forma de vida</string>
 </resources>

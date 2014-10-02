@@ -103,7 +103,7 @@ public class Foto {
         this.coordenada_id = coordenada_id;
     }
 
-    public Coordenada getCoordenada() {
+    public Coordenada getCoordenada(Context context) {
         if (especie_id != null) {
             return Coordenada.get(context, coordenada_id);
         } else {

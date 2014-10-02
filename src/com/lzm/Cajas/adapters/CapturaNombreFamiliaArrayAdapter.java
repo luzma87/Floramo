@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import com.lzm.Cajas.MainActivity;
+import com.lzm.Cajas.MapActivity;
 import com.lzm.Cajas.R;
 import com.lzm.Cajas.db.Familia;
 
@@ -17,11 +18,11 @@ import java.util.List;
  */
 public class CapturaNombreFamiliaArrayAdapter extends ArrayAdapter<Familia> {
 
-    MainActivity context;
+    MapActivity context;
     List<Familia> familias;
     int layoutResourceId;
 
-    public CapturaNombreFamiliaArrayAdapter(MainActivity context, int layoutResourceId, List<Familia> familias) {
+    public CapturaNombreFamiliaArrayAdapter(MapActivity context, int layoutResourceId, List<Familia> familias) {
         super(context, layoutResourceId, familias);
 
         this.layoutResourceId = layoutResourceId;

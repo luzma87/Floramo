@@ -76,10 +76,9 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
 
     /*Fin mapa*/
 
-
-
     Foto imageToUpload;
-
+    List<Especie> especiesBusqueda;
+    AlertDialog dialog;
     public int screenHeight;
     public int screenWidth;
     public static final String PREFS_NAME = "IkiamSettings";
@@ -218,7 +217,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
 
         /*DRAWER*/
         mTitle = mDrawerTitle = getTitle();
-
+        fotos = new ArrayList<Foto>();
         mOptionsArray = getResources().getStringArray(R.array.options_array);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout2);
@@ -344,7 +343,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         }
 
         if (v.getId() == botones[1].getId()) {
-        //especies
+            //especies
 
 
         }
@@ -554,9 +553,6 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     }
 
 
-
-
-
     /*DRAWER*/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -690,7 +686,8 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                 activeFragment = MAP_POS;
                 break;
             case CAPTURA_POS:
-                this.addListener((FieldListener) fragment);
+                fragment = new CapturaFragment();
+//                this.addListener((FieldListener) fragment);
                 title = getString(R.string.captura_title);
                 activeFragment = CAPTURA_POS;
                 break;
@@ -700,7 +697,9 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                 activeFragment = ENCICLOPEDIA_POS;
                 break;
             case RUTAS_POS:
-
+                fragment = new RutasFragment();
+                title = getString(R.string.ruta_plural);
+                activeFragment = ENCICLOPEDIA_POS;
                 break;
             case TROPICOS_POS:
 
@@ -1222,6 +1221,63 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
             this.unbindService(mConnection);
             mIsBound = false;
         }
+    }
+
+    /*Funcion para ver rutas desde el list*/
+    public void openRutaFragment(Ruta ruta) {
+        this.ruta = ruta;
+        this.old_id = null;
+        Fragment fragment = new RutaFragment();
+        if (fragment != null) {
+            FragmentManager fragmentManager = getFragmentManager();
+            RelativeLayout mainLayout = (RelativeLayout) this.findViewById(R.id.rl2);
+            mainLayout.setVisibility(LinearLayout.GONE);
+            fragmentManager.beginTransaction()
+                    .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+                    .replace(R.id.content_frame, fragment)
+                    .addToBackStack("")
+                    .commit();
+        }
+        setTitle(ruta.descripcion);
+    }
+
+    public void showRuta(List<Coordenada> cords, List<Foto> fotos, Fragment fragment) {
+        map.clear();
+        data.clear();
+        dataUsuario.clear();
+        location = new LatLng(cords.get(0).getLatitud(), cords.get(0).getLongitud());
+        CameraUpdate update = CameraUpdateFactory.newLatLngZoom(location, 19);
+        map.animateCamera(update);
+        polyLine = map.addPolyline(rectOptions);
+        for (int i = 0; i < fotos.size(); i++) {
+            Bitmap.Config conf = Bitmap.Config.ARGB_8888;
+            Bitmap bmp = Bitmap.createBitmap(170, 126, conf);
+            ;
+            Canvas canvas1 = new Canvas(bmp);
+            Paint color = new Paint();
+            color.setTextSize(35);
+            color.setColor(Color.BLACK);//modify canvas
+            canvas1.drawBitmap(BitmapFactory.decodeResource(getResources(),
+                    R.drawable.pin3), 0, 0, color);
+            Bitmap b = ImageUtils.decodeBitmapPath(fotos.get(i).path, 160, 90);
+            ;
+            canvas1.drawBitmap(b, 5, 4, color);
+            Coordenada co = fotos.get(i).getCoordenada(this);
+            location = new LatLng(co.getLatitud(), co.getLongitud());
+            Marker marker = map.addMarker(new MarkerOptions().position(location)
+                    .icon(BitmapDescriptorFactory.fromBitmap(bmp))
+                    .anchor(0.5f, 1).title(getString(R.string.ruta_nueva_foto)));
+            data.put(marker, fotos.get(i));
+        }
+        for (int i = 0; i < cords.size(); i++) {
+            updatePolyLine(new LatLng(cords.get(i).getLatitud(), cords.get(i).getLongitud()));
+            if (i == cords.size() - 1) {
+                map.addMarker(new MarkerOptions().position(new LatLng(cords.get(i).getLatitud(), cords.get(i).getLongitud())).title("Última posición registrada"));
+            }
+        }
+        this.onDestroy();
+        showMap();
+
     }
 
 }

@@ -106,7 +106,8 @@ public class EncyclopediaSecondLevelAdapter extends BaseExpandableListAdapter {
 //            int imageId = getResources().getIdentifier(planet.toLowerCase(Locale.getDefault()),
 //                    "drawable", getActivity().getPackageName());
             String path = foto.path.replaceAll("\\.jpg", "").replaceAll("-", "_").toLowerCase();
-//            System.out.println("PATH:::: " + path);
+            path = "th_" + path;
+            System.out.println("PATH:::: " + path);
             itemFoto.setImageResource(Utils.getImageResourceByName(context, path));
         }
 

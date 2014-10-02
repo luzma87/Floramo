@@ -25,9 +25,10 @@ public class FotoDbHelper extends DbHelper {
     private static final String KEY_LATITUD = "latitud";
     private static final String KEY_ALTITUD = "altitud";
     private static final String KEY_LUGAR_ID = "lugar_id";
+    private static final String KEY_COORDENADA_ID = "coordenada_id";
 
     public static final String[] KEYS_FOTO = {KEY_ESPECIE_ID, KEY_KEYWORDS, KEY_PATH,
-            KEY_LATITUD, KEY_LONGITUD, KEY_ALTITUD, KEY_LUGAR_ID, KEY_RUTA_ID};
+            KEY_LATITUD, KEY_LONGITUD, KEY_ALTITUD, KEY_LUGAR_ID, KEY_COORDENADA_ID, KEY_RUTA_ID};
 
     public FotoDbHelper(Context context) {
         super(context);
@@ -236,6 +237,8 @@ public class FotoDbHelper extends DbHelper {
         f.setAltitud(c.getDouble(c.getColumnIndex(KEY_ALTITUD)));
         f.setKeywords((c.getString(c.getColumnIndex(KEY_KEYWORDS))));
         f.setPath((c.getString(c.getColumnIndex(KEY_PATH))));
+        f.setCoordenada_id((c.getLong(c.getColumnIndex(KEY_COORDENADA_ID))));
+        f.setLugar_id((c.getLong(c.getColumnIndex(KEY_LUGAR_ID))));
         f.setRuta_id((c.getLong(c.getColumnIndex(KEY_RUTA_ID))));
         return f;
     }
@@ -247,6 +250,12 @@ public class FotoDbHelper extends DbHelper {
         }
         if (foto.especie_id != null) {
             values.put(KEY_ESPECIE_ID, foto.especie_id);
+        }
+        if (foto.coordenada_id != null) {
+            values.put(KEY_COORDENADA_ID, foto.coordenada_id);
+        }
+        if (foto.lugar_id != null) {
+            values.put(KEY_LUGAR_ID, foto.lugar_id);
         }
         if (foto.ruta_id != null) {
             values.put(KEY_RUTA_ID, foto.ruta_id);

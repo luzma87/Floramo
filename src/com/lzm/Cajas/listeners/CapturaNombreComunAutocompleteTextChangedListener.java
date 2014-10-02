@@ -4,6 +4,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import com.lzm.Cajas.CapturaFragment;
 import com.lzm.Cajas.MainActivity;
+import com.lzm.Cajas.MapActivity;
 import com.lzm.Cajas.R;
 import com.lzm.Cajas.adapters.CapturaNombreComunArrayAdapter;
 import com.lzm.Cajas.db.Especie;
@@ -16,10 +17,10 @@ import java.util.List;
 public class CapturaNombreComunAutocompleteTextChangedListener implements TextWatcher {
 
     public static final String TAG = "CapturaNombreComunAutocompleteTextChangedListener.java";
-    MainActivity context;
+    MapActivity context;
     CapturaFragment fragment;
 
-    public CapturaNombreComunAutocompleteTextChangedListener(MainActivity context, CapturaFragment fragment) {
+    public CapturaNombreComunAutocompleteTextChangedListener(MapActivity context, CapturaFragment fragment) {
         this.context = context;
         this.fragment = fragment;
     }
@@ -54,7 +55,7 @@ public class CapturaNombreComunAutocompleteTextChangedListener implements TextWa
             // update the nombreComunArrayAdapter
             fragment.nombreComunArrayAdapter = new CapturaNombreComunArrayAdapter(context, R.layout.captura_autocomplete_list_item, myObjs);
 
-            fragment.autocompleteNombreComun.setAdapter(fragment.nombreComunArrayAdapter);
+//            fragment.autocompleteNombreComun.setAdapter(fragment.nombreComunArrayAdapter);
 
         } catch (NullPointerException e) {
             e.printStackTrace();
