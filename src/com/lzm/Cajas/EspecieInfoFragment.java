@@ -92,7 +92,7 @@ public class EspecieInfoFragment extends Fragment implements Button.OnClickListe
             color1 = Utils.getStringResourceByName(context, "global_color_" + c1.nombre);
         }
         Color c2 = especie.getColor2(context);
-        if (c2 != null) {
+        if (c2 != null && !c2.nombre.equals("none")) {
 //            int id = getResources().getIdentifier("global_color_" + c2.nombre, "string", context.getPackageName());
 //            color2 = id == 0 ? "" : (", " + ((String) getResources().getText(id)));
             color2 = ", " + Utils.getStringResourceByName(context, "global_color_" + c2.nombre);
@@ -102,7 +102,7 @@ public class EspecieInfoFragment extends Fragment implements Button.OnClickListe
             formaVida1 = Utils.getStringResourceByName(context, "global_forma_vida_" + f1.nombre);
         }
         FormaVida f2 = especie.getFormaVida2(context);
-        if (f2 != null) {
+        if (f2 != null && !f2.nombre.equals("none")) {
             formaVida2 = ", " + Utils.getStringResourceByName(context, "global_forma_vida_" + f2.nombre);
         }
 

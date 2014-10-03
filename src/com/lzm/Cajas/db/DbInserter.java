@@ -11,6 +11,8 @@ public class DbInserter {
 
         db.execSQL("INSERT INTO lugares (id, nombre, nombre_norm, path) VALUES (\"1\", \"Páramo del Cajas, Ecuador\", \"Paramo del Cajas, Ecuador\", \"cajas.jpg\");");
 
+        db.execSQL("INSERT INTO colores(id, nombre) VALUES (\"0\", \"none\");");
+
         db.execSQL("INSERT INTO colores(id, nombre) VALUES (\"3\", \"white\");");
         db.execSQL("INSERT INTO colores(id, nombre) VALUES (\"15\", \"green\");");
         db.execSQL("INSERT INTO colores(id, nombre) VALUES (\"29\", \"pink\");");
@@ -21,6 +23,8 @@ public class DbInserter {
         db.execSQL("INSERT INTO colores(id, nombre) VALUES (\"71\", \"red\");");
         db.execSQL("INSERT INTO colores(id, nombre) VALUES (\"127\", \"blue\");");
 
+
+        db.execSQL("INSERT INTO formas_vida(id, nombre) VALUES (\"0\", \"none\");");
 
         db.execSQL("INSERT INTO formas_vida(id, nombre) VALUES (\"4\", \"cushion\");");
         db.execSQL("INSERT INTO formas_vida(id, nombre) VALUES (\"5\", \"herb\");");
@@ -561,6 +565,8 @@ public class DbInserter {
 
         db.execSQL("INSERT INTO lugares (id, nombre, nombre_norm) VALUES (\"1\", \"Páramo del Cajas, Ecuador\", \"Paramo del Cajas, Ecuador\");");
 
+        db.execSQL("INSERT INTO colores(id, nombre) VALUES (\"0\", \"none\");");
+
         db.execSQL("INSERT INTO colores(id, nombre) VALUES (\"3\", \"white\");");
         db.execSQL("INSERT INTO colores(id, nombre) VALUES (\"12\", \"green\");");
         db.execSQL("INSERT INTO colores(id, nombre) VALUES (\"27\", \"pink\");");
@@ -571,6 +577,8 @@ public class DbInserter {
         db.execSQL("INSERT INTO colores(id, nombre) VALUES (\"70\", \"red\");");
         db.execSQL("INSERT INTO colores(id, nombre) VALUES (\"126\", \"blue\");");
 
+
+        db.execSQL("INSERT INTO formas_vida(id, nombre) VALUES (\"0\", \"none\");");
 
         db.execSQL("INSERT INTO formas_vida(id, nombre) VALUES (\"4\", \"cushion\");");
         db.execSQL("INSERT INTO formas_vida(id, nombre) VALUES (\"9\", \"shrub\");");

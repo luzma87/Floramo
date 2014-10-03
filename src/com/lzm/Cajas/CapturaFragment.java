@@ -68,7 +68,8 @@ public class CapturaFragment extends Fragment implements Button.OnClickListener,
     private Spinner spinnerColor1;
     private Spinner spinnerColor2;
     private Spinner spinnerLugar;
-    private Spinner spinnerFormaVida;
+    private Spinner spinnerFormaVida1;
+    private Spinner spinnerFormaVida2;
 
     public CapturaNombreComunArrayAdapter nombreComunArrayAdapter;
     public CapturaNombreFamiliaArrayAdapter nombreFamiliaArrayAdapter;
@@ -140,10 +141,13 @@ public class CapturaFragment extends Fragment implements Button.OnClickListener,
             } else {
                 alerta(getString(R.string.camera_app_not_available));
             }
-        } else if (v.getId() == btnSave.getId()) { // save || upload
+        } else if (v.getId() == btnSave.getId()) { // save
             if (hayFoto) {
+                FormaVida formaVida1 = (FormaVida) spinnerFormaVida1.getSelectedItem();
+                FormaVida formaVida2 = (FormaVida) spinnerFormaVida2.getSelectedItem();
                 Color color1 = (Color) spinnerColor1.getSelectedItem();
                 Color color2 = (Color) spinnerColor2.getSelectedItem();
+                Lugar lugar = (Lugar) spinnerLugar.getSelectedItem();
 //                String nombreComun = autocompleteNombreComun.getText().toString().trim();
                 String nombreFamilia = autocompleteFamilia.getText().toString().trim();
                 String nombreGenero = autocompleteGenero.getText().toString().trim();
@@ -208,6 +212,12 @@ public class CapturaFragment extends Fragment implements Button.OnClickListener,
                         if (color2 != null && !color2.nombre.equals("none")) {
                             especie.setColor2(color2);
                         }
+                        if (formaVida1 != null) {
+                            especie.setFormaVida1(formaVida1);
+                        }
+                        if (formaVida2 != null && !formaVida2.nombre.equals("none")) {
+                            especie.setFormaVida2(formaVida2);
+                        }
 //                            if (!nombreComun.equals("")) {
 //                                especie.setNombreComun(nombreComun);
 //                            }
@@ -229,6 +239,9 @@ public class CapturaFragment extends Fragment implements Button.OnClickListener,
                         fotoSubir.latitud = fotoLat;
                         fotoSubir.longitud = fotoLong;
                         fotoSubir.altitud = fotoAlt;
+                    }
+                    if (lugar != null) {
+                        fotoSubir.setLugar(lugar);
                     }
                     fotoSubir.save();
 
@@ -299,7 +312,8 @@ public class CapturaFragment extends Fragment implements Button.OnClickListener,
 
         ArrayList<Lugar> lugares = Lugar.list(context);
 
-        ArrayList<FormaVida> formasVida = FormaVida.list(context);
+        ArrayList<FormaVida> formasVida1 = FormaVida.listFormasVida(context);
+        ArrayList<FormaVida> formasVida2 = FormaVida.list(context);
 
         spinnerColor1 = (Spinner) view.findViewById(R.id.captura_color1_spinner);
         spinnerColor1.setAdapter(new CapturaColorSpinnerAdapter(context, colores1));
@@ -310,8 +324,11 @@ public class CapturaFragment extends Fragment implements Button.OnClickListener,
         spinnerLugar = (Spinner) view.findViewById(R.id.captura_lugar_spinner);
         spinnerLugar.setAdapter(new CapturaLugarSpinnerAdapter(context, lugares));
 
-        spinnerFormaVida = (Spinner) view.findViewById(R.id.captura_forma_vida_spinner);
-        spinnerFormaVida.setAdapter(new CapturaFormaVidaSpinnerAdapter(context, formasVida));
+        spinnerFormaVida1 = (Spinner) view.findViewById(R.id.captura_forma_vida1_spinner);
+        spinnerFormaVida1.setAdapter(new CapturaFormaVidaSpinnerAdapter(context, formasVida1));
+
+        spinnerFormaVida2 = (Spinner) view.findViewById(R.id.captura_forma_vida2_spinner);
+        spinnerFormaVida2.setAdapter(new CapturaFormaVidaSpinnerAdapter(context, formasVida2));
     }
 
     private void initAutocompletes(View view) {
@@ -466,6 +483,7 @@ public class CapturaFragment extends Fragment implements Button.OnClickListener,
                 hayFoto = true;
 //                updateStatus(null);
                 MapActivity activity = (MapActivity) getActivity();
+//                Bitmap thumb = ImageUtils.getThumbnailFromCameraData(data, activity);
                 Bitmap thumb = ImageUtils.getThumbnailFromCameraData(data, activity);
                 selectedImage.setImageBitmap(thumb);
                 bitmap = ImageUtils.getBitmapFromCameraData(data, activity);

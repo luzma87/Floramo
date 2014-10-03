@@ -9,6 +9,7 @@ import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.provider.MediaStore;
+import com.lzm.Cajas.MapActivity;
 
 import java.io.*;
 
@@ -25,8 +26,9 @@ public class ImageUtils {
      * @param context : Context
      * @return : Bitmap
      */
-    public static Bitmap getThumbnailFromCameraData(Intent data, Context context) {
-        return getBitmapFromCameraData(data, context, 185, 185);
+    public static Bitmap getThumbnailFromCameraData(Intent data, MapActivity context) {
+//        return getBitmapFromCameraData(data, context, 185, 185);
+        return getBitmapFromCameraData(data, context, (int) (context.screenWidth / 3), (int) (context.screenHeight / 5));
     }
 
     public static Bitmap getThumbnail(String path, boolean force) {
@@ -341,7 +343,7 @@ public class ImageUtils {
 
     }
 
-    public static Bitmap decodeBitmapPath(String  path, int w, int h) {
+    public static Bitmap decodeBitmapPath(String path, int w, int h) {
         try {
             File f = new File(path);
             Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));

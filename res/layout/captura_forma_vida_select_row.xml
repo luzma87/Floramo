@@ -9,7 +9,7 @@
         android:id="@+id/captura_row_forma_vida_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/ic_fv_none" />
 
     <TextView
         android:id="@id/captura_row_forma_vida_label"

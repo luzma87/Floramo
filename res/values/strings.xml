@@ -220,5 +220,7 @@
         Diseñadora: L.M. Unda, Quito (sugerencias: xxxx ).
         Todos los derechos reservados.
     </string>
-    <string name="captura_forma_vida_label">Forma de vida</string>
+    <string name="captura_forma_vida1_label">Forma de vida 1</string>
+    <string name="captura_forma_vida2_label">Forma de vida 2</string>
+    <string name="captura_lugar_label">Lugar</string>
 </resources>
