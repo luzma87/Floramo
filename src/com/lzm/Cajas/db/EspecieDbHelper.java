@@ -78,6 +78,49 @@ public class EspecieDbHelper extends DbHelper {
         return es;
     }
 
+    public Especie getDatosEspecie(long especie_id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "SELECT " +
+                "    e.id id," +
+                "    e.nombre especie," +
+                "    e.id_tropicos tropicos," +
+                "    e.es_mia es_mia," +
+                "    g.nombre genero," +
+                "    f.nombre familia," +
+                "    c1.nombre color1," +
+                "    c2.nombre color2," +
+                "    f1.nombre forma_vida1," +
+                "    f2.nombre forma_vida2" +
+                " FROM especies e" +
+                " INNER JOIN generos g on e.genero_id = g.id" +
+                " INNER JOIN familias f on g.familia_id = f.id" +
+                " INNER JOIN colores c1 on e.color1_id = c1.id" +
+                " OUTER LEFT JOIN colores c2 on e.color2_id = c2.id" +
+                " INNER JOIN formas_vida f1 on e.forma_vida1_id = f1.id" +
+                " OUTER LEFT JOIN formas_vida f2 on e.forma_vida2_id = f2.id" +
+                " WHERE e.id = \"" + especie_id + "\"";
+
+        logQuery(LOG, selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+        Especie es = new Especie(context);
+        if (c.getCount() > 0) {
+            c.moveToFirst();
+            es.setId(c.getLong((c.getColumnIndex(KEY_ID))));
+            es.nombre = c.getString(c.getColumnIndex("especie"));
+            es.idTropicos = c.getLong(c.getColumnIndex("tropicos"));
+            es.esMia = c.getInt(c.getColumnIndex("es_mia"));
+            es.genero = c.getString(c.getColumnIndex("genero"));
+            es.familia = c.getString(c.getColumnIndex("familia"));
+            es.color1 = c.getString(c.getColumnIndex("color1"));
+            es.color2 = c.getString(c.getColumnIndex("color2"));
+            es.formaVida1 = c.getString(c.getColumnIndex("forma_vida1"));
+            es.formaVida2 = c.getString(c.getColumnIndex("forma_vida2"));
+        }
+        db.close();
+        return es;
+    }
+
     public List<Especie> getAllEspecies() {
         SQLiteDatabase db = this.getReadableDatabase();
         List<Especie> todos = new ArrayList<Especie>();

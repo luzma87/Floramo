@@ -35,6 +35,13 @@ public class Especie {
 
     Context context;
 
+    public String genero;
+    public String familia;
+    public String color1;
+    public String color2;
+    public String formaVida1;
+    public String formaVida2;
+
     public Especie(Context context) {
         especieDbHelper = new EspecieDbHelper(context);
         this.context = context;
@@ -248,6 +255,11 @@ public class Especie {
         }
     }
 
+    public static Especie getDatos(Context context, long id) {
+        EspecieDbHelper e = new EspecieDbHelper(context);
+        return e.getDatosEspecie(id);
+    }
+
     public static Especie get(Context context, long id) {
         EspecieDbHelper e = new EspecieDbHelper(context);
         return e.getEspecie(id);
@@ -262,10 +274,10 @@ public class Especie {
             especie.esMia = 1;
             especie.save();
         } else if (listEspecies.size() == 1) {
-            especie = listEspecies.get(0);
+            especie = getDatos(context, listEspecies.get(0).id);
         } else {
             Log.e("getByNombreOrCreate especie", "Se encontraron " + listEspecies.size() + " especies con nombre " + nombreEspecie);
-            especie = listEspecies.get(0);
+            especie = getDatos(context, listEspecies.get(0).id);
         }
         return especie;
     }
