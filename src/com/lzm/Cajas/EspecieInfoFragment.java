@@ -82,31 +82,31 @@ public class EspecieInfoFragment extends Fragment implements Button.OnClickListe
         btnTropicos = (Button) view.findViewById(R.id.especie_info_ikiam);
         btnTropicos.setOnClickListener(this);
         long especieId = getArguments().getLong("especie");
-        especie = Especie.get(context, especieId);
-        Genero genero = especie.getGenero(context);
-        Familia familia = genero.getFamilia(context);
+        especie = Especie.getDatos(context, especieId);
+//        Genero genero = especie.getGenero(context);
+//        Familia familia = genero.getFamilia(context);
 
         String color1 = "", color2 = "";
         String formaVida1 = "", formaVida2 = "";
-        Color c1 = especie.getColor1(context);
-        if (c1 != null) {
+//        Color c1 = especie.getColor1(context);
+//        if (c1 != null) {
 //            int id = getResources().getIdentifier("global_color_" + c1.nombre, "string", context.getPackageName());
 //            color1 = id == 0 ? "" : (String) getResources().getText(id);
-            color1 = Utils.getStringResourceByName(context, "global_color_" + c1.nombre);
-        }
-        Color c2 = especie.getColor2(context);
-        if (c2 != null && !c2.nombre.equals("none")) {
+        color1 = Utils.getStringResourceByName(context, "global_color_" + especie.color1);
+//        }
+//        Color c2 = especie.getColor2(context);
+        if (/*c2 != null && */especie.color2 != null && !especie.color2.equals("none") && !especie.color2.equals("")) {
 //            int id = getResources().getIdentifier("global_color_" + c2.nombre, "string", context.getPackageName());
 //            color2 = id == 0 ? "" : (", " + ((String) getResources().getText(id)));
-            color2 = ", " + Utils.getStringResourceByName(context, "global_color_" + c2.nombre);
+            color2 = ", " + Utils.getStringResourceByName(context, "global_color_" + especie.color2);
         }
-        FormaVida f1 = especie.getFormaVida1(context);
-        if (f1 != null) {
-            formaVida1 = Utils.getStringResourceByName(context, "global_forma_vida_" + f1.nombre);
-        }
-        FormaVida f2 = especie.getFormaVida2(context);
-        if (f2 != null && !f2.nombre.equals("none")) {
-            formaVida2 = ", " + Utils.getStringResourceByName(context, "global_forma_vida_" + f2.nombre);
+//        FormaVida f1 = especie.getFormaVida1(context);
+//        if (f1 != null) {
+        formaVida1 = Utils.getStringResourceByName(context, "global_forma_vida_" + especie.formaVida1);
+//        }
+//        FormaVida f2 = especie.getFormaVida2(context);
+        if (/*f2 != null && */especie.formaVida2 != null && !especie.formaVida2.equals("none") && !especie.formaVida2.equals("")) {
+            formaVida2 = ", " + Utils.getStringResourceByName(context, "global_forma_vida_" + especie.formaVida2);
         }
 
         double altMin = 0, altMax = 0;
@@ -242,10 +242,10 @@ public class EspecieInfoFragment extends Fragment implements Button.OnClickListe
         }
 
         txtEspecieInfoNombreComun.setText(especie.nombreComun);
-        txtEspecieInfoNombreCientifico.setText(genero.nombre + " " + especie.nombre.toLowerCase());
+        txtEspecieInfoNombreCientifico.setText(especie.genero + " " + especie.nombre.toLowerCase());
 
-        txtEspecieInfoFamilia.setText(familia.nombre);
-        txtEspecieInfoGenero.setText(genero.nombre);
+        txtEspecieInfoFamilia.setText(especie.familia);
+        txtEspecieInfoGenero.setText(especie.genero);
         txtEspecieInfoEspecie.setText(especie.nombre);
 
         txtEspecieInfoColor1.setText(color1);
