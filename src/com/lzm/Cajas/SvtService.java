@@ -117,7 +117,7 @@ public class SvtService extends Service implements  GooglePlayServicesClient.Con
         isRunning = true;
     }
     private void showNotification() {
-        nm = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+       /* nm = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
         // In this sample, we'll use the same text for the ticker and the expanded notification
         CharSequence text = "service_started";
         // Set the icon, scrolling text and timestamp
@@ -129,6 +129,7 @@ public class SvtService extends Service implements  GooglePlayServicesClient.Con
         // Send the notification.
         // We use a layout id because it is a unique number.  We use it later to cancel.
         nm.notify(23, notification);
+        */
     }
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {

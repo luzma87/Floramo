@@ -27,7 +27,7 @@
     <string name="settings_title">Configuración</string>
     <string name="camera_title">Cámara</string>
     <string name="captura_title">Nueva captura</string>
-    <string name="ruta_nueva">Nueva ruta</string>
+    <string name="ruta_nueva">Ruta</string>
     <string name="ruta_nombre">Ruta</string>
     <string name="ruta_parar">Parar</string>
     <string name="ruta_plural">Rutas</string>

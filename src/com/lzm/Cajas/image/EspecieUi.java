@@ -9,16 +9,21 @@ public class EspecieUi {
 
     public String id;
     public String nombre;
-    public String nombreEspecie;
-    public String desc;
-    public int likes;
+    public int resId;
+    public String tropicosId;
     public Bitmap foto;
 
-    public EspecieUi(String nombre,String nombreEspecie,Bitmap foto, int likes,String desc){
+    public EspecieUi(String nombre,Bitmap foto){
         this.nombre=nombre;
         this.foto=foto;
-        this.likes=likes;
-        this.desc=desc;
-        this.nombreEspecie=nombreEspecie;
+    }
+    public EspecieUi(String nombre,int resId){
+        this.nombre=nombre;
+        this.resId=resId;
+    }
+    public EspecieUi(String nombre,int resId,String tropicosId){
+        this.nombre=nombre;
+        this.resId=resId;
+        this.tropicosId=tropicosId;
     }
 }

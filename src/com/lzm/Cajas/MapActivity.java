@@ -32,7 +32,13 @@ import com.lzm.Cajas.image.*;
 import com.lzm.Cajas.listeners.FieldListener;
 import com.lzm.Cajas.utils.*;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.*;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MapActivity extends Activity implements Button.OnClickListener, GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener {
     /*DRAWER*/
@@ -70,7 +76,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     LocationClient locationClient;
     Marker lastPosition;
     HashMap<Marker, Foto> data;
-    HashMap<Marker, Foto> dataUsuario;
+    HashMap<Marker, EspecieUi> dataEspecies;
     Marker selected;
     int tipoMapa = 0;
 
@@ -78,6 +84,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
 
     Foto imageToUpload;
     List<Especie> especiesBusqueda;
+    List<Especie> especies;
     AlertDialog dialog;
     public int screenHeight;
     public int screenWidth;
@@ -181,7 +188,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         //System.out.println("variables name "+userId+"  name "+name);
         setContentView(R.layout.activity_map);
 
-
+        activeFragment = MAP_POS;
         this.activity = this;
 
         DisplayMetrics displaymetrics = new DisplayMetrics();
@@ -195,7 +202,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         locationClient.connect();
         setUpMapIfNeeded();
         data = new HashMap<Marker, Foto>();
-        dataUsuario = new HashMap<Marker, Foto>();
+        dataEspecies = new HashMap<Marker, EspecieUi>();
         //atracciones = new HashMap<Marker, AtraccionUi>();
 
 
@@ -203,10 +210,8 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
 
         botones[0] = (Button) this.findViewById(R.id.btnService);
         botones[1] = (Button) this.findViewById(R.id.btnEspecies);
-        botones[2] = (Button) this.findViewById(R.id.btnLimpiar);
-        botones[3] = (Button) this.findViewById(R.id.btnTipo);
-//        System.out.println("TYPE::::: " + type + "    " + type.equalsIgnoreCase("Ikiam"));
-//        System.out.println("ES CIENTIFICO::::: >" + esCientifico.trim() + "<     >" + esCientifico.equalsIgnoreCase("S") + "<");
+        botones[2] = (Button) this.findViewById(R.id.btnTipo);
+        botones[3] = (Button) this.findViewById(R.id.btnLimpiar);
 
         for (int i = 0; i < botones.length; i++) {
             botones[i].setOnClickListener(this);
@@ -316,9 +321,9 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                     map.clear();
                     ruta = new Ruta(this, getString(R.string.ruta_nombre));
                     ruta.save();
-                    System.out.println("start service");
+                    //System.out.println("start service");
                     this.startService(new Intent(this, SvtService.class));
-                    System.out.println("start service??");
+                    //System.out.println("start service??");
                     doBindService();
                     //  sendMessageToService((int)ruta.id);
                     Location mCurrentLocation;
@@ -344,11 +349,19 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
 
         if (v.getId() == botones[1].getId()) {
             //especies
+            especies = Especie.list(this);
+            location = new LatLng(-2.84360424,-79.2282486);
+            CameraUpdate update = CameraUpdateFactory.newLatLngZoom(location, 11);
+            map.animateCamera(update);
+            for (Especie especie : especies) {
+                ExecutorService queue = Executors.newSingleThreadExecutor();
+                queue.execute(new EspecieLoader(this,especie));
+            }
 
 
         }
         if (v.getId() == botones[2].getId()) {
-        //tipo
+            //tipo
             tipoMapa++;
             switch (tipoMapa) {
                 case 0:
@@ -378,6 +391,29 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
 
     }
 
+    public void setPingEspecie(final EspecieUi ui,final LatLng posicion,final Bitmap imagen){
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                Bitmap.Config conf = Bitmap.Config.ARGB_8888;
+                Bitmap bmp = Bitmap.createBitmap(170, 126, conf);
+                Canvas canvas1 = new Canvas(bmp);
+                Paint color = new Paint();
+                color.setTextSize(10);
+                color.setColor(Color.BLACK);//modify canvas
+                canvas1.drawBitmap(BitmapFactory.decodeResource(getResources(),
+                        R.drawable.pin3), 0, 0, color);
+                canvas1.drawBitmap(imagen, 5, 4, color);
+                Marker marker = map.addMarker(new MarkerOptions().position(posicion)
+                        .icon(BitmapDescriptorFactory.fromBitmap(bmp))
+                        .title(ui.nombre));
+                //EspecieUi especieUi = new EspecieUi(title, nombreEspecie, fotoDialog, likes, desc);
+                dataEspecies.put(marker,ui);
+            }
+        });
+    }
+
     /*Google services*/
     private boolean servicesConnected() {
         // Check that Google Play services is available
@@ -400,7 +436,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     /*location services*/
     @Override
     public void onConnected(Bundle dataBundle) {
-       // System.out.println("connected");
+        // System.out.println("connected");
         Location mCurrentLocation;
         mCurrentLocation = locationClient.getLastLocation();
         map.getMyLocation();
@@ -469,30 +505,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
 
     }
 
-    public void setPingEspecie(final String title, final int likes, final double latitud, final double longitud, final Bitmap foto, final Bitmap fotoDialog, final String desc, final String nombreEspecie) {
-        Handler handler = new Handler(Looper.getMainLooper());
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                final LatLng pos = new LatLng(latitud, longitud);
-                Bitmap.Config conf = Bitmap.Config.ARGB_8888;
-                Bitmap bmp = Bitmap.createBitmap(170, 126, conf);
-                Canvas canvas1 = new Canvas(bmp);
-                Paint color = new Paint();
-                color.setTextSize(10);
-                color.setColor(Color.BLACK);//modify canvas
-                canvas1.drawBitmap(BitmapFactory.decodeResource(getResources(),
-                        R.drawable.pin3), 0, 0, color);
-                canvas1.drawBitmap(foto, 5, 4, color);
-                Marker marker = map.addMarker(new MarkerOptions().position(pos)
-                        .icon(BitmapDescriptorFactory.fromBitmap(bmp))
-                        .title(title));
-                //EspecieUi especieUi = new EspecieUi(title, nombreEspecie, fotoDialog, likes, desc);
-                //especies.put(marker, especieUi);
-            }
-        });
 
-    }
 
 
     public void setUpMapIfNeeded() {
@@ -521,18 +534,128 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         map.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
             @Override
             public void onMapLongClick(LatLng latLng) {
-
+                //ExecutorService queue = Executors.newSingleThreadExecutor();
+                //queue.execute(new EspecieLoader(this,especie));
             }
         });
         final Context context = this;
+        final Settings sett = Settings.getSettings(context);
+        map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener(){
+
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                if (dataEspecies.get(marker) != null) {
+                    marker.showInfoWindow();
+                    //System.out.println("especie " + marker + "  " + selected + "  " + (selected != marker));
+                    if (selected == null) {
+                        selected = marker;
+                    } else {
+                        if (selected.getId().equals(marker.getId())) {
+                            View myView;
+                            selected = null;
+                            LayoutInflater inflater = activity.getLayoutInflater();
+                            final EspecieUi current = dataEspecies.get(marker);
+                            myView = inflater.inflate(R.layout.dialog, null);
+                            ImageView img = (ImageView) myView.findViewById(R.id.image);
+                            ExecutorService queue = Executors.newSingleThreadExecutor();
+                            queue.execute(new EspecieDialogImageLoader((MapActivity)activity,current.resId,img));
+                            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                            builder.setTitle(current.nombre);
+                            builder.setView(myView);
+                            builder.setPositiveButton(R.string.especie_info_tropicos, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int id) {
+                                    String url = sett.tropicosBase + current.tropicosId;
+                                    try {
+                                        Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                                        startActivity(myIntent);
+                                    } catch (ActivityNotFoundException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            });
+                            builder.setNegativeButton(R.string.dialog_btn_cerrar, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.dismiss();
+                                }
+
+
+                            });
+
+                            dialog = builder.create();
+
+                            dialog.show();
+                        } else {
+                            selected = marker;
+                        }
+                    }
+                }
+            }
+        });
         map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(final Marker marker) {
+                if (dataEspecies.get(marker) != null) {
+                    marker.showInfoWindow();
+                    //System.out.println("especie " + marker + "  " + selected + "  " + (selected != marker));
+                    if (selected == null) {
+                        selected = marker;
+                    } else {
+                        if (selected.getId().equals(marker.getId())) {
+                            View myView;
+                            selected = null;
+                            LayoutInflater inflater = activity.getLayoutInflater();
+                            final EspecieUi current = dataEspecies.get(marker);
+                            myView = inflater.inflate(R.layout.dialog, null);
+                            ImageView img = (ImageView) myView.findViewById(R.id.image);
+                            ExecutorService queue = Executors.newSingleThreadExecutor();
+                            queue.execute(new EspecieDialogImageLoader((MapActivity)activity,current.resId,img));
+                            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                            builder.setTitle(current.nombre);
+                            builder.setView(myView);
+                            builder.setPositiveButton(R.string.especie_info_tropicos, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int id) {
+                                    String url = sett.tropicosBase + current.tropicosId;
+                                    try {
+                                        Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                                        startActivity(myIntent);
+                                    } catch (ActivityNotFoundException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            });
+                            builder.setNegativeButton(R.string.dialog_btn_cerrar, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.dismiss();
+                                }
 
+
+                            });
+
+                            dialog = builder.create();
+
+                            dialog.show();
+                        } else {
+                            selected = marker;
+                        }
+                    }
+                    return true;
+                }
                 return true;
             }
         });
 
+    }
+
+    public void setImgDialog(final Bitmap imagen,final ImageView img){
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                img.setImageBitmap(imagen);
+            }
+        });
     }
 
     private void updateFotoSinCoords(LatLng pos) {
@@ -678,9 +801,11 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         Utils.hideSoftKeyboard(this);
         Fragment fragment = null;
         Bundle args = null;
-
+        Boolean skyp=false;
         switch (position) {
             case MAP_POS:
+                if(activeFragment==MAP_POS)
+                    skyp=true;
                 fragment = null;
                 title = getString(R.string.map_title);
                 activeFragment = MAP_POS;
@@ -731,7 +856,8 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                 fragment = null;
                 break;
         }
-        Utils.openFragment(this, fragment, title, args);
+        if(!skyp)
+            Utils.openFragment(this, fragment, title, args);
 
         if (drawer) {
             mDrawerList.setItemChecked(position, true);
@@ -1168,6 +1294,17 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         return null;
 
     }
+    public Bitmap getFotoDialogString(InputStream io, int width, int heigth) {
+        if (io != null) {
+            // System.out.println("path "+imageItem.imagePath);
+            //System.out.println("images " + image.imagePath+"  "+width+"  "+heigth);
+            Bitmap b = ImageUtils.decodeBitmap(io, width, heigth);
+            return b;
+
+        }
+        return null;
+
+    }
 
     public ImageItem getLatestItem() {
         // set vars
@@ -1244,7 +1381,6 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     public void showRuta(List<Coordenada> cords, List<Foto> fotos, Fragment fragment) {
         map.clear();
         data.clear();
-        dataUsuario.clear();
         location = new LatLng(cords.get(0).getLatitud(), cords.get(0).getLongitud());
         CameraUpdate update = CameraUpdateFactory.newLatLngZoom(location, 19);
         map.animateCamera(update);
