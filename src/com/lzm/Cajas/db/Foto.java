@@ -27,6 +27,8 @@ public class Foto {
 
     public String path;
 
+    public Integer esMia = 0;
+
     Context context;
 
     FotoDbHelper fotoDbHelper;
@@ -139,6 +141,13 @@ public class Foto {
         this.longitud = longitud;
     }
 
+    public Integer getEsMia() {
+        return esMia;
+    }
+
+    public void setEsMia(Integer esMia) {
+        this.esMia = esMia;
+    }
 
     //setter
     public void setEspecie(Especie especie) {
@@ -175,6 +184,7 @@ public class Foto {
 
     public void save() {
         if (this.id == 0) {
+            this.esMia = 1;
             this.id = this.fotoDbHelper.createFoto(this);
         } else {
             this.fotoDbHelper.updateFoto(this);
@@ -232,6 +242,7 @@ public class Foto {
     public void setRuta_id(long id) {
         this.ruta_id = id;
     }
+
     public Ruta getRuta(Context context) {
         if (ruta_id != null) {
             return Ruta.get(context, this.ruta_id);
@@ -239,6 +250,7 @@ public class Foto {
             return null;
         }
     }
+
     public long getRutaId() {
         return this.ruta_id;
     }

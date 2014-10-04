@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,8 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import com.lzm.Cajas.db.*;
+import com.lzm.Cajas.image.ImageUtils;
 import com.lzm.Cajas.utils.Utils;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -139,20 +142,23 @@ public class EspecieInfoFragment extends Fragment implements Button.OnClickListe
 
             String path = foto.path.replaceAll("\\.jpg", "").replaceAll("-", "_").toLowerCase();
 //            System.out.println("PATH:::: " + path);
-            imgEspecieInfoImagen.setImageResource(Utils.getImageResourceByName(context, path));
-
-//            File imgFile = new File(foto.path);
-//            if (imgFile.exists()) {
-////            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-////                    Bitmap myBitmap = ImageUtils.decodeBitmap(imgFile.getAbsolutePath(), 200, 200);
-//                Bitmap myBitmap = ImageUtils.decodeFile(imgFile.getAbsolutePath(), 200, 200);
-//                int w = myBitmap.getWidth();
-//                int h = myBitmap.getHeight();
-//                if (h > w) {
-//                    vert = true;
-//                }
-//                imgEspecieInfoImagen.setImageBitmap(myBitmap);
-//            }
+            if (foto.esMia == 1) {
+                File imgFile = new File(foto.path);
+                if (imgFile.exists()) {
+//            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+//                    Bitmap myBitmap = ImageUtils.decodeBitmap(imgFile.getAbsolutePath(), 200, 200);
+                    Bitmap myBitmap = ImageUtils.decodeFile(imgFile.getAbsolutePath(), 200, 200);
+                    int w = myBitmap.getWidth();
+                    int h = myBitmap.getHeight();
+                    if (h > w) {
+                        vert = true;
+                    }
+                    imgEspecieInfoImagen.setImageBitmap(myBitmap);
+                }
+            } else {
+                imgEspecieInfoImagen.setImageResource(Utils.getImageResourceByName(context, path));
+            }
+            imgEspecieInfoImagen.setOnClickListener(this);
 
             int screenWidth = context.screenWidth - 40;
             int currentWidth = 0;
@@ -163,9 +169,23 @@ public class EspecieInfoFragment extends Fragment implements Button.OnClickListe
             int i = 0;
             for (Foto foto1 : fotos) {
                 ImageView curIV = imageViews[i];
-                String path1 = foto1.path.replaceAll("\\.jpg", "").replaceAll("-", "_").toLowerCase();
-                path1 = "th_" + path1;
-                curIV.setImageResource(Utils.getImageResourceByName(context, path1));
+                if (foto1.esMia == 1) {
+                    String path1 = foto1.path;
+                    File imgFile = new File(path1);
+                    if (imgFile.exists()) {
+                        if (i < imageViews.length) {
+//                            Bitmap myBitmap = ImageUtils.decodeFile(imgFile.getAbsolutePath(), 100, 100, true);
+                            Bitmap myBitmap = ImageUtils.getThumbnail(imgFile.getAbsolutePath(), false);
+//                            int w = myBitmap.getWidth();
+//                            int h = myBitmap.getHeight();
+                            curIV.setImageBitmap(myBitmap);
+                        }
+                    }
+                } else {
+                    String path1 = foto1.path.replaceAll("\\.jpg", "").replaceAll("-", "_").toLowerCase();
+                    path1 = "th_" + path1;
+                    curIV.setImageResource(Utils.getImageResourceByName(context, path1));
+                }
                 curIV.setVisibility(View.VISIBLE);
                 curIV.setOnClickListener(this);
                 i++;
@@ -284,12 +304,17 @@ public class EspecieInfoFragment extends Fragment implements Button.OnClickListe
         }
         if (!band) {
             int i;
-            for (i = 0; i < imageViews.length; i++) {
-                if (view.getId() == imageViews[i].getId()) {
-                    break;
+            if (view.getId() == imgEspecieInfoImagen.getId()) {
+                i = 0;
+            } else {
+                for (i = 0; i < imageViews.length; i++) {
+                    if (view.getId() == imageViews[i].getId()) {
+                        break;
+                    }
                 }
             }
             fotoPos = i;
+
             LayoutInflater inflater = context.getLayoutInflater();
             View v = inflater.inflate(R.layout.especie_info_entry_dialog, null);
             final String t = getResources().getQuantityString(R.plurals.encyclopedia_entries_dialog_title, fotos.size());
@@ -359,7 +384,11 @@ public class EspecieInfoFragment extends Fragment implements Button.OnClickListe
 
             Foto foto = fotos.get(fotoPos);
             String path1 = foto.path.replaceAll("\\.jpg", "").replaceAll("-", "_").toLowerCase();
-            img.setImageResource(Utils.getImageResourceByName(context, path1));
+            if (foto.esMia == 1) {
+                img.setImageBitmap(context.getFotoDialog(foto, context.screenWidth, 300));
+            } else {
+                img.setImageResource(Utils.getImageResourceByName(context, path1));
+            }
 //            img.setImageBitmap(context.getFotoDialog(foto, context.screenWidth, 300));
 //            img.setImageBitmap(ImageUtils.decodeFile(foto.path, context.screenWidth, 300));
             if (comentarios == null || comentarios.equals("")) {

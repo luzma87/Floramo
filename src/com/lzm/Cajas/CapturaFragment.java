@@ -222,7 +222,6 @@ public class CapturaFragment extends Fragment implements Button.OnClickListener,
 //                                especie.setNombreComun(nombreComun);
 //                            }
                         especie.save();
-
                     }
 
                     if (!deMapa) {

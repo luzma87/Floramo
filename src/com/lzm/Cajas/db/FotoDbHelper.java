@@ -26,9 +26,10 @@ public class FotoDbHelper extends DbHelper {
     private static final String KEY_ALTITUD = "altitud";
     private static final String KEY_LUGAR_ID = "lugar_id";
     private static final String KEY_COORDENADA_ID = "coordenada_id";
+    private static final String KEY_ES_MIA = "es_mia";
 
     public static final String[] KEYS_FOTO = {KEY_ESPECIE_ID, KEY_KEYWORDS, KEY_PATH,
-            KEY_LATITUD, KEY_LONGITUD, KEY_ALTITUD, KEY_LUGAR_ID, KEY_COORDENADA_ID, KEY_RUTA_ID};
+            KEY_LATITUD, KEY_LONGITUD, KEY_ALTITUD, KEY_LUGAR_ID, KEY_COORDENADA_ID, KEY_RUTA_ID, KEY_ES_MIA};
 
     public FotoDbHelper(Context context) {
         super(context);
@@ -240,6 +241,7 @@ public class FotoDbHelper extends DbHelper {
         f.setCoordenada_id((c.getLong(c.getColumnIndex(KEY_COORDENADA_ID))));
         f.setLugar_id((c.getLong(c.getColumnIndex(KEY_LUGAR_ID))));
         f.setRuta_id((c.getLong(c.getColumnIndex(KEY_RUTA_ID))));
+        f.setEsMia((c.getInt(c.getColumnIndex(KEY_ES_MIA))));
         return f;
     }
 
@@ -265,6 +267,7 @@ public class FotoDbHelper extends DbHelper {
         values.put(KEY_ALTITUD, foto.altitud);
         values.put(KEY_KEYWORDS, foto.getKeywords());
         values.put(KEY_PATH, foto.getPath());
+        values.put(KEY_ES_MIA, foto.getEsMia());
 
         return values;
     }

@@ -29,10 +29,10 @@ public class EspecieDbHelper extends DbHelper {
     private static final String KEY_FORMA_VIDA1_ID = "forma_vida1_id";
     private static final String KEY_FORMA_VIDA2_ID = "forma_vida2_id";
     private static final String KEY_ID_TROPICOS = "id_tropicos";
-
+    private static final String KEY_ES_MIA = "es_mia";
 
     public static final String[] KEYS_ESPECIE = {KEY_NOMBRE_COMUN, KEY_NOMBRE_COMUN_NORM, KEY_NOMBRE, KEY_NOMBRE_NORM,
-            KEY_GENERO_ID, KEY_COLOR1_ID, KEY_COLOR2_ID, KEY_FORMA_VIDA1_ID, KEY_FORMA_VIDA2_ID, KEY_ID_TROPICOS};
+            KEY_GENERO_ID, KEY_COLOR1_ID, KEY_COLOR2_ID, KEY_FORMA_VIDA1_ID, KEY_FORMA_VIDA2_ID, KEY_ID_TROPICOS, KEY_ES_MIA};
 
     public EspecieDbHelper(Context context) {
         super(context);
@@ -430,6 +430,7 @@ public class EspecieDbHelper extends DbHelper {
         es.setFormaVida1_id(c.getLong(c.getColumnIndex(KEY_FORMA_VIDA1_ID)));
         es.setFormaVida2_id(c.getLong(c.getColumnIndex(KEY_FORMA_VIDA2_ID)));
         es.setIdTropicos(c.getLong(c.getColumnIndex(KEY_ID_TROPICOS)));
+        es.setEsMia(c.getInt(c.getColumnIndex(KEY_ES_MIA)));
         return es;
     }
 
@@ -443,6 +444,7 @@ public class EspecieDbHelper extends DbHelper {
         values.put(KEY_NOMBRE, especie.nombre);
         values.put(KEY_NOMBRE_NORM, especie.nombreNorm);
         values.put(KEY_ID_TROPICOS, especie.idTropicos);
+        values.put(KEY_ES_MIA, especie.esMia);
         if (especie.genero_id != null) {
             values.put(KEY_GENERO_ID, especie.genero_id);
         }

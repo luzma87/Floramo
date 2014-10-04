@@ -105,10 +105,14 @@ public class EncyclopediaSecondLevelAdapter extends BaseExpandableListAdapter {
 //            itemFoto.setImageBitmap(ImageUtils.decodeFile(foto.path, 100, 100, true));
 //            int imageId = getResources().getIdentifier(planet.toLowerCase(Locale.getDefault()),
 //                    "drawable", getActivity().getPackageName());
-            String path = foto.path.replaceAll("\\.jpg", "").replaceAll("-", "_").toLowerCase();
-            path = "th_" + path;
-            System.out.println("PATH:::: " + path);
-            itemFoto.setImageResource(Utils.getImageResourceByName(context, path));
+            if (foto.esMia == 1) {
+                itemFoto.setImageBitmap(ImageUtils.decodeFile(foto.path, 100, 100, false));
+            } else {
+                String path = foto.path.replaceAll("\\.jpg", "").replaceAll("-", "_").toLowerCase();
+                path = "th_" + path;
+                System.out.println("PATH:::: " + path);
+                itemFoto.setImageResource(Utils.getImageResourceByName(context, path));
+            }
         }
 
         FormaVida f1 = especie.getFormaVida1(context);

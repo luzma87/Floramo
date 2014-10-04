@@ -29,6 +29,8 @@ public class Especie {
 
     public Long idTropicos;
 
+    public Integer esMia = 0;
+
     EspecieDbHelper especieDbHelper;
 
     Context context;
@@ -159,6 +161,14 @@ public class Especie {
         return idTropicos;
     }
 
+    public Integer getEsMia() {
+        return esMia;
+    }
+
+    public void setEsMia(Integer esMia) {
+        this.esMia = esMia;
+    }
+
     public void setIdTropicos(Long idTropicos) {
         this.idTropicos = idTropicos;
     }
@@ -231,6 +241,7 @@ public class Especie {
 
     public void save() {
         if (this.id == 0) {
+            this.esMia = 1;
             this.id = this.especieDbHelper.createEspecie(this);
         } else {
             this.especieDbHelper.updateEspecie(this);
@@ -248,6 +259,7 @@ public class Especie {
         if (listEspecies.size() == 0) {
             especie = new Especie(context);
             especie.setNombre(nombreEspecie);
+            especie.esMia = 1;
             especie.save();
         } else if (listEspecies.size() == 1) {
             especie = listEspecies.get(0);
