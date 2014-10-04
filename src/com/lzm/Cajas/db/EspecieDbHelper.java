@@ -403,7 +403,7 @@ public class EspecieDbHelper extends DbHelper {
         db.close();
     }
 
-    public List<Especie> getBusqueda(Vector<String> keywords, String color, String nc) {
+    public List<Especie> getBusqueda(String formaVida, String color, String nombre, String andOr) {
         SQLiteDatabase db = this.getReadableDatabase();
         List<Especie> todos = new ArrayList<Especie>();
         String sql;
@@ -421,23 +421,45 @@ public class EspecieDbHelper extends DbHelper {
             if (where.equals("")) {
                 where += " WHERE ";
             } else {
-                where += " AND ";
+                where += " " + andOr + " ";
             }
             where += " (c1." + ColorDbHelper.KEY_NOMBRE + " = '" + color + "'";
             where += " OR c2." + ColorDbHelper.KEY_NOMBRE + " = '" + color + "')";
         }
+        if (!formaVida.equals("")) {
+            joins += " LEFT JOIN " + TABLE_FORMA_VIDA + " f1 ON e." + KEY_FORMA_VIDA1_ID + " = f1." + KEY_ID;
+            joins += " LEFT JOIN " + TABLE_FORMA_VIDA + " f2 ON e." + KEY_FORMA_VIDA2_ID + " = f2." + KEY_ID;
 
-        if (!nc.equals("")) {
             if (where.equals("")) {
                 where += " WHERE ";
             } else {
-                where += " AND ";
+                where += " " + andOr + " ";
             }
-            where += "LOWER(e." + KEY_NOMBRE_COMUN_NORM + ") LIKE '%" + Normalizer.normalize(nc, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").toLowerCase() + "%' ";
+            where += " (f1." + FormaVidaDbHelper.KEY_NOMBRE + " = '" + formaVida + "'";
+            where += " OR f2." + FormaVidaDbHelper.KEY_NOMBRE + " = '" + formaVida + "')";
+        }
+
+        if (!nombre.equals("")) {
+            joins += " LEFT JOIN " + TABLE_GENERO + " g ON e." + KEY_GENERO_ID + " = g." + KEY_ID;
+            joins += " LEFT JOIN " + TABLE_FAMILIA + " a ON g." + GeneroDbHelper.KEY_FAMILIA_ID + " = a." + KEY_ID;
+
+            if (where.equals("")) {
+                where += " WHERE ";
+            } else {
+                where += " " + andOr + " ";
+            }
+            where += "(";
+            where += "LOWER(e." + KEY_NOMBRE_NORM + ") LIKE '%" + Normalizer.normalize(nombre, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").toLowerCase() + "%' ";
+            where += " OR ";
+            where += "LOWER(g." + GeneroDbHelper.KEY_NOMBRE_NORM + ") LIKE '%" + Normalizer.normalize(nombre, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").toLowerCase() + "%' ";
+            where += " OR ";
+            where += "LOWER(a." + FamiliaDbHelper.KEY_NOMBRE_NORM + ") LIKE '%" + Normalizer.normalize(nombre, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").toLowerCase() + "%' ";
+            where += ")";
         }
 
         sql = select + from + joins + where + groupBy;
 
+        System.out.println(sql);
         logQuery(LOG, sql);
 
         Cursor c = db.rawQuery(sql, null);

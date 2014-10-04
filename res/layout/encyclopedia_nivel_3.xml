@@ -29,15 +29,6 @@
         android:layout_toRightOf="@id/encyclopedia_group_item_nivel_3_image"
         android:textStyle="italic" />
 
-    <TextView
-        android:id="@+id/encyclopedia_group_item_nivel_3_nombre_comun"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:text="level3 nombre comun"
-        android:maxLines="3"
-        android:layout_alignLeft="@id/encyclopedia_group_item_nivel_3_nombre_cientifico"
-        android:layout_below="@id/encyclopedia_group_item_nivel_3_nombre_cientifico" />
-
     <ImageView
         android:id="@+id/imageView"
 
@@ -48,7 +39,7 @@
         android:layout_marginTop="7dp"
 
         android:layout_alignParentEnd="false"
-        android:layout_below="@+id/encyclopedia_group_item_nivel_3_nombre_comun"
+        android:layout_below="@+id/encyclopedia_group_item_nivel_3_nombre_cientifico"
         android:layout_alignLeft="@id/encyclopedia_group_item_nivel_3_nombre_cientifico" />
 
     <TextView
@@ -69,7 +60,6 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_fv_acquatic"
 
-        android:visibility="gone"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/imageView"
         android:layout_alignStart="@+id/imageView"
@@ -81,11 +71,33 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_fv_acquatic"
 
-        android:visibility="gone"
         android:layout_marginLeft="10dp"
         android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true"
         android:layout_alignTop="@id/encyclopedia_group_item_nivel_3_fv1"
         android:layout_toRightOf="@id/encyclopedia_group_item_nivel_3_fv1" />
+
+    <TextView
+        android:id="@+id/encyclopedia_group_item_nivel_3_color1"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Color1"
+
+        android:layout_marginStart="10dp"
+        android:layout_alignTop="@+id/encyclopedia_group_item_nivel_3_cant_fotos"
+        android:layout_toEndOf="@+id/encyclopedia_group_item_nivel_3_fv2" />
+
+    <TextView
+        android:id="@+id/encyclopedia_group_item_nivel_3_color2"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Color2"
+
+        android:layout_below="@id/encyclopedia_group_item_nivel_3_color1"
+        android:layout_alignStart="@id/encyclopedia_group_item_nivel_3_color1" />
 
 </RelativeLayout>

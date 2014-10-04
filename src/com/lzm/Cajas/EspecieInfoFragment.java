@@ -25,7 +25,6 @@ import java.util.List;
 public class EspecieInfoFragment extends Fragment implements Button.OnClickListener, View.OnTouchListener {
     MapActivity context;
 
-    TextView txtEspecieInfoNombreComun;
     TextView txtEspecieInfoNombreCientifico;
 
     TextView txtEspecieInfoFamilia;
@@ -37,6 +36,8 @@ public class EspecieInfoFragment extends Fragment implements Button.OnClickListe
 
     TextView txtEspecieInfoFormaVida1;
     TextView txtEspecieInfoFormaVida2;
+    ImageView imgEspecieInfoFormaVida1;
+    ImageView imgEspecieInfoFormaVida2;
 
     TextView txtEspecieInfoAltura;
 
@@ -58,7 +59,6 @@ public class EspecieInfoFragment extends Fragment implements Button.OnClickListe
         context = (MapActivity) getActivity();
         View view = inflater.inflate(R.layout.especie_info_layout, container, false);
 
-        txtEspecieInfoNombreComun = (TextView) view.findViewById(R.id.especie_info_nombre_comun);
         txtEspecieInfoNombreCientifico = (TextView) view.findViewById(R.id.especie_info_nombre_cientifico);
 
         txtEspecieInfoFamilia = (TextView) view.findViewById(R.id.especie_info_familia);
@@ -71,7 +71,8 @@ public class EspecieInfoFragment extends Fragment implements Button.OnClickListe
         txtEspecieInfoFormaVida1 = (TextView) view.findViewById(R.id.especie_info_forma_vida1);
         txtEspecieInfoFormaVida2 = (TextView) view.findViewById(R.id.especie_info_forma_vida2);
 
-//        txtEspecieInfoAltura = (TextView) view.findViewById(R.id.especie_info_altura);
+        imgEspecieInfoFormaVida1 = (ImageView) view.findViewById(R.id.especie_info_forma_vida1_img);
+        imgEspecieInfoFormaVida2 = (ImageView) view.findViewById(R.id.especie_info_forma_vida2_img);
 
         txtEspecieInfoFotos = (TextView) view.findViewById(R.id.especie_info_fotos);
 
@@ -83,39 +84,36 @@ public class EspecieInfoFragment extends Fragment implements Button.OnClickListe
         btnTropicos.setOnClickListener(this);
         long especieId = getArguments().getLong("especie");
         especie = Especie.getDatos(context, especieId);
-//        Genero genero = especie.getGenero(context);
-//        Familia familia = genero.getFamilia(context);
+
+        txtEspecieInfoNombreCientifico.setText(especie.genero + " " + especie.nombre.toLowerCase());
+        txtEspecieInfoFamilia.setText(especie.familia);
+        txtEspecieInfoGenero.setText(especie.genero);
+        txtEspecieInfoEspecie.setText(especie.nombre);
 
         String color1 = "", color2 = "";
         String formaVida1 = "", formaVida2 = "";
-//        Color c1 = especie.getColor1(context);
-//        if (c1 != null) {
-//            int id = getResources().getIdentifier("global_color_" + c1.nombre, "string", context.getPackageName());
-//            color1 = id == 0 ? "" : (String) getResources().getText(id);
-        color1 = Utils.getStringResourceByName(context, "global_color_" + especie.color1);
-//        }
-//        Color c2 = especie.getColor2(context);
-        if (/*c2 != null && */especie.color2 != null && !especie.color2.equals("none") && !especie.color2.equals("")) {
-//            int id = getResources().getIdentifier("global_color_" + c2.nombre, "string", context.getPackageName());
-//            color2 = id == 0 ? "" : (", " + ((String) getResources().getText(id)));
-            color2 = ", " + Utils.getStringResourceByName(context, "global_color_" + especie.color2);
+        txtEspecieInfoColor1.setText(Utils.getStringResourceByName(context, "global_color_" + especie.color1));
+        if (especie.color2 != null && !especie.color2.equals("none") && !especie.color2.equals("")) {
+            txtEspecieInfoColor2.setText(Utils.getStringResourceByName(context, "global_color_" + especie.color2));
+            txtEspecieInfoColor2.setVisibility(View.VISIBLE);
+        } else {
+            txtEspecieInfoColor2.setVisibility(View.GONE);
         }
-//        FormaVida f1 = especie.getFormaVida1(context);
-//        if (f1 != null) {
-        formaVida1 = Utils.getStringResourceByName(context, "global_forma_vida_" + especie.formaVida1);
-//        }
-//        FormaVida f2 = especie.getFormaVida2(context);
-        if (/*f2 != null && */especie.formaVida2 != null && !especie.formaVida2.equals("none") && !especie.formaVida2.equals("")) {
-            formaVida2 = ", " + Utils.getStringResourceByName(context, "global_forma_vida_" + especie.formaVida2);
+        txtEspecieInfoFormaVida1.setText(Utils.getStringResourceByName(context, "global_forma_vida_" + especie.formaVida1));
+        imgEspecieInfoFormaVida1.setImageResource(Utils.getImageResourceByName(context, "ic_fv_" + especie.formaVida1));
+        if (especie.formaVida2 != null && !especie.formaVida2.equals("none") && !especie.formaVida2.equals("")) {
+            txtEspecieInfoFormaVida2.setText(Utils.getStringResourceByName(context, "global_forma_vida_" + especie.formaVida2));
+            imgEspecieInfoFormaVida2.setImageResource(Utils.getImageResourceByName(context, "ic_fv_" + especie.formaVida2));
+            imgEspecieInfoFormaVida2.setVisibility(View.VISIBLE);
+            txtEspecieInfoFormaVida2.setVisibility(View.VISIBLE);
+        } else {
+            imgEspecieInfoFormaVida2.setVisibility(View.GONE);
+            txtEspecieInfoFormaVida2.setVisibility(View.GONE);
         }
 
-        double altMin = 0, altMax = 0;
         boolean vert = false;
 
         fotos = Foto.findAllByEspecie(context, especie);
-        //especie_info_foto5
-        //(ImageView) view.findViewById(R.id.especie_info_imagen);
-        //im.setVisibility(View.VISIBLE);
 
         imageViews = new ImageView[6];
         imageViews[0] = (ImageView) view.findViewById(R.id.especie_info_foto1);
@@ -128,25 +126,15 @@ public class EspecieInfoFragment extends Fragment implements Button.OnClickListe
         int cantFotos = fotos.size();
         int showing = Math.min(imageViews.length, cantFotos);
         String strMostrando = getResources().getQuantityString(R.plurals.especie_info_fotos, cantFotos, cantFotos, showing);
-//        if (cantFotos == 1) {
-//            strMostrando = getString(R.string.especie_info_foto, cantFotos, showing);
-//        } else {
-//            strMostrando = getString(R.string.especie_info_fotos, cantFotos, showing);
-//        }
         txtEspecieInfoFotos.setText(strMostrando);
 
         if (fotos.size() > 0) {
             Foto foto = fotos.get(0);
-            altMin = foto.altitud;
-            altMax = foto.altitud;
 
             String path = foto.path.replaceAll("\\.jpg", "").replaceAll("-", "_").toLowerCase();
-//            System.out.println("PATH:::: " + path);
             if (foto.esMia == 1) {
                 File imgFile = new File(foto.path);
                 if (imgFile.exists()) {
-//            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-//                    Bitmap myBitmap = ImageUtils.decodeBitmap(imgFile.getAbsolutePath(), 200, 200);
                     Bitmap myBitmap = ImageUtils.decodeFile(imgFile.getAbsolutePath(), 200, 200);
                     int w = myBitmap.getWidth();
                     int h = myBitmap.getHeight();
@@ -160,12 +148,6 @@ public class EspecieInfoFragment extends Fragment implements Button.OnClickListe
             }
             imgEspecieInfoImagen.setOnClickListener(this);
 
-            int screenWidth = context.screenWidth - 40;
-            int currentWidth = 0;
-            int idPrev = 0;
-            int highest = 0;
-            int idHighest = 0;
-
             int i = 0;
             for (Foto foto1 : fotos) {
                 ImageView curIV = imageViews[i];
@@ -174,10 +156,7 @@ public class EspecieInfoFragment extends Fragment implements Button.OnClickListe
                     File imgFile = new File(path1);
                     if (imgFile.exists()) {
                         if (i < imageViews.length) {
-//                            Bitmap myBitmap = ImageUtils.decodeFile(imgFile.getAbsolutePath(), 100, 100, true);
                             Bitmap myBitmap = ImageUtils.getThumbnail(imgFile.getAbsolutePath(), false);
-//                            int w = myBitmap.getWidth();
-//                            int h = myBitmap.getHeight();
                             curIV.setImageBitmap(myBitmap);
                         }
                     }
@@ -190,97 +169,30 @@ public class EspecieInfoFragment extends Fragment implements Button.OnClickListe
                 curIV.setOnClickListener(this);
                 i++;
             }
+        }
 
-
-//            for (Foto f : fotos) {
-//                imgFile = new File(f.path);
-//                if (imgFile.exists()) {
-//                    if (i < imageViews.length) {
-//                        ImageView curIV = imageViews[i];
-//                        if (currentWidth == 0) {
-//                            idPrev = 0;
-//                        }
-//                        Bitmap myBitmap = ImageUtils.decodeFile(imgFile.getAbsolutePath(), 100, 100, true);
-//                        int w = myBitmap.getWidth();
-//                        int h = myBitmap.getHeight();
-////                                if (h > w) {
-////                                    System.out.println("foto es VERT");
-////                                }
-//                        curIV.setImageBitmap(myBitmap);
-//                        curIV.setVisibility(View.VISIBLE);
-//                        curIV.setOnClickListener(this);
-//                               /* currentWidth += (w + 30);
-//                                RelativeLayout.LayoutParams p = (RelativeLayout.LayoutParams) curIV.getLayoutParams();
-//                                if (idPrev > 0) {
-//                                    p.addRule(RelativeLayout.RIGHT_OF, idPrev);
-////                                    p.setMargins(0, highest + 15, 0, 0);
-//                                }
-//                                if (currentWidth > screenWidth) {
-//                                    p.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
-//                                    p.addRule(RelativeLayout.BELOW, idHighest);
-//                                    p.setMargins(0, highest + 25, 0, 0);
-//                                    currentWidth = 0;
-//                                }
-//                                curIV.setLayoutParams(p);
-//                                idPrev = curIV.getId();
-//                                if (h > highest) {
-//                                    highest = h;
-//                                    idHighest = curIV.getId();
-//                                }
-//                                 */
-//                    }
+//        if (vert) {
+//            //la foto es vertical
+//            TextView t = (TextView) view.findViewById(R.id.especie_info_color_lbl);
+//            RelativeLayout.LayoutParams p = (RelativeLayout.LayoutParams) t.getLayoutParams();
+//            p.addRule(RelativeLayout.ALIGN_START, R.id.especie_info_especie_lbl);
+//            t.setLayoutParams(p);
+//        } else {
+//            //la foto es horizontal
+//            TextView t = (TextView) view.findViewById(R.id.especie_info_color_lbl);
+//            RelativeLayout.LayoutParams p = (RelativeLayout.LayoutParams) t.getLayoutParams();
+//            p.setMargins(0, 10, 0, 0);
+//            t.setLayoutParams(p);
 //
-//                    if (foto.altitud < altMin) {
-//                        altMin = foto.altitud;
-//                    }
-//                    if (foto.altitud > altMax) {
-//                        altMax = foto.altitud;
-//                    }
-//                    i++;
-//                }
-//            }
-        }
-
-        txtEspecieInfoNombreComun.setText(especie.nombreComun);
-        txtEspecieInfoNombreCientifico.setText(especie.genero + " " + especie.nombre.toLowerCase());
-
-        txtEspecieInfoFamilia.setText(especie.familia);
-        txtEspecieInfoGenero.setText(especie.genero);
-        txtEspecieInfoEspecie.setText(especie.nombre);
-
-        txtEspecieInfoColor1.setText(color1);
-        txtEspecieInfoColor2.setText(color2);
-
-        txtEspecieInfoFormaVida1.setText(formaVida1);
-        txtEspecieInfoFormaVida2.setText(formaVida2);
-
-        if (vert) {
-            //la foto es vertical
-            TextView t = (TextView) view.findViewById(R.id.especie_info_color_lbl);
-            RelativeLayout.LayoutParams p = (RelativeLayout.LayoutParams) t.getLayoutParams();
-            p.addRule(RelativeLayout.ALIGN_START, R.id.especie_info_especie_lbl);
-            t.setLayoutParams(p);
-        } else {
-            //la foto es horizontal
-            TextView t = (TextView) view.findViewById(R.id.especie_info_color_lbl);
-            RelativeLayout.LayoutParams p = (RelativeLayout.LayoutParams) t.getLayoutParams();
-            p.setMargins(0, 10, 0, 0);
-            t.setLayoutParams(p);
-
-//            t = (TextView) view.findViewById(R.id.especie_info_altura_lbl);
-            p = (RelativeLayout.LayoutParams) t.getLayoutParams();
-            p.setMargins(0, 10, 0, 0);
-            p.addRule(RelativeLayout.ALIGN_PARENT_START, RelativeLayout.TRUE);
-            t.setLayoutParams(p);
-
-            p = (RelativeLayout.LayoutParams) imgEspecieInfoImagen.getLayoutParams();
-            p.setMargins(0, 10, 0, 0);
-            imgEspecieInfoImagen.setLayoutParams(p);
-        }
-
-//        txtEspecieInfoAltura.setText(getString(R.string.global_min) + ": " + altMin + " m. "
-//                + getString(R.string.global_max) + ": " + altMax + "m.");
-
+//            p = (RelativeLayout.LayoutParams) t.getLayoutParams();
+//            p.setMargins(0, 10, 0, 0);
+//            p.addRule(RelativeLayout.ALIGN_PARENT_START, RelativeLayout.TRUE);
+//            t.setLayoutParams(p);
+//
+//            p = (RelativeLayout.LayoutParams) imgEspecieInfoImagen.getLayoutParams();
+//            p.setMargins(0, 10, 0, 0);
+//            imgEspecieInfoImagen.setLayoutParams(p);
+//        }
         return view;
     }
 

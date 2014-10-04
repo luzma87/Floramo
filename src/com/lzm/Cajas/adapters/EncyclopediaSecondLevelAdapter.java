@@ -7,18 +7,13 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.lzm.Cajas.MainActivity;
 import com.lzm.Cajas.MapActivity;
 import com.lzm.Cajas.R;
-import com.lzm.Cajas.db.Especie;
-import com.lzm.Cajas.db.FormaVida;
-import com.lzm.Cajas.db.Foto;
-import com.lzm.Cajas.db.Genero;
+import com.lzm.Cajas.db.*;
 import com.lzm.Cajas.image.ImageUtils;
 import com.lzm.Cajas.utils.Utils;
 
 import java.util.List;
-import java.util.Locale;
 
 //import com.lzm.Cajas.utils.ImageLoader;
 
@@ -83,13 +78,14 @@ public class EncyclopediaSecondLevelAdapter extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.encyclopedia_nivel_3, null);
         }
         TextView itemNombreCientifico = (TextView) convertView.findViewById(R.id.encyclopedia_group_item_nivel_3_nombre_cientifico);
-        TextView itemNombreComun = (TextView) convertView.findViewById(R.id.encyclopedia_group_item_nivel_3_nombre_comun);
         TextView itemCantFotos = (TextView) convertView.findViewById(R.id.encyclopedia_group_item_nivel_3_cant_fotos);
         ImageView itemFoto = (ImageView) convertView.findViewById(R.id.encyclopedia_group_item_nivel_3_image);
 
         ImageView itemFv1 = (ImageView) convertView.findViewById(R.id.encyclopedia_group_item_nivel_3_fv1);
         ImageView itemFv2 = (ImageView) convertView.findViewById(R.id.encyclopedia_group_item_nivel_3_fv2);
 
+        TextView itemColor1 = (TextView) convertView.findViewById(R.id.encyclopedia_group_item_nivel_3_color1);
+        TextView itemColor2 = (TextView) convertView.findViewById(R.id.encyclopedia_group_item_nivel_3_color2);
 
 //        vEspecies.add(especie);
 //        vImageViews.add(itemFoto);
@@ -99,7 +95,6 @@ public class EncyclopediaSecondLevelAdapter extends BaseExpandableListAdapter {
 //        }
 
         itemNombreCientifico.setText(labelNombreCientifico);
-        itemNombreComun.setText(labelNombreComun);
         itemCantFotos.setText(labelCantFotos);
         if (foto != null) {
 //            itemFoto.setImageBitmap(ImageUtils.decodeFile(foto.path, 100, 100, true));
@@ -110,7 +105,6 @@ public class EncyclopediaSecondLevelAdapter extends BaseExpandableListAdapter {
             } else {
                 String path = foto.path.replaceAll("\\.jpg", "").replaceAll("-", "_").toLowerCase();
                 path = "th_" + path;
-                System.out.println("PATH:::: " + path);
                 itemFoto.setImageResource(Utils.getImageResourceByName(context, path));
             }
         }
@@ -118,17 +112,23 @@ public class EncyclopediaSecondLevelAdapter extends BaseExpandableListAdapter {
         FormaVida f1 = especie.getFormaVida1(context);
         FormaVida f2 = especie.getFormaVida2(context);
 
-        if (f1 != null) {
-            itemFv1.setImageResource(Utils.getImageResourceByName(context, "ic_fv_" + f1.nombre));
-            itemFv1.setVisibility(View.VISIBLE);
-        } else {
-            itemFv1.setVisibility(View.GONE);
-        }
-        if (f2 != null) {
+        itemFv1.setImageResource(Utils.getImageResourceByName(context, "ic_fv_" + f1.nombre));
+        itemFv1.setVisibility(View.VISIBLE);
+        if (f2 != null && !f2.nombre.equals("none")) {
             itemFv2.setImageResource(Utils.getImageResourceByName(context, "ic_fv_" + f2.nombre));
             itemFv2.setVisibility(View.VISIBLE);
         } else {
             itemFv2.setVisibility(View.GONE);
+        }
+
+        Color color1 = especie.getColor1(context);
+        Color color2 = especie.getColor2(context);
+        itemColor1.setText(Utils.getStringResourceByName(context, "global_color_" + color1.nombre));
+        if (color2 != null && !color2.nombre.equals("none")) {
+            itemColor2.setText(Utils.getStringResourceByName(context, "global_color_" + color2.nombre));
+            itemColor2.setVisibility(View.VISIBLE);
+        } else {
+            itemColor2.setVisibility(View.GONE);
         }
 
         return convertView;

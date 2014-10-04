@@ -64,4 +64,5 @@
     <item name="captura_forma_vida2_spinner" type="id">captura_forma_vida2_spinner</item>
     <item name="captura_row_lugar_label" type="id">captura_row_lugar_label</item>
     <item name="captura_row_forma_vida_label" type="id">captura_row_forma_vida_label</item>
+    <item name="busqueda_forma_vida_spinner" type="id">busqueda_forma_vida_spinner</item>
 </resources>

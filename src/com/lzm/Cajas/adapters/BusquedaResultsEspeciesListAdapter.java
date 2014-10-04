@@ -8,10 +8,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.lzm.Cajas.R;
-import com.lzm.Cajas.db.Especie;
-import com.lzm.Cajas.db.Foto;
-import com.lzm.Cajas.db.Genero;
+import com.lzm.Cajas.db.*;
 import com.lzm.Cajas.image.ImageUtils;
+import com.lzm.Cajas.utils.Utils;
 
 import java.io.File;
 import java.util.List;
@@ -34,102 +33,64 @@ public class BusquedaResultsEspeciesListAdapter extends ArrayAdapter<Especie> {
 
         Especie especie = especies.get(position);
         Genero genero = especie.getGenero(context);
-        String nombreComun = especie.nombreComun;
-        String nombreCientifico = genero.nombre + " " + especie.nombre.toLowerCase();
+        Familia familia = genero.getFamilia(context);
+        Color color1 = especie.getColor1(context);
+        Color color2 = especie.getColor2(context);
+        FormaVida formaVida1 = especie.getFormaVida1(context);
+        FormaVida formaVida2 = especie.getFormaVida2(context);
 
         List<Foto> fotos = Foto.findAllByEspecie(context, especie);
         Foto foto = fotos.get(0);
-        File imgFile = new File(foto.path);
-
 
         int cantFotos = Foto.countByEspecie(context, especie);
+
         String labelNombreCientifico = genero.nombre + " " + especie.nombre;
-        String labelNombreComun = especie.nombreComun;
+        String labelNombreFamilia = familia.nombre;
         String labelCantFotos = "" + cantFotos;
 
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.busqueda_results_row, null);
         }
-        TextView itemNombreCientifico = (TextView) convertView.findViewById(R.id.encyclopedia_group_item_nivel_3_nombre_cientifico);
-        TextView itemNombreComun = (TextView) convertView.findViewById(R.id.encyclopedia_group_item_nivel_3_nombre_comun);
-        TextView itemCantFotos = (TextView) convertView.findViewById(R.id.encyclopedia_group_item_nivel_3_cant_fotos);
-        ImageView itemFoto = (ImageView) convertView.findViewById(R.id.encyclopedia_group_item_nivel_3_image);
+
+        ImageView itemFoto = (ImageView) convertView.findViewById(R.id.busqueda_results_image);
+
+        TextView itemNombreCientifico = (TextView) convertView.findViewById(R.id.busqueda_results_nombre_cientifico);
+        TextView itemNombreFamilia = (TextView) convertView.findViewById(R.id.busqueda_results_familia);
+        TextView itemCantFotos = (TextView) convertView.findViewById(R.id.busqueda_results_cant_fotos);
+        TextView itemColor1 = (TextView) convertView.findViewById(R.id.busqueda_results_color1);
+        TextView itemColor2 = (TextView) convertView.findViewById(R.id.busqueda_results_color2);
+        ImageView itemFormaVida1 = (ImageView) convertView.findViewById(R.id.busqueda_results_fv_1);
+        ImageView itemFormaVida2 = (ImageView) convertView.findViewById(R.id.busqueda_results_fv_2);
 
         itemNombreCientifico.setText(labelNombreCientifico);
-        itemNombreComun.setText(labelNombreComun);
+        itemNombreFamilia.setText(labelNombreFamilia);
         itemCantFotos.setText(labelCantFotos);
-        itemFoto.setImageBitmap(ImageUtils.decodeFile(foto.path, 100, 100, true));
+
+        itemColor1.setText(Utils.getStringResourceByName(context, "global_color_" + color1.nombre));
+        if (color2 != null && !color2.nombre.equals("none")) {
+            itemColor2.setText(Utils.getStringResourceByName(context, "global_color_" + color2.nombre));
+            itemColor2.setVisibility(View.VISIBLE);
+        } else {
+            itemColor2.setVisibility(View.GONE);
+        }
+
+        itemFormaVida1.setImageResource(Utils.getImageResourceByName(context, "ic_fv_" + formaVida1.nombre));
+        if (formaVida2 != null && !formaVida2.nombre.equals("none")) {
+            itemFormaVida2.setImageResource(Utils.getImageResourceByName(context, "ic_fv_" + formaVida2.nombre));
+            itemFormaVida2.setVisibility(View.VISIBLE);
+        } else {
+            itemFormaVida2.setVisibility(View.GONE);
+        }
+
+        if (foto.esMia == 1) {
+            itemFoto.setImageBitmap(ImageUtils.decodeFile(foto.path, 100, 100, false));
+        } else {
+            String path = foto.path.replaceAll("\\.jpg", "").replaceAll("-", "_").toLowerCase();
+            path = "th_" + path;
+            itemFoto.setImageResource(Utils.getImageResourceByName(context, path));
+        }
+
         return convertView;
-        /* **********************************************/
-
-//        LayoutInflater inflater = (LayoutInflater) context
-//                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        View rowView = inflater.inflate(R.layout.busqueda_results_row, parent, false);
-//        TextView textViewNCo = (TextView) rowView.findViewById(R.id.encyclopedia_entries_row_nombre_comun);
-//        TextView textViewNCi = (TextView) rowView.findViewById(R.id.encyclopedia_entries_row_nombre_cientifico);
-//        ImageView imageView = (ImageView) rowView.findViewById(R.id.encyclopedia_entries_row_image);
-//
-//        textViewNCo.setText(nombreComun);
-//        textViewNCi.setText(nombreCientifico);
-//        if (imgFile.exists()) {
-//            Bitmap myBitmap = ImageUtils.decodeFile(imgFile.getAbsolutePath(), 100, 100);
-//            imageView.setImageBitmap(myBitmap);
-//        }
-//        return rowView;
     }
-
-//
-//    @Override
-//    public View getView(int position, View convertView, ViewGroup parent) {
-//        LayoutInflater inflater = (LayoutInflater) context
-//                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        View rowView = inflater.inflate(R.layout.busqueda_results_row, parent, false);
-////        System.out.println(rowView);
-//
-////        TextView textViewNombre = (TextView) rowView.findViewById(R.id.encyclopedia_entries_row_nombre_comun);
-//        TextView textViewNCo = (TextView) rowView.findViewById(R.id.encyclopedia_entries_row_nombre_comun);
-//        TextView textViewNCi = (TextView) rowView.findViewById(R.id.encyclopedia_entries_row_nombre_cientifico);
-//        ImageView imageView = (ImageView) rowView.findViewById(R.id.encyclopedia_entries_row_image);
-//
-////        System.out.println("POS " + position + "  " + entries.size());
-//
-//        Especie selectedEspecie = especies.get(position);
-//        Genero genero = selectedEspecie.getGenero(context);
-//        String nombreComun = selectedEspecie.nombreComun;
-//        String nombreCientifico = genero.nombre + " " + selectedEspecie.nombre.toLowerCase();
-//
-////        while (comentarios.length() < 150) {
-////            comentarios += " Lorem ipsum dolor sit amet ";
-////        }
-//
-////        if (nombreComun.length() > 127) {
-////            nombreComun = nombreComun.substring(0, 127) + "...";
-////        }
-//
-////        textViewNombre.setText(selectedEntry.getEspecie().getNombreCientifico() + " (" + selectedEntry.getEspecie().nombreComun + ")");
-//        textViewNCo.setText(nombreComun);
-//        textViewNCi.setText(nombreCientifico);
-//
-//        List<Foto> fotos = Foto.findAllByEspecie(context, selectedEspecie);
-//        Foto foto = fotos.get(0);
-//        File imgFile = new File(foto.path);
-//        if (imgFile.exists()) {
-////            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-////            Bitmap myBitmap = ImageUtils.decodeBitmap(imgFile.getAbsolutePath(), 100, 100);
-//            Bitmap myBitmap = ImageUtils.decodeFile(imgFile.getAbsolutePath(), 100, 100);
-//            imageView.setImageBitmap(myBitmap);
-//        }
-//
-//        // change the icon for Windows and iPhone
-////        String s = values[position];
-////        if (s.startsWith("iPhone")) {
-////            imageView.setImageResource(R.drawable.no);
-////        } else {
-////            imageView.setImageResource(R.drawable.ok);
-////        }
-//
-//        return rowView;
-//    }
-
 }

@@ -12,12 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import com.lzm.Cajas.adapters.CapturaColorSpinnerAdapter;
+import com.lzm.Cajas.adapters.CapturaFormaVidaSpinnerAdapter;
 import com.lzm.Cajas.db.Color;
 import com.lzm.Cajas.db.Especie;
+import com.lzm.Cajas.db.FormaVida;
 import com.lzm.Cajas.utils.Utils;
 
 import java.util.ArrayList;
-import java.util.Vector;
 
 /**
  * Created by DELL on 13/08/2014.
@@ -27,21 +28,24 @@ public class BusquedaFragment extends Fragment implements Button.OnClickListener
     MapActivity context;
 
     ImageButton btnBuscar;
-    ToggleButton[] toggles;
-    String[] keys;
-    String[] statusString;
 
-    EditText nombreComunTxt;
+    EditText nombreTxt;
 
-    TextView lblInfoKeywords;
+    RadioButton radioAnd;
+    RadioButton radioOr;
+
+    TextView lblInfoAndOr;
+    TextView lblInfoFormaVida;
     TextView lblInfoColor;
-    TextView lblInfoNC;
+    TextView lblInfoNombre;
 
-    Vector<String> searchKeywords;
+    String searchFormaVida;
     String searchColor;
-    String searchNC;
+    String searchNombre;
+    String searchAndOr;
 
     private Spinner spinnerColor;
+    private Spinner spinnerFormaVida;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,122 +53,80 @@ public class BusquedaFragment extends Fragment implements Button.OnClickListener
         View view = inflater.inflate(R.layout.busqueda_layout, container, false);
         view.setOnTouchListener(this);
 
-        lblInfoKeywords = (TextView) view.findViewById(R.id.busqueda_info_keywords_lbl);
+        lblInfoAndOr = (TextView) view.findViewById(R.id.busqueda_info_and_or_lbl);
+        lblInfoFormaVida = (TextView) view.findViewById(R.id.busqueda_info_forma_vida_lbl);
         lblInfoColor = (TextView) view.findViewById(R.id.busqueda_info_color_lbl);
-        lblInfoNC = (TextView) view.findViewById(R.id.busqueda_info_nc_lbl);
+        lblInfoNombre = (TextView) view.findViewById(R.id.busqueda_info_nombre_lbl);
 
-        nombreComunTxt = (EditText) view.findViewById(R.id.busqueda_nombre_comun_txt);
-        nombreComunTxt.addTextChangedListener(this);
+        nombreTxt = (EditText) view.findViewById(R.id.busqueda_nombre_txt);
+        nombreTxt.addTextChangedListener(this);
+
+        radioAnd = (RadioButton) view.findViewById(R.id.busqueda_radio_and);
+        radioAnd.setOnClickListener(this);
+        radioOr = (RadioButton) view.findViewById(R.id.busqueda_radio_or);
+        radioOr.setOnClickListener(this);
+
         btnBuscar = (ImageButton) view.findViewById(R.id.busqueda_buscar_btn);
         btnBuscar.setOnClickListener(this);
 
-        searchKeywords = new Vector<String>();
+        searchFormaVida = "";
         searchColor = "";
-        searchNC = "";
+        searchNombre = "";
+        searchAndOr = "AND";
 
-        initSpinner(view);
-        initToggles(view);
+        initSpinners(view);
         updateAll();
         return view;
     }
 
-    private void initSpinner(View view) {
+    private void initSpinners(View view) {
         ArrayList<Color> colores = Color.list(context);
+        ArrayList<FormaVida> formasVida = FormaVida.list(context);
+
         spinnerColor = (Spinner) view.findViewById(R.id.busqueda_color_spinner);
         spinnerColor.setAdapter(new CapturaColorSpinnerAdapter(context, colores));
         spinnerColor.setOnItemSelectedListener(this);
-    }
 
-    private void initToggles(View view) {
-        toggles = new ToggleButton[6];
-        toggles[0] = (ToggleButton) view.findViewById(R.id.captura_arbol_toggle);
-        toggles[1] = (ToggleButton) view.findViewById(R.id.captura_corteza_toggle);
-        toggles[2] = (ToggleButton) view.findViewById(R.id.captura_hoja_toggle);
-        toggles[3] = (ToggleButton) view.findViewById(R.id.captura_flor_toggle);
-        toggles[4] = (ToggleButton) view.findViewById(R.id.captura_fruta_toggle);
-        toggles[5] = (ToggleButton) view.findViewById(R.id.captura_animal_toggle);
-
-        keys = new String[6];
-        keys[0] = "arbol";
-        keys[1] = "corteza";
-        keys[2] = "hoja";
-        keys[3] = "flor";
-        keys[4] = "fruta";
-        keys[5] = "animal";
-
-        statusString = new String[6];
-        statusString[0] = getString(R.string.buscar_tiene_arbol);
-        statusString[1] = getString(R.string.buscar_tiene_corteza);
-        statusString[2] = getString(R.string.buscar_tiene_hoja);
-        statusString[3] = getString(R.string.buscar_tiene_flor);
-        statusString[4] = getString(R.string.buscar_tiene_fruta);
-        statusString[5] = getString(R.string.buscar_es_animal);
-
-        for (ToggleButton toggle : toggles) {
-            toggle.setOnClickListener(this);
-        }
+        spinnerFormaVida = (Spinner) view.findViewById(R.id.busqueda_forma_vida_spinner);
+        spinnerFormaVida.setAdapter(new CapturaFormaVidaSpinnerAdapter(context, formasVida));
+        spinnerFormaVida.setOnItemSelectedListener(this);
     }
 
     private void updateAll() {
-        updateKeywords();
+        updateAndOr();
+        updateFormaVida();
         updateColor();
-        updateNC();
+        updateNombre();
     }
 
-    private void updateKeywords() {
-        searchKeywords = new Vector<String>();
+    private void updateFormaVida() {
         String info = "";
-        boolean plantaChecked = false;
-        boolean animalChecked = false;
-        int i = 0;
-        for (ToggleButton toggle : toggles) {
-            if (toggle.isChecked()) {
-                if (!info.equals("")) {
-                    info += ", ";
-                }
-                searchKeywords.add(keys[i]);
-                if (i != 5) {
-                    if (!plantaChecked) {
-                        info += getString(R.string.buscar_donde) + " ";
-                    }
-                    plantaChecked = true;
-                    info += statusString[i];
-                } else {
-                    animalChecked = true;
-                }
+        String formaVida = spinnerFormaVida.getSelectedItem().toString().replaceAll("\\*", "");
+        if (!formaVida.equals("none")) {
+            searchFormaVida = formaVida;
+            int id = getResources().getIdentifier("global_forma_vida_" + formaVida, "string", context.getPackageName());
+            if (id > 0) {
+                String fv = Utils.getStringResourceByName(context, "global_forma_vida_" + formaVida);
+                info = getString(R.string.busqueda_info_forma_vida, fv);
             }
-            i++;
-        }
-
-        if (plantaChecked && !animalChecked) {
-            info = getString(R.string.buscar_buscar) + " " + getString(R.string.buscar_es_planta) + " " + info;
-        }
-        if (animalChecked && !plantaChecked) {
-            info = getString(R.string.buscar_buscar) + " " + getString(R.string.buscar_es_animal) + " " + info;
-        }
-        if (animalChecked && plantaChecked) {
-            info = getString(R.string.buscar_buscar) + " " + getString(R.string.buscar_es_animal_y_planta) + " " + info;
-        }
-        if (!animalChecked && !plantaChecked) {
-            info = "";
         }
         if (!info.equals("")) {
-            lblInfoKeywords.setVisibility(View.VISIBLE);
-            lblInfoKeywords.setText(info);
+            lblInfoFormaVida.setVisibility(View.VISIBLE);
+            lblInfoFormaVida.setText(info);
         } else {
-            lblInfoKeywords.setVisibility(View.GONE);
+            lblInfoFormaVida.setVisibility(View.GONE);
         }
     }
 
     private void updateColor() {
         String info = "";
-        String color = spinnerColor.getSelectedItem().toString();
+        String color = spinnerColor.getSelectedItem().toString().replaceAll("\\*", "");
         if (!color.equals("none")) {
             searchColor = color;
-//            info += getString(R.string.buscar_color) + " " + color + " ";
             int id = getResources().getIdentifier("global_color_" + color, "string", context.getPackageName());
             if (id > 0) {
-                info = getString(R.string.buscar_buscar) + " " + getString(R.string.buscar_color) + " " + ((String) getResources().getText(id)).toLowerCase();
+                String c = Utils.getStringResourceByName(context, "global_color_" + color);
+                info = getString(R.string.busqueda_info_color, c);
             }
         }
         if (!info.equals("")) {
@@ -175,23 +137,36 @@ public class BusquedaFragment extends Fragment implements Button.OnClickListener
         }
     }
 
-    private void updateNC() {
+    private void updateNombre() {
         String info = "";
-        String nombreComun = nombreComunTxt.getText().toString().trim();
-        if (!nombreComun.equals("")) {
-            if (info.equals("")) {
-                info += getString(R.string.buscar_buscar) + " ";
-            } else {
-                info += ", ";
-            }
-            searchNC = nombreComun;
-            info += getString(R.string.buscar_nombre_comun) + " " + nombreComun + " ";
+        String nombre = nombreTxt.getText().toString().trim();
+        if (!nombre.equals("")) {
+            searchNombre = nombre;
+            info += getString(R.string.busqueda_info_nombre, nombre);
         }
         if (!info.equals("")) {
-            lblInfoNC.setVisibility(View.VISIBLE);
-            lblInfoNC.setText(info);
+            lblInfoNombre.setVisibility(View.VISIBLE);
+            lblInfoNombre.setText(info);
         } else {
-            lblInfoNC.setVisibility(View.GONE);
+            lblInfoNombre.setVisibility(View.GONE);
+        }
+    }
+
+    private void updateAndOr() {
+        String info = "";
+        Boolean and = radioAnd.isChecked();
+        if (and) {
+            searchAndOr = "AND";
+            info += getString(R.string.busqueda_info_and);
+        } else {
+            searchAndOr = "OR";
+            info += getString(R.string.busqueda_info_or);
+        }
+        if (!info.equals("")) {
+            lblInfoAndOr.setVisibility(View.VISIBLE);
+            lblInfoAndOr.setText(info);
+        } else {
+            lblInfoAndOr.setVisibility(View.GONE);
         }
     }
 
@@ -200,35 +175,11 @@ public class BusquedaFragment extends Fragment implements Button.OnClickListener
         Utils.hideSoftKeyboard(this.getActivity());
         if (v.getId() == btnBuscar.getId()) {
             updateAll();
-
-//            System.out.println("Keywords: " + searchKeywords);
-//            System.out.println("Color: " + searchColor);
-//            System.out.println("NC: " + searchNC);
-
-//            List<Especie> especies = Especie.busqueda(context, searchKeywords, searchColor, searchNC);
-            context.especiesBusqueda = Especie.busqueda(context, searchKeywords, searchColor, searchNC);
+            context.especiesBusqueda = Especie.busqueda(context, searchFormaVida, searchColor, searchNombre, searchAndOr);
             ListFragment fragment = new BusquedaResultsFragment();
-            FragmentManager fragmentManager = context.getFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
-
-//            List<Foto> fotos = Foto.busqueda(context, data);
-//            context.fotosBusqueda = Foto.busqueda(context, data);
-//            for (Foto f : fotos) {
-//                System.out.println("******" + f.id);
-//            }
-//            data = new HashMap<String, String>();
-
-//            ListFragment fragment = new BusquedaResultsFragment();
-//            Bundle args = new Bundle();
-//            args.putLong("especie", -1);
-//            fragment.setArguments(args);
-
-//            context.setTitle("Resultados");
-//
-//            FragmentManager fragmentManager = context.getFragmentManager();
-//            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+            Utils.openFragment(context, fragment, getString(R.string.busqueda_title));
         } else {
-            updateKeywords();
+            updateAndOr();
         }
     }
 
@@ -236,12 +187,14 @@ public class BusquedaFragment extends Fragment implements Button.OnClickListener
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         Utils.hideSoftKeyboard(this.getActivity());
         updateColor();
+        updateFormaVida();
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
         Utils.hideSoftKeyboard(this.getActivity());
         updateColor();
+        updateFormaVida();
     }
 
     @Override
@@ -251,7 +204,7 @@ public class BusquedaFragment extends Fragment implements Button.OnClickListener
 
     @Override
     public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-        updateNC();
+        updateNombre();
     }
 
     @Override

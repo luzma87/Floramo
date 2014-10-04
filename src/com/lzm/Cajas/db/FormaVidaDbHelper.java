@@ -15,7 +15,7 @@ public class FormaVidaDbHelper extends DbHelper {
 
     private static final String LOG = "FormaVidaDbHelper";
 
-    private static final String KEY_NOMBRE = "nombre";
+    public static final String KEY_NOMBRE = "nombre";
 
     public static final String[] KEYS_FORMA_VIDA = {KEY_NOMBRE};
 

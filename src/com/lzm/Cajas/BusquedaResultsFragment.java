@@ -29,7 +29,7 @@ public class BusquedaResultsFragment extends ListFragment {
         super.onActivityCreated(savedInstanceState);
         activity = (MapActivity) getActivity();
 
-//        especiesList = activity.especiesBusqueda;
+        especiesList = activity.especiesBusqueda;
 
 //        for (Foto foto : fotoList) {
 //            System.out.println("--------------------------- " + foto.id);
@@ -109,6 +109,7 @@ public class BusquedaResultsFragment extends ListFragment {
 //        com.setText(comentarios);
 //        dialog.show();
     }
+
     @Override
     public void onResume() {
         super.onResume();

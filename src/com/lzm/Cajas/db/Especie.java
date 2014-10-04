@@ -337,9 +337,9 @@ public class Especie {
         return e.getAllEspeciesByColor(color);
     }
 
-    public static List<Especie> busqueda(Context context, Vector<String> keywords, String color, String nc) {
+    public static List<Especie> busqueda(Context context, String formaVida, String color, String nombre, String andOr) {
         EspecieDbHelper e = new EspecieDbHelper(context);
-        return e.getBusqueda(keywords, color, nc);
+        return e.getBusqueda(formaVida, color, nombre, andOr);
     }
 
     public static void empty(Context context) {
