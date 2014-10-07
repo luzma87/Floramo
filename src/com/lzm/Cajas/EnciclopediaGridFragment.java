@@ -80,18 +80,15 @@ public class EnciclopediaGridFragment extends Fragment implements Button.OnClick
     }
 
     private void loadData() {
-        /*
-ListArrayAdapter.clear();
-ListArrayAdapter.addAll(newItems);
-ListArrayAdapter.notifyDataSetChanged();
-         */
         List<Especie> especies = Especie.sortedList(context, sort, order);
         if (adapter != null) {
             adapter.clear();
+            adapter.addAll(especies);
+            adapter.notifyDataSetChanged();
+        } else {
+            adapter = new EncyclopediaGridListAdapter(context, especies);
+            listView.setAdapter(adapter);
         }
-        adapter = new EncyclopediaGridListAdapter(context, especies);
-        listView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
     }
 
     @Override
