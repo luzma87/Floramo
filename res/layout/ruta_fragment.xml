@@ -68,19 +68,6 @@
         android:layout_toRightOf="@+id/ruta_img"
         android:layout_below="@id/lbl_fecha" />
 
-    <EditText
-        android:id="@+id/txt_descripcion"
-
-        android:layout_width="270dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-
-        android:layout_below="@+id/ruta_img"
-        android:layout_alignStart="@+id/lbl_ditancia"
-        android:layout_alignLeft="@+id/lbl_ditancia"
-        android:layout_toStartOf="@id/btn_guardar_desc"
-        android:layout_toLeftOf="@id/btn_guardar_desc"/>
-
     <ImageButton
         android:id="@+id/btn_guardar_desc"
 
@@ -96,6 +83,19 @@
         android:layout_alignBottom="@+id/txt_descripcion"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true" />
+
+    <EditText
+        android:id="@+id/txt_descripcion"
+
+        android:layout_width="270dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+
+        android:layout_below="@+id/ruta_img"
+        android:layout_alignStart="@+id/lbl_ditancia"
+        android:layout_alignLeft="@+id/lbl_ditancia"
+        android:layout_toStartOf="@id/btn_guardar_desc"
+        android:layout_toLeftOf="@id/btn_guardar_desc" />
 
     <TextView
         android:id="@+id/lbl_ditancia"

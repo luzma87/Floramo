@@ -1,10 +1,12 @@
 package com.lzm.Cajas;
 
 import android.app.Fragment;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -105,6 +107,7 @@ public class EnciclopediaGridFragment extends Fragment implements Button.OnClick
 
     private void getIndexList(List<Especie> especies) {
         mapIndex = new LinkedHashMap<String, Integer>();
+
         for (int i = 0; i < especies.size(); i++) {
             String nombre;
             if (sort.equalsIgnoreCase("f")) {
@@ -127,14 +130,30 @@ public class EnciclopediaGridFragment extends Fragment implements Button.OnClick
     private void displayIndex() {
         List<String> indexList = new ArrayList<String>(mapIndex.keySet());
         indexLayout.removeAllViews();
+
         int totalH = context.screenHeight;
         int totalItems = indexList.size();
-        int h = totalH / totalItems;
+        int h = (totalH / totalItems) - 4;
+
+        Rect rect = new Rect();
+        Window win = context.getWindow();
+        win.getDecorView().getWindowVisibleDisplayFrame(rect);
+        int statusHeight = rect.top;
+        int contentViewTop = win.findViewById(Window.ID_ANDROID_CONTENT).getTop();
+        int titleHeight = contentViewTop - statusHeight;
+
+        System.out.println("*******************************************************************************************");
+        System.out.println("statusH=" + statusHeight + "       contentViewTop=" + contentViewTop + "         titleHeight=" + titleHeight);
+        System.out.println("total H=" + totalH);
+        System.out.println("total items=" + totalItems);
+        System.out.println("h=" + h);
+        System.out.println("*******************************************************************************************");
+
         for (String index : indexList) {
             LayoutInflater inflater = LayoutInflater.from(context);
             TextView textView = (TextView) inflater.inflate(R.layout.encyclopedia_grid_side_index_item, null);
             textView.setText(index);
-//            textView.setHeight(h);
+            textView.setHeight(h);
             textView.setOnClickListener(this);
             indexLayout.addView(textView);
         }
