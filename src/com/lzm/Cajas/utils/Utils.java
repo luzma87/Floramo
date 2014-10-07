@@ -25,6 +25,10 @@ import java.io.File;
  */
 public class Utils {
 
+    public static final double FACTOR_W = 6.75;
+    public static final double FACTOR_H = 21.33;
+    public static final double RATIO = 0.56;
+
     public static void openFragment(MapActivity context, Fragment fragment, String title) {
         openFragment(context, fragment, title, null);
     }
