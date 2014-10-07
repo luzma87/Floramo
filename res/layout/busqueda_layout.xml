@@ -15,7 +15,8 @@
         android:paddingTop="12dp"
 
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true">
 
         <RelativeLayout
             android:id="@+id/relative_layout"
@@ -32,6 +33,7 @@
                 android:textStyle="bold"
                 android:layout_marginTop="20dp"
 
+                android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
             <Spinner
@@ -42,7 +44,9 @@
                 android:spinnerMode="dialog"
 
                 android:layout_toEndOf="@+id/busqueda_forma_vida_lbl"
-                android:layout_marginStart="20dp" />
+                android:layout_toRightOf="@+id/busqueda_forma_vida_lbl"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp" />
 
             <TextView
                 android:id="@+id/busqueda_color_lbl"
@@ -54,7 +58,8 @@
                 android:layout_marginTop="20dp"
 
                 android:layout_below="@id/busqueda_forma_vida_spinner"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true" />
 
             <Spinner
                 android:id="@id/busqueda_color_spinner"
@@ -65,7 +70,9 @@
 
                 android:layout_below="@id/busqueda_forma_vida_spinner"
                 android:layout_toEndOf="@+id/busqueda_color_lbl"
-                android:layout_marginStart="20dp" />
+                android:layout_toRightOf="@+id/busqueda_color_lbl"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp" />
 
             <EditText
                 android:id="@+id/busqueda_nombre_txt"
@@ -76,7 +83,8 @@
                 android:layout_marginTop="20dp"
 
                 android:layout_below="@id/busqueda_color_spinner"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true" />
 
             <RadioGroup
                 android:id="@+id/busqueda_radiogroup"
@@ -109,6 +117,7 @@
 
                 android:layout_below="@id/busqueda_radiogroup"
                 android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
                 android:layout_marginTop="20dp" />
 
             <TextView
@@ -120,7 +129,8 @@
                 android:visibility="gone"
 
                 android:layout_below="@id/busqueda_info_and_or_lbl"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true" />
 
             <TextView
                 android:id="@+id/busqueda_info_color_lbl"
@@ -131,7 +141,8 @@
                 android:visibility="gone"
 
                 android:layout_below="@id/busqueda_info_forma_vida_lbl"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true" />
 
             <TextView
                 android:id="@+id/busqueda_info_nombre_lbl"
@@ -142,7 +153,8 @@
                 android:visibility="gone"
 
                 android:layout_below="@id/busqueda_info_color_lbl"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true" />
         </RelativeLayout>
     </ScrollView>
 
@@ -168,6 +180,7 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="false"
             android:layout_alignParentLeft="false"
             android:layout_alignParentTop="true"
             android:background="?android:attr/selectableItemBackground"

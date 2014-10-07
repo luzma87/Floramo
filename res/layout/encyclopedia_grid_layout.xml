@@ -18,6 +18,7 @@
             android:layout_weight="1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:fastScrollEnabled="true"
             android:groupIndicator="@null" />
 
         <LinearLayout
@@ -37,8 +38,10 @@
         android:drawableLeft="@drawable/ic_action_view_as_list"
 
         android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true" />
 
     <Button
         android:id="@+id/encyclopedia_order_btn"
@@ -48,8 +51,10 @@
         android:drawableLeft="@drawable/ic_order_asc_dark"
 
         android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@id/encyclopedia_grid_btn" />
+        android:layout_toStartOf="@id/encyclopedia_grid_btn"
+        android:layout_toLeftOf="@id/encyclopedia_grid_btn" />
 
     <Button
         android:id="@+id/encyclopedia_sort_btn"
@@ -59,6 +64,8 @@
         android:text="@string/captura_nombre_familia_label"
 
         android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@id/encyclopedia_order_btn"
         android:layout_toStartOf="@id/encyclopedia_order_btn" />
 </RelativeLayout>

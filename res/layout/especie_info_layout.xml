@@ -11,6 +11,7 @@
         android:layout_height="fill_parent"
         android:id="@+id/scrollView"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_above="@+id/especie_info_web">
 
         <RelativeLayout
@@ -28,6 +29,7 @@
 
                 android:padding="7dp"
                 android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true" />
 
             <TextView
@@ -40,7 +42,9 @@
                 android:textStyle="italic"
 
                 android:layout_marginStart="25dp"
-                android:layout_toEndOf="@id/especie_info_imagen" />
+                android:layout_marginLeft="25dp"
+                android:layout_toEndOf="@id/especie_info_imagen"
+                android:layout_toRightOf="@id/especie_info_imagen" />
 
             <TextView
                 android:id="@+id/especie_info_familia_lbl"
@@ -52,8 +56,10 @@
 
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 android:layout_below="@id/especie_info_nombre_cientifico"
-                android:layout_toEndOf="@id/especie_info_imagen" />
+                android:layout_toEndOf="@id/especie_info_imagen"
+                android:layout_toRightOf="@id/especie_info_imagen" />
 
             <TextView
                 android:id="@+id/especie_info_familia"
@@ -62,8 +68,10 @@
                 android:layout_height="wrap_content"
                 android:text="@string/captura_nombre_familia_label"
 
+                android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_alignTop="@+id/especie_info_familia_lbl"
+                android:layout_toEndOf="@+id/especie_info_familia_lbl"
                 android:layout_toRightOf="@+id/especie_info_familia_lbl" />
 
             <TextView
@@ -76,6 +84,7 @@
 
                 android:layout_marginTop="5dp"
                 android:layout_alignStart="@id/especie_info_familia_lbl"
+                android:layout_alignLeft="@id/especie_info_familia_lbl"
                 android:layout_below="@id/especie_info_familia_lbl" />
 
             <TextView
@@ -85,8 +94,10 @@
                 android:layout_height="wrap_content"
                 android:text="@string/captura_nombre_genero_label"
 
+                android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_alignTop="@+id/especie_info_genero_lbl"
+                android:layout_toEndOf="@+id/especie_info_genero_lbl"
                 android:layout_toRightOf="@+id/especie_info_genero_lbl" />
 
             <TextView
@@ -99,6 +110,7 @@
 
                 android:layout_marginTop="5dp"
                 android:layout_alignStart="@id/especie_info_familia_lbl"
+                android:layout_alignLeft="@id/especie_info_familia_lbl"
                 android:layout_below="@id/especie_info_genero_lbl" />
 
             <TextView
@@ -108,8 +120,10 @@
                 android:layout_height="wrap_content"
                 android:text="@string/captura_nombre_especie_label"
 
+                android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_alignTop="@+id/especie_info_especie_lbl"
+                android:layout_toEndOf="@+id/especie_info_especie_lbl"
                 android:layout_toRightOf="@+id/especie_info_especie_lbl" />
 
 
@@ -123,6 +137,7 @@
 
                 android:layout_marginTop="5dp"
                 android:layout_alignStart="@+id/especie_info_especie_lbl"
+                android:layout_alignLeft="@+id/especie_info_especie_lbl"
                 android:layout_below="@id/especie_info_especie_lbl" />
 
             <TextView
@@ -133,8 +148,10 @@
                 android:text="color 1"
 
                 android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 android:layout_alignTop="@+id/especie_info_color_lbl"
-                android:layout_toEndOf="@+id/especie_info_color_lbl" />
+                android:layout_toEndOf="@+id/especie_info_color_lbl"
+                android:layout_toRightOf="@+id/especie_info_color_lbl" />
 
             <TextView
                 android:id="@+id/especie_info_color2"
@@ -144,6 +161,7 @@
                 android:text="color 2"
 
                 android:layout_alignStart="@+id/especie_info_color1"
+                android:layout_alignLeft="@+id/especie_info_color1"
                 android:layout_below="@+id/especie_info_color1" />
 
             <TextView
@@ -166,8 +184,10 @@
 
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 android:layout_below="@+id/especie_info_color2"
-                android:layout_toEndOf="@+id/especie_info_forma_vida_lbl" />
+                android:layout_toEndOf="@+id/especie_info_forma_vida_lbl"
+                android:layout_toRightOf="@+id/especie_info_forma_vida_lbl" />
 
             <TextView
                 android:id="@+id/especie_info_forma_vida1"
@@ -177,8 +197,10 @@
                 android:text="forma vida 1"
 
                 android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
                 android:layout_alignTop="@id/especie_info_forma_vida_lbl"
-                android:layout_toEndOf="@id/especie_info_forma_vida1_img" />
+                android:layout_toEndOf="@id/especie_info_forma_vida1_img"
+                android:layout_toRightOf="@id/especie_info_forma_vida1_img" />
 
             <ImageView
                 android:id="@+id/especie_info_forma_vida2_img"
@@ -189,7 +211,8 @@
 
                 android:layout_marginTop="10dp"
                 android:layout_below="@+id/especie_info_forma_vida1_img"
-                android:layout_alignStart="@+id/especie_info_forma_vida1_img" />
+                android:layout_alignStart="@+id/especie_info_forma_vida1_img"
+                android:layout_alignLeft="@+id/especie_info_forma_vida1_img" />
 
             <TextView
                 android:id="@+id/especie_info_forma_vida2"
@@ -200,6 +223,7 @@
 
                 android:layout_marginTop="20dp"
                 android:layout_alignStart="@+id/especie_info_forma_vida1"
+                android:layout_alignLeft="@+id/especie_info_forma_vida1"
                 android:layout_below="@+id/especie_info_forma_vida1_img" />
 
             <TextView
@@ -222,9 +246,12 @@
                 android:padding="7dp"
                 android:layout_marginTop="13dp"
                 android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
                 android:visibility="gone"
 
+
                 android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
                 android:layout_below="@id/especie_info_fotos" />
 
             <ImageView
@@ -235,10 +262,12 @@
                 android:background="@drawable/border"
                 android:padding="7dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
                 android:visibility="gone"
 
                 android:layout_alignTop="@id/especie_info_foto1"
-                android:layout_toEndOf="@id/especie_info_foto1" />
+                android:layout_toEndOf="@id/especie_info_foto1"
+                android:layout_toRightOf="@id/especie_info_foto1" />
 
             <ImageView
                 android:id="@+id/especie_info_foto3"
@@ -248,10 +277,12 @@
                 android:background="@drawable/border"
                 android:padding="7dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
                 android:visibility="gone"
 
                 android:layout_alignTop="@id/especie_info_foto1"
-                android:layout_toEndOf="@id/especie_info_foto2" />
+                android:layout_toEndOf="@id/especie_info_foto2"
+                android:layout_toRightOf="@id/especie_info_foto2" />
 
             <ImageView
                 android:id="@+id/especie_info_foto4"
@@ -261,6 +292,7 @@
                 android:background="@drawable/border"
                 android:padding="7dp"
                 android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="10dp"
                 android:visibility="gone"
 
@@ -274,10 +306,12 @@
                 android:background="@drawable/border"
                 android:padding="7dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
                 android:visibility="gone"
 
                 android:layout_alignTop="@id/especie_info_foto4"
-                android:layout_toEndOf="@id/especie_info_foto4" />
+                android:layout_toEndOf="@id/especie_info_foto4"
+                android:layout_toRightOf="@id/especie_info_foto4" />
 
             <ImageView
                 android:id="@+id/especie_info_foto6"
@@ -287,10 +321,12 @@
                 android:background="@drawable/border"
                 android:padding="7dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
                 android:visibility="gone"
 
                 android:layout_alignTop="@id/especie_info_foto5"
-                android:layout_toEndOf="@id/especie_info_foto5" />
+                android:layout_toEndOf="@id/especie_info_foto5"
+                android:layout_toRightOf="@id/especie_info_foto5" />
         </RelativeLayout>
     </ScrollView>
 
@@ -317,6 +353,7 @@
         android:drawablePadding="5dip"
         android:text="@string/especie_info_tropicos"
         android:layout_toEndOf="@+id/especie_info_web"
+        android:layout_toRightOf="@+id/especie_info_web"
         android:textSize="12sp" />
 
 </RelativeLayout>

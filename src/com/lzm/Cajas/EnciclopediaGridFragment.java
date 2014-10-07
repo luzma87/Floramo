@@ -120,6 +120,8 @@ public class EnciclopediaGridFragment extends Fragment implements Button.OnClick
                 mapIndex.put(index, i);
             }
         }
+        mapIndex.put("Y", 0);
+        mapIndex.put("Z", 0);
     }
 
     private void displayIndex() {
