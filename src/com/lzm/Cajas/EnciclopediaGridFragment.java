@@ -47,6 +47,13 @@ public class EnciclopediaGridFragment extends Fragment implements Button.OnClick
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         context = (MapActivity) getActivity();
 
+        /*
+        ColorStateList oldColors =  textView.getTextColors(); //save original colors
+        textView.setTextColor(Color.RED);
+        ....
+        textView.setTextColor(oldColors);//restore original colors
+         */
+
         pathFolder = Utils.getFolder(context);
 
         sort = "f";
