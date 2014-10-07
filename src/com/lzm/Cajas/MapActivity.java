@@ -33,11 +33,8 @@ import com.lzm.Cajas.image.*;
 import com.lzm.Cajas.listeners.FieldListener;
 import com.lzm.Cajas.utils.*;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.*;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -822,7 +819,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                 activeFragment = CAPTURA_POS;
                 break;
             case ENCICLOPEDIA_POS:
-                fragment = new EnciclopediaFragment();
+                fragment = new EnciclopediaListFragment();
                 title = getString(R.string.encyclopedia_title);
                 activeFragment = ENCICLOPEDIA_POS;
                 break;

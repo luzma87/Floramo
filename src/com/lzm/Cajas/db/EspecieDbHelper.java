@@ -142,6 +142,76 @@ public class EspecieDbHelper extends DbHelper {
         return todos;
     }
 
+    public List<Especie> getAllSortedEspecies(String sort, String order) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<Especie> todos = new ArrayList<Especie>();
+
+        String colSort = "";
+        String colOrder = "";
+
+        String sqlSort = "";
+
+        if (order.equalsIgnoreCase("a")) { //asc
+            colOrder = "ASC";
+        } else if (order.equalsIgnoreCase("d")) { //desc
+            colOrder = "DESC";
+        }
+
+        if (sort.equalsIgnoreCase("f")) { //familia
+            colSort = "f.nombre";
+        } else if (sort.equalsIgnoreCase("n")) { //nombre cientifico
+            colSort = "g.nombre";
+        }
+
+        if (!colSort.equals("")) {
+            sqlSort = " ORDER BY " + colSort + " " + colOrder;
+        }
+
+        String selectQuery = "SELECT " +
+                "    e.id id," +
+                "    e.nombre especie," +
+                "    e.id_tropicos tropicos," +
+                "    e.es_mia es_mia," +
+                "    g.nombre genero," +
+                "    f.nombre familia," +
+                "    c1.nombre color1," +
+                "    c2.nombre color2," +
+                "    f1.nombre forma_vida1," +
+                "    f2.nombre forma_vida2" +
+                " FROM especies e" +
+                " INNER JOIN generos g on e.genero_id = g.id" +
+                " INNER JOIN familias f on g.familia_id = f.id" +
+                " INNER JOIN colores c1 on e.color1_id = c1.id" +
+                " OUTER LEFT JOIN colores c2 on e.color2_id = c2.id" +
+                " INNER JOIN formas_vida f1 on e.forma_vida1_id = f1.id" +
+                " OUTER LEFT JOIN formas_vida f2 on e.forma_vida2_id = f2.id" + sqlSort;
+
+        logQuery(LOG, selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                Especie es = new Especie(context);
+                es.id = c.getLong((c.getColumnIndex(KEY_ID)));
+                es.nombre = c.getString(c.getColumnIndex("especie"));
+                es.idTropicos = c.getLong(c.getColumnIndex("tropicos"));
+                es.esMia = c.getInt(c.getColumnIndex("es_mia"));
+                es.genero = c.getString(c.getColumnIndex("genero"));
+                es.familia = c.getString(c.getColumnIndex("familia"));
+                es.color1 = c.getString(c.getColumnIndex("color1"));
+                es.color2 = c.getString(c.getColumnIndex("color2"));
+                es.formaVida1 = c.getString(c.getColumnIndex("forma_vida1"));
+                es.formaVida2 = c.getString(c.getColumnIndex("forma_vida2"));
+                // adding to especie list
+                todos.add(es);
+            } while (c.moveToNext());
+        }
+        db.close();
+        return todos;
+    }
+
     public List<Especie> getAllEspeciesByGenero(Genero genero) {
         SQLiteDatabase db = this.getReadableDatabase();
         List<Especie> todos = new ArrayList<Especie>();

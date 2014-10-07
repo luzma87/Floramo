@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import com.lzm.Cajas.adapters.EncyclopediaFirstLevelAdapter;
 import com.lzm.Cajas.db.Familia;
@@ -15,49 +16,33 @@ import java.util.List;
 /**
  * Created by DELL on 23/07/2014.
  */
-public class EnciclopediaFragment extends Fragment {
+public class EnciclopediaListFragment extends Fragment implements Button.OnClickListener {
 
     MapActivity context;
     String pathFolder;
 
     ExpandableListView expandableListView;
 
-    public EnciclopediaFragment() {
+    Button btnCambiarVista;
+
+    public EnciclopediaListFragment() {
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         context = (MapActivity) getActivity();
-//        pathFolder = getArguments().getString("pathFolder");
-
         pathFolder = Utils.getFolder(context);
         Utils.hideSoftKeyboard(this.getActivity());
 
-
-//        System.out.println("Folder: " + pathFolder);
-
-        View view = inflater.inflate(R.layout.encyclopedia_layout, container, false);
-
-//        System.out.println("Hay " + Foto.count(context) + " fotos guardadas");
-//        for (Foto foto : Foto.list(context)) {
-//            System.out.println(foto.getPath());
-//        }
+        View view = inflater.inflate(R.layout.encyclopedia_list_layout, container, false);
         List<Familia> familias = Familia.list(context);
+
+        btnCambiarVista = (Button) view.findViewById(R.id.encyclopedia_lvl1_btn);
+        btnCambiarVista.setOnClickListener(this);
+
         expandableListView = (ExpandableListView) view.findViewById(R.id.encyclopedia_level_1);
         expandableListView.setAdapter(new EncyclopediaFirstLevelAdapter(context, this, familias));
-
-//        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-//
-//            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-//                Toast.makeText(context, "click", Toast.LENGTH_LONG).show();
-//                final String selected = (String) ParentLevelAdapter.getChild(groupPosition, childPosition);
-//
-//                Toast.makeText(getBaseContext(), selected, Toast.LENGTH_LONG).show();
-//                return true;
-//            }
-//        });
-
         return view;
     }
 
@@ -67,4 +52,11 @@ public class EnciclopediaFragment extends Fragment {
         context.setTitle(R.string.encyclopedia_title);
     }
 
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == btnCambiarVista.getId()) {
+            EnciclopediaGridFragment fragment = new EnciclopediaGridFragment();
+            Utils.openFragment(context, fragment, getString(R.string.encyclopedia_title));
+        }
+    }
 }

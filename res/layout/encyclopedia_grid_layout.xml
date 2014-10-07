@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <ListView
+        android:id="@+id/encyclopedia_list"
+
+        android:layout_width="fill_parent"
+        android:groupIndicator="@null"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/encyclopedia_grid_btn" />
+
+    <Button
+        android:id="@+id/encyclopedia_grid_btn"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_action_view_as_list"
+
+        android:layout_marginEnd="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:id="@+id/encyclopedia_order_btn"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_order_asc_dark"
+
+        android:layout_marginEnd="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@id/encyclopedia_grid_btn" />
+
+    <Button
+        android:id="@+id/encyclopedia_sort_btn"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/captura_nombre_familia_label"
+
+        android:layout_marginEnd="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@id/encyclopedia_order_btn" />
+</RelativeLayout>
