@@ -1,169 +1,199 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="20dp"
-                android:id="@+id/especie_info_relative_layout">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:id="@+id/especie_info_relative_layout">
 
     <ScrollView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/scrollView"
-            android:layout_alignParentStart="true"
-            android:layout_above="@+id/especie_info_web">
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_above="@+id/especie_info_web">
 
         <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/especie_info_nombre_cientifico"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="@string/busqueda_nombre_cientifico"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="italic"
+                android:layout_toEndOf="@id/especie_info_imagen"
+                android:layout_toRightOf="@id/especie_info_imagen"
+                android:textSize="23sp" />
+
+            <TextView
+                android:id="@+id/especie_info_familia_lbl"
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                android:text="@string/captura_nombre_familia_label"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/especie_info_nombre_cientifico"
+                android:layout_toEndOf="@id/especie_info_imagen"
+                android:layout_toRightOf="@id/especie_info_imagen"
+                android:textSize="14sp"
+                android:paddingTop="8dp" />
+
+            <TextView
+                android:id="@+id/especie_info_familia"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
-
-
-
-            <TextView
-                    android:id="@+id/especie_info_nombre_cientifico"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:text="@string/busqueda_nombre_cientifico"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textStyle="italic"
-                    android:layout_toEndOf="@id/especie_info_imagen" android:textSize="23dp"/>
-
-            <TextView
-                    android:id="@+id/especie_info_familia_lbl"
-                    android:layout_width="110dp"
-                    android:layout_height="40dp"
-                    android:text="@string/captura_nombre_familia_label"
-                    android:textStyle="bold"
-                    android:layout_marginTop="20dp"
-                    android:layout_below="@id/especie_info_nombre_cientifico"
-                    android:layout_toEndOf="@id/especie_info_imagen" android:textSize="14dp" android:paddingTop="8dp"/>
-
-            <TextView
-                    android:id="@+id/especie_info_familia"
-                    android:layout_width="fill_parent"
-                    android:layout_height="40dp"
-                    android:text="@string/captura_nombre_familia_label"
-                    android:layout_marginLeft="10dp"
-                    android:layout_below="@id/especie_info_nombre_cientifico"
-                    android:layout_toRightOf="@+id/especie_info_familia_lbl" android:layout_marginTop="20dp"
-                    android:paddingTop="8dp" android:textSize="14dp"/>
-
+                android:layout_height="40dp"
+                android:text="@string/captura_nombre_familia_label"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_below="@id/especie_info_nombre_cientifico"
+                android:layout_toEndOf="@+id/especie_info_familia_lbl"
+                android:layout_toRightOf="@+id/especie_info_familia_lbl"
+                android:layout_marginTop="20dp"
+                android:paddingTop="8dp"
+                android:textSize="14sp" />
 
 
             <TextView
-                    android:id="@+id/lbl_autor"
-                    android:layout_width="110dp"
-                    android:layout_height="40dp"
-                    android:text="@string/search_autor"
-                    android:textStyle="bold"
-                    android:layout_marginTop="20dp"
-                    android:layout_alignStart="@id/especie_info_familia_lbl"
-                    android:layout_below="@id/especie_info_familia_lbl" android:textSize="14dp"
-                    android:paddingTop="8dp"/>
+                android:id="@+id/lbl_autor"
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                android:text="@string/search_autor"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:layout_alignStart="@id/especie_info_familia_lbl"
+                android:layout_alignLeft="@id/especie_info_familia_lbl"
+                android:layout_below="@id/especie_info_familia_lbl"
+                android:textSize="14sp"
+                android:paddingTop="8dp" />
 
             <TextView
-                    android:id="@+id/txt_autor"
-                    android:layout_width="fill_parent"
-                    android:layout_height="40dp"
-                    android:text="@string/search_autor"
-                    android:layout_marginLeft="10dp"
-                    android:layout_below="@id/especie_info_familia_lbl"
-                    android:layout_toRightOf="@+id/lbl_autor" android:layout_marginTop="20dp"
-                    android:paddingTop="8dp" android:textSize="14dp"/>
+                android:id="@+id/txt_autor"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:text="@string/search_autor"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_below="@id/especie_info_familia_lbl"
+                android:layout_toEndOf="@+id/lbl_autor"
+                android:layout_toRightOf="@+id/lbl_autor"
+                android:layout_marginTop="20dp"
+                android:paddingTop="8dp"
+                android:textSize="14sp" />
 
             <TextView
-                    android:id="@+id/lbl_rank"
-                    android:layout_width="110dp"
-                    android:layout_height="40dp"
-                    android:text="@string/search_rank"
-                    android:textStyle="bold"
-                    android:layout_marginTop="20dp"
-                    android:layout_alignStart="@id/especie_info_familia_lbl"
-                    android:layout_below="@id/lbl_autor" android:textSize="14dp" android:paddingTop="8dp"/>
+                android:id="@+id/lbl_rank"
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                android:text="@string/search_rank"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:layout_alignStart="@id/especie_info_familia_lbl"
+                android:layout_alignLeft="@id/especie_info_familia_lbl"
+                android:layout_below="@id/lbl_autor"
+                android:textSize="14sp"
+                android:paddingTop="8dp" />
 
             <TextView
-                    android:id="@+id/txt_rank"
-                    android:layout_width="fill_parent"
-                    android:layout_height="40dp"
-                    android:text="@string/search_rank"
-                    android:layout_marginLeft="10dp"
-                    android:layout_below="@id/lbl_autor"
-                    android:layout_toRightOf="@+id/lbl_rank" android:textSize="14dp" android:layout_marginTop="20dp"
-                    android:paddingTop="8dp"/>
-            <TextView
-                    android:id="@+id/display_ref"
-                    android:layout_width="110dp"
-                    android:layout_height="40dp"
-                    android:text="@string/search_ref"
-                    android:textStyle="bold"
-                    android:layout_marginTop="20dp"
-                    android:layout_alignStart="@id/especie_info_familia_lbl"
-                    android:layout_below="@id/lbl_rank" android:textSize="14dp" android:paddingTop="8dp"/>
+                android:id="@+id/txt_rank"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:text="@string/search_rank"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_below="@id/lbl_autor"
+                android:layout_toEndOf="@+id/lbl_rank"
+                android:layout_toRightOf="@+id/lbl_rank"
+                android:textSize="14sp"
+                android:layout_marginTop="20dp"
+                android:paddingTop="8dp" />
 
             <TextView
-                    android:id="@+id/txt_display_ref"
-                    android:layout_width="fill_parent"
-                    android:layout_height="40dp"
-                    android:text="@string/search_ref"
-                    android:layout_marginLeft="10dp"
-                    android:layout_below="@id/lbl_rank"
-                    android:layout_toRightOf="@+id/display_ref" android:layout_marginTop="20dp"
-                    android:paddingTop="8dp" android:textSize="14dp"/>
-            <TextView
-                    android:id="@+id/display_date"
-                    android:layout_width="110dp"
-                    android:layout_height="40dp"
-                    android:text="@string/search_date"
-                    android:textStyle="bold"
-                    android:layout_marginTop="20dp"
-                    android:layout_alignStart="@id/especie_info_familia_lbl"
-                    android:layout_below="@id/display_ref" android:textSize="14dp" android:paddingTop="8dp"/>
+                android:id="@+id/display_ref"
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                android:text="@string/search_ref"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:layout_alignStart="@id/especie_info_familia_lbl"
+                android:layout_alignLeft="@id/especie_info_familia_lbl"
+                android:layout_below="@id/lbl_rank"
+                android:textSize="14sp"
+                android:paddingTop="8dp" />
 
             <TextView
-                    android:id="@+id/txt_display_date"
-                    android:layout_width="fill_parent"
-                    android:layout_height="40dp"
-                    android:text="@string/search_date"
-                    android:layout_marginLeft="10dp"
-                    android:layout_below="@id/display_ref"
-                    android:layout_toRightOf="@+id/display_date" android:layout_marginTop="20dp"
-                    android:paddingTop="8dp" android:textSize="14dp"/>
+                android:id="@+id/txt_display_ref"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:text="@string/search_ref"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_below="@id/lbl_rank"
+                android:layout_toEndOf="@+id/display_ref"
+                android:layout_toRightOf="@+id/display_ref"
+                android:layout_marginTop="20dp"
+                android:paddingTop="8dp"
+                android:textSize="14sp" />
 
+            <TextView
+                android:id="@+id/display_date"
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                android:text="@string/search_date"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:layout_alignStart="@id/especie_info_familia_lbl"
+                android:layout_alignLeft="@id/especie_info_familia_lbl"
+                android:layout_below="@id/display_ref"
+                android:textSize="14sp"
+                android:paddingTop="8dp" />
 
-
-
-
-
-
-
+            <TextView
+                android:id="@+id/txt_display_date"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:text="@string/search_date"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_below="@id/display_ref"
+                android:layout_toEndOf="@+id/display_date"
+                android:layout_toRightOf="@+id/display_date"
+                android:layout_marginTop="20dp"
+                android:paddingTop="8dp"
+                android:textSize="14sp" />
 
 
         </RelativeLayout>
     </ScrollView>
 
     <Button
-            android:id="@+id/especie_info_web"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_blue"
-            style="@style/ButtonText"
-            android:layout_alignParentBottom="true"
-            android:drawableLeft="@drawable/ic_action_web_site"
-            android:drawablePadding="5dip"
-            android:text="@string/especies_info_flora"
-            android:textSize="12sp" />
+        android:id="@+id/especie_info_web"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_blue"
+        style="@style/ButtonText"
+        android:layout_alignParentBottom="true"
+        android:drawableLeft="@drawable/ic_action_web_site"
+        android:drawablePadding="5dip"
+        android:text="@string/especies_info_flora"
+        android:textSize="12sp" />
 
     <Button
-            android:id="@+id/especie_info_ikiam"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_blue"
-            style="@style/ButtonText"
-            android:layout_alignParentBottom="true"
-            android:drawableLeft="@drawable/ic_tropicos"
-            android:drawablePadding="5dip"
-            android:text="@string/especie_info_tropicos"
-            android:layout_toEndOf="@+id/especie_info_web"
-            android:textSize="12sp" />
+        android:id="@+id/especie_info_ikiam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_blue"
+        style="@style/ButtonText"
+        android:layout_alignParentBottom="true"
+        android:drawableLeft="@drawable/ic_tropicos"
+        android:drawablePadding="5dip"
+        android:text="@string/especie_info_tropicos"
+        android:layout_toEndOf="@+id/especie_info_web"
+        android:layout_toRightOf="@+id/especie_info_web"
+        android:textSize="12sp" />
 
 </RelativeLayout>

@@ -27,7 +27,7 @@
             android:layout_height="fill_parent"
             android:background="@drawable/border_side_index"
             android:gravity="center_horizontal"
-            android:orientation="vertical"></LinearLayout>
+            android:orientation="vertical" />
     </LinearLayout>
 
     <Button

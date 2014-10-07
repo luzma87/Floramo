@@ -11,7 +11,7 @@
         android:layout_width="fill_parent"
         android:groupIndicator="@null"
         android:layout_height="fill_parent"
-        android:layout_above="@+id/encyclopedia_lvl1_btn"/>
+        android:layout_above="@+id/encyclopedia_lvl1_btn" />
 
     <Button
         android:id="@+id/encyclopedia_lvl1_btn"
@@ -21,6 +21,8 @@
         android:drawableLeft="@drawable/ic_action_view_as_grid"
 
         android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"/>
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true" />
 </RelativeLayout>

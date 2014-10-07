@@ -5,8 +5,10 @@
     android:layout_height="match_parent"
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
+    android:paddingEnd="10dp"
     android:paddingRight="10dp"
     android:paddingLeft="50dp"
+    android:paddingStart="50dp"
     android:background="@drawable/bg_paper">
 
     <EditText
@@ -19,6 +21,7 @@
 
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:textStyle="bold" />
 
     <EditText
@@ -35,7 +38,8 @@
 
         android:layout_above="@+id/nota_create_btn_save"
         android:layout_below="@+id/nota_create_title"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true" />
 
     <Button
         android:id="@+id/nota_create_btn_save"
@@ -48,5 +52,6 @@
         android:drawableLeft="@drawable/ic_action_save"
 
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true" />
 </RelativeLayout>

@@ -1,92 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="20dp"
-                android:id="@+id/tropicos_layout">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:id="@+id/tropicos_layout">
 
     <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="40dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/tropicos_instrucciones"
-            android:id="@+id/label_desc"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:paddingTop="10dp"
-            />
+        android:id="@+id/label_desc"
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/tropicos_instrucciones"
+        android:paddingTop="10dp"
+
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true" />
+
     <TextView
-            android:layout_width="140dp"
-            android:layout_height="40dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/tropicos_name_id"
-            android:id="@+id/label_nameId"
-            android:layout_below="@+id/label_desc"
-            android:paddingTop="10dp"
-            android:layout_marginTop="5dp"/>
+        android:id="@+id/label_nameId"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/tropicos_name_id"
+        android:paddingTop="10dp"
+        android:layout_marginTop="5dp"
+
+        android:layout_below="@+id/label_desc" />
+
     <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="40dp"
-            android:id="@+id/txt_nameId"
-            android:layout_below="@+id/label_desc"
-            android:layout_toEndOf="@+id/label_nameId"
-            android:layout_marginTop="5dp"/>
+        android:id="@+id/txt_nameId"
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+
+        android:layout_below="@+id/label_desc"
+        android:layout_toEndOf="@+id/label_nameId"
+        android:layout_toRightOf="@+id/label_nameId" />
+
     <TextView
-            android:layout_width="140dp"
-            android:layout_height="40dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/tropicos"
-            android:id="@+id/label_name"
-            android:layout_below="@+id/label_nameId"
-            android:layout_alignParentStart="true" android:paddingTop="10dp" android:layout_marginTop="5dp"/>
+        android:id="@+id/label_name"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/tropicos"
+        android:paddingTop="10dp"
+        android:layout_marginTop="5dp"
+
+        android:layout_below="@+id/label_nameId"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true" />
+
     <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="40dp"
-            android:id="@+id/txt_name"
-            android:layout_below="@+id/label_nameId"
-            android:layout_toEndOf="@+id/label_nameId"
-            android:layout_marginTop="5dp"/>
+        android:id="@+id/txt_name"
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+
+        android:layout_below="@+id/label_nameId"
+        android:layout_toEndOf="@+id/label_name"
+        android:layout_toRightOf="@+id/label_name" />
+
     <TextView
-            android:layout_width="140dp"
-            android:layout_height="40dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/tropicos_commonname"
-            android:id="@+id/label_commonname"
-            android:layout_below="@+id/label_name"
-            android:layout_alignParentStart="true" android:paddingTop="10dp" android:layout_marginTop="5dp"/>
+        android:id="@+id/label_commonname"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/tropicos_commonname"
+        android:paddingTop="10dp"
+        android:layout_marginTop="5dp"
+
+        android:layout_below="@+id/label_name"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true" />
+
     <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="40dp"
-            android:id="@+id/txt_commonname"
-            android:layout_below="@+id/label_name"
-            android:layout_toEndOf="@+id/label_nameId"
-            android:layout_marginTop="5dp"/>
+        android:id="@+id/txt_commonname"
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+
+        android:layout_below="@+id/label_name"
+        android:layout_toEndOf="@+id/label_commonname"
+        android:layout_toRightOf="@+id/label_commonname" />
+
     <TextView
-            android:layout_width="140dp"
-            android:layout_height="40dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/tropicos_family"
-            android:id="@+id/label_family"
-            android:layout_below="@+id/label_commonname"
-            android:layout_alignParentStart="true" android:paddingTop="10dp" android:layout_marginTop="5dp"/>
+        android:id="@+id/label_family"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/tropicos_family"
+        android:paddingTop="10dp"
+        android:layout_marginTop="5dp"
+
+        android:layout_below="@+id/label_commonname"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true" />
+
     <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="40dp"
-            android:id="@+id/txt_family"
-            android:layout_below="@+id/label_commonname"
-            android:layout_toEndOf="@+id/label_nameId"
-            android:layout_marginTop="5dp"/>
+        android:id="@+id/txt_family"
+
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+
+        android:layout_below="@+id/label_commonname"
+        android:layout_toEndOf="@+id/label_family"
+        android:layout_toRightOf="@+id/label_family" />
+
     <Button
-            android:id="@+id/btn_buscar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_blue"
-            android:layout_below="@+id/txt_family"
-            android:drawableLeft="@drawable/ic_tropicos"
-            android:drawablePadding="5dip"
-            android:text="@string/tropicos_buscar"
-            android:textSize="12sp"
-            android:layout_marginTop="40dp" android:layout_alignParentRight="true"/>
+        android:id="@+id/btn_buscar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_blue"
+        android:layout_below="@+id/txt_family"
+        android:drawableLeft="@drawable/ic_tropicos"
+        android:drawablePadding="5dip"
+        android:text="@string/tropicos_buscar"
+        android:textSize="12sp"
+        android:layout_marginTop="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true" />
 
 </RelativeLayout>
