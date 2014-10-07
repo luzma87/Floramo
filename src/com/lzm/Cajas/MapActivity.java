@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.*;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -67,6 +68,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     /*Interfaz*/
     private Button[] botones;
     boolean continente = true;
+    List<SearchResult> result;
     Activity activity;
     /*Mapa*/
     private static GoogleMap map;
@@ -203,6 +205,9 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         setUpMapIfNeeded();
         data = new HashMap<Marker, Foto>();
         dataEspecies = new HashMap<Marker, EspecieUi>();
+        result = new ArrayList<SearchResult>();
+
+
         //atracciones = new HashMap<Marker, AtraccionUi>();
 
 
@@ -1418,4 +1423,18 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
 
     }
 
+
+    public void showSearchResults(final List<SearchResult> results,final ProgressDialog dialog){
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                dialog.hide();
+                result=results;
+                ListFragment fragment = new BusquedaTropicosResult();
+                Utils.openFragment((MapActivity)activity, fragment, getString(R.string.busqueda_title));
+            }
+        });
+
+    }
 }

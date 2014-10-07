@@ -1,6 +1,7 @@
 package com.lzm.Cajas;
 
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -140,8 +141,9 @@ public class TropicosFragment extends Fragment implements Button.OnClickListener
             String common = ((EditText) view.findViewById(R.id.txt_commonname)).getText().toString();
             String family = ((EditText) view.findViewById(R.id.txt_family)).getText().toString();
             if(name.trim().length()>0 || nameId.trim().length()>0 || common.trim().length()>0 || family.trim().length()>0){
+                ProgressDialog dialog = ProgressDialog.show(activity, "",getString(R.string.loading), true);
                 ExecutorService queue = Executors.newSingleThreadExecutor();
-                queue.execute(new BusquedaLoader(activity,name,nameId,family,common));
+                queue.execute(new BusquedaLoader(activity,name,nameId,family,common,dialog));
             }else{
                  Toast.makeText(activity, getString(R.string.busqueda_no_parametros), Toast.LENGTH_SHORT).show();
             }

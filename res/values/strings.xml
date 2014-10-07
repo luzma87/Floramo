@@ -212,4 +212,5 @@
     <string name="tropicos_instrucciones">Ingrese los parámetros de búsqueda</string>
     <string name="tropicos_buscar">Buscar en Tropicos ®</string>
     <string name="busqueda_no_parametros">Ingrese al menos un parámetro de búsqueda</string>
+    <string name="loading">Cargando.. espere por favor</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.lzm.Cajas.utils;
 
+import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import com.lzm.Cajas.MapActivity;
 import org.apache.http.client.HttpClient;
@@ -7,6 +8,8 @@ import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -14,6 +17,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Svt on 10/6/2014.
@@ -24,13 +29,14 @@ public class BusquedaLoader implements Runnable {
     String common ;
     String family;
     private MapActivity context;
-
-    public BusquedaLoader(MapActivity context ,String name, String nameId, String family, String common) {
+    ProgressDialog dialog;
+    public BusquedaLoader(MapActivity context ,String name, String nameId, String family, String common,ProgressDialog dialog) {
         this.name = name;
         this.nameId = nameId;
         this.family = family;
         this.common = common;
         this.context = context;
+        this.dialog=dialog;
     }
 
     @Override
@@ -86,48 +92,23 @@ public class BusquedaLoader implements Runnable {
             ResponseHandler<String> responseHandler = new BasicResponseHandler();
             SetServerString = Client.execute(httpget, responseHandler);
             System.out.println("response "+SetServerString);
-            // Show response on activity
-
-
-
-
-
-           /* URL url = new URL(urlstr);
-            System.out.println("url  "+urlstr);
-            conn = (HttpURLConnection) url.openConnection();
-
-            conn.setRequestMethod("POST");
-            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-            conn.setRequestProperty("Content-Length", "" + Integer.toString(parameters.getBytes().length));
-            conn.setRequestProperty("Content-Language", "en-US");
-            conn.setUseCaches(false);
-            conn.setDoInput(true);
-            conn.setDoOutput(true);
-            dos = new DataOutputStream(
-                    conn.getOutputStream());
-            dos.writeBytes(parameters);
-            dos.flush();
-            dos.close();
-
-            //Get Response
-            InputStream is = conn.getInputStream();
-            serverResponseCode = conn.getResponseCode();
-
-            System.out.println("response code "+serverResponseCode);
-            if (serverResponseCode == 200) {
-                BufferedReader rd = new BufferedReader(new InputStreamReader(is));
-                String line;
-                StringBuffer response = new StringBuffer();
-                while ((line = rd.readLine()) != null) {
-                    response.append(line);
-                    response.append('\r');
+            List<SearchResult> result;
+            try {
+                JSONArray arr = new JSONArray(SetServerString);
+                result=new ArrayList<SearchResult>();
+                for (int i = 0; i < arr.length(); i++) {
+                    JSONObject obj = arr.getJSONObject(i);
+                  //(String nameId, String scientificName, String scientificNameWithAuthors, String family, String rankAbbreviation, String author, String displayReference, String displayDate)
+                    SearchResult curent = new SearchResult(obj.getString("NameId"),obj.getString("ScientificName"),obj.getString("ScientificNameWithAuthors"),obj.getString("Family"),obj.getString("RankAbbreviation"),obj.getString("Author"),obj.getString("DisplayReference"),obj.getString("DisplayDate"));
+                    result.add(curent);
+                    System.out.println("obj --> "+obj.toString());
+                    System.out.println("--- "+obj.getString("NomenclatureStatusName"));
                 }
-                rd.close();
-                System.out.println("Resultado "+response.toString());
+                context.showSearchResults(result,dialog);
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            dos.flush();
-            dos.close();
-            */
 
         } catch (Exception e) {
             System.out.println("error busqueda " + e);
