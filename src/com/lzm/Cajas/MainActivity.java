@@ -230,7 +230,7 @@ public class MainActivity extends Activity {
                 activeFragment = CAPTURA_POS;
                 break;
             case ENCYCLOPEDIA_POS:
-                fragment = new EnciclopediaFragment();
+                fragment = new EnciclopediaListFragment();
                 title = getString(R.string.encyclopedia_title);
                 activeFragment = ENCYCLOPEDIA_POS;
                 break;

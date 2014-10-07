@@ -23,12 +23,12 @@ import java.util.List;
 public class EncyclopediaFirstLevelAdapter extends BaseExpandableListAdapter {
 
     MapActivity activity;
-    EnciclopediaFragment fragment;
+    EnciclopediaListFragment fragment;
 
     List<Familia> familias;
 //    List<Genero> generos;
 
-    public EncyclopediaFirstLevelAdapter(MapActivity activity, EnciclopediaFragment fragment, List<Familia> familias) {
+    public EncyclopediaFirstLevelAdapter(MapActivity activity, EnciclopediaListFragment fragment, List<Familia> familias) {
         this.familias = familias;
         this.activity = activity;
         this.fragment = fragment;

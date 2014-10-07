@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <ExpandableListView
+        android:id="@+id/encyclopedia_level_1"
+
+        android:layout_width="fill_parent"
+        android:groupIndicator="@null"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/encyclopedia_lvl1_btn"/>
+
+    <Button
+        android:id="@+id/encyclopedia_lvl1_btn"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_action_view_as_grid"
+
+        android:layout_marginEnd="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"/>
+</RelativeLayout>

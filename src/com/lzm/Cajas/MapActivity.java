@@ -818,7 +818,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                 activeFragment = CAPTURA_POS;
                 break;
             case ENCICLOPEDIA_POS:
-                fragment = new EnciclopediaFragment();
+                fragment = new EnciclopediaListFragment();
                 title = getString(R.string.encyclopedia_title);
                 activeFragment = ENCICLOPEDIA_POS;
                 break;

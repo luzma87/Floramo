@@ -282,6 +282,11 @@ public class Especie {
         return especie;
     }
 
+    public static List<Especie> sortedList(Context context, String sort, String order) {
+        EspecieDbHelper e = new EspecieDbHelper(context);
+        return e.getAllSortedEspecies(sort, order);
+    }
+
     public static List<Especie> list(Context context) {
         EspecieDbHelper e = new EspecieDbHelper(context);
         return e.getAllEspecies();
