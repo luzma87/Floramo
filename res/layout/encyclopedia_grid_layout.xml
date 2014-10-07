@@ -5,13 +5,29 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-    <ListView
-        android:id="@+id/encyclopedia_list"
-
-        android:layout_width="fill_parent"
-        android:groupIndicator="@null"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:layout_above="@+id/encyclopedia_grid_btn" />
+        android:layout_above="@+id/encyclopedia_grid_btn"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+
+        <ListView
+            android:id="@+id/encyclopedia_list"
+
+            android:layout_weight="1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:groupIndicator="@null" />
+
+        <LinearLayout
+            android:id="@+id/side_index"
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:background="@drawable/border_side_index"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"></LinearLayout>
+    </LinearLayout>
 
     <Button
         android:id="@+id/encyclopedia_grid_btn"
