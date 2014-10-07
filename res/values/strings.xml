@@ -205,4 +205,11 @@
     <string name="captura_forma_vida1_label">Forma de vida 1</string>
     <string name="captura_forma_vida2_label">Forma de vida 2</string>
     <string name="captura_lugar_label">Lugar</string>
+    <string name="tropicos_name_id">NameId</string>
+    <string name="tropicos">Name</string>
+    <string name="tropicos_commonname">Common name</string>
+    <string name="tropicos_family">Family</string>
+    <string name="tropicos_instrucciones">Ingrese los parámetros de búsqueda</string>
+    <string name="tropicos_buscar">Buscar en Tropicos ®</string>
+    <string name="busqueda_no_parametros">Ingrese al menos un parámetro de búsqueda</string>
 </resources>
