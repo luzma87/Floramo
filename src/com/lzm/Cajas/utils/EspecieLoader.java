@@ -21,9 +21,17 @@ public class EspecieLoader implements Runnable {
     private MapActivity context;
     private Especie especie;
     private List<Foto> fotos;
+    int w=0;
+    int h=0;
+    double ratio=0;
     public EspecieLoader(MapActivity context,Especie especie){
         this.context=context;
         this.especie=especie;
+        w=(int)((context.screenWidth/Utils.FACTOR_W)*1.071);
+        h=(int)((context.screenHeight/Utils.FACTOR_H)*1.071);
+        ratio=w*h;
+
+        System.out.println("service !!!!! w "+w+" h "+h+"    "+(context.screenWidth/Utils.FACTOR_W) +"  !!  "+(context.screenHeight/Utils.FACTOR_H));
     }
     @Override
     public void run() {
@@ -62,9 +70,9 @@ public class EspecieLoader implements Runnable {
                     io = context.getResources().openRawResource(resId);
                     path1 = foto.path.replaceAll("\\.jpg", "").replaceAll("-", "_").toLowerCase();
                     resId=Utils.getImageResourceByName(context, path1);
-                    myBitmap = ImageUtils.decodeBitmap(io,160,90);
+                    myBitmap = ImageUtils.decodeBitmap(io,w,h);
                 }
-                System.out.println("Especie "+especie.nombre+" foto "+foto.path+"  coord "+cord);
+                //System.out.println("Especie "+especie.nombre+" foto "+foto.path+"  coord "+cord);
                 final LatLng pos = new LatLng(cord.latitud, cord.longitud);
                 ui = new EspecieUi(nombre,resId,especie.idTropicos.toString());
                 context.setPingEspecie(ui,pos,myBitmap);

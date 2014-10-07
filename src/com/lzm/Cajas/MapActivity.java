@@ -193,7 +193,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         this.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         screenHeight = displaymetrics.heightPixels;
         screenWidth = displaymetrics.widthPixels;
-
+        System.out.println("width: "+screenWidth+"  h: "+screenHeight+"  ping 170 - 126  thumb 160 - 90 dialog 700 - 400   ");
 
         /*CORE*/
         locationClient = new LocationClient(this, this, this);
@@ -398,7 +398,10 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
             @Override
             public void run() {
                 Bitmap.Config conf = Bitmap.Config.ARGB_8888;
-                Bitmap bmp = Bitmap.createBitmap(170, 126, conf);
+                int w=(int)(screenWidth/Utils.FACTOR_W+14);
+                int h=(int)(screenHeight/Utils.FACTOR_H+21);;
+                System.out.println("w "+w+" h "+h);
+                Bitmap bmp = Bitmap.createBitmap(w, h, conf);
                 Canvas canvas1 = new Canvas(bmp);
                 Paint color = new Paint();
                 color.setTextSize(10);
@@ -410,7 +413,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                         .icon(BitmapDescriptorFactory.fromBitmap(bmp))
                         .title(ui.nombre));
                 //EspecieUi especieUi = new EspecieUi(title, nombreEspecie, fotoDialog, likes, desc);
-                dataEspecies.put(marker,ui);
+                dataEspecies.put(marker, ui);
             }
         });
     }
