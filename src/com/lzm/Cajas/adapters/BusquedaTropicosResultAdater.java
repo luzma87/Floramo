@@ -23,7 +23,7 @@ public class BusquedaTropicosResultAdater extends ArrayAdapter<SearchResult> {
     private final List<SearchResult> results;
 
     public BusquedaTropicosResultAdater(Context context, List<SearchResult> results) {
-        super(context, R.layout.busqueda_results_row, results);
+        super(context, R.layout.busqueda_tropicos_result, results);
         this.context = context;
         this.results = results;
     }
@@ -40,22 +40,15 @@ public class BusquedaTropicosResultAdater extends ArrayAdapter<SearchResult> {
 
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.busqueda_results_row, null);
+            convertView = infalInflater.inflate(R.layout.busqueda_tropicos_result, null);
         }
 
-        ImageView itemFoto = (ImageView) convertView.findViewById(R.id.busqueda_results_image);
 
         TextView itemNombreCientifico = (TextView) convertView.findViewById(R.id.busqueda_results_nombre_cientifico);
         TextView itemNombreFamilia = (TextView) convertView.findViewById(R.id.busqueda_results_familia);
-        TextView itemCantFotos = (TextView) convertView.findViewById(R.id.busqueda_results_cant_fotos);
-        TextView itemColor1 = (TextView) convertView.findViewById(R.id.busqueda_results_color1);
-        TextView itemColor2 = (TextView) convertView.findViewById(R.id.busqueda_results_color2);
-        ImageView itemFormaVida1 = (ImageView) convertView.findViewById(R.id.busqueda_results_fv_1);
-        ImageView itemFormaVida2 = (ImageView) convertView.findViewById(R.id.busqueda_results_fv_2);
 
         itemNombreCientifico.setText(labelNombreCientifico);
         itemNombreFamilia.setText(labelNombreFamilia);
-        itemCantFotos.setText(labelCantFotos);
 
         return convertView;
     }

@@ -213,4 +213,8 @@
     <string name="tropicos_buscar">Buscar en Tropicos ®</string>
     <string name="busqueda_no_parametros">Ingrese al menos un parámetro de búsqueda</string>
     <string name="loading">Cargando.. espere por favor</string>
+    <string name="search_date">D. Date</string>
+    <string name="search_ref">D. Reference</string>
+    <string name="search_rank">Rank</string>
+    <string name="search_autor">Autor</string>
 </resources>

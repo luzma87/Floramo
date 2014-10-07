@@ -32,12 +32,8 @@ import com.lzm.Cajas.db.*;
 import com.lzm.Cajas.image.*;
 import com.lzm.Cajas.listeners.FieldListener;
 import com.lzm.Cajas.utils.*;
-
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.*;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -51,7 +47,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     private String[] mOptionsArray;
 
     public int activeFragment = 0;
-
+    public int posSearch=0;
     public final int MAP_POS = 0;
     public final int ENCICLOPEDIA_POS = 1;
     public final int CAPTURA_POS = 2;

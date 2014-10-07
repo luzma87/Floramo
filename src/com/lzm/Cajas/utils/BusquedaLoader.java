@@ -101,8 +101,8 @@ public class BusquedaLoader implements Runnable {
                   //(String nameId, String scientificName, String scientificNameWithAuthors, String family, String rankAbbreviation, String author, String displayReference, String displayDate)
                     SearchResult curent = new SearchResult(obj.getString("NameId"),obj.getString("ScientificName"),obj.getString("ScientificNameWithAuthors"),obj.getString("Family"),obj.getString("RankAbbreviation"),obj.getString("Author"),obj.getString("DisplayReference"),obj.getString("DisplayDate"));
                     result.add(curent);
-                    System.out.println("obj --> "+obj.toString());
-                    System.out.println("--- "+obj.getString("NomenclatureStatusName"));
+                    //System.out.println("obj --> "+obj.toString());
+                    //System.out.println("--- "+obj.getString("NomenclatureStatusName"));
                 }
                 context.showSearchResults(result,dialog);
 
