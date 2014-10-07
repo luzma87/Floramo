@@ -15,6 +15,7 @@
         android:id="@id/captura_row_lugar_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dip"
         android:layout_marginLeft="5dip"
         android:layout_marginTop="2dip"
         android:padding="3dip"

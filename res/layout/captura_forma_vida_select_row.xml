@@ -19,7 +19,9 @@
         android:textStyle="bold"
 
         android:layout_toRightOf="@id/captura_row_forma_vida_image"
+        android:layout_toEndOf="@id/captura_row_forma_vida_image"
         android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="2dp"
         android:padding="3dp" />
 

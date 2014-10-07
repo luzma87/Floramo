@@ -13,8 +13,10 @@
         android:padding="3dp"
 
         android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
 
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:src="@drawable/ic_launcher" />
 
     <TextView
@@ -24,6 +26,7 @@
         android:text="level3 nombre cientifico"
 
         android:layout_toEndOf="@id/busqueda_results_image"
+        android:layout_toRightOf="@id/busqueda_results_image"
         android:textStyle="bold|italic" />
 
     <TextView
@@ -33,6 +36,7 @@
         android:text="level3 familia"
         android:maxLines="3"
         android:layout_alignStart="@id/busqueda_results_nombre_cientifico"
+        android:layout_alignLeft="@id/busqueda_results_nombre_cientifico"
         android:layout_below="@id/busqueda_results_nombre_cientifico"
         android:textStyle="italic" />
 
@@ -45,8 +49,10 @@
         android:layout_marginTop="7dp"
 
         android:layout_alignParentEnd="false"
+        android:layout_alignParentRight="false"
         android:layout_below="@+id/busqueda_results_familia"
-        android:layout_alignStart="@id/busqueda_results_familia" />
+        android:layout_alignStart="@id/busqueda_results_familia"
+        android:layout_alignLeft="@id/busqueda_results_familia" />
 
     <TextView
         android:id="@+id/busqueda_results_cant_fotos"
@@ -56,9 +62,11 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="0"
         android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
 
         android:layout_alignTop="@+id/imageView"
-        android:layout_toEndOf="@+id/imageView" />
+        android:layout_toEndOf="@+id/imageView"
+        android:layout_toRightOf="@+id/imageView" />
 
     <ImageView
         android:id="@+id/busqueda_results_fv_1"
@@ -70,6 +78,7 @@
         android:layout_marginEnd="10dp"
         android:layout_alignTop="@+id/busqueda_results_nombre_cientifico"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:src="@drawable/ic_fv_acquatic" />
 
     <ImageView
@@ -78,7 +87,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:layout_toStartOf="@+id/busqueda_results_fv_1"
+        android:layout_toLeftOf="@+id/busqueda_results_fv_1"
         android:src="@drawable/ic_fv_shrub" />
 
     <TextView
@@ -90,7 +102,9 @@
         android:text="color 1"
 
         android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/busqueda_results_fv_1" />
 
     <TextView
@@ -102,7 +116,9 @@
         android:text="color 2"
 
         android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/busqueda_results_color1" />
 
 </RelativeLayout>

@@ -4,13 +4,15 @@
     android:layout_height="wrap_content"
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
-    android:paddingLeft="15dp">
+    android:paddingLeft="15dp"
+    android:paddingStart="15dp">
 
     <TextView
         android:id="@+id/encyclopedia_group_item_nivel_1_lbl"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:text="level1"/>
+        android:text="level1" />
 </RelativeLayout>
