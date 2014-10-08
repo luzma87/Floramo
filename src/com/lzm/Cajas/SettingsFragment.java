@@ -8,10 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.Toast;
+import android.widget.*;
 import com.lzm.Cajas.db.Foto;
 import com.lzm.Cajas.listeners.FieldListener;
 import com.lzm.Cajas.utils.Utils;
@@ -27,8 +24,16 @@ public class SettingsFragment extends Fragment implements Button.OnClickListener
 
     MapActivity context;
 
-    CheckBox checkAchievements;
+    Button btnBugs;
 
+    /*
+    <div>Icon made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>
+    <div>Icon made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>
+    <div>Icon made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>
+    <div>Icon made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>
+    <div>Icon made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>
+    <div>Icon made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>
+     */
     public SettingsFragment() {
 
     }
@@ -38,13 +43,19 @@ public class SettingsFragment extends Fragment implements Button.OnClickListener
         context = (MapActivity) getActivity();
         View view = inflater.inflate(R.layout.settings_layout, container, false);
 
+        btnBugs = (Button) view.findViewById(R.id.settings_btn_bugs);
+        btnBugs.setOnClickListener(this);
+
         return view;
     }
 
     @Override
     public void onClick(View view) {
         Utils.hideSoftKeyboard(this.getActivity());
-
+        if (view.getId() == btnBugs.getId()) {
+            SettingsBugsFragment fragment = new SettingsBugsFragment();
+            Utils.openFragment(context, fragment, getString(R.string.bugs_title));
+        }
     }
 
     @Override

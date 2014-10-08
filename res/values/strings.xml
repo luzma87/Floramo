@@ -15,6 +15,9 @@
   -->
 
 <resources>
+    <string name="bugs_mail">luz.unda@yahoo.com</string>
+    <string name="comments_mail">luz.unda@yahoo.com</string>
+
     <string name="app_name">Flóramo</string>
     <string name="db_name">Floramo</string>
     <string name="menu_title">Navegación</string>
@@ -27,6 +30,8 @@
     <string name="settings_title">Configuración</string>
     <string name="camera_title">Cámara</string>
     <string name="captura_title">Nueva captura</string>
+    <string name="bugs_title">Reportar errores</string>
+
     <string name="ruta_nueva">Ruta</string>
     <string name="ruta_nombre">Ruta</string>
     <string name="ruta_parar">Parar</string>
@@ -222,4 +227,15 @@
     <string name="search_autor">Autor</string>
     <string name="search_ver_fotos">Ver fotos</string>
     <string name="search_no_results">No se encontraron resultados</string>
+    <string name="settings_lugares">Lugares</string>
+    <string name="settings_formas_vida">Formas de vida</string>
+    <string name="settings_about">Acerca de esta app</string>
+    <string name="settings_bugs">Reportar errores</string>
+    <string name="settings_comments">Comentarios o sugerencias</string>
+    <string name="bugs_version">Versión de Android</string>
+    <string name="bugs_device">Marca y modelo del teléfono</string>
+    <string name="bugs_descripcion">Descripción del error</string>
+    <string name="bugs_send">Enviar</string>
+
+    <string name="bugs_descripcion_error">Por favor ingrese la descripción del error</string>
 </resources>

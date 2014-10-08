@@ -34,7 +34,7 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_action_view_as_list"
+        android:drawableLeft="@drawable/ic_action_view_as_expandable_list"
 
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
