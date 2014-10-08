@@ -171,7 +171,7 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/especie_info_web"
+        android:id="@+id/ver_fotos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/button_blue"
@@ -179,11 +179,11 @@
         android:layout_alignParentBottom="true"
         android:drawableLeft="@drawable/ic_action_web_site"
         android:drawablePadding="5dip"
-        android:text="@string/especies_info_flora"
+        android:text="@string/search_ver_fotos"
         android:textSize="12sp" />
 
     <Button
-        android:id="@+id/especie_info_ikiam"
+        android:id="@+id/web"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/button_blue"
@@ -193,7 +193,7 @@
         android:drawablePadding="5dip"
         android:text="@string/especie_info_tropicos"
         android:layout_toEndOf="@+id/especie_info_web"
-        android:layout_toRightOf="@+id/especie_info_web"
+        android:layout_toRightOf="@+id/ver_fotos"
         android:textSize="12sp" />
 
 </RelativeLayout>

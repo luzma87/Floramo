@@ -1,5 +1,7 @@
 package com.lzm.Cajas.utils;
 
+import java.util.List;
+
 /**
  * Created by Svt on 10/6/2014.
  */
@@ -17,7 +19,8 @@ public class SearchResult {
     public String author;
     public String displayReference;
     public String displayDate;
-
+    public List<String> fotos;
+    public int pos = 0;
     public SearchResult(String nameId, String scientificName, String scientificNameWithAuthors, String family, String rankAbbreviation, String author, String displayReference, String displayDate) {
         this.nameId = nameId;
         this.scientificName = scientificName;
@@ -28,4 +31,6 @@ public class SearchResult {
         this.displayReference = displayReference;
         this.displayDate = displayDate;
     }
+
+
 }

@@ -220,4 +220,6 @@
     <string name="search_ref">D. Reference</string>
     <string name="search_rank">Rank</string>
     <string name="search_autor">Autor</string>
+    <string name="search_ver_fotos">Ver fotos</string>
+    <string name="search_no_results">No se encontraron resultados</string>
 </resources>

@@ -652,12 +652,38 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
 
     }
 
+    public void showError(final ProgressDialog pd, final String message){
+        this.runOnUiThread(new Runnable() {
+
+            @Override
+            public void run() {
+                Toast.makeText(activity, message, Toast.LENGTH_LONG).show();
+                pd.dismiss();
+                if(dialog!=null)
+                    dialog.dismiss();
+            }
+        });
+
+
+    }
+
     public void setImgDialog(final Bitmap imagen,final ImageView img){
         Handler handler = new Handler(Looper.getMainLooper());
         handler.post(new Runnable() {
             @Override
             public void run() {
                 img.setImageBitmap(imagen);
+            }
+        });
+    }
+    public void setImgDialogLoader(final Bitmap imagen,final ImageView img, final ProgressDialog loader){
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                img.setImageBitmap(imagen);
+                loader.dismiss();
+
             }
         });
     }
@@ -1428,7 +1454,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         handler.post(new Runnable() {
             @Override
             public void run() {
-                dialog.hide();
+                dialog.dismiss();
                 result=results;
                 ListFragment fragment = new BusquedaTropicosResult();
                 Utils.openFragment((MapActivity)activity, fragment, getString(R.string.busqueda_title));
