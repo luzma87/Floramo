@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -34,12 +35,6 @@ public class EncyclopediaGridListAdapter extends ArrayAdapter<Especie> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Especie especie = especies.get(position);
-//        Genero genero = especie.getGenero(context);
-//        Familia familia = genero.getFamilia(context);
-//        Color color1 = especie.getColor1(context);
-//        Color color2 = especie.getColor2(context);
-//        FormaVida formaVida1 = especie.getFormaVida1(context);
-//        FormaVida formaVida2 = especie.getFormaVida2(context);
 
         List<Foto> fotos = Foto.findAllByEspecie(context, especie);
         Foto foto = fotos.get(0);
@@ -52,7 +47,7 @@ public class EncyclopediaGridListAdapter extends ArrayAdapter<Especie> {
 
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.busqueda_results_row, null);
+            convertView = infalInflater.inflate(R.layout.encyclopedia_grid_row, null);
         }
 
         ImageView itemFoto = (ImageView) convertView.findViewById(R.id.busqueda_results_image);
@@ -77,9 +72,9 @@ public class EncyclopediaGridListAdapter extends ArrayAdapter<Especie> {
             itemColor2.setVisibility(View.GONE);
         }
 
-        itemFormaVida1.setImageResource(Utils.getImageResourceByName(context, "ic_fv_" + especie.formaVida1));
+        itemFormaVida1.setImageResource(Utils.getImageResourceByName(context, "ic_fv_" + especie.formaVida1 + "_tiny"));
         if (especie.formaVida2 != null && !especie.formaVida2.equals("none")) {
-            itemFormaVida2.setImageResource(Utils.getImageResourceByName(context, "ic_fv_" + especie.formaVida2));
+            itemFormaVida2.setImageResource(Utils.getImageResourceByName(context, "ic_fv_" + especie.formaVida2 + "_tiny"));
             itemFormaVida2.setVisibility(View.VISIBLE);
         } else {
             itemFormaVida2.setVisibility(View.GONE);

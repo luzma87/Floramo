@@ -1,12 +1,13 @@
 package com.lzm.Cajas;
 
 import android.app.Fragment;
+import android.graphics.Color;
+import android.graphics.ColorMatrix;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
+import android.os.Handler;
+import android.util.Log;
+import android.view.*;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -26,6 +27,8 @@ public class EnciclopediaGridFragment extends Fragment implements Button.OnClick
     String pathFolder;
 
     ListView listView;
+    int listHeight = 0;
+    TextView selectedTextView;
 
     Button btnCambiarVista;
     Button btnOrder;
@@ -83,8 +86,27 @@ public class EnciclopediaGridFragment extends Fragment implements Button.OnClick
         btnSort.setOnClickListener(this);
         btnOrder = (Button) view.findViewById(R.id.encyclopedia_order_btn);
         btnOrder.setOnClickListener(this);
+//        ViewTreeObserver vto = btnOrder.getViewTreeObserver();
+//        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+//            @Override
+//            public void onGlobalLayout() {
+//                Log.d("TEST", "Height = " + btnOrder.getHeight() + " Width = " + btnOrder.getWidth());
+//                ViewTreeObserver obs = btnOrder.getViewTreeObserver();
+//                obs.removeGlobalOnLayoutListener(this);
+//            }
+//        });
 
         listView = (ListView) view.findViewById(R.id.encyclopedia_list);
+        ViewTreeObserver vto2 = listView.getViewTreeObserver();
+        vto2.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                listHeight = listView.getHeight();
+                displayIndex();
+                ViewTreeObserver obs = listView.getViewTreeObserver();
+                obs.removeGlobalOnLayoutListener(this);
+            }
+        });
 
         loadData();
 
@@ -102,7 +124,9 @@ public class EnciclopediaGridFragment extends Fragment implements Button.OnClick
             listView.setAdapter(adapter);
         }
         getIndexList(especies);
-        displayIndex();
+        if (listHeight > 0) {
+            displayIndex();
+        }
     }
 
     private void getIndexList(List<Especie> especies) {
@@ -123,31 +147,16 @@ public class EnciclopediaGridFragment extends Fragment implements Button.OnClick
                 mapIndex.put(index, i);
             }
         }
-        mapIndex.put("Y", 0);
-        mapIndex.put("Z", 0);
     }
 
     private void displayIndex() {
         List<String> indexList = new ArrayList<String>(mapIndex.keySet());
         indexLayout.removeAllViews();
 
-        int totalH = context.screenHeight;
+        int totalH = listHeight;
+
         int totalItems = indexList.size();
-        int h = (totalH / totalItems) - 4;
-
-        Rect rect = new Rect();
-        Window win = context.getWindow();
-        win.getDecorView().getWindowVisibleDisplayFrame(rect);
-        int statusHeight = rect.top;
-        int contentViewTop = win.findViewById(Window.ID_ANDROID_CONTENT).getTop();
-        int titleHeight = contentViewTop - statusHeight;
-
-        System.out.println("*******************************************************************************************");
-        System.out.println("statusH=" + statusHeight + "       contentViewTop=" + contentViewTop + "         titleHeight=" + titleHeight);
-        System.out.println("total H=" + totalH);
-        System.out.println("total items=" + totalItems);
-        System.out.println("h=" + h);
-        System.out.println("*******************************************************************************************");
+        int h = (totalH / totalItems);
 
         for (String index : indexList) {
             LayoutInflater inflater = LayoutInflater.from(context);
@@ -188,7 +197,20 @@ public class EnciclopediaGridFragment extends Fragment implements Button.OnClick
             sort = keysSorts[sortPos];
             loadData();
         } else {
+            if (selectedTextView != null) {
+                selectedTextView.setBackgroundResource(R.drawable.border_side_index_item);
+            }
             TextView selectedIndex = (TextView) view;
+            selectedTextView = selectedIndex;
+            selectedIndex.setBackgroundResource(R.drawable.border_side_index_selected_item);
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // Do something after 5s = 5000ms
+                    selectedTextView.setBackgroundResource(R.drawable.border_side_index_item);
+                }
+            }, 1000);
             listView.setSelection(mapIndex.get(selectedIndex.getText()));
         }
     }
