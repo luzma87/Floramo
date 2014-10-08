@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@id/ruta_frame_fecha"
-        android:textSize="15sp"
+        android:textSize="12sp"
         android:textStyle="bold|italic"
         android:paddingTop="15dp"
 
@@ -45,12 +45,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textColor="#fff"
-        android:textSize="15sp"
+        android:textSize="12sp"
         android:layout_marginTop="25dp"
-        android:paddingTop="10dp"
-
+        android:layout_marginLeft="10dp"
         android:layout_toEndOf="@id/lbl_fecha"
-        android:layout_toRightOf="@id/lbl_fecha" />
+        android:layout_toRightOf="@id/lbl_fecha"
+        android:layout_alignBottom="@+id/lbl_fecha"
+            />
 
     <TextView
         android:id="@+id/lbl_fotos"
@@ -58,7 +59,7 @@
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSize="15sp"
+        android:textSize="12sp"
         android:layout_marginTop="5dp"
         android:paddingTop="10dp"
         android:layout_marginStart="10dp"
@@ -105,7 +106,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/ruta_lbl_distancia"
         android:textStyle="bold|italic"
-        android:textSize="15sp"
+        android:textSize="12sp"
         android:layout_marginTop="5dp"
         android:paddingTop="10dp"
 
@@ -120,10 +121,10 @@
         android:layout_height="40dp"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text=""
-        android:textSize="15sp"
+        android:textSize="12sp"
         android:layout_marginTop="5dp"
         android:paddingTop="10dp"
-
+        android:layout_marginLeft="5dp"
         android:layout_toEndOf="@+id/lbl_ditancia"
         android:layout_toRightOf="@+id/lbl_ditancia"
         android:layout_below="@+id/txt_descripcion"
@@ -132,36 +133,29 @@
 
     <TextView
         android:id="@+id/lbl_altura"
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/ruta_lbl_altura"
         android:textStyle="bold|italic"
-        android:textSize="15sp"
+        android:textSize="12sp"
         android:layout_marginTop="5dp"
-        android:paddingTop="10dp"
-
         android:layout_below="@id/lbl_ditancia"
         android:layout_alignStart="@+id/ruta_img"
         android:layout_alignLeft="@+id/ruta_img" />
 
     <TextView
         android:id="@+id/lbl_valor_altura_1"
-
-        android:layout_width="150dp"
-        android:layout_height="40dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text=""
-        android:textSize="15sp"
+        android:textSize="12sp"
+        android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
-        android:paddingTop="10dp"
-
-        android:layout_toEndOf="@+id/lbl_altura"
+        android:layout_alignBottom="@+id/lbl_altura"
         android:layout_toRightOf="@+id/lbl_altura"
-        android:layout_below="@+id/lbl_valor_distancia"
-        android:layout_alignEnd="@+id/btn_guardar_desc"
-        android:layout_alignRight="@+id/btn_guardar_desc" />
+        android:layout_below="@+id/lbl_ditancia"/>
 
     <TextView
         android:id="@+id/textView"
@@ -172,8 +166,8 @@
         android:text="@string/ruta_lbl_fotos"
         android:textStyle="bold|italic"
         android:paddingTop="10dp"
+        android:textSize="12sp"
         android:layout_marginTop="5dp"
-
         android:layout_below="@+id/lbl_altura"
         android:layout_alignStart="@+id/lbl_altura"
         android:layout_alignLeft="@+id/lbl_altura" />

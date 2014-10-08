@@ -19,6 +19,7 @@ import com.lzm.Cajas.R;
 import com.lzm.Cajas.db.Color;
 
 import java.io.File;
+import java.util.*;
 
 /**
  * Created by DELL on 30/07/2014.
@@ -26,9 +27,48 @@ import java.io.File;
 public class Utils {
 
     public static final double FACTOR_W = 6.75;
-    public static final double FACTOR_H = 21.33;
-    public static final double RATIO = 0.56;
+    public static final double FACTOR_H = 21.33;;
+    /*img mapa width, img mapa heigth, margen para el mapa w y h, width de las fotos en los fragments de show*/
+    public static final int[] SIZE_1080 = {160,90,10,36,400,224};
+    public static final int[] SIZE_480 = {76,40,9,18,150,84};
+    public static final Map<Integer,int[]> size;
+    static
+    {
+        size = new HashMap<Integer,int[]>();
+        size.put(480, SIZE_480);
+        size.put(1080,SIZE_1080);
 
+
+    }
+    public static int[] getSize(int sw){
+        int[] res;
+        res = (int[])size.get(sw);
+        System.out.println("get de !"+sw+"!  "+size.get(sw));
+        if(res!=null){
+            return res;
+        }else{
+            Iterator it = size.entrySet().iterator();
+            boolean band=false;
+            int[] last = null;
+            while (it.hasNext()) {
+                Map.Entry pairs = (Map.Entry)it.next();
+                System.out.println(pairs.getKey() + " = " + (int[])pairs.getValue());
+                int t = Integer.parseInt(pairs.getKey().toString());
+                if(sw<t){
+                    if(last!=null) {
+                        res = last;
+                    }else {
+                        res = (int[]) pairs.getValue();
+                    }
+                    break;
+                }
+                last = (int[])pairs.getValue();
+                it.remove(); // avoids a ConcurrentModificationException
+
+            }
+            return res;
+        }
+    }
     public static void openFragment(MapActivity context, Fragment fragment, String title) {
         openFragment(context, fragment, title, null);
     }

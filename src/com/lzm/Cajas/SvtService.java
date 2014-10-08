@@ -172,7 +172,7 @@ public class SvtService extends Service implements  GooglePlayServicesClient.Con
 
         if (timer != null) {timer.cancel();}
         counter=0;
-        nm.cancel(23); // Cancel the persistent notification.
+        //nm.cancel(23); // Cancel the persistent notification.
         Log.i("MyService", "Service Stopped.");
         isRunning = false;
     }

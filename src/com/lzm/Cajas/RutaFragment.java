@@ -55,8 +55,10 @@ public class RutaFragment extends Fragment implements Button.OnClickListener, Vi
         activity = (MapActivity) getActivity();
         view = inflater.inflate(R.layout.ruta_fragment, container, false);
         view.setOnTouchListener(this);
-
+        int[] resSize = Utils.getSize(activity.screenWidth);
         ImageView imagen = (ImageView) view.findViewById(R.id.ruta_img);
+        imagen.getLayoutParams().width = resSize[4];
+        imagen.getLayoutParams().height = resSize[5];
         TextView texto = (TextView) view.findViewById(R.id.txt_descripcion);
         texto.setText(activity.ruta.descripcion);
         ((TextView) view.findViewById(R.id.ruta_fecha)).setText(activity.ruta.fecha);

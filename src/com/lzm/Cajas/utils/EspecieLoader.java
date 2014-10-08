@@ -23,15 +23,14 @@ public class EspecieLoader implements Runnable {
     private List<Foto> fotos;
     int w=0;
     int h=0;
-    double ratio=0;
-    public EspecieLoader(MapActivity context,Especie especie){
+    public EspecieLoader(MapActivity context,Especie especie,int w,int h){
         this.context=context;
         this.especie=especie;
-        w=(int)((context.screenWidth/Utils.FACTOR_W)*1.071);
-        h=(int)((context.screenHeight/Utils.FACTOR_H)*1.071);
-        ratio=w*h;
 
-        System.out.println("service !!!!! w "+w+" h "+h+"    "+(context.screenWidth/Utils.FACTOR_W) +"  !!  "+(context.screenHeight/Utils.FACTOR_H));
+        this.w= w;
+        this.h= h;
+
+
     }
     @Override
     public void run() {
@@ -48,7 +47,7 @@ public class EspecieLoader implements Runnable {
                 if (foto.esMia == 1) {
                     File imgFile = new File(foto.path);
                     if (imgFile.exists()) {
-                        myBitmap = ImageUtils.decodeFile(imgFile.getAbsolutePath(), 160, 90);
+                        myBitmap = ImageUtils.decodeFile(imgFile.getAbsolutePath(), w, h);
                         try {
                             io = new FileInputStream(new File(imgFile.getAbsolutePath()));
                         }catch (Exception e){
@@ -70,6 +69,7 @@ public class EspecieLoader implements Runnable {
                     io = context.getResources().openRawResource(resId);
                     path1 = foto.path.replaceAll("\\.jpg", "").replaceAll("-", "_").toLowerCase();
                     resId=Utils.getImageResourceByName(context, path1);
+                    System.out.println("service !!!!! w "+w+" h "+h);
                     myBitmap = ImageUtils.decodeBitmap(io,w,h);
                 }
                 //System.out.println("Especie "+especie.nombre+" foto "+foto.path+"  coord "+cord);

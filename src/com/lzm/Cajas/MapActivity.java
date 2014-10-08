@@ -22,6 +22,7 @@ import android.widget.*;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.internal.es;
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -193,7 +194,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         this.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         screenHeight = displaymetrics.heightPixels;
         screenWidth = displaymetrics.widthPixels;
-        System.out.println("width: "+screenWidth+"  h: "+screenHeight+"  ping 170 - 126  thumb 160 - 90 dialog 700 - 400   ");
+        //System.out.println("width: "+screenWidth+"  h: "+screenHeight+"  ping 170 - 126  thumb 160 - 90 dialog 700 - 400   ");
 
         /*CORE*/
         locationClient = new LocationClient(this, this, this);
@@ -354,9 +355,10 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
             location = new LatLng(-2.84360424,-79.2282486);
             CameraUpdate update = CameraUpdateFactory.newLatLngZoom(location, 11);
             map.animateCamera(update);
+            int[] res = Utils.getSize(screenWidth);
             for (Especie especie : especies) {
                 ExecutorService queue = Executors.newSingleThreadExecutor();
-                queue.execute(new EspecieLoader(this,especie));
+                queue.execute(new EspecieLoader(this,especie,res[0],res[1]));
             }
 
 
@@ -385,7 +387,12 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
 
         }
         if (v.getId() == botones[3].getId()) {
-
+            if(especies!=null)
+                especies.clear();
+            if(dataEspecies!=null)
+                dataEspecies.clear();
+            if(data!=null)
+                data.clear();
             map.clear();
 
         }
@@ -398,8 +405,10 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
             @Override
             public void run() {
                 Bitmap.Config conf = Bitmap.Config.ARGB_8888;
-                int w=(int)(screenWidth/Utils.FACTOR_W+14);
-                int h=(int)(screenHeight/Utils.FACTOR_H+21);;
+                int[] res = Utils.getSize(screenWidth);
+                int w= res[0]+res[2];
+                int h= res[1]+res[3];
+
                 System.out.println("w "+w+" h "+h);
                 Bitmap bmp = Bitmap.createBitmap(w, h, conf);
                 Canvas canvas1 = new Canvas(bmp);
@@ -1225,8 +1234,10 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                             foto.path = imageItem.imagePath;
                             foto.save();
                             fotos.add(foto);
-                            Bitmap bmp = Bitmap.createBitmap(170, 126, conf);
-                            ;
+                            int[] res = Utils.getSize(screenWidth);
+                            int w = res[0]+res[2];
+                            int h =res[1]+res[3];
+                            Bitmap bmp = Bitmap.createBitmap(w, h, conf);
                             Canvas canvas1 = new Canvas(bmp);
                             Paint color = new Paint();
                             color.setTextSize(35);
@@ -1306,7 +1317,8 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         if (imageItem != null) {
             // System.out.println("path "+imageItem.imagePath);
             //System.out.println("images " + imagenes);
-            Bitmap b = ImageUtils.decodeBitmapPath(imageItem.imagePath, 160, 90);
+            int[] res = Utils.getSize(screenWidth);
+            Bitmap b = ImageUtils.decodeBitmapPath(imageItem.imagePath, res[0], res[1]);
             //System.out.println("width " + b.getWidth() + "  " + b.getHeight());
             imagenes.add(b);
             lastIndex++;
@@ -1417,9 +1429,12 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         CameraUpdate update = CameraUpdateFactory.newLatLngZoom(location, 19);
         map.animateCamera(update);
         polyLine = map.addPolyline(rectOptions);
+        int[] res = Utils.getSize(screenWidth);
+        int w =res[0]+res[2];
+        int h =res[1]+res[3];
         for (int i = 0; i < fotos.size(); i++) {
             Bitmap.Config conf = Bitmap.Config.ARGB_8888;
-            Bitmap bmp = Bitmap.createBitmap(170, 126, conf);
+            Bitmap bmp = Bitmap.createBitmap(w, h, conf);
             ;
             Canvas canvas1 = new Canvas(bmp);
             Paint color = new Paint();
@@ -1427,7 +1442,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
             color.setColor(Color.BLACK);//modify canvas
             canvas1.drawBitmap(BitmapFactory.decodeResource(getResources(),
                     R.drawable.pin3), 0, 0, color);
-            Bitmap b = ImageUtils.decodeBitmapPath(fotos.get(i).path, 160, 90);
+            Bitmap b = ImageUtils.decodeBitmapPath(fotos.get(i).path, res[0], res[1]);
             ;
             canvas1.drawBitmap(b, 5, 4, color);
             Coordenada co = fotos.get(i).getCoordenada(this);
