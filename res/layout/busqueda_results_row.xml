@@ -74,12 +74,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+
         android:layout_alignTop="@+id/busqueda_results_nombre_cientifico"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:src="@drawable/ic_fv_acquatic" />
+        android:src="@drawable/ic_fv_aquatic" />
 
     <ImageView
         android:id="@+id/busqueda_results_fv_2"
@@ -87,8 +90,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+
         android:layout_toStartOf="@+id/busqueda_results_fv_1"
         android:layout_toLeftOf="@+id/busqueda_results_fv_1"
         android:src="@drawable/ic_fv_shrub" />

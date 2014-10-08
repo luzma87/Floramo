@@ -23,9 +23,8 @@
 
         <LinearLayout
             android:id="@+id/side_index"
-            android:layout_width="50dp"
+            android:layout_width="35dp"
             android:layout_height="fill_parent"
-            android:background="@drawable/border_side_index"
             android:gravity="center_horizontal"
             android:orientation="vertical" />
     </LinearLayout>

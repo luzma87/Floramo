@@ -65,7 +65,7 @@
         android:id="@+id/encyclopedia_group_item_nivel_3_fv1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_fv_acquatic"
+        android:src="@drawable/ic_fv_aquatic"
 
         android:layout_marginTop="10dp"
         android:layout_below="@+id/imageView"
@@ -77,7 +77,7 @@
         android:id="@+id/encyclopedia_group_item_nivel_3_fv2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_fv_acquatic"
+        android:src="@drawable/ic_fv_aquatic"
 
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"

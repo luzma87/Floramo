@@ -31,7 +31,7 @@ public class DbInserter {
         db.execSQL("INSERT INTO formas_vida(id, nombre) VALUES (\"10\", \"shrub\");");
         db.execSQL("INSERT INTO formas_vida(id, nombre) VALUES (\"53\", \"grass\");");
         db.execSQL("INSERT INTO formas_vida(id, nombre) VALUES (\"58\", \"rosette\");");
-        db.execSQL("INSERT INTO formas_vida(id, nombre) VALUES (\"177\", \"acquatic\");");
+        db.execSQL("INSERT INTO formas_vida(id, nombre) VALUES (\"177\", \"aquatic\");");
         db.execSQL("INSERT INTO formas_vida(id, nombre) VALUES (\"240\", \"liana\");");
         db.execSQL("INSERT INTO formas_vida(id, nombre) VALUES (\"275\", \"tree\");");
 

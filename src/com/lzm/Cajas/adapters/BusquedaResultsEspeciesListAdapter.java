@@ -75,9 +75,9 @@ public class BusquedaResultsEspeciesListAdapter extends ArrayAdapter<Especie> {
             itemColor2.setVisibility(View.GONE);
         }
 
-        itemFormaVida1.setImageResource(Utils.getImageResourceByName(context, "ic_fv_" + formaVida1.nombre));
+        itemFormaVida1.setImageResource(Utils.getImageResourceByName(context, "ic_fv_" + formaVida1.nombre + "_tiny"));
         if (formaVida2 != null && !formaVida2.nombre.equals("none")) {
-            itemFormaVida2.setImageResource(Utils.getImageResourceByName(context, "ic_fv_" + formaVida2.nombre));
+            itemFormaVida2.setImageResource(Utils.getImageResourceByName(context, "ic_fv_" + formaVida2.nombre + "_tiny"));
             itemFormaVida2.setVisibility(View.VISIBLE);
         } else {
             itemFormaVida2.setVisibility(View.GONE);
