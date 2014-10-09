@@ -17,7 +17,7 @@ import com.lzm.Cajas.utils.Utils;
 /**
  * Created by luz on 08/10/14.
  */
-public class SettingsBugsFragment extends Fragment implements View.OnClickListener {
+public class SettingsCommentsFragment extends Fragment implements View.OnClickListener {
 
     MapActivity context;
     Button btnSend;
@@ -32,15 +32,15 @@ public class SettingsBugsFragment extends Fragment implements View.OnClickListen
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         context = (MapActivity) getActivity();
-        View view = inflater.inflate(R.layout.settings_bugs_layout, container, false);
+        View view = inflater.inflate(R.layout.settings_comments_layout, container, false);
 
-        btnSend = (Button) view.findViewById(R.id.bugs_send_btn);
+        btnSend = (Button) view.findViewById(R.id.comments_send_btn);
         btnSend.setOnClickListener(this);
 
-        lblVersion = (TextView) view.findViewById(R.id.bugs_version_txt);
-        lblMarca = (TextView) view.findViewById(R.id.bugs_device_txt);
+        lblVersion = (TextView) view.findViewById(R.id.comments_version_txt);
+        lblMarca = (TextView) view.findViewById(R.id.comments_device_txt);
 
-        txtDetalles = (EditText) view.findViewById(R.id.bugs_descripcion_txt);
+        txtDetalles = (EditText) view.findViewById(R.id.comments_descripcion_txt);
 
         String myVersion = Build.VERSION.RELEASE; // e.g. myVersion := "1.6"
         int sdkVersion = Build.VERSION.SDK_INT; // e.g. sdkVersion := 8;
@@ -89,19 +89,18 @@ public class SettingsBugsFragment extends Fragment implements View.OnClickListen
 
             String detalles = txtDetalles.getText().toString().trim();
             if (detalles.equals("")) {
-                alerta(getString(R.string.bugs_descripcion_error));
+                alerta(getString(R.string.comments_descripcion_error));
             } else {
 
-                String direccion = getString(R.string.bugs_mail);
-                String subject = getString(R.string.bugs_subject);
-
+                String direccion = getString(R.string.comments_mail);
+                String subject = getString(R.string.comments_subject);
                 String txt = androidVersion + "\n" + deviceInfo + "\n\n" + detalles;
 
                 Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                         "mailto", direccion, null));
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
                 emailIntent.putExtra(Intent.EXTRA_TEXT, txt);
-                startActivity(Intent.createChooser(emailIntent, getString(R.string.bugs_activity_title)));
+                startActivity(Intent.createChooser(emailIntent, getString(R.string.comments_activity_title)));
             }
         }
     }

@@ -195,20 +195,38 @@
     <string name="help_rutas">help rutas</string>
     <string name="help_tropicos">help tropicos</string>
 
-    <string name="about">
-        Se presentan 100 especies nativas de plantas que crecen en el páramo del Cajas, provincia del Azuay, Ecuador.
-        El páramo es un ecosistema único dominado por pajonales, sobre el límite del bosque en la cordillera de los Andes.
-        No necesariamente son las plantas más comunes, pero si llamativas, fáciles de encontrar y relativamente fáciles de identificar.
-        Pensamos que al reconocer y nombrar las plantas silvestres se puede apreciar mejor la flora del país,
-        y se hará un esfuerzo para protegerlas así como a el medio ambiente páramo en que viven.
+    <string name="cajas">
+"El Cajas constituye un escenario único en el mundo dentro del inventario de los paisajes lagunares conocidos. En efecto, a pesar de que existan lugares con ciertas similitudes en el planeta, no hay ninguno que combine tanta variedad lacustre asociada con una gran biodiversidad.
+Su nombre proviene de la palabra quechua “caxas” que quiere decir frío. Otra versión nos habla de que su nombre viene por la apariencia producida por su tipo de formación geológica, que forma “cajas” en las cuales se encuentran las lagunas.
+
+El 90.6% del área corresponde al ecosistema de páramo herbáceo, exceptuando pequeñas áreas, localizadas al sureste (Mazán) y oeste (Canoas), caracterizadas por presentar alturas absolutas inferiores a los 3.600msnm y espacios geográficos variados.
+El Parque Nacional Cajas fue creado el 6 de junio de 1977 como Área Nacional de Recreación, para luego el 26 de julio de 1979 establecer sus límites, y finalmente el 5 de noviembre de 1996, se procede a cambiar la categoría de Área Nacional de Recreación a Parque Nacional Cajas.
+Actualmente tiene una superficie de 28.544 has.
+
+
+http://www.etapa.net.ec/PNC/PNC_viscaj_des_gen.aspx"
     </string>
 
-    <string name="credits">
-        Este proyecto es una colaboración entre el Missouri Botanical Garden, el Herbario Azuay (Universidad del Azuay)
-        con el Parque Nacional Cajas.
-        Contacto del proyecto: carmen.ulloa@mobot.org.
-        Diseñadora: L.M. Unda, Quito (sugerencias: xxxx ).
-        Todos los derechos reservados.
+
+    <string name="about">
+"Se presentan 100 especies nativas de plantas que crecen en el páramo del Cajas, provincia del Azuay, Ecuador.
+El páramo es un ecosistema único dominado por pajonales, sobre el límite del bosque en la cordillera de los Andes.
+No necesariamente son las plantas más comunes, pero si llamativas, fáciles de encontrar y relativamente fáciles de identificar.
+Pensamos que al reconocer y nombrar las plantas silvestres se puede apreciar mejor la flora del país, y se hará un esfuerzo para protegerlas así como a el medio ambiente páramo en que viven."
+    </string>
+
+    <string name="creditos">
+"Este proyecto es una colaboración entre el Missouri Botanical Garden, el Herbario Azuay (Universidad del Azuay) con el Parque Nacional Cajas.
+Contacto del proyecto: C. Ulloa carmen.ulloa@mobot.org
+Diseño y programación: L.M. Unda, V. Zapata, Quito
+
+
+Íconos de Formas de vida: 'Silhouette of tree of flowers and plants', http://www.freevectorvip.com/silhouette-of-tree-of-flowers-and-plants.html
+
+Otros íconos de Freepik (http://www.freepik.com) de Flaticon (http://www.flaticon.com), licenciados con Creative Commons (http://creativecommons.org/licenses/by/3.0/)
+
+
+Todos los derechos reservados."
     </string>
     <string name="captura_forma_vida1_label">Forma de vida 1</string>
     <string name="captura_forma_vida2_label">Forma de vida 2</string>
@@ -227,15 +245,25 @@
     <string name="search_autor">Autor</string>
     <string name="search_ver_fotos">Ver fotos</string>
     <string name="search_no_results">No se encontraron resultados</string>
-    <string name="settings_lugares">Lugares</string>
+    <string name="settings_lugares">Acerca del Cajas</string>
     <string name="settings_formas_vida">Formas de vida</string>
     <string name="settings_about">Acerca de esta app</string>
     <string name="settings_bugs">Reportar errores</string>
     <string name="settings_comments">Comentarios o sugerencias</string>
     <string name="bugs_version">Versión de Android</string>
     <string name="bugs_device">Marca y modelo del teléfono</string>
-    <string name="bugs_descripcion">Descripción del error</string>
+    <string name="bugs_descripcion">Descripción del error (obligatorio)</string>
     <string name="bugs_send">Enviar</string>
 
     <string name="bugs_descripcion_error">Por favor ingrese la descripción del error</string>
+    <string name="bugs_contact">E-mail de contacto (opcional)</string>
+    <string name="comments_descripcion">Comentarios o sugerencias</string>
+    <string name="comments_descripcion_error">Por favor ingrese comentarios o sugerencias</string>
+    <string name="bugs_activity_title">Enviar bug</string>
+    <string name="bugs_subject">Reporte de bug</string>
+    <string name="comments_subject">Comentarios o sugerencias</string>
+    <string name="comments_activity_title">Enviar comentarios o sugerencias</string>
+    <string name="settings_creditos">Créditos</string>
+    <string name="about_title">Acerca de esta aplicación</string>
+    <string name="creditos_title">Créditos</string>
 </resources>

@@ -14,7 +14,6 @@
         android:text="@string/settings_lugares"
         android:background="@drawable/button_purple"
         android:drawableLeft="@drawable/ic_settings_lugares"
-        android:drawableRight="@drawable/ic_settings_lugares"
 
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -28,27 +27,12 @@
         android:text="@string/settings_formas_vida"
         android:background="@drawable/button_purple"
         android:drawableLeft="@drawable/ic_settings_formas_vida"
-        android:drawableRight="@drawable/ic_settings_formas_vida"
         android:layout_marginTop="15dp"
+        android:visibility="gone"
 
         android:layout_below="@+id/settings_btn_lugares"
-        android:layout_alignLeft="@+id/settings_btn_lugares"
-        android:layout_alignStart="@+id/settings_btn_lugares" />
-
-    <Button
-        android:id="@+id/settings_btn_about"
-
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/settings_about"
-        android:background="@drawable/button_purple"
-        android:drawableLeft="@drawable/ic_settings_info"
-        android:drawableRight="@drawable/ic_settings_info"
-        android:layout_marginTop="15dp"
-
-        android:layout_below="@+id/settings_btn_formas_vida"
-        android:layout_alignLeft="@+id/settings_btn_formas_vida"
-        android:layout_alignStart="@+id/settings_btn_formas_vida" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/settings_btn_bugs"
@@ -58,12 +42,11 @@
         android:text="@string/settings_bugs"
         android:background="@drawable/button_purple"
         android:drawableLeft="@drawable/ic_settings_bug"
-        android:drawableRight="@drawable/ic_settings_bug"
         android:layout_marginTop="15dp"
 
-        android:layout_below="@+id/settings_btn_about"
-        android:layout_alignLeft="@+id/settings_btn_about"
-        android:layout_alignStart="@+id/settings_btn_about" />
+        android:layout_below="@+id/settings_btn_formas_vida"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/settings_btn_comments"
@@ -73,12 +56,39 @@
         android:text="@string/settings_comments"
         android:background="@drawable/button_purple"
         android:drawableLeft="@drawable/ic_settings_comments"
-        android:drawableRight="@drawable/ic_settings_comments"
         android:layout_marginTop="15dp"
 
         android:layout_below="@+id/settings_btn_bugs"
-        android:layout_alignLeft="@+id/settings_btn_bugs"
-        android:layout_alignStart="@+id/settings_btn_bugs" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/settings_btn_about"
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/settings_about"
+        android:background="@drawable/button_purple"
+        android:drawableLeft="@drawable/ic_settings_info"
+        android:layout_marginTop="15dp"
+
+        android:layout_below="@+id/settings_btn_comments"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/settings_btn_creditos"
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/settings_creditos"
+        android:background="@drawable/button_purple"
+        android:drawableLeft="@drawable/ic_settings_creditos"
+        android:layout_marginTop="15dp"
+
+        android:layout_below="@+id/settings_btn_about"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>
