@@ -201,11 +201,10 @@ Su nombre proviene de la palabra quechua “caxas” que quiere decir frío. Otr
 
 El 90.6% del área corresponde al ecosistema de páramo herbáceo, exceptuando pequeñas áreas, localizadas al sureste (Mazán) y oeste (Canoas), caracterizadas por presentar alturas absolutas inferiores a los 3.600msnm y espacios geográficos variados.
 El Parque Nacional Cajas fue creado el 6 de junio de 1977 como Área Nacional de Recreación, para luego el 26 de julio de 1979 establecer sus límites, y finalmente el 5 de noviembre de 1996, se procede a cambiar la categoría de Área Nacional de Recreación a Parque Nacional Cajas.
-Actualmente tiene una superficie de 28.544 has.
-
-
-http://www.etapa.net.ec/PNC/PNC_viscaj_des_gen.aspx"
+Actualmente tiene una superficie de 28.544 has."
     </string>
+
+    <string name="cajas_link">http://www.etapa.net.ec/PNC/PNC_viscaj_des_gen.aspx</string>
 
 
     <string name="about">
@@ -266,4 +265,5 @@ Todos los derechos reservados."
     <string name="settings_creditos">Créditos</string>
     <string name="about_title">Acerca de esta aplicación</string>
     <string name="creditos_title">Créditos</string>
+    <string name="lugar_title">Acerca del Parque Nacional Cajas</string>
 </resources>
