@@ -51,8 +51,6 @@ public class NotaDbHelper extends DbHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_NOTA + " WHERE "
                 + KEY_ID + " = " + nota_id;
 
-        logQuery(LOG, selectQuery);
-
         Cursor c = db.rawQuery(selectQuery, null);
         Nota cl = null;
         if (c.getCount() > 0) {
@@ -67,8 +65,6 @@ public class NotaDbHelper extends DbHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<Nota> notaes = new ArrayList<Nota>();
         String selectQuery = "SELECT  * FROM " + TABLE_NOTA;
-
-        logQuery(LOG, selectQuery);
 
         Cursor c = db.rawQuery(selectQuery, null);
 

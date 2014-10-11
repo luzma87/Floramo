@@ -53,8 +53,6 @@ public class GeneroDbHelper extends DbHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_GENERO + " WHERE "
                 + KEY_ID + " = " + genero_id;
 
-        logQuery(LOG, selectQuery);
-
         Cursor c = db.rawQuery(selectQuery, null);
         Genero gn = null;
         if (c != null) {
@@ -69,8 +67,6 @@ public class GeneroDbHelper extends DbHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         List<Genero> generos = new ArrayList<Genero>();
         String selectQuery = "SELECT  * FROM " + TABLE_GENERO;
-
-        logQuery(LOG, selectQuery);
 
         Cursor c = db.rawQuery(selectQuery, null);
 
@@ -93,8 +89,6 @@ public class GeneroDbHelper extends DbHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_GENERO +
                 " WHERE " + KEY_NOMBRE + " = '" + genero + "'";
 
-        logQuery(LOG, selectQuery);
-
         Cursor c = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
@@ -115,8 +109,6 @@ public class GeneroDbHelper extends DbHelper {
         List<Genero> generos = new ArrayList<Genero>();
         String selectQuery = "SELECT  * FROM " + TABLE_GENERO +
                 " WHERE LOWER(" + KEY_NOMBRE_NORM + ") LIKE '%" + genero.toLowerCase() + "%'";
-
-        logQuery(LOG, selectQuery);
 
         Cursor c = db.rawQuery(selectQuery, null);
 
@@ -139,8 +131,6 @@ public class GeneroDbHelper extends DbHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_GENERO +
                 " WHERE " + KEY_FAMILIA_ID + " = '" + familia.id + "'";
 
-        logQuery(LOG, selectQuery);
-
         Cursor c = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
@@ -162,8 +152,6 @@ public class GeneroDbHelper extends DbHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_GENERO +
                 " WHERE LOWER(" + KEY_NOMBRE_NORM + ") LIKE '%" + genero.toLowerCase() + "%'" +
                 " AND " + KEY_FAMILIA_ID + " = " + familia.id;
-
-        logQuery(LOG, selectQuery);
 
         Cursor c = db.rawQuery(selectQuery, null);
 

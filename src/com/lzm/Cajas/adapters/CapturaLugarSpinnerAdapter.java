@@ -46,7 +46,6 @@ public class CapturaLugarSpinnerAdapter extends BaseAdapter {
         LayoutInflater inflater = ((Activity) c).getLayoutInflater();
         View row = inflater.inflate(R.layout.captura_lugar_select_row, parent, false);
         TextView sub = (TextView) row.findViewById(R.id.captura_row_lugar_label);
-//        sub.setText(Utils.getStringResourceByName(c, "global_color_" + cur_obj.getNombre()));
         sub.setText(cur_obj.nombre);
         return row;
     }

@@ -51,8 +51,6 @@ public class ColorDbHelper extends DbHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_COLOR + " WHERE "
                 + KEY_ID + " = " + color_id;
 
-        logQuery(LOG, selectQuery);
-
         Cursor c = db.rawQuery(selectQuery, null);
         Color cl = null;
         if (c.getCount() > 0) {
@@ -67,8 +65,6 @@ public class ColorDbHelper extends DbHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<Color> colores = new ArrayList<Color>();
         String selectQuery = "SELECT  * FROM " + TABLE_COLOR;
-
-        logQuery(LOG, selectQuery);
 
         Cursor c = db.rawQuery(selectQuery, null);
 
@@ -91,8 +87,6 @@ public class ColorDbHelper extends DbHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_COLOR +
                 " WHERE " + KEY_NOMBRE + " <> 'none'";
 
-        logQuery(LOG, selectQuery);
-
         Cursor c = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
@@ -113,8 +107,6 @@ public class ColorDbHelper extends DbHelper {
         List<Color> colores = new ArrayList<Color>();
         String selectQuery = "SELECT  * FROM " + TABLE_COLOR +
                 " WHERE " + KEY_NOMBRE + " = '" + color + "'";
-
-        logQuery(LOG, selectQuery);
 
         Cursor c = db.rawQuery(selectQuery, null);
 

@@ -63,8 +63,6 @@ public class FotoDbHelper extends DbHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_FOTO + " WHERE "
                 + KEY_ID + " = " + foto_id;
 
-        logQuery(LOG, selectQuery);
-
         Cursor c = db.rawQuery(selectQuery, null);
         Foto ft = null;
         if (c != null) {
@@ -113,8 +111,6 @@ public class FotoDbHelper extends DbHelper {
                 " WHERE " + KEY_ESPECIE_ID + " = " + especie.id +
                 " LIMIT 1";
 
-        logQuery(LOG, selectQuery);
-
         Cursor c = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
@@ -133,8 +129,6 @@ public class FotoDbHelper extends DbHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         List<Foto> fotos = new ArrayList<Foto>();
         String selectQuery = "SELECT  * FROM " + TABLE_FOTO;
-
-        logQuery(LOG, selectQuery);
 
         Cursor c = db.rawQuery(selectQuery, null);
 
@@ -162,8 +156,6 @@ public class FotoDbHelper extends DbHelper {
         String selectQuery = "SELECT * FROM " + TABLE_FOTO +
                 " WHERE " + KEY_ESPECIE_ID + " = " + especie.id;
 
-        logQuery(LOG, selectQuery);
-
         Cursor c = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
@@ -185,8 +177,6 @@ public class FotoDbHelper extends DbHelper {
 
         String selectQuery = "SELECT * FROM " + TABLE_FOTO +
                 " WHERE " + KEY_KEYWORDS + " LIKE '%" + keyword + "%'";
-
-        logQuery(LOG, selectQuery);
 
         Cursor c = db.rawQuery(selectQuery, null);
 
@@ -286,8 +276,6 @@ public class FotoDbHelper extends DbHelper {
 
         String selectQuery = "SELECT * FROM " + TABLE_FOTO +
                 " WHERE " + KEY_RUTA_ID + " = " + ruta.id;
-
-        logQuery(LOG, selectQuery);
 
         Cursor c = db.rawQuery(selectQuery, null);
 

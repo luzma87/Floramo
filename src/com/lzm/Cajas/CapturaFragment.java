@@ -45,11 +45,6 @@ import java.util.List;
  */
 public class CapturaFragment extends Fragment implements Button.OnClickListener, View.OnTouchListener {
 
-//    private ImageButton[] botones;
-//    private ToggleButton[] toggles;
-//    String[] keys;
-//    String[] statusString;
-
     private ImageButton btnCamara;
     private ImageButton btnGaleria;
     private ImageButton btnSave;
@@ -58,9 +53,6 @@ public class CapturaFragment extends Fragment implements Button.OnClickListener,
 
     private TextView lblInfo;
 
-//    private EditText textoComentarios;
-
-    //    public CustomAutoCompleteView autocompleteNombreComun;
     public CustomAutoCompleteView autocompleteFamilia;
     public CustomAutoCompleteView autocompleteGenero;
     public CustomAutoCompleteView autocompleteEspecie;
@@ -99,13 +91,11 @@ public class CapturaFragment extends Fragment implements Button.OnClickListener,
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         context = (MapActivity) getActivity();
-//        pathFolder = getArguments().getString("pathFolder");
 
         pathFolder = Utils.getFolder(context);
 
         View view = inflater.inflate(R.layout.captura_layout, container, false);
         View scrollview = view.findViewById(R.id.captura_cientifico_scroll_view);
-//        view.setOnTouchListener(this);
         scrollview.setOnTouchListener(this);
 
         activity = (MapActivity) getActivity();
@@ -113,12 +103,10 @@ public class CapturaFragment extends Fragment implements Button.OnClickListener,
         screenWidth = activity.screenWidth;
         selectedImage = (ImageView) view.findViewById(R.id.captura_chosen_image_view);
         lblInfo = (TextView) view.findViewById(R.id.captura_info_label);
-//        textoComentarios = (EditText) view.findViewById(R.id.captura_comentarios_txt);
 
         initSpinners(view);
         initAutocompletes(view);
         initButtons(view);
-//        initToggles(view);
         return view;
     }
 
@@ -149,15 +137,11 @@ public class CapturaFragment extends Fragment implements Button.OnClickListener,
                 Color color2 = (Color) spinnerColor2.getSelectedItem();
                 Lugar lugar = (Lugar) spinnerLugar.getSelectedItem();
 //                String nombreComun = autocompleteNombreComun.getText().toString().trim();
-                String nombreFamilia = autocompleteFamilia.getText().toString().trim();
-                String nombreGenero = autocompleteGenero.getText().toString().trim();
-                String nombreEspecie = autocompleteEspecie.getText().toString().trim();
+                String nombreFamilia = capitalizeString(autocompleteFamilia.getText().toString().trim());
+                String nombreGenero = capitalizeString(autocompleteGenero.getText().toString().trim());
+                String nombreEspecie = autocompleteEspecie.getText().toString().trim().toLowerCase();
 
                 boolean ok = true;
-               /* if (nombreComun.equals("")) {
-                    ok = false;
-                    alerta(getString(R.string.captura_error_nombre_comun));
-                } else*/
                 if (nombreFamilia.equals("")) {
                     ok = false;
                     alerta(getString(R.string.captura_error_nombre_familia));
@@ -170,24 +154,8 @@ public class CapturaFragment extends Fragment implements Button.OnClickListener,
                 }
 
                 if (ok) {
-//                    String comentarios = textoComentarios.getText().toString().trim();
-//                    String keywords = "";
-//                    int i = 0;
-//                    boolean checked = false;
-//                    for (ToggleButton toggle : toggles) {
-//                        if (toggle.isChecked()) {
-//                            checked = true;
-//                            if (!keywords.equals("")) {
-//                                keywords += ", ";
-//                            }
-//                            keywords += keys[i];
-////                        System.out.println("i=" + i + "   " + keys[i] + "     " + keywords);
-//                        }
-//                        i++;
-//                    }
-//                    if (!checked) {
-//                        alerta(getString(R.string.captura_error_keywords));
-//                    } else {
+                    resetForm();
+                    Utils.hideSoftKeyboard(context);
                     Familia familia = null;
                     Genero genero = null;
                     Especie especie = null;
@@ -218,9 +186,6 @@ public class CapturaFragment extends Fragment implements Button.OnClickListener,
                         if (formaVida2 != null && !formaVida2.nombre.equals("none")) {
                             especie.setFormaVida2(formaVida2);
                         }
-//                            if (!nombreComun.equals("")) {
-//                                especie.setNombreComun(nombreComun);
-//                            }
                         especie.save();
                     }
 
@@ -231,10 +196,8 @@ public class CapturaFragment extends Fragment implements Button.OnClickListener,
                     if (especie != null) {
                         fotoSubir.setEspecie(especie);
                     }
-//                        fotoSubir.setKeywords(keywords);
 
                     if (fotoLat != null && fotoLong != null) {
-//                        System.out.println("COORDENADA::: " + fotoLat + "," + fotoLong);
                         fotoSubir.latitud = fotoLat;
                         fotoSubir.longitud = fotoLong;
                         fotoSubir.altitud = fotoAlt;
@@ -253,12 +216,7 @@ public class CapturaFragment extends Fragment implements Button.OnClickListener,
                     }
                     nuevoNombre += ".jpg";
 
-//                File file = new File(pathFolder, fotoPath);
-//                fotoPath = file.getName();
                     File file = new File(pathFolder, nuevoNombre);
-////                if (file.exists()) {
-////                    file.delete();
-////                }
                     try {
                         if (!file.exists()) {
                             FileOutputStream out = new FileOutputStream(file);
@@ -270,17 +228,9 @@ public class CapturaFragment extends Fragment implements Button.OnClickListener,
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    //System.out.println("Path folder: " + pathFolder);
-                    //System.out.println("Photo path: " + fotoPath);
-//                foto.setPath(pathFolder + "/" + fotoPath);
                     fotoSubir.setPath(pathFolder + "/" + nuevoNombre);
                     fotoSubir.save();
-//                String msg = "Foto guardada";
-                    //System.out.println("foto: " + foto.id + "entry: " + entry.id + "  especie: " + especie.id + "   " + especie.nombre + "  (" + genero.nombre + " " + genero.id + ")" + "  (" + familia.nombre + " " + familia.id + ")");
-
                     alerta(getString(R.string.captura_success));
-                    //                System.out.println("Save: <" + keywords + "> <" + comentarios + ">");
-//                    }
                 }
             } else {
                 alerta(getString(R.string.captura_error_seleccion));
@@ -294,6 +244,10 @@ public class CapturaFragment extends Fragment implements Button.OnClickListener,
                 alerta(getString(R.string.captura_error_seleccion));
             }
         }
+    }
+
+    private String capitalizeString(String s) {
+        return s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase();
     }
 
     private void initButtons(View view) {
@@ -333,40 +287,10 @@ public class CapturaFragment extends Fragment implements Button.OnClickListener,
     private void initAutocompletes(View view) {
 
         final List<Familia> familiaList = Familia.list(context);
-//        final List<Genero> generoList = Genero.list(context);
         final List<Especie> especieList = Especie.list(context);
-
-//        autocompleteNombreComun = (CustomAutoCompleteView) view.findViewById(R.id.captura_autocomplete_nombre_comun);
-//        autocompleteNombreComun.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View arg1, int pos, long id) {
-////                System.out.println("CLICK: " + pos + "   " + especieList.get(pos).nombreComun);
-//                RelativeLayout rl = (RelativeLayout) arg1;
-//                TextView tv = (TextView) rl.getChildAt(0);
-//                autocompleteNombreComun.setText(tv.getText().toString());
-//
-//                String selection = tv.getText().toString();
-//                Especie selected = null;
-//
-//                for (Especie especie : especieList) {
-//                    if (especie.nombreComun.equals(selection)) {
-//                        selected = especie;
-//                        break;
-//                    }
-//                }
-//                if (selected != null) {
-//                    autocompleteFamilia.setText(selected.getGenero(context).getFamilia(context).nombre);
-//                    autocompleteGenero.setText(selected.getGenero(context).nombre);
-//                    autocompleteEspecie.setText(selected.nombre);
-//                }
-//            }
-//        });
-//        // add the listener so it will tries to suggest while the user types
-//        autocompleteNombreComun.addTextChangedListener(new CapturaNombreComunAutocompleteTextChangedListener(context, this));
         // ObjectItemData has no value at first
         // set the custom ArrayAdapter
         nombreComunArrayAdapter = new CapturaNombreComunArrayAdapter(context, R.layout.captura_autocomplete_list_item, especieList);
-//        autocompleteNombreComun.setAdapter(nombreComunArrayAdapter);
 
         autocompleteFamilia = (CustomAutoCompleteView) view.findViewById(R.id.captura_autocomplete_nombre_familia);
         autocompleteGenero = (CustomAutoCompleteView) view.findViewById(R.id.captura_autocomplete_nombre_genero);
@@ -377,8 +301,6 @@ public class CapturaFragment extends Fragment implements Button.OnClickListener,
         autocompleteFamilia.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View arg1, int pos, long id) {
-//                System.out.println("CLICK: " + pos + "   ");
-
                 RelativeLayout rl = (RelativeLayout) arg1;
                 TextView tv = (TextView) rl.getChildAt(0);
                 String txt = tv.getText().toString();
@@ -390,15 +312,10 @@ public class CapturaFragment extends Fragment implements Button.OnClickListener,
                     }
                 }
                 if (fam != null) {
-//                    System.out.println("FAMILIA:::: " + fam.nombre);
                     final List<Genero> generos = Genero.findAllByFamilia(context, fam);
-//                    for (Genero genero : generos) {
-//                        System.out.println("<<<>>>>>>>>>>>>>> " + genero.nombre);
-//                    }
                     autocompleteGenero.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View arg1, int pos, long id) {
-//                System.out.println("CLICK: " + pos + "   " + especieList.get(pos).nombreComun);
                             RelativeLayout rl = (RelativeLayout) arg1;
                             TextView tv = (TextView) rl.getChildAt(0);
                             String txt = tv.getText().toString();
@@ -416,7 +333,6 @@ public class CapturaFragment extends Fragment implements Button.OnClickListener,
                                 autocompleteEspecie.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View arg1, int pos, long id) {
-//                System.out.println("CLICK: " + pos + "   " + especieList.get(pos).nombreComun);
                                         RelativeLayout rl = (RelativeLayout) arg1;
                                         TextView tv = (TextView) rl.getChildAt(0);
                                         autocompleteEspecie.setText(tv.getText().toString());
@@ -451,18 +367,13 @@ public class CapturaFragment extends Fragment implements Button.OnClickListener,
 
     private void resetForm() {
         selectedImage.setImageDrawable(null);
-//        for (ToggleButton toggle : toggles) {
-//            toggle.setChecked(false);
-//        }
         spinnerColor1.setSelection(0);
         spinnerColor2.setSelection(0);
 
-//        autocompleteNombreComun.setText("");
         autocompleteFamilia.setText("");
         autocompleteGenero.setText("");
         autocompleteEspecie.setText("");
 
-//        textoComentarios.setText("");
         hayFoto = false;
         deMapa = false;
     }
@@ -480,9 +391,7 @@ public class CapturaFragment extends Fragment implements Button.OnClickListener,
             if (requestCode == GALLERY_REQUEST || requestCode == CAMERA_REQUEST) {
                 deMapa = false;
                 hayFoto = true;
-//                updateStatus(null);
                 MapActivity activity = (MapActivity) getActivity();
-//                Bitmap thumb = ImageUtils.getThumbnailFromCameraData(data, activity);
                 Bitmap thumb = ImageUtils.getThumbnailFromCameraData(data, activity);
                 selectedImage.setImageBitmap(thumb);
                 bitmap = ImageUtils.getBitmapFromCameraData(data, activity);
@@ -501,15 +410,14 @@ public class CapturaFragment extends Fragment implements Button.OnClickListener,
                     String p = exif.getAttribute(ExifInterface.TAG_GPS_ALTITUDE);
                     String[] parts = p.split("/");
                     Double alt = Double.parseDouble(parts[0]) / Double.parseDouble(parts[1]);
-//                    System.out.println("**************************" + alt + "     " + fotoLat + "       " + fotoLong);
                     fotoAlt = alt;
                     if (fotoLat != null && fotoLong != null) {
                         alerta(getString(R.string.captura_success_tag_gps));
                     } else {
-                        alerta(getString(R.string.captura_error_tag_gps));
+//                        alerta(getString(R.string.captura_error_tag_gps));
                     }
                 } catch (Exception e) {
-                    alerta(getString(R.string.captura_error_tag_gps));
+//                    alerta(getString(R.string.captura_error_tag_gps));
                     fotoLat = null;
                     fotoLong = null;
                     fotoAlt = null;

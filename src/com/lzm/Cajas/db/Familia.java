@@ -1,7 +1,6 @@
 package com.lzm.Cajas.db;
 
 import android.content.Context;
-import android.util.Log;
 
 import java.text.Normalizer;
 import java.util.List;
@@ -77,7 +76,6 @@ public class Familia {
         } else if (listFamilias.size() == 1) {
             familia = listFamilias.get(0);
         } else {
-            Log.e("getByNombreOrCreate familia", "Se encontraron " + listFamilias.size() + " familias con nombre " + nombreFamilia);
             familia = listFamilias.get(0);
         }
         return familia;
@@ -106,6 +104,11 @@ public class Familia {
     public static List<Familia> findAllByNombreLike(Context context, String familia) {
         FamiliaDbHelper e = new FamiliaDbHelper(context);
         return e.getAllFamiliasByNombreLike(familia);
+    }
+
+    public static List<Familia> findAllByTieneEspecies(Context context) {
+        FamiliaDbHelper e = new FamiliaDbHelper(context);
+        return e.getAllFamiliasByTieneEspecies();
     }
 
     public static void empty(Context context) {

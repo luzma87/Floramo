@@ -19,7 +19,6 @@ public class EncyclopediaSecondLevelListView extends ExpandableListView {
     }
 
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        //System.out.println("<<<<<<<<<measure>>>>>>>>  "+especies);
         int h = 600;
         if (especies != null) {
             if (especies.size() > 0)
@@ -27,7 +26,6 @@ public class EncyclopediaSecondLevelListView extends ExpandableListView {
         }
         widthMeasureSpec = MeasureSpec.makeMeasureSpec(960, MeasureSpec.AT_MOST);
         heightMeasureSpec = MeasureSpec.makeMeasureSpec(h, MeasureSpec.AT_MOST);
-        //System.out.println("****************" + heightMeasureSpec + "*********************************");
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 }

@@ -51,8 +51,6 @@ public class FormaVidaDbHelper extends DbHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_FORMA_VIDA + " WHERE "
                 + KEY_ID + " = " + formavida_id;
 
-        logQuery(LOG, selectQuery);
-
         Cursor c = db.rawQuery(selectQuery, null);
         FormaVida cl = null;
         if (c.getCount() > 0) {
@@ -67,8 +65,6 @@ public class FormaVidaDbHelper extends DbHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<FormaVida> formavidaes = new ArrayList<FormaVida>();
         String selectQuery = "SELECT  * FROM " + TABLE_FORMA_VIDA;
-
-        logQuery(LOG, selectQuery);
 
         Cursor c = db.rawQuery(selectQuery, null);
 
@@ -91,8 +87,6 @@ public class FormaVidaDbHelper extends DbHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_FORMA_VIDA +
                 " WHERE " + KEY_NOMBRE + " <> 'none'";
 
-        logQuery(LOG, selectQuery);
-
         Cursor c = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
@@ -113,8 +107,6 @@ public class FormaVidaDbHelper extends DbHelper {
         List<FormaVida> formavidaes = new ArrayList<FormaVida>();
         String selectQuery = "SELECT  * FROM " + TABLE_FORMA_VIDA +
                 " WHERE " + KEY_NOMBRE + " = '" + formavida + "'";
-
-        logQuery(LOG, selectQuery);
 
         Cursor c = db.rawQuery(selectQuery, null);
 

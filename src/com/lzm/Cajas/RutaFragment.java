@@ -47,8 +47,6 @@ public class RutaFragment extends Fragment implements Button.OnClickListener, Vi
     private boolean pendingPublishReauthorization = false;
     private static final int REAUTH_ACTIVITY_CODE = 100;
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 

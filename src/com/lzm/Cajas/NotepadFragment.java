@@ -48,7 +48,6 @@ public class NotepadFragment extends ListFragment {
             public boolean onItemLongClick(AdapterView<?> av, View v, int position, long id) {
                 final int positionToRemove = position;
 
-//        System.out.println("SELECTED:::::: " + selected);
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 // Chain together various setter methods to set the dialog characteristics
                 builder.setMessage(R.string.nota_create_dlg_delete_contenido)

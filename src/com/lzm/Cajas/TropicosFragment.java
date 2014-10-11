@@ -138,7 +138,7 @@ public class TropicosFragment extends Fragment implements Button.OnClickListener
         imm.hideSoftInputFromWindow(txtFamily.getWindowToken(), 0);
 
         if (v.getId() == buscar.getId()) {
-            System.out.println("entro");
+//            System.out.println("entro");
             String name = ((EditText) view.findViewById(R.id.txt_name)).getText().toString();
             String nameId = ((EditText) view.findViewById(R.id.txt_nameId)).getText().toString();
             String common = ((EditText) view.findViewById(R.id.txt_commonname)).getText().toString();

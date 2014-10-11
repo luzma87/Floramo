@@ -69,17 +69,13 @@ public class EspecieLoader implements Runnable {
                     io = context.getResources().openRawResource(resId);
                     path1 = foto.path.replaceAll("\\.jpg", "").replaceAll("-", "_").toLowerCase();
                     resId=Utils.getImageResourceByName(context, path1);
-                    System.out.println("service !!!!! w "+w+" h "+h);
+//                    System.out.println("service !!!!! w "+w+" h "+h);
                     myBitmap = ImageUtils.decodeBitmap(io,w,h);
                 }
-                //System.out.println("Especie "+especie.nombre+" foto "+foto.path+"  coord "+cord);
                 final LatLng pos = new LatLng(cord.latitud, cord.longitud);
                 ui = new EspecieUi(nombre,resId,especie.idTropicos.toString());
                 context.setPingEspecie(ui,pos,myBitmap);
-
             }
-
-
         }
     }
 }

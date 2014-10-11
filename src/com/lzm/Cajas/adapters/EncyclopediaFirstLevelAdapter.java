@@ -14,6 +14,7 @@ import com.lzm.Cajas.*;
 import com.lzm.Cajas.db.Especie;
 import com.lzm.Cajas.db.Familia;
 import com.lzm.Cajas.db.Genero;
+import com.lzm.Cajas.utils.Utils;
 
 import java.util.List;
 
@@ -26,7 +27,6 @@ public class EncyclopediaFirstLevelAdapter extends BaseExpandableListAdapter {
     EnciclopediaListFragment fragment;
 
     List<Familia> familias;
-//    List<Genero> generos;
 
     public EncyclopediaFirstLevelAdapter(MapActivity activity, EnciclopediaListFragment fragment, List<Familia> familias) {
         this.familias = familias;
@@ -50,9 +50,7 @@ public class EncyclopediaFirstLevelAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-//        System.out.println("pos: " + groupPosition + " familia: " + getFamilia(groupPosition).nombre);
         EncyclopediaSecondLevelListView secondLevelexplv = new EncyclopediaSecondLevelListView(activity);
-//        Utils.setListViewHeightBasedOnChildren(secondLevelexplv);
         final List<Genero> generos = Genero.findAllByFamilia(activity, getFamilia(groupPosition));
         secondLevelexplv.setAdapter(new EncyclopediaSecondLevelAdapter(activity, childPosition, generos, secondLevelexplv));
         secondLevelexplv.setGroupIndicator(null);
@@ -61,46 +59,14 @@ public class EncyclopediaFirstLevelAdapter extends BaseExpandableListAdapter {
         secondLevelexplv.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-//                Toast.makeText(context, "click 2", Toast.LENGTH_LONG).show();
                 List<Especie> especies = Especie.findAllByGenero(activity, generos.get(gp));
                 Especie selected = especies.get(childPosition);
 
-//                ListFragment fragment = new EncyclopediaEntriesFragment();
                 Fragment fragment = new EspecieInfoFragment();
                 Bundle args = new Bundle();
                 args.putLong("especie", selected.id);
-                fragment.setArguments(args);
-
-                String nombre = selected.getNombreCientifico() + " (" + selected.nombreComun + ")";
-
-                activity.setTitle(nombre);
-
-                FragmentManager fragmentManager = activity.getFragmentManager();
-//                fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
-                fragmentManager.beginTransaction()
-                        .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
-                        .replace(R.id.content_frame, fragment)
-                        .addToBackStack("")
-                        .commit();
-
-//                Toast.makeText(activity, selected.nombreComun, Toast.LENGTH_LONG).show();
-//                try {
-//                    fragmentManager.beginTransaction().add(fragment, "encyclopedia").
-//                            replace(R.id.content_frame, fragment).commit();
-//                } catch (Exception e) {
-//                    fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
-//                    e.printStackTrace();
-//                }
-
-
-                /*
-                getSupportFragmentManager().beginTransaction()
-                           .add(detailFragment, "detail")
-                           // Add this transaction to the back stack
-                           .addToBackStack()
-                           .commit();
-                 */
-
+                String nombre = selected.genero + " " + selected.nombre + " (" + selected.nombreComun + ")";
+                Utils.openFragment(activity, fragment, nombre, args);
                 return true;
             }
         });
@@ -111,8 +77,6 @@ public class EncyclopediaFirstLevelAdapter extends BaseExpandableListAdapter {
     @Override
     public int getChildrenCount(int groupPosition) {
         Familia familia = familias.get(groupPosition);
-//        generos = Genero.findAllByFamilia(activity, familia);
-//        return generos.size();
         return Genero.countByFamilia(activity, familia);
     }
 
@@ -133,21 +97,12 @@ public class EncyclopediaFirstLevelAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-//        TextView tv = new TextView(context);
-//        tv.setText("->FirstLevel " + groupPosition + " " + nivel1[groupPosition]);
-//        tv.setTextColor(Color.BLACK);
-//        tv.setTextSize(20);
-//        tv.setBackgroundColor(Color.CYAN);
-//        tv.setPadding(10, 7, 7, 7);
-//
-//        return tv;
         String label = getFamilia(groupPosition).nombre;
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.encyclopedia_nivel_1, null);
         }
         TextView item = (TextView) convertView.findViewById(R.id.encyclopedia_group_item_nivel_1_lbl);
-//        item.setTypeface(null, Typeface.BOLD);
         item.setText(label);
         return convertView;
     }

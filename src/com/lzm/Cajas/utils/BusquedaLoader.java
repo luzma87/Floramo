@@ -48,8 +48,6 @@ public class BusquedaLoader implements Runnable {
             DataOutputStream dos = null;
             HttpURLConnection conn = null;
 
-
-
             int serverResponseCode = 0;
             // Name/Search?nameid={nameid}&name={name}&commonname={commonname}&orderby={orderby}&sortorder={sortorder}&pagesize={pagesize}&startrow={startrow}&type={type}&apikey={apikey}&format={format}
             String parameters = "";
@@ -77,7 +75,6 @@ public class BusquedaLoader implements Runnable {
             urlstr+="?"+parameters;
 
             // Create http cliient object to send request to server
-
             HttpClient Client = new DefaultHttpClient();
 
             // Create URL string
@@ -87,22 +84,19 @@ public class BusquedaLoader implements Runnable {
             String SetServerString = "";
 
             // Create Request to server and get response
-            System.out.println("url  "+urlstr);
+//            System.out.println("url  "+urlstr);
             HttpGet httpget = new HttpGet(urlstr);
             ResponseHandler<String> responseHandler = new BasicResponseHandler();
             SetServerString = Client.execute(httpget, responseHandler);
-            System.out.println("response "+SetServerString);
+//            System.out.println("response "+SetServerString);
             List<SearchResult> result;
             try {
                 JSONArray arr = new JSONArray(SetServerString);
                 result=new ArrayList<SearchResult>();
                 for (int i = 0; i < arr.length(); i++) {
                     JSONObject obj = arr.getJSONObject(i);
-                  //(String nameId, String scientificName, String scientificNameWithAuthors, String family, String rankAbbreviation, String author, String displayReference, String displayDate)
                     SearchResult curent = new SearchResult(obj.getString("NameId"),obj.getString("ScientificName"),obj.getString("ScientificNameWithAuthors"),obj.getString("Family"),obj.getString("RankAbbreviation"),obj.getString("Author"),obj.getString("DisplayReference"),obj.getString("DisplayDate"));
                     result.add(curent);
-                    //System.out.println("obj --> "+obj.toString());
-                    //System.out.println("--- "+obj.getString("NomenclatureStatusName"));
                 }
                 context.showSearchResults(result,dialog);
 
@@ -111,9 +105,9 @@ public class BusquedaLoader implements Runnable {
             }
 
         } catch (Exception e) {
-            System.out.println("error busqueda " + e);
+//            System.out.println("error busqueda " + e);
             for (StackTraceElement ste : e.getStackTrace()) {
-                System.out.println(ste);
+//                System.out.println(ste);
             }
         }
     }

@@ -52,8 +52,6 @@ public class SettingsDbHelper extends DbHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_SETTINGS + " WHERE "
                 + KEY_ID + " = " + settings_id;
 
-        logQuery(LOG, selectQuery);
-
         Cursor c = db.rawQuery(selectQuery, null);
         Settings cl = null;
         if (c.getCount() > 0) {
@@ -67,8 +65,6 @@ public class SettingsDbHelper extends DbHelper {
     public Settings getFirstSettings() {
         SQLiteDatabase db = this.getWritableDatabase();
         String selectQuery = "SELECT  * FROM " + TABLE_SETTINGS + " LIMIT 1";
-
-        logQuery(LOG, selectQuery);
 
         Cursor c = db.rawQuery(selectQuery, null);
         Settings cl = null;
@@ -84,8 +80,6 @@ public class SettingsDbHelper extends DbHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<Settings> settingses = new ArrayList<Settings>();
         String selectQuery = "SELECT  * FROM " + TABLE_SETTINGS;
-
-        logQuery(LOG, selectQuery);
 
         Cursor c = db.rawQuery(selectQuery, null);
 

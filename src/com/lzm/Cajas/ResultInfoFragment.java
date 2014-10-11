@@ -80,18 +80,7 @@ public class ResultInfoFragment  extends Fragment implements Button.OnClickListe
 
 
             });
-            /*builder.setPositiveButton(R.string.dialog_btn_siguiente, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                   if(current.fotos!=null){
-                       if(current.fotos.size()-1>current.pos){
-                           ProgressDialog dialogLoading = ProgressDialog.show(context, "",getString(R.string.loading), true);
-                           current.pos++;
-                           ExecutorService queue = Executors.newSingleThreadExecutor();
-                           queue.execute(new FotoDownloader((MapActivity)context, current,  img,  current.fotos.get(current.pos), dialogLoading));
-                       }
-                   }
-                }
-            });*/
+
             builder.setPositiveButton(R.string.dialog_btn_siguiente,null);
             context.dialog = builder.create();
             context.dialog.setOnShowListener(new DialogInterface.OnShowListener() {

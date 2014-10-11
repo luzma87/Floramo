@@ -1,11 +1,9 @@
 package com.lzm.Cajas.db;
 
 import android.content.Context;
-import android.util.Log;
 
 import java.text.Normalizer;
 import java.util.List;
-import java.util.Vector;
 
 /**
  * Created by DELL on 26/07/2014.
@@ -276,7 +274,6 @@ public class Especie {
         } else if (listEspecies.size() == 1) {
             especie = getDatos(context, listEspecies.get(0).id);
         } else {
-            Log.e("getByNombreOrCreate especie", "Se encontraron " + listEspecies.size() + " especies con nombre " + nombreEspecie);
             especie = getDatos(context, listEspecies.get(0).id);
         }
         return especie;
@@ -345,6 +342,11 @@ public class Especie {
     public static List<Especie> busqueda(Context context, String formaVida, String color, String nombre, String andOr) {
         EspecieDbHelper e = new EspecieDbHelper(context);
         return e.getBusqueda(formaVida, color, nombre, andOr);
+    }
+
+    public static void delete(Context context, Especie especie) {
+        EspecieDbHelper e = new EspecieDbHelper(context);
+        e.deleteEspecie(especie, true);
     }
 
     public static void empty(Context context) {

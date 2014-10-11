@@ -52,8 +52,6 @@ public class FamiliaDbHelper extends DbHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_FAMILIA + " WHERE "
                 + KEY_ID + " = " + familia_id;
 
-        logQuery(LOG, selectQuery);
-
         Cursor c = db.rawQuery(selectQuery, null);
         Familia fm = null;
         if (c.getCount() > 0) {
@@ -69,8 +67,6 @@ public class FamiliaDbHelper extends DbHelper {
         List<Familia> familias = new ArrayList<Familia>();
         String selectQuery = "SELECT  * FROM " + TABLE_FAMILIA +
                 " ORDER BY " + KEY_NOMBRE;
-
-        logQuery(LOG, selectQuery);
 
         Cursor c = db.rawQuery(selectQuery, null);
 
@@ -93,8 +89,6 @@ public class FamiliaDbHelper extends DbHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_FAMILIA +
                 " WHERE " + KEY_NOMBRE + " = '" + familia + "'";
 
-        logQuery(LOG, selectQuery);
-
         Cursor c = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
@@ -116,7 +110,28 @@ public class FamiliaDbHelper extends DbHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_FAMILIA +
                 " WHERE LOWER(" + KEY_NOMBRE_NORM + ") LIKE '%" + familia.toLowerCase() + "%'";
 
-        logQuery(LOG, selectQuery);
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                Familia fm = setDatos(c);
+
+                // adding to tags list
+                familias.add(fm);
+            } while (c.moveToNext());
+        }
+        db.close();
+        return familias;
+    }
+
+    public List<Familia> getAllFamiliasByTieneEspecies() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<Familia> familias = new ArrayList<Familia>();
+        String selectQuery = "SELECT  distinct(f.id), f.nombre, f.fecha FROM " + TABLE_FAMILIA + " f" +
+                " INNER JOIN generos g ON g.familia_id = f.id" +
+                " INNER JOIN especies e on e.genero_id = g.id" +
+                " ORDER BY f.nombre";
 
         Cursor c = db.rawQuery(selectQuery, null);
 

@@ -1,15 +1,18 @@
 package com.lzm.Cajas.adapters;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.lzm.Cajas.*;
-import com.lzm.Cajas.db.*;
+import com.lzm.Cajas.MapActivity;
+import com.lzm.Cajas.R;
+import com.lzm.Cajas.db.Especie;
+import com.lzm.Cajas.db.Foto;
 import com.lzm.Cajas.image.ImageUtils;
 import com.lzm.Cajas.utils.Utils;
 
@@ -21,10 +24,8 @@ import java.util.List;
 public class EncyclopediaGridListAdapter extends ArrayAdapter<Especie> {
 
     MapActivity context;
-    EnciclopediaGridFragment fragment;
 
     List<Especie> especies;
-//    List<Genero> generos;
 
     public EncyclopediaGridListAdapter(MapActivity context, List<Especie> especies) {
         super(context, R.layout.encyclopedia_grid_row, especies);
@@ -37,7 +38,10 @@ public class EncyclopediaGridListAdapter extends ArrayAdapter<Especie> {
         Especie especie = especies.get(position);
 
         List<Foto> fotos = Foto.findAllByEspecie(context, especie);
-        Foto foto = fotos.get(0);
+        Foto foto = null;
+        if (fotos.size() > 0) {
+            foto = fotos.get(0);
+        }
 
         int cantFotos = Foto.countByEspecie(context, especie);
 
@@ -60,6 +64,8 @@ public class EncyclopediaGridListAdapter extends ArrayAdapter<Especie> {
         ImageView itemFormaVida1 = (ImageView) convertView.findViewById(R.id.busqueda_results_fv_1);
         ImageView itemFormaVida2 = (ImageView) convertView.findViewById(R.id.busqueda_results_fv_2);
 
+        ColorStateList oldColors = itemCantFotos.getTextColors();
+
         itemNombreCientifico.setText(labelNombreCientifico);
         itemNombreFamilia.setText(labelNombreFamilia);
         itemCantFotos.setText(labelCantFotos);
@@ -80,14 +86,28 @@ public class EncyclopediaGridListAdapter extends ArrayAdapter<Especie> {
             itemFormaVida2.setVisibility(View.GONE);
         }
 
-        if (foto.esMia == 1) {
+        if (foto != null && foto.esMia == 1) {
             itemFoto.setImageBitmap(ImageUtils.decodeFile(foto.path, 100, 100, false));
-        } else {
-            String path = foto.path.replaceAll("\\.jpg", "").replaceAll("-", "_").toLowerCase();
-            path = "th_" + path;
-            itemFoto.setImageResource(Utils.getImageResourceByName(context, path));
-        }
 
+            int newColor = Color.parseColor("#80CBEE");
+
+            itemNombreCientifico.setTextColor(newColor);
+            itemNombreFamilia.setTextColor(newColor);
+            itemColor1.setTextColor(newColor);
+            itemColor2.setTextColor(newColor);
+
+        } else {
+            if (foto != null) {
+                String path = foto.path.replaceAll("\\.jpg", "").replaceAll("-", "_").toLowerCase();
+                path = "th_" + path;
+                itemFoto.setImageResource(Utils.getImageResourceByName(context, path));
+            }
+
+            itemNombreCientifico.setTextColor(oldColors);
+            itemNombreFamilia.setTextColor(oldColors);
+            itemColor1.setTextColor(oldColors);
+            itemColor2.setTextColor(oldColors);
+        }
         return convertView;
     }
 }

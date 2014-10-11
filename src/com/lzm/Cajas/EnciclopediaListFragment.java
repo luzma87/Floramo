@@ -36,7 +36,7 @@ public class EnciclopediaListFragment extends Fragment implements Button.OnClick
         Utils.hideSoftKeyboard(this.getActivity());
 
         View view = inflater.inflate(R.layout.encyclopedia_list_layout, container, false);
-        List<Familia> familias = Familia.list(context);
+        List<Familia> familias = Familia.findAllByTieneEspecies(context);
 
         btnCambiarVista = (Button) view.findViewById(R.id.encyclopedia_lvl1_btn);
         btnCambiarVista.setOnClickListener(this);

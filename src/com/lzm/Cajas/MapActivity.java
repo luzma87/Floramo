@@ -11,18 +11,15 @@ import android.net.Uri;
 import android.os.*;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.*;
 import android.widget.*;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.internal.es;
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -33,6 +30,7 @@ import com.lzm.Cajas.db.*;
 import com.lzm.Cajas.image.*;
 import com.lzm.Cajas.listeners.FieldListener;
 import com.lzm.Cajas.utils.*;
+
 import java.io.InputStream;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
@@ -48,7 +46,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     private String[] mOptionsArray;
 
     public int activeFragment = 0;
-    public int posSearch=0;
+    public int posSearch = 0;
     public final int MAP_POS = 0;
     public final int ENCICLOPEDIA_POS = 1;
     public final int CAPTURA_POS = 2;
@@ -115,9 +113,10 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
 
     List<FieldListener> listeners = new ArrayList<FieldListener>();
 
+    public int enciclopediaListHeight = 0;
+    public boolean enciclopediaPause = false;
 
     public Foto fotoSinCoords;
-
 
     public void setRuta_remote_id(String id) {
         fireEvent("ruta_remote_id", id);
@@ -164,7 +163,6 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         }
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -194,7 +192,6 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         this.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         screenHeight = displaymetrics.heightPixels;
         screenWidth = displaymetrics.widthPixels;
-        //System.out.println("width: "+screenWidth+"  h: "+screenHeight+"  ping 170 - 126  thumb 160 - 90 dialog 700 - 400   ");
 
         /*CORE*/
         locationClient = new LocationClient(this, this, this);
@@ -203,10 +200,6 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         data = new HashMap<Marker, Foto>();
         dataEspecies = new HashMap<Marker, EspecieUi>();
         result = new ArrayList<SearchResult>();
-
-
-        //atracciones = new HashMap<Marker, AtraccionUi>();
-
 
         botones = new Button[4];
 
@@ -262,56 +255,40 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
-//        if (savedInstanceState == null) {
-//            selectItem(0);
-//        }
         /*FinDrawer*/
-
-
     }
 
     private void restoreMe(Bundle state) {
         if (state != null) {
                 /*Implementar el restor*/
         }
-
     }
-
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-
-
     }
 
     @Override
     public void onResume() {
-
         super.onStart();
 //        // TODO Auto-generated method stub
-
     }
-
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         // Save the user's current game state
-
         super.onSaveInstanceState(savedInstanceState);
-
     }
 
     @Override
     public void onPause() {
         super.onPause();
-
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-
     }
 
     @Override
@@ -323,9 +300,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                     map.clear();
                     ruta = new Ruta(this, getString(R.string.ruta_nombre));
                     ruta.save();
-                    //System.out.println("start service");
                     this.startService(new Intent(this, SvtService.class));
-                    //System.out.println("start service??");
                     doBindService();
                     //  sendMessageToService((int)ruta.id);
                     Location mCurrentLocation;
@@ -346,22 +321,19 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                     status = false;
                 }
             }
-
         }
 
         if (v.getId() == botones[1].getId()) {
             //especies
             especies = Especie.list(this);
-            location = new LatLng(-2.84360424,-79.2282486);
+            location = new LatLng(-2.84360424, -79.2282486);
             CameraUpdate update = CameraUpdateFactory.newLatLngZoom(location, 11);
             map.animateCamera(update);
             int[] res = Utils.getSize(screenWidth);
             for (Especie especie : especies) {
                 ExecutorService queue = Executors.newSingleThreadExecutor();
-                queue.execute(new EspecieLoader(this,especie,res[0],res[1]));
+                queue.execute(new EspecieLoader(this, especie, res[0], res[1]));
             }
-
-
         }
         if (v.getId() == botones[2].getId()) {
             //tipo
@@ -384,32 +356,29 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                     tipoMapa = 0;
                     break;
             }
-
         }
         if (v.getId() == botones[3].getId()) {
-            if(especies!=null)
+            if (especies != null)
                 especies.clear();
-            if(dataEspecies!=null)
+            if (dataEspecies != null)
                 dataEspecies.clear();
-            if(data!=null)
+            if (data != null)
                 data.clear();
             map.clear();
-
         }
-
     }
 
-    public void setPingEspecie(final EspecieUi ui,final LatLng posicion,final Bitmap imagen){
+    public void setPingEspecie(final EspecieUi ui, final LatLng posicion, final Bitmap imagen) {
         Handler handler = new Handler(Looper.getMainLooper());
         handler.post(new Runnable() {
             @Override
             public void run() {
                 Bitmap.Config conf = Bitmap.Config.ARGB_8888;
                 int[] res = Utils.getSize(screenWidth);
-                int w= res[0]+res[2];
-                int h= res[1]+res[3];
+                int w = res[0] + res[2];
+                int h = res[1] + res[3];
 
-                System.out.println("w "+w+" h "+h);
+//                System.out.println("w " + w + " h " + h);
                 Bitmap bmp = Bitmap.createBitmap(w, h, conf);
                 Canvas canvas1 = new Canvas(bmp);
                 Paint color = new Paint();
@@ -434,14 +403,13 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         // If Google Play services is available
         if (ConnectionResult.SUCCESS == resultCode) {
             // In debug mode, log the status
-            Log.d("Location Updates",
-                    "Google Play services is available.");
+//            Log.d("Location Updates",
+//                    "Google Play services is available.");
             // Continue
             return true;
             // Google Play services was not available for some reason
         } else {
             // Get the error code
-
             return false;
         }
     }
@@ -449,7 +417,6 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     /*location services*/
     @Override
     public void onConnected(Bundle dataBundle) {
-        // System.out.println("connected");
         Location mCurrentLocation;
         mCurrentLocation = locationClient.getLastLocation();
         map.getMyLocation();
@@ -474,9 +441,8 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
          * start a Google Play services activity that can resolve
          * error.
          */
-        System.out.println("error connection failed");
+//        System.out.println("error connection failed");
     }
-
 
     /*MAPS*/
     private void updatePolyLine(LatLng latLng) {
@@ -515,11 +481,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                 //atracciones.put(marker, atraccion);
             }
         });
-
     }
-
-
-
 
     public void setUpMapIfNeeded() {
         //System.out.println("setUpMap if needed" +map);
@@ -553,8 +515,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         });
         final Context context = this;
         final Settings sett = Settings.getSettings(context);
-        map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener(){
-
+        map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
                 if (dataEspecies.get(marker) != null) {
@@ -571,7 +532,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                             myView = inflater.inflate(R.layout.dialog, null);
                             ImageView img = (ImageView) myView.findViewById(R.id.image);
                             ExecutorService queue = Executors.newSingleThreadExecutor();
-                            queue.execute(new EspecieDialogImageLoader((MapActivity)activity,current.resId,img));
+                            queue.execute(new EspecieDialogImageLoader((MapActivity) activity, current.resId, img));
                             AlertDialog.Builder builder = new AlertDialog.Builder(activity);
                             builder.setTitle(current.nombre);
                             builder.setView(myView);
@@ -591,12 +552,8 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                                 public void onClick(DialogInterface dialog, int id) {
                                     dialog.dismiss();
                                 }
-
-
                             });
-
                             dialog = builder.create();
-
                             dialog.show();
                         } else {
                             selected = marker;
@@ -622,7 +579,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                             myView = inflater.inflate(R.layout.dialog, null);
                             ImageView img = (ImageView) myView.findViewById(R.id.image);
                             ExecutorService queue = Executors.newSingleThreadExecutor();
-                            queue.execute(new EspecieDialogImageLoader((MapActivity)activity,current.resId,img));
+                            queue.execute(new EspecieDialogImageLoader((MapActivity) activity, current.resId, img));
                             AlertDialog.Builder builder = new AlertDialog.Builder(activity);
                             builder.setTitle(current.nombre);
                             builder.setView(myView);
@@ -642,12 +599,8 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                                 public void onClick(DialogInterface dialog, int id) {
                                     dialog.dismiss();
                                 }
-
-
                             });
-
                             dialog = builder.create();
-
                             dialog.show();
                         } else {
                             selected = marker;
@@ -658,25 +611,21 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                 return true;
             }
         });
-
     }
 
-    public void showError(final ProgressDialog pd, final String message){
+    public void showError(final ProgressDialog pd, final String message) {
         this.runOnUiThread(new Runnable() {
-
             @Override
             public void run() {
                 Toast.makeText(activity, message, Toast.LENGTH_LONG).show();
                 pd.dismiss();
-                if(dialog!=null)
+                if (dialog != null)
                     dialog.dismiss();
             }
         });
-
-
     }
 
-    public void setImgDialog(final Bitmap imagen,final ImageView img){
+    public void setImgDialog(final Bitmap imagen, final ImageView img) {
         Handler handler = new Handler(Looper.getMainLooper());
         handler.post(new Runnable() {
             @Override
@@ -685,14 +634,14 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
             }
         });
     }
-    public void setImgDialogLoader(final Bitmap imagen,final ImageView img, final ProgressDialog loader){
+
+    public void setImgDialogLoader(final Bitmap imagen, final ImageView img, final ProgressDialog loader) {
         Handler handler = new Handler(Looper.getMainLooper());
         handler.post(new Runnable() {
             @Override
             public void run() {
                 img.setImageBitmap(imagen);
                 loader.dismiss();
-
             }
         });
     }
@@ -713,7 +662,6 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         markerSubir = null;
         fotoSinCoords = null;*/
     }
-
 
     /*DRAWER*/
     @Override
@@ -745,16 +693,6 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                 Fragment fragment = new BusquedaFragment();
                 Bundle args = new Bundle();
                 Utils.openFragment(this, fragment, getString(R.string.busqueda_title), args);
-                //args.putString("pathFolder", pathFolder);
-//                fragment.setArguments(args);
-//
-//                FragmentManager fragmentManager = getFragmentManager();
-//                RelativeLayout mainLayout = (RelativeLayout) this.findViewById(R.id.rl2);
-//                mainLayout.setVisibility(LinearLayout.GONE);
-//                fragmentManager.beginTransaction()
-//                        .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
-//                        .replace(R.id.content_frame, fragment)
-//                        .commit();
                 activeFragment = BUSQUEDA_POS;
                 return true;
             case R.id.menu_help:
@@ -809,7 +747,6 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                                 d.dismiss();
                             }
                         });
-
                     }
                 });
                 d.show();
@@ -826,7 +763,6 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
             // System.out.println("entro?");
             selectItem(position);
         }
-
     }
 
     public void selectItem(int position) {
@@ -835,16 +771,15 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
 
     public void selectItem(int position, boolean drawer) {
         // update the main content by replacing fragments
-//        System.out.println("SELECT ITEM:::::: pos:::::: " + position + " Enciclopedia=" + ENCICLOPEDIA_POS);
         String title = "";
         Utils.hideSoftKeyboard(this);
         Fragment fragment = null;
         Bundle args = null;
-        Boolean skyp=false;
+        Boolean skyp = false;
         switch (position) {
             case MAP_POS:
-                if(activeFragment==MAP_POS)
-                    skyp=true;
+                if (activeFragment == MAP_POS)
+                    skyp = true;
                 fragment = null;
                 title = getString(R.string.map_title);
                 activeFragment = MAP_POS;
@@ -863,7 +798,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
             case RUTAS_POS:
                 fragment = new RutasFragment();
                 title = getString(R.string.ruta_plural);
-                activeFragment = ENCICLOPEDIA_POS;
+                activeFragment = RUTAS_POS;
                 break;
             case TROPICOS_POS:
                 fragment = new TropicosFragment();
@@ -897,7 +832,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                 fragment = null;
                 break;
         }
-        if(!skyp)
+        if (!skyp)
             Utils.openFragment(this, fragment, title, args);
 
         if (drawer) {
@@ -916,8 +851,6 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
      * When using the ActionBarDrawerToggle, you must call it during
      * onPostCreate() and onConfigurationChanged()...
      */
-
-
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -937,216 +870,6 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         selectItem(MAP_POS);
     }
 
-
-    /*
-        public void mostrarEspecie(Especie especie) {
-            map.clear();
-            List<Entry> entry = Entry.findAllByEspecie(this, especie);
-            LatLngBounds.Builder builder = new LatLngBounds.Builder();
-            int padding = (100);
-            PolygonOptions poly = new PolygonOptions();
-            int fillColor = Color.argb(150, 68, 134, 246);
-            poly.strokeColor(fillColor);
-            poly.fillColor(fillColor);
-
-            List<LatLng> puntos = new ArrayList<LatLng>();
-            List<LatLng> puntosfinal = new ArrayList<LatLng>();
-            for (int i = 0; i < entry.size(); i++) {
-                Entry current = entry.get(i);
-                List<Foto> fotos = Foto.findAllByEntry(activity, current);
-                for (int j = 0; j < fotos.size(); j++) {
-                    Bitmap.Config conf = Bitmap.Config.ARGB_8888;
-                    Bitmap bmp = Bitmap.createBitmap(170, 126, conf);
-                    ;
-                    Canvas canvas1 = new Canvas(bmp);
-                    Paint color = new Paint();
-                    color.setTextSize(35);
-                    color.setColor(Color.BLACK);//modify canvas
-                    canvas1.drawBitmap(BitmapFactory.decodeResource(getResources(),
-                            R.drawable.pin3), 0, 0, color);
-                    Bitmap b = ImageUtils.decodeFile(fotos.get(j).path);
-                    canvas1.drawBitmap(b, 5, 4, color);
-                    Coordenada co = fotos.get(j).getCoordenada_id(activity);
-                    location = new LatLng(co.getLatitud(), co.getLongitud());
-                    puntos.add(location);
-                    builder.include(location);
-                    Marker marker = map.addMarker(new MarkerOptions().position(location)
-                            .icon(BitmapDescriptorFactory.fromBitmap(bmp))
-                            .anchor(0.5f, 1).title(getString(R.string.map_activity_captura) + " " + fotos.get(j).fecha));
-                    // Marker marker = map.addMarker(new MarkerOptions().position(location)
-                    //       .icon(BitmapDescriptorFactory.fromBitmap(bmp))
-                    //     .anchor(0.5f, 1).title(" "+location.latitude+" , "+location.longitude));
-                    //marker.showInfoWindow();
-                    data.put(marker, fotos.get(j));
-                }
-            }
-            if (puntos.size() > 2) {
-                LatLng masAlto = null;
-                LatLng masBajo = null;
-                LatLng masDer = null;
-                LatLng masIzq = null;
-                double maxX = 0;
-                double minX = 0;
-                double minY = 0;
-                double maxY = 0;
-                for (int i = 0; i < puntos.size(); i++) {
-                    double x1 = (puntos.get(i).longitude + 180) * 360;
-                    double y1 = (puntos.get(i).latitude + 90) * 180;
-                    if (minX == 0) {
-                        minX = x1;
-                        masIzq = puntos.get(i);
-                    }
-                    if (minY == 0) {
-                        minY = y1;
-                        masBajo = puntos.get(i);
-                    }
-                    if (maxX == 0) {
-                        maxX = x1;
-                        masDer = puntos.get(i);
-                    }
-                    if (maxY == 0) {
-                        maxY = y1;
-                        masAlto = puntos.get(i);
-                    }
-                    if (x1 > maxX) {
-                        maxX = x1;
-                        masDer = puntos.get(i);
-                    }
-                    if (y1 > maxY) {
-                        maxY = y1;
-                        masAlto = puntos.get(i);
-                    }
-                    if (x1 < minX) {
-                        minX = x1;
-                        masIzq = puntos.get(i);
-                    }
-                    if (y1 < minY) {
-                        minY = y1;
-                        masBajo = puntos.get(i);
-                    }
-
-                }
-                // System.out.println("mas alto "+masAlto.latitude+" , "+masDer.longitude);
-                // System.out.println("mas izq "+masIzq.latitude+" , "+masIzq.longitude);
-                // System.out.println("mas bajo "+masBajo.latitude+" , "+masDer.longitude);
-                // System.out.println("mas der "+masDer.latitude+" , "+masDer.longitude);
-
-                puntosfinal.add(masAlto);
-                puntosfinal.add(masIzq);
-                puntosfinal.add(masBajo);
-                puntosfinal.add(masDer);
-                double maxDis = distancia(masAlto, masBajo);
-
-                for (int i = 0; i < puntosfinal.size() - 1; i++) {
-                    LatLng current = puntosfinal.get(i);
-                    poly.add(current);
-                    LatLng next = puntosfinal.get(i + 1);
-                    double x1 = (current.longitude + 180) * 360;
-                    double y1 = (current.latitude + 90) * 180;
-                    double x2 = (next.longitude + 180) * 360;
-                    double y2 = (next.latitude + 90) * 180;
-                    LatLng nuevo = null;
-                    double nuevoX = 0;
-                    switch (i) {
-                        case 0:
-                            nuevo = null;
-                            nuevoX = 0;
-                            // System.out.println("current "+current.latitude+" ; "+current.longitude+"  --->  "+x1+" ; "+y1);
-                            //System.out.println("next "+next.latitude+" ; "+next.longitude+"  --->  "+x2+" ; "+y2);
-                            for (int j = 0; j < puntos.size(); j++) {
-                                if (puntos.get(j) != masIzq) {
-                                    double x3 = (puntos.get(j).longitude + 180) * 360;
-                                    double y3 = (puntos.get(j).latitude + 90) * 180;
-                                    // System.out.println("ietracion "+puntos.get(j).latitude+" ; "+puntos.get(j).longitude+"  --->  "+x3+" ; "+y3);
-                                    if (x3 < x1 && y2 < y3) {
-                                        //System.out.println("paso es mas!");
-                                        if (nuevo == null) {
-                                            nuevo = puntos.get(j);
-                                            nuevoX = x3;
-                                        } else {
-                                            if (x3 < nuevoX) {
-                                                nuevo = puntos.get(j);
-                                                nuevoX = x3;
-                                            }
-                                        }
-                                    }
-                                }
-
-                            }
-                            if (nuevo != null)
-                                poly.add(nuevo);
-                            break;
-                        case 1:
-                            nuevo = null;
-                            nuevoX = 0;
-                            // System.out.println("current "+current.latitude+" ; "+current.longitude+"  --->  "+x1+" ; "+y1);
-                            //System.out.println("next "+next.latitude+" ; "+next.longitude+"  --->  "+x2+" ; "+y2);
-                            for (int j = 0; j < puntos.size(); j++) {
-                                if (puntos.get(j) != masBajo) {
-                                    double x3 = (puntos.get(j).longitude + 180) * 360;
-                                    double y3 = (puntos.get(j).latitude + 90) * 180;
-                                    // System.out.println("ietracion "+puntos.get(j).latitude+" ; "+puntos.get(j).longitude+"  --->  "+x3+" ; "+y3);
-                                    if (x3 < x2 && y3 > y2) {
-                                        //System.out.println("paso es mas!");
-                                        if (nuevo == null) {
-                                            nuevo = puntos.get(j);
-                                            nuevoX = x3;
-                                        } else {
-                                            if (x3 < nuevoX) {
-                                                nuevo = puntos.get(j);
-                                                nuevoX = x3;
-                                            }
-                                        }
-                                    }
-                                }
-
-                            }
-                            if (nuevo != null)
-                                poly.add(nuevo);
-                            break;
-                        case 2:
-                            nuevo = null;
-                            nuevoX = 0;
-                            // System.out.println("current "+current.latitude+" ; "+current.longitude+"  --->  "+x1+" ; "+y1);
-                            //System.out.println("next "+next.latitude+" ; "+next.longitude+"  --->  "+x2+" ; "+y2);
-                            for (int j = 0; j < puntos.size(); j++) {
-                                if (puntos.get(j) != masAlto) {
-                                    double x3 = (puntos.get(j).longitude + 180) * 360;
-                                    double y3 = (puntos.get(j).latitude + 90) * 180;
-                                    // System.out.println("ietracion "+puntos.get(j).latitude+" ; "+puntos.get(j).longitude+"  --->  "+x3+" ; "+y3);
-                                    if (x3 > x1 && y3 > y1) {
-                                        //System.out.println("paso es mas!");
-                                        if (nuevo == null) {
-                                            nuevo = puntos.get(j);
-                                            nuevoX = x3;
-                                        } else {
-                                            if (x3 > nuevoX) {
-                                                nuevo = puntos.get(j);
-                                                nuevoX = x3;
-                                            }
-                                        }
-                                    }
-                                }
-
-                            }
-                            if (nuevo != null)
-                                poly.add(nuevo);
-                            break;
-                    }
-
-                }
-                Polygon polygon = map.addPolygon(poly);
-            }
-
-
-            LatLngBounds bounds = builder.build();
-            CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
-            map.animateCamera(cu);
-            showMap();
-            setTitle(getString(R.string.captura_nombre_especie_label) + ": " + especie.nombre);
-
-        }
-    */
     public double pendiente(LatLng p1, LatLng p2) {
         double x1 = (p1.longitude + 180) * 360;
         double y1 = (p1.latitude + 90) * 180;
@@ -1195,19 +918,18 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     }
 
 
-
     /*Service de rutas*/
     class IncomingHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case SvtService.MSG_SET_INT_VALUE:
-                    System.out.println("Int Message: " + msg.arg1);
+//                    System.out.println("Int Message: " + msg.arg1);
                     break;
                 case SvtService.MSG_SET_STRING_VALUE:
                     String str1 = msg.getData().getString("str1");
 //                    textStrValue.setText("Str Message: " + str1);
-                    System.out.println("Str  Message: " + msg.arg1);
+//                    System.out.println("Str  Message: " + msg.arg1);
                     break;
                 case SvtService.MSG_SET_COORDS:
                     Double latitud = msg.getData().getDouble("latitud");
@@ -1235,8 +957,8 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                             foto.save();
                             fotos.add(foto);
                             int[] res = Utils.getSize(screenWidth);
-                            int w = res[0]+res[2];
-                            int h =res[1]+res[3];
+                            int w = res[0] + res[2];
+                            int h = res[1] + res[3];
                             Bitmap bmp = Bitmap.createBitmap(w, h, conf);
                             Canvas canvas1 = new Canvas(bmp);
                             Paint color = new Paint();
@@ -1338,6 +1060,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         return null;
 
     }
+
     public Bitmap getFotoDialogString(InputStream io, int width, int heigth) {
         if (io != null) {
             // System.out.println("path "+imageItem.imagePath);
@@ -1430,8 +1153,8 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         map.animateCamera(update);
         polyLine = map.addPolyline(rectOptions);
         int[] res = Utils.getSize(screenWidth);
-        int w =res[0]+res[2];
-        int h =res[1]+res[3];
+        int w = res[0] + res[2];
+        int h = res[1] + res[3];
         for (int i = 0; i < fotos.size(); i++) {
             Bitmap.Config conf = Bitmap.Config.ARGB_8888;
             Bitmap bmp = Bitmap.createBitmap(w, h, conf);
@@ -1464,15 +1187,15 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     }
 
 
-    public void showSearchResults(final List<SearchResult> results,final ProgressDialog dialog){
+    public void showSearchResults(final List<SearchResult> results, final ProgressDialog dialog) {
         Handler handler = new Handler(Looper.getMainLooper());
         handler.post(new Runnable() {
             @Override
             public void run() {
                 dialog.dismiss();
-                result=results;
+                result = results;
                 ListFragment fragment = new BusquedaTropicosResult();
-                Utils.openFragment((MapActivity)activity, fragment, getString(R.string.busqueda_title));
+                Utils.openFragment((MapActivity) activity, fragment, getString(R.string.busqueda_title));
             }
         });
 

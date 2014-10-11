@@ -53,8 +53,6 @@ public class CoordenadaDbHelper extends DbHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_COORDENADA + " WHERE "
                 + KEY_ID + " = " + coordenada_id;
 
-        logQuery(LOG, selectQuery);
-
         Cursor c = db.rawQuery(selectQuery, null);
         Coordenada cd = null;
         if (c.getCount() > 0) {
@@ -69,8 +67,6 @@ public class CoordenadaDbHelper extends DbHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         List<Coordenada> coordenadas = new ArrayList<Coordenada>();
         String selectQuery = "SELECT  * FROM " + TABLE_COORDENADA;
-
-        logQuery(LOG, selectQuery);
 
         Cursor c = db.rawQuery(selectQuery, null);
 
@@ -92,8 +88,6 @@ public class CoordenadaDbHelper extends DbHelper {
         List<Coordenada> coordenadas = new ArrayList<Coordenada>();
         String selectQuery = "SELECT  * FROM " + TABLE_COORDENADA +
                 " WHERE " + KEY_RUTA + " = " + ruta.id;
-
-        logQuery(LOG, selectQuery);
 
         Cursor c = db.rawQuery(selectQuery, null);
 
@@ -117,8 +111,6 @@ public class CoordenadaDbHelper extends DbHelper {
                 " WHERE " + KEY_LATITUD + " = " + lat +
                 " AND " + KEY_LONGITUD + " = " + lon +
                 " AND " + KEY_ALTITUD + " = " + alt;
-
-        logQuery(LOG, selectQuery);
 
         Cursor c = db.rawQuery(selectQuery, null);
 

@@ -48,12 +48,12 @@ public class ImageDownloader implements Runnable {
         String SetServerString = "";
 
         // Create Request to server and get response
-        System.out.println("url  "+urlstr);
+//        System.out.println("url  "+urlstr);
         try {
             HttpGet httpget = new HttpGet(urlstr);
             ResponseHandler<String> responseHandler = new BasicResponseHandler();
             SetServerString = Client.execute(httpget, responseHandler);
-            System.out.println("response "+SetServerString);
+//            System.out.println("response "+SetServerString);
 
             JSONArray arr = new JSONArray(SetServerString);
             if(arr.length()>0) {
@@ -71,15 +71,10 @@ public class ImageDownloader implements Runnable {
                     ExecutorService queue = Executors.newSingleThreadExecutor();
                     queue.execute(new FotoDownloader((MapActivity)context, current,  img,  obj.getString("ImageId"), dialog));
                 }
-
-
             }
-
-
         } catch (Exception e) {
             e.printStackTrace();
             context.showError(dialog,context.getString(R.string.search_no_results));
         }
-
     }
 }

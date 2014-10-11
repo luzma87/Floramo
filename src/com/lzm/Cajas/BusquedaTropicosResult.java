@@ -23,9 +23,6 @@ public class BusquedaTropicosResult extends ListFragment {
         activity = (MapActivity) getActivity();
 
         result = activity.result;
-
-
-
         BusquedaTropicosResultAdater adapter = new BusquedaTropicosResultAdater(getActivity(), result);
         setListAdapter(adapter);
     }
@@ -33,12 +30,9 @@ public class BusquedaTropicosResult extends ListFragment {
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-
         activity.posSearch=position;
         Fragment fragment = new ResultInfoFragment();
         Utils.openFragment(activity, fragment, getString(R.string.tropicos));
-
-
     }
 
     @Override

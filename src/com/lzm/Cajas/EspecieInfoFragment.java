@@ -90,8 +90,6 @@ public class EspecieInfoFragment extends Fragment implements Button.OnClickListe
         txtEspecieInfoGenero.setText(especie.genero);
         txtEspecieInfoEspecie.setText(especie.nombre);
 
-        String color1 = "", color2 = "";
-        String formaVida1 = "", formaVida2 = "";
         txtEspecieInfoColor1.setText(Utils.getStringResourceByName(context, "global_color_" + especie.color1));
         if (especie.color2 != null && !especie.color2.equals("none") && !especie.color2.equals("")) {
             txtEspecieInfoColor2.setText(Utils.getStringResourceByName(context, "global_color_" + especie.color2));
@@ -170,29 +168,6 @@ public class EspecieInfoFragment extends Fragment implements Button.OnClickListe
                 i++;
             }
         }
-
-//        if (vert) {
-//            //la foto es vertical
-//            TextView t = (TextView) view.findViewById(R.id.especie_info_color_lbl);
-//            RelativeLayout.LayoutParams p = (RelativeLayout.LayoutParams) t.getLayoutParams();
-//            p.addRule(RelativeLayout.ALIGN_START, R.id.especie_info_especie_lbl);
-//            t.setLayoutParams(p);
-//        } else {
-//            //la foto es horizontal
-//            TextView t = (TextView) view.findViewById(R.id.especie_info_color_lbl);
-//            RelativeLayout.LayoutParams p = (RelativeLayout.LayoutParams) t.getLayoutParams();
-//            p.setMargins(0, 10, 0, 0);
-//            t.setLayoutParams(p);
-//
-//            p = (RelativeLayout.LayoutParams) t.getLayoutParams();
-//            p.setMargins(0, 10, 0, 0);
-//            p.addRule(RelativeLayout.ALIGN_PARENT_START, RelativeLayout.TRUE);
-//            t.setLayoutParams(p);
-//
-//            p = (RelativeLayout.LayoutParams) imgEspecieInfoImagen.getLayoutParams();
-//            p.setMargins(0, 10, 0, 0);
-//            imgEspecieInfoImagen.setLayoutParams(p);
-//        }
         return view;
     }
 
@@ -284,12 +259,8 @@ public class EspecieInfoFragment extends Fragment implements Button.OnClickListe
     }
 
     private void setFoto(ImageView img, EditText txt) {
-//        System.out.println("SET FOTO " + fotoPos);
         if (fotos != null) {
             String comentarios = "";
-//            while (comentarios.length() < 15000) {
-//                comentarios += " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ultricies luctus imperdiet. Pellentesque libero erat, laoreet ac magna sit amet, blandit vulputate nisl. Nam dignissim non velit eget cursus. Aenean dui metus, vehicula a leo quis, tincidunt gravida est. Fusce semper nec purus quis consectetur. Vestibulum risus felis, accumsan vitae nulla eu, fringilla vulputate lectus. Nam scelerisque magna vel sollicitudin molestie. Nulla venenatis ipsum sem, nec dignissim lacus vestibulum eget. ";
-//            }
             if (comentarios != null) {
                 comentarios = comentarios.trim();
             }
@@ -301,8 +272,6 @@ public class EspecieInfoFragment extends Fragment implements Button.OnClickListe
             } else {
                 img.setImageResource(Utils.getImageResourceByName(context, path1));
             }
-//            img.setImageBitmap(context.getFotoDialog(foto, context.screenWidth, 300));
-//            img.setImageBitmap(ImageUtils.decodeFile(foto.path, context.screenWidth, 300));
             if (comentarios == null || comentarios.equals("")) {
                 txt.setVisibility(View.GONE);
             } else {
@@ -310,7 +279,6 @@ public class EspecieInfoFragment extends Fragment implements Button.OnClickListe
                 txt.setSelection(txt.getText().length());
                 txt.setVisibility(View.VISIBLE);
             }
-//        dialogTitle = R.string.encyclopedia_entries_dialog_title + " (" + (fotoPos + 1) + "/" + fotos.size() + ")";
         }
     }
 

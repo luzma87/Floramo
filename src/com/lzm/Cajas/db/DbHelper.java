@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Environment;
-import android.util.Log;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -50,15 +49,11 @@ public class DbHelper extends SQLiteOpenHelper {
     public DbHelper(Context context) {
         super(context, DB_PATH + DATABASE_NAME, null, DATABASE_VERSION);
         new File(DB_PATH).mkdirs();
-//        System.out.println("DB HELPER " + DB_PATH + DATABASE_NAME);
         this.context = context;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-//        System.out.println(" >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> AQUI <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-        Log.e("DBHELPER", "DBHELPER ON CREATE");
-
         db.execSQL(createTableSql(TABLE_COLOR, KEYS_COMMON, ColorDbHelper.KEYS_COLOR));
         db.execSQL(createTableSql(TABLE_ESPECIE, KEYS_COMMON, EspecieDbHelper.KEYS_ESPECIE));
         db.execSQL(createTableSql(TABLE_FAMILIA, KEYS_COMMON, FamiliaDbHelper.KEYS_FAMILIA));
@@ -97,7 +92,6 @@ public class DbHelper extends SQLiteOpenHelper {
             }
         }
         sql += ")";
-        //System.out.println("crear sql create " + sql);
         return sql;
     }
 

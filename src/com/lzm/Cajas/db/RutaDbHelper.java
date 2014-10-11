@@ -49,8 +49,6 @@ public class RutaDbHelper extends DbHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_RUTA + " WHERE "
                 + KEY_ID + " = " + ruta_id;
 
-        logQuery(LOG, selectQuery);
-
         Cursor c = db.rawQuery(selectQuery, null);
         Ruta rt = null;
         if (c != null) {
@@ -65,8 +63,6 @@ public class RutaDbHelper extends DbHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         List<Ruta> rutas = new ArrayList<Ruta>();
         String selectQuery = "SELECT  * FROM " + TABLE_RUTA;
-
-        logQuery(LOG, selectQuery);
 
         Cursor c = db.rawQuery(selectQuery, null);
 

@@ -34,23 +34,14 @@ public class RutasListAdapter extends ArrayAdapter<Ruta> {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.encylopedia_entries_row, parent, false);
-//        System.out.println(rowView);
 
-//        TextView textViewNombre = (TextView) rowView.findViewById(R.id.encyclopedia_rutas_row_nombre_comun);
         TextView textViewComentarios = (TextView) rowView.findViewById(R.id.encyclopedia_entries_row_comentarios);
         ImageView imageView = (ImageView) rowView.findViewById(R.id.encyclopedia_entries_row_image);
-
-//        System.out.println("POS " + position + "  " + rutas.size());
 
         Ruta selected = rutas.get(position);
         String titulo;
         titulo=selected.descripcion+"\n";
         titulo+=selected.fecha;
-
-
-//        while (comentarios.length() < 150) {
-//            comentarios += " Lorem ipsum dolor sit amet ";
-//        }
 
         if (titulo.length() > 127) {
             titulo = titulo.substring(0, 127) + "...";
@@ -62,18 +53,13 @@ public class RutasListAdapter extends ArrayAdapter<Ruta> {
             foto = fotos.get(0);
             File imgFile = new File(foto.path);
             if (imgFile.exists()) {
-//            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
                 Bitmap myBitmap = ImageUtils.decodeBitmap(imgFile.getAbsolutePath(), 100, 100);
                 imageView.setImageBitmap(myBitmap);
             }
         }else{
             imageView.setImageResource(R.drawable.ic_launcher);
-
         }
         textViewComentarios.setText(titulo);
-
-
-
         return rowView;
     }
 

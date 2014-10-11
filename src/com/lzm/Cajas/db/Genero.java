@@ -1,7 +1,6 @@
 package com.lzm.Cajas.db;
 
 import android.content.Context;
-import android.util.Log;
 
 import java.text.Normalizer;
 import java.util.List;
@@ -108,7 +107,6 @@ public class Genero {
         } else if (listGeneros.size() == 1) {
             genero = listGeneros.get(0);
         } else {
-            Log.e("getByNombreOrCreate genero", "Se encontraron " + listGeneros.size() + " generos con nombre " + nombreGenero);
             genero = listGeneros.get(0);
         }
         return genero;

@@ -1,22 +1,23 @@
 package com.lzm.Cajas;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
-import android.graphics.Color;
-import android.graphics.ColorMatrix;
-import android.graphics.Rect;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
-import android.view.*;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.*;
 import com.lzm.Cajas.adapters.EncyclopediaGridListAdapter;
 import com.lzm.Cajas.db.Especie;
 import com.lzm.Cajas.utils.Utils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by DELL on 23/07/2014.
@@ -46,6 +47,8 @@ public class EnciclopediaGridFragment extends Fragment implements Button.OnClick
 
     LinearLayout indexLayout;
 
+    List<Especie> especies;
+
     public EnciclopediaGridFragment() {
 
     }
@@ -53,14 +56,6 @@ public class EnciclopediaGridFragment extends Fragment implements Button.OnClick
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         context = (MapActivity) getActivity();
-
-        /*
-        ColorStateList oldColors =  textView.getTextColors(); //save original colors
-        textView.setTextColor(Color.RED);
-        ....
-        textView.setTextColor(oldColors);//restore original colors
-         */
-
         pathFolder = Utils.getFolder(context);
 
         sort = "f";
@@ -86,22 +81,15 @@ public class EnciclopediaGridFragment extends Fragment implements Button.OnClick
         btnSort.setOnClickListener(this);
         btnOrder = (Button) view.findViewById(R.id.encyclopedia_order_btn);
         btnOrder.setOnClickListener(this);
-//        ViewTreeObserver vto = btnOrder.getViewTreeObserver();
-//        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-//            @Override
-//            public void onGlobalLayout() {
-//                Log.d("TEST", "Height = " + btnOrder.getHeight() + " Width = " + btnOrder.getWidth());
-//                ViewTreeObserver obs = btnOrder.getViewTreeObserver();
-//                obs.removeGlobalOnLayoutListener(this);
-//            }
-//        });
 
         listView = (ListView) view.findViewById(R.id.encyclopedia_list);
         ViewTreeObserver vto2 = listView.getViewTreeObserver();
         vto2.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                listHeight = listView.getHeight();
+                if (listHeight == 0) {
+                    listHeight = listView.getHeight();
+                }
                 displayIndex();
                 ViewTreeObserver obs = listView.getViewTreeObserver();
                 obs.removeGlobalOnLayoutListener(this);
@@ -110,11 +98,66 @@ public class EnciclopediaGridFragment extends Fragment implements Button.OnClick
 
         loadData();
 
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+                                           int pos, long id) {
+                // TODO Auto-generated method stub
+                final int positionToRemove = pos;
+                final Especie selected = especies.get(positionToRemove);
+                if (selected.esMia == 1) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    // Chain together various setter methods to set the dialog characteristics
+                    builder.setMessage(R.string.enciclopedia_dlg_delete_contenido)
+                            .setTitle(R.string.enciclopedia_dlg_delete_title);
+
+                    // Add the buttons
+                    builder.setPositiveButton(R.string.global_ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // User clicked OK button
+
+                            Especie.delete(context, selected);
+                            especies.remove(positionToRemove);
+                            adapter.notifyDataSetChanged();
+
+                            Toast.makeText(getActivity(), getString(R.string.enciclopedia_delete), Toast.LENGTH_LONG).show();
+                        }
+                    });
+                    builder.setNegativeButton(R.string.global_cancel, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // User cancelled the dialog
+                        }
+                    });
+                    // Set other dialog properties
+
+                    // Create the AlertDialog
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+                return true;
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
+                Especie selected = especies.get(pos);
+                Fragment fragment = new EspecieInfoFragment();
+                Bundle args = new Bundle();
+                args.putLong("especie", selected.id);
+                String nombre = selected.genero + " " + selected.nombre + " (" + selected.nombreComun + ")";
+                Utils.openFragment(context, fragment, nombre, args);
+            }
+        });
+
         return view;
     }
 
     private void loadData() {
-        List<Especie> especies = Especie.sortedList(context, sort, order);
+        if (context.enciclopediaPause) {
+            adapter = null;
+            context.enciclopediaPause = false;
+        }
+        especies = Especie.sortedList(context, sort, order);
         if (adapter != null) {
             adapter.clear();
             adapter.addAll(especies);
@@ -154,24 +197,35 @@ public class EnciclopediaGridFragment extends Fragment implements Button.OnClick
         indexLayout.removeAllViews();
 
         int totalH = listHeight;
-
         int totalItems = indexList.size();
-        int h = (totalH / totalItems);
 
-        for (String index : indexList) {
-            LayoutInflater inflater = LayoutInflater.from(context);
-            TextView textView = (TextView) inflater.inflate(R.layout.encyclopedia_grid_side_index_item, null);
-            textView.setText(index);
-            textView.setHeight(h);
-            textView.setOnClickListener(this);
-            indexLayout.addView(textView);
+        if (totalH > 0 && totalItems > 0) {
+            int h = (totalH / totalItems);
+            for (String index : indexList) {
+                LayoutInflater inflater = LayoutInflater.from(context);
+                TextView textView = (TextView) inflater.inflate(R.layout.encyclopedia_grid_side_index_item, null);
+                textView.setText(index);
+                textView.setHeight(h);
+                textView.setOnClickListener(this);
+                indexLayout.addView(textView);
+            }
         }
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        if (context.enciclopediaListHeight != 0 && context.enciclopediaListHeight != listHeight) {
+            listHeight = context.enciclopediaListHeight;
+        }
         context.setTitle(R.string.encyclopedia_title);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        context.enciclopediaListHeight = listHeight;
+        context.enciclopediaPause = true;
     }
 
     @Override

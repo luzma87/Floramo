@@ -53,8 +53,6 @@ public class LugarDbHelper extends DbHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_LUGAR + " WHERE "
                 + KEY_ID + " = " + lugar_id;
 
-        logQuery(LOG, selectQuery);
-
         Cursor c = db.rawQuery(selectQuery, null);
         Lugar cl = null;
         if (c.getCount() > 0) {
@@ -69,8 +67,6 @@ public class LugarDbHelper extends DbHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<Lugar> lugares = new ArrayList<Lugar>();
         String selectQuery = "SELECT  * FROM " + TABLE_LUGAR;
-
-        logQuery(LOG, selectQuery);
 
         Cursor c = db.rawQuery(selectQuery, null);
 
@@ -92,8 +88,6 @@ public class LugarDbHelper extends DbHelper {
         List<Lugar> lugares = new ArrayList<Lugar>();
         String selectQuery = "SELECT  * FROM " + TABLE_LUGAR +
                 " WHERE " + KEY_NOMBRE + " = '" + lugar + "'";
-
-        logQuery(LOG, selectQuery);
 
         Cursor c = db.rawQuery(selectQuery, null);
 

@@ -29,10 +29,6 @@ public class EncyclopediaSecondLevelAdapter extends BaseExpandableListAdapter {
     MapActivity context;
     EncyclopediaSecondLevelListView vista;
 
-//    int total;
-//    Vector<Especie> vEspecies;
-//    Vector<ImageView> vImageViews;
-
     public EncyclopediaSecondLevelAdapter(MapActivity context, int position, List<Genero> generos, EncyclopediaSecondLevelListView vista) {
         this.context = context;
         this.position = position;
@@ -50,7 +46,6 @@ public class EncyclopediaSecondLevelAdapter extends BaseExpandableListAdapter {
     }
 
     public Especie getEspecie(int pos) {
-        System.out.println("wtf");
         List<Especie> especies = Especie.findAllByGenero(context, getGenero(position));
         return especies.get(pos);
     }
@@ -63,14 +58,12 @@ public class EncyclopediaSecondLevelAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         Genero genero = getGenero(position);
-        //List<Especie> especies = Especie.findAllByGenero(context, genero);
         Especie especie = especies.get(childPosition);
 
         Foto foto = Foto.findByEspecie(context, especie);
 
         int cantFotos = Foto.countByEspecie(context, especie);
         String labelNombreCientifico = genero.nombre + " " + especie.nombre;
-        String labelNombreComun = especie.nombreComun;
         String labelCantFotos = "" + cantFotos;
 
         if (convertView == null) {
@@ -87,19 +80,9 @@ public class EncyclopediaSecondLevelAdapter extends BaseExpandableListAdapter {
         TextView itemColor1 = (TextView) convertView.findViewById(R.id.encyclopedia_group_item_nivel_3_color1);
         TextView itemColor2 = (TextView) convertView.findViewById(R.id.encyclopedia_group_item_nivel_3_color2);
 
-//        vEspecies.add(especie);
-//        vImageViews.add(itemFoto);
-//        if (especies.size() == total) {
-//            ExecutorService queue = Executors.newSingleThreadExecutor();
-//            queue.execute(new ImageLoader(context, vImageViews, vEspecies));
-//        }
-
         itemNombreCientifico.setText(labelNombreCientifico);
         itemCantFotos.setText(labelCantFotos);
         if (foto != null) {
-//            itemFoto.setImageBitmap(ImageUtils.decodeFile(foto.path, 100, 100, true));
-//            int imageId = getResources().getIdentifier(planet.toLowerCase(Locale.getDefault()),
-//                    "drawable", getActivity().getPackageName());
             if (foto.esMia == 1) {
                 itemFoto.setImageBitmap(ImageUtils.decodeFile(foto.path, 100, 100, false));
             } else {
@@ -108,24 +91,18 @@ public class EncyclopediaSecondLevelAdapter extends BaseExpandableListAdapter {
                 itemFoto.setImageResource(Utils.getImageResourceByName(context, path));
             }
         }
-
-        FormaVida f1 = especie.getFormaVida1(context);
-        FormaVida f2 = especie.getFormaVida2(context);
-
-        itemFv1.setImageResource(Utils.getImageResourceByName(context, "ic_fv_" + f1.nombre));
+        itemFv1.setImageResource(Utils.getImageResourceByName(context, "ic_fv_" + especie.formaVida1));
         itemFv1.setVisibility(View.VISIBLE);
-        if (f2 != null && !f2.nombre.equals("none")) {
-            itemFv2.setImageResource(Utils.getImageResourceByName(context, "ic_fv_" + f2.nombre));
+        if (especie.formaVida2 != null && !especie.formaVida2.equals("none")) {
+            itemFv2.setImageResource(Utils.getImageResourceByName(context, "ic_fv_" + especie.formaVida2));
             itemFv2.setVisibility(View.VISIBLE);
         } else {
             itemFv2.setVisibility(View.GONE);
         }
 
-        Color color1 = especie.getColor1(context);
-        Color color2 = especie.getColor2(context);
-        itemColor1.setText(Utils.getStringResourceByName(context, "global_color_" + color1.nombre));
-        if (color2 != null && !color2.nombre.equals("none")) {
-            itemColor2.setText(Utils.getStringResourceByName(context, "global_color_" + color2.nombre));
+        itemColor1.setText(Utils.getStringResourceByName(context, "global_color_" + especie.color1));
+        if (especie.color2 != null && !especie.color2.equals("none")) {
+            itemColor2.setText(Utils.getStringResourceByName(context, "global_color_" + especie.color2));
             itemColor2.setVisibility(View.VISIBLE);
         } else {
             itemColor2.setVisibility(View.GONE);
@@ -136,15 +113,9 @@ public class EncyclopediaSecondLevelAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        //System.out.println("count!!!");
-
         Genero genero = getGenero(position);
         especies = Especie.findAllByGenero(context, genero);
         vista.especies = especies;
-//        total = especies.size();
-//        vEspecies = new Vector<Especie>();
-//        vImageViews = new Vector<ImageView>();
-//        System.out.println("pos=" + position + " gp=" + groupPosition + "  gen=" + genero.nombre + " count=" + Especie.countByGenero(context, genero));
         return especies.size();
     }
 
@@ -165,22 +136,12 @@ public class EncyclopediaSecondLevelAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-//        TextView tv = new TextView(context);
-//        tv.setText("-->Second Level " + groupPosition + " " + nivel2[position]);
-//        tv.setTextColor(Color.BLACK);
-//        tv.setTextSize(20);
-//        tv.setPadding(12, 7, 7, 7);
-//        tv.setBackgroundColor(Color.RED);
-//        tv.setLayoutParams(new ListView.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
-//        return tv;
-
         String label = generos.get(position).nombre;
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.encyclopedia_nivel_2, null);
         }
         TextView item = (TextView) convertView.findViewById(R.id.encyclopedia_group_item_nivel_2_lbl);
-//        item.setTypeface(null, Typeface.BOLD);
         item.setText(label);
         return convertView;
     }

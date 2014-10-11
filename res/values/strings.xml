@@ -15,8 +15,8 @@
   -->
 
 <resources>
-    <string name="bugs_mail">luz.unda@yahoo.com</string>
-    <string name="comments_mail">luz.unda@yahoo.com</string>
+    <string name="bugs_mail">nth.development@gmail.com</string>
+    <string name="comments_mail">nth.development@gmail.com</string>
 
     <string name="app_name">Flóramo</string>
     <string name="db_name">Floramo</string>
@@ -51,21 +51,17 @@
     <string name="tools_title">Herramientas</string>
     <string name="busqueda_title">Búsqueda</string>
     <string name="rutas_title">Rutas</string>
-    <string name="login_title">Ingresar</string>
-    <string name="ikiam_web_title">Ikiam web</string>
-    <string name="logro_title">Logros</string>
     <string name="notepad_title">Notas</string>
     <string name="nota_create_title">Nueva nota</string>
     <string name="nota_edit_title">Modificar nota</string>
     <string name="especie_info_title">Info. especie</string>
-    <string name="estadisticas_title">Estadísticas</string>
 
     <string-array name="options_array">
         <item>Mapa</item>
         <item>Enciclopedia</item>
         <item>Nueva captura</item>
         <item>Rutas</item>
-        <item>Tropicos</item>
+        <item>Tropicos ®</item>
         <item>Notas</item>
         <item>Nueva nota</item>
         <item>Herramientas</item>
@@ -75,13 +71,28 @@
     <string name="drawer_close">Cerrar menú de navegación</string>
     <string name="search_btn_label">Búsqueda</string>
 
-    <string name="help_help">help_help</string>
-    <string name="help_captura">Ayuda captura</string>
-    <string name="help_enciclopedia">Ayuda enciclopedia</string>
-    <string name="help_notepad">Ayuda notas</string>
-    <string name="help_configuracion">Ayuda configuracion</string>
-    <string name="help_busqueda">Ayuda búsqueda</string>
-    <string name="help_tools">Ayuda tools</string>
+    <string name="help_help">Ayuda</string>
+    <string name="help_captura">"Esta pantalla permite agregar nuevas especies o nuevas fotos a especies existentes."</string>
+    <string name="help_enciclopedia">"Esta pantalla muestra todas las especies. Existen 2 vistas de la enciclopedia que se pueden cambiar con el botón en la parte inferior derecha de la pantalla:
+La primera muestra una lista con 3 niveles de desplegables. El primer nivel corresponde a la familia, el segundo al género, el tercero a la especie.
+
+La segunda es una lista de las especies donde se pueden ver el nombre científico y la familia. Están ordenadas por familia.
+Al presionar el botón de la parte inferior izquierda se cambia entre 'Familia' y 'Nombre científico'. Esto cambia la manera de ordenar las especies.
+El siguiente botón permite cambiar entre orden ascendente y descendente.
+En esta segunda vista se muestra de un color diferente la letra de las especies ingresadas por el usuario.
+Manteniendo presionada la especie se la puede eliminar.
+
+En ambas vistas al presionar un registro de especie se muestra su información detallada."</string>
+    <string name="help_notepad">"Esta pantalla permite escribir y guardar notas."</string>
+    <string name="help_configuracion">"Esta pantalla permite ver la información del Parque Nacional Cajas, los créditos y la información de la aplicación.
+También permite enviar sugerencias o comentarios y reportar errores."</string>
+    <string name="help_busqueda">"Esta pantalla permite buscar las especies de la enciclopedia del teléfono utilizando filtros."</string>
+    <string name="help_tools">"Esta pantalla muestra una brújula básica, así como las coordenadas y la  altitud a la que se encuentra el usuario."</string>
+    <string name="help_map">"Esta pantalla muestra el mapa. En este se puede iniciar el registro de una ruta y se pueden ver todas las especies regstradas.
+El botón 'Tipo' permite cambiar el tipo de mapa."</string>
+    <string name="help_rutas">"Esta pantalla muestra la lista de las rutas registradas. Al presionar un registro se muestra la información detallada de esa ruta."</string>
+    <string name="help_tropicos">"Esta pantalla permite efectuar búsquedas directamente en el servidor de Tropicos ® utilizando filtros.
+Se muestra un máximo de 10 resultados. En la lista, al presionar un registro se muestra su información detallada. Esta funcionalidad requiere una conexión a internet."</string>
 
     <string name="dialog_btn_cerrar">Cerrar</string>
     <string name="dialog_btn_anterior">Anterior</string>
@@ -91,7 +102,6 @@
     <string name="global_no">No</string>
     <string name="global_ok">Aceptar</string>
     <string name="global_save">Guardar</string>
-    <string name="global_upload">Guardar y enviar al servidor</string>
     <string name="global_cancel">Cancelar</string>
     <string name="global_placeHolder">placeHolder</string>
     <string name="global_min">min.</string>
@@ -114,7 +124,7 @@
     <string name="global_forma_vida_herb">Hierba</string>
     <string name="global_forma_vida_grass">Pasto</string>
     <string name="global_forma_vida_rosette">Roseta</string>
-    <string name="global_forma_vida_acquatic">Acuática</string>
+    <string name="global_forma_vida_aquatic">Acuática</string>
     <string name="global_forma_vida_liana">Bejuco</string>
     <string name="global_forma_vida_tree">Árbol</string>
 
@@ -128,17 +138,15 @@
     <string name="captura_nombre_cientifico_label">Nombre científico</string>
     <string name="captura_color1_label">Color principal</string>
     <string name="captura_color2_label">Color secundario</string>
-    <string name="captura_cautiverio_label">Especimen en cautiverio</string>
 
     <string name="captura_error_nombre_comun">Por favor, ingresa el nombre común de la especie</string>
     <string name="captura_error_nombre_familia">Por favor, ingresa la familia de la especie</string>
     <string name="captura_error_nombre_genero">Por favor, ingresa el género de la especie</string>
     <string name="captura_error_nombre_especie">Por favor, ingresa el nombre de la especie</string>
-    <string name="captura_error_keywords">Por favor, selecciona un tipo de foto</string>
     <string name="captura_error_seleccion">Por favor, selecciona o toma una foto primero</string>
-    <string name="captura_error_tag_gps">La foto no tiene información geográfica. Ubíquela en el mapa en el siguiente paso.</string>
-    <string name="captura_success_tag_gps">La foto tiene información geográfica. Será ubicada en el mapa.</string>
-    <string name="captura_error_gps_upload">La foto no tiene información geográfica. Por favor súbala después de ubicarla.</string>
+    <string name="captura_error_tag_gps">La foto no tiene información geográfica. </string>
+    <string name="captura_success_tag_gps">La foto tiene información geográfica. </string>
+    <string name="captura_error_gps_upload">La foto no tiene información geográfica.</string>
 
     <string name="captura_success">La foto ha sido guardada.</string>
 
@@ -149,8 +157,8 @@
     <string name="busqueda_radio_or">Búsqueda con OR</string>
     <string name="busqueda_forma_vida">Forma de vida</string>
 
-    <string name="busqueda_info_and">Búsqueda que concuerde con todos los siguientes parámetros:</string>
-    <string name="busqueda_info_or">Búsqueda que concuerde al menos con uno de los siguientes parámetros:</string>
+    <string name="busqueda_info_and">Búsqueda que concuerde con TODOS los siguientes parámetros:</string>
+    <string name="busqueda_info_or">Búsqueda que concuerde con AL MENOS UNO de los siguientes parámetros:</string>
     <string name="busqueda_info_forma_vida">Especies con forma de vida %1$s</string>
     <string name="busqueda_info_color">Especies con color %1$s</string>
     <string name="busqueda_info_nombre">Especies con familia, género o especie que contenga %1$s</string>
@@ -163,7 +171,7 @@
     <string name="nota_create_delete">Nota eliminada</string>
     <string name="nota_create_saved">Nota guardada</string>
 
-    <string name="encyclopedia_especie_info_ver_mapa">Ver habitat</string>
+    <string name="encyclopedia_especie_info_ver_mapa">Ver en el mapa</string>
     <string name="especie_info_altura">Altitud</string>
     <string name="especie_info_altura_min">Altitud mínima</string>
     <string name="especie_info_altura_max">Altitud máxima</string>
@@ -191,9 +199,6 @@
 
     <string name="especies_info_flora">Flora web</string>
     <string name="especie_info_tropicos">Tropicos ®</string>
-    <string name="help_map">help map</string>
-    <string name="help_rutas">help rutas</string>
-    <string name="help_tropicos">help tropicos</string>
 
     <string name="cajas">
 "El Cajas constituye un escenario único en el mundo dentro del inventario de los paisajes lagunares conocidos. En efecto, a pesar de que existan lugares con ciertas similitudes en el planeta, no hay ninguno que combine tanta variedad lacustre asociada con una gran biodiversidad.
@@ -255,7 +260,6 @@ Todos los derechos reservados."
     <string name="bugs_send">Enviar</string>
 
     <string name="bugs_descripcion_error">Por favor ingrese la descripción del error</string>
-    <string name="bugs_contact">E-mail de contacto (opcional)</string>
     <string name="comments_descripcion">Comentarios o sugerencias</string>
     <string name="comments_descripcion_error">Por favor ingrese comentarios o sugerencias</string>
     <string name="bugs_activity_title">Enviar bug</string>
@@ -266,4 +270,7 @@ Todos los derechos reservados."
     <string name="about_title">Acerca de esta aplicación</string>
     <string name="creditos_title">Créditos</string>
     <string name="lugar_title">Acerca del Parque Nacional Cajas</string>
+    <string name="enciclopedia_dlg_delete_contenido">¿Está seguro de querer eliminar esta especie? Se eliminarán también las fotos asociadas (No se eliminarán de la galería del teléfono).</string>
+    <string name="enciclopedia_dlg_delete_title">Eliminar especie</string>
+    <string name="enciclopedia_delete">Especie eliminada exitosamente</string>
 </resources>
