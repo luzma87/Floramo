@@ -146,7 +146,8 @@ public class ToolsFragment extends Fragment implements SensorEventListener {
         // get the angle around the z-axis rotated
 
         float degree = Math.round(event.values[0]);
-        tvHeading.setText("Orientación: " + Float.toString(degree) + " grados");
+//        tvHeading.setText("Orientación: " + Float.toString(degree) + " grados");
+        tvHeading.setText(getString(R.string.tools_heading, Float.toString(degree)));
         // create a rotation animation (reverse turn degree degrees)
         RotateAnimation ra = new RotateAnimation(
                 currentDegree,

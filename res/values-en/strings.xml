@@ -272,4 +272,6 @@ All rights reserved."
     <string name="enciclopedia_dlg_delete_contenido">"Are you sure you want to delete this species? Its pictures will also be deleted (they won't be deleted from your device's gallery)"</string>
     <string name="enciclopedia_dlg_delete_title">Delete species</string>
     <string name="enciclopedia_delete">Species deleted</string>
+    <string name="busqueda_buscar">Search</string>
+    <string name="tools_heading">Heading: %1$s degrees</string>
 </resources>

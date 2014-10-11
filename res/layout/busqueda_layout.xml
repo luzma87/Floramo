@@ -184,7 +184,7 @@
             android:layout_alignParentLeft="false"
             android:layout_alignParentTop="true"
             android:background="?android:attr/selectableItemBackground"
-            android:text="@string/global_upload"
+            android:text="@string/busqueda_buscar"
             android:layout_alignParentBottom="true"
             android:src="@drawable/ic_action_search"
             android:layout_centerHorizontal="true" />

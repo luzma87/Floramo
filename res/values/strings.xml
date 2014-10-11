@@ -273,4 +273,6 @@ Todos los derechos reservados."
     <string name="enciclopedia_dlg_delete_contenido">¿Está seguro de querer eliminar esta especie? Se eliminarán también las fotos asociadas (No se eliminarán de la galería del teléfono).</string>
     <string name="enciclopedia_dlg_delete_title">Eliminar especie</string>
     <string name="enciclopedia_delete">Especie eliminada exitosamente</string>
+    <string name="busqueda_buscar">Buscar</string>
+    <string name="tools_heading">Orientación: %1$s grados</string>
 </resources>
