@@ -27,6 +27,8 @@ public class Utils {
     public static final double FACTOR_H = 21.33;
     /*img mapa width, img mapa heigth, margen para el mapa w y h, width de las fotos en los fragments de show*/
     public static final int[] SIZE_1080 = {160, 90, 10, 36, 400, 224};
+    public static final int[] SIZE_960 = {160, 90, 10, 36, 400, 224};   //540x960 --> Anama
+    public static final int[] SIZE_800 = {160, 90, 10, 36, 400, 224};   //480x800 --> Mate
     public static final int[] SIZE_480 = {76, 40, 9, 18, 150, 84};
     public static final Map<Integer, int[]> size;
 
