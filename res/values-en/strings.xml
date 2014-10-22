@@ -80,7 +80,8 @@ The first view shows an expandable list with 3 levels. The first level shows the
 The second view shows a list of all the species with its scientific name and family. By default, they are ordered by family.
 Pressing the button on the lower left side of the screen toggles its label between 'Family' and 'Scientific name'. This also toggles the ordering of the list accordingly.
 The next button toggles between ascending and descending order.
-This view shows user entered species in a different color. A long tap allows the user to delete it.
+This view shows user entered species in a different color.
+A long tap allows the user to delete it.
 
 In both views, tapping a species will show its details."</string>
     <string name="help_notepad">"This screen allows the user to write and save notes."</string>
@@ -90,7 +91,9 @@ It also allows the user to send comments or suggestions and bug reports."</strin
     <string name="help_tools">"This screen shows a basic compass and the coordinates and altitude of the user."</string>
     <string name="help_map">"This screen shows the map. In it you can start the recording of a route and visualize the species in the device.
 The 'Type' button allow you to change the type of map."</string>
-    <string name="help_rutas">"This screen shows the list of saved routes. Tapping on one shows its details."</string>
+    <string name="help_rutas">"This screen shows the list of saved routes. Tapping on one shows its details.
+A long tap on a route allows the usser to delete it.
+In the detail view of the route, pictures can be deleted by long tapping them."</string>
     <string name="help_tropicos">"This screens allows the user to search species directly on Trópicos ® server.
 It shows a maximum of 10 results. Tapping an item on the list shows its details."</string>
 
@@ -170,6 +173,14 @@ It shows a maximum of 10 results. Tapping an item on the list shows its details.
     <string name="nota_create_dlg_delete_contenido">Are you sure you want to delete this note?</string>
     <string name="nota_create_delete">Note deleted</string>
     <string name="nota_create_saved">Note saved</string>
+
+    <string name="rutas_dlg_delete_title">Delete route</string>
+    <string name="rutas_dlg_delete_contenido">Are you sure you want to delete this route?</string>
+    <string name="rutas_deleted">Route deleted</string>
+
+    <string name="ruta_dlg_delete_foto_title">Delete picture</string>
+    <string name="ruta_dlg_delete_foto_contenido">Are you sure you want to delete this picture?</string>
+    <string name="ruta_foto_deleted">Picture deleted</string>
 
     <string name="encyclopedia_especie_info_ver_mapa">Show in map</string>
     <string name="especie_info_altura">Altitude</string>

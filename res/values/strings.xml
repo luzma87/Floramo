@@ -90,7 +90,9 @@ También permite enviar sugerencias o comentarios y reportar errores."</string>
     <string name="help_tools">"Esta pantalla muestra una brújula básica, así como las coordenadas y la  altitud a la que se encuentra el usuario."</string>
     <string name="help_map">"Esta pantalla muestra el mapa. En este se puede iniciar el registro de una ruta y se pueden ver todas las especies regstradas.
 El botón 'Tipo' permite cambiar el tipo de mapa."</string>
-    <string name="help_rutas">"Esta pantalla muestra la lista de las rutas registradas. Al presionar un registro se muestra la información detallada de esa ruta."</string>
+    <string name="help_rutas">"Esta pantalla muestra la lista de las rutas registradas. Al presionar un registro se muestra la información detallada de esa ruta.
+Manteniendo presionada una ruta se la puede eliminar.
+En los detalles de la ruta uede eliminar una foto manteniéndola presionada."</string>
     <string name="help_tropicos">"Esta pantalla permite efectuar búsquedas directamente en el servidor de Tropicos ® utilizando filtros.
 Se muestra un máximo de 10 resultados. En la lista, al presionar un registro se muestra su información detallada. Esta funcionalidad requiere una conexión a internet."</string>
 
@@ -170,6 +172,14 @@ Se muestra un máximo de 10 resultados. En la lista, al presionar un registro se
     <string name="nota_create_dlg_delete_contenido">¿Está seguro de querer eliminar esta nota?</string>
     <string name="nota_create_delete">Nota eliminada</string>
     <string name="nota_create_saved">Nota guardada</string>
+
+    <string name="rutas_dlg_delete_title">Eliminar ruta</string>
+    <string name="rutas_dlg_delete_contenido">¿Está seguro de querer eliminar esta ruta?</string>
+    <string name="rutas_deleted">Ruta eliminada</string>
+
+    <string name="ruta_dlg_delete_foto_title">Eliminar foto</string>
+    <string name="ruta_dlg_delete_foto_contenido">¿Está seguro de querer eliminar esta foto?</string>
+    <string name="ruta_foto_deleted">Foto eliminada</string>
 
     <string name="encyclopedia_especie_info_ver_mapa">Ver en el mapa</string>
     <string name="especie_info_altura">Altitud</string>

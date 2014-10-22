@@ -3,8 +3,10 @@ package com.lzm.Cajas;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.ListFragment;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -47,6 +49,10 @@ public class NotepadFragment extends ListFragment {
             @Override
             public boolean onItemLongClick(AdapterView<?> av, View v, int position, long id) {
                 final int positionToRemove = position;
+
+                Vibrator v1 = (Vibrator) activity.getSystemService(Context.VIBRATOR_SERVICE);
+                // Vibrate for 500 milliseconds
+                v1.vibrate(100);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 // Chain together various setter methods to set the dialog characteristics

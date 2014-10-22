@@ -8,23 +8,22 @@ import java.util.List;
  * Created by Svt on 7/27/2014.
  */
 public class Ruta {
-    public long id=0;
+    public long id = 0;
     public String descripcion;
     public String fecha;
     public String idRemoto;
     public RutaDbHelper rutaDbHelper;
 
 
-    public Ruta(Context context, String descripcion){
-        this.descripcion=descripcion;
-        this.rutaDbHelper=new RutaDbHelper(context);
+    public Ruta(Context context, String descripcion) {
+        this.descripcion = descripcion;
+        this.rutaDbHelper = new RutaDbHelper(context);
     }
 
-    public Ruta(Context context){
-        this.rutaDbHelper=new RutaDbHelper(context);
+    public Ruta(Context context) {
+        this.rutaDbHelper = new RutaDbHelper(context);
     }
 
- 
 
     public String getDescripcion() {
         return descripcion;
@@ -45,6 +44,7 @@ public class Ruta {
     public String getFecha() {
         return fecha;
     }
+
     public String getIdRemoto() {
         return idRemoto;
     }
@@ -56,6 +56,7 @@ public class Ruta {
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
+
     public void save() {
         if (this.id == 0) {
             this.id = this.rutaDbHelper.createRuta(this);
@@ -80,7 +81,10 @@ public class Ruta {
         return e.getAllRutas();
     }
 
-
+    public static void delete(Context context, Ruta ruta) {
+        RutaDbHelper e = new RutaDbHelper(context);
+        e.deleteRuta(ruta);
+    }
 
 
 }

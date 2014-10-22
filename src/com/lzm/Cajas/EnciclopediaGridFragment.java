@@ -2,9 +2,11 @@ package com.lzm.Cajas;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -105,6 +107,10 @@ public class EnciclopediaGridFragment extends Fragment implements Button.OnClick
                 final int positionToRemove = pos;
                 final Especie selected = especies.get(positionToRemove);
                 if (selected.esMia == 1) {
+                    Vibrator v1 = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+                    // Vibrate for 500 milliseconds
+                    v1.vibrate(100);
+
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     // Chain together various setter methods to set the dialog characteristics
                     builder.setMessage(R.string.enciclopedia_dlg_delete_contenido)
