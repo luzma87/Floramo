@@ -42,6 +42,7 @@ public class SettingsFragment extends Fragment implements Button.OnClickListener
     <div>Icon made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>
     <div>
     Icon made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>
+    Other icons from OCHA (http://www.unocha.org) from Flaticon (http://www.flaticon.com)  licensed under Creative Commons (http://creativecommons.org/licenses/by/3.0/)
      */
     public SettingsFragment() {
 
@@ -175,5 +176,6 @@ public class SettingsFragment extends Fragment implements Button.OnClickListener
     public void onResume() {
         super.onResume();
         context.setTitle(R.string.settings_title);
+        context.mDrawerList.setItemChecked(context.SETTINGS_POS, true);
     }
 }

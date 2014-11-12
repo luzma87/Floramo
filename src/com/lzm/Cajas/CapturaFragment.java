@@ -438,5 +438,6 @@ public class CapturaFragment extends Fragment implements Button.OnClickListener,
     public void onResume() {
         super.onResume();
         activity.setTitle(R.string.captura_title);
+        activity.mDrawerList.setItemChecked(activity.CAPTURA_POS, true);
     }
 }

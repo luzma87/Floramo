@@ -60,4 +60,11 @@ public class NotaCreateFrgment extends Fragment implements Button.OnClickListene
             Toast.makeText(getActivity(), getString(R.string.nota_create_saved), Toast.LENGTH_LONG).show();
         }
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        context.setTitle(R.string.notepad_title);
+        context.mDrawerList.setItemChecked(context.NOTA_POS, true);
+    }
 }

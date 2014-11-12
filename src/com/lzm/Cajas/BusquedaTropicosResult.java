@@ -39,5 +39,6 @@ public class BusquedaTropicosResult extends ListFragment {
     public void onResume() {
         super.onResume();
         activity.setTitle(R.string.busqueda_title);
+        activity.mDrawerList.setItemChecked(activity.TROPICOS_POS, true);
     }
 }

@@ -15,19 +15,19 @@
   -->
 
 <resources>
-    <string name="bugs_mail">nth.development@gmail.com</string>
-    <string name="comments_mail">nth.development@gmail.com</string>
+    <string name="bugs_mail" translatable="false">nth.development@gmail.com</string>
+    <string name="comments_mail" translatable="false">nth.development@gmail.com</string>
 
     <string name="app_name">Flóramo</string>
-    <string name="db_name">Floramo</string>
+    <string name="db_name" translatable="false">Floramo</string>
     <string name="menu_title">Navegación</string>
 
     <string name="web_app_not_available">Lo siento, no hay un navegador configurado</string>
     <string name="gallery_app_not_available">Lo siento, no hay una galería configurada</string>
     <string name="camera_app_not_available">Lo siento, no hay una cámara configurada</string>
 
-    <string name="encyclopedia_title">Enciclopedia</string>
-    <string name="settings_title">Configuración</string>
+    <string name="encyclopedia_title">Ver especies</string>
+    <string name="settings_title">Acerca de</string>
     <string name="camera_title">Cámara</string>
     <string name="captura_title">Nueva captura</string>
     <string name="bugs_title">Reportar errores</string>
@@ -57,15 +57,16 @@
     <string name="especie_info_title">Info. especie</string>
 
     <string-array name="options_array">
+        <item>Inicio</item>
         <item>Mapa</item>
-        <item>Enciclopedia</item>
+        <item>Ver especies</item>
         <item>Nueva captura</item>
         <item>Rutas</item>
         <item>Tropicos ®</item>
         <item>Notas</item>
         <item>Nueva nota</item>
         <item>Herramientas</item>
-        <item>Configuración</item>
+        <item>Acerca de</item>
     </string-array>
     <string name="drawer_open">Abrir menú de navegación</string>
     <string name="drawer_close">Cerrar menú de navegación</string>
@@ -207,8 +208,8 @@ Se muestra un máximo de 10 resultados. En la lista, al presionar un registro se
 
     <string name="ruta_lbl_fotos">Fotos:</string>
 
-    <string name="especies_info_flora">Flora web</string>
-    <string name="especie_info_tropicos">Tropicos ®</string>
+    <string name="especies_info_flora" translatable="false">Flora web</string>
+    <string name="especie_info_tropicos" translatable="false">Tropicos ®</string>
 
     <string name="cajas">
 "El Cajas constituye un escenario único en el mundo dentro del inventario de los paisajes lagunares conocidos. En efecto, a pesar de que existan lugares con ciertas similitudes en el planeta, no hay ninguno que combine tanta variedad lacustre asociada con una gran biodiversidad.
@@ -229,8 +230,7 @@ No necesariamente son las plantas más comunes, pero si llamativas, fáciles de 
 Pensamos que al reconocer y nombrar las plantas silvestres se puede apreciar mejor la flora del país, y se hará un esfuerzo para protegerlas así como al medio ambiente páramo en que viven."
     </string>
 
-    <string name="creditos">
-"Este proyecto es una colaboración entre el Missouri Botanical Garden, el Herbario Azuay (Universidad del Azuay) con el Parque Nacional Cajas.
+    <string name="creditos">"Este proyecto es una colaboración entre el Missouri Botanical Garden, el Herbario Azuay (Universidad del Azuay) con el Parque Nacional Cajas.
 Contacto del proyecto: C. Ulloa carmen.ulloa@mobot.org
 Diseño y programación: L.M. Unda, V. Zapata, Quito
 
@@ -238,10 +238,10 @@ Diseño y programación: L.M. Unda, V. Zapata, Quito
 Íconos de Formas de vida: 'Silhouette of tree of flowers and plants', http://www.freevectorvip.com/silhouette-of-tree-of-flowers-and-plants.html
 
 Otros íconos de Freepik (http://www.freepik.com) de Flaticon (http://www.flaticon.com), licenciados con Creative Commons (http://creativecommons.org/licenses/by/3.0/)
+Otros íconos de OCHA (http://www.unocha.org) de Flaticon (http://www.flaticon.com)  licenciados con Creative Commons (http://creativecommons.org/licenses/by/3.0/)
 
 
-Todos los derechos reservados."
-    </string>
+Todos los derechos reservados."</string>
     <string name="captura_forma_vida1_label">Forma de vida 1</string>
     <string name="captura_forma_vida2_label">Forma de vida 2</string>
     <string name="captura_lugar_label">Lugar</string>
@@ -285,4 +285,10 @@ Todos los derechos reservados."
     <string name="enciclopedia_delete">Especie eliminada exitosamente</string>
     <string name="busqueda_buscar">Buscar</string>
     <string name="tools_heading">Orientación: %1$s grados</string>
+    <string name="help_inicio">"Esta pantalla muestra las acciones que puede efectuar con esta aplicación"</string>
+    <string name="inicio_title">Inicio</string>
+    <string name="inicio_ver_nombres">Ver nombres</string>
+    <string name="inicio_buscar_clave">Buscar clave</string>
+    <string name="inicio_about_paramo">Acerca del Páramo</string>
+    <string name="tropicos_title">Tropicos</string>
 </resources>

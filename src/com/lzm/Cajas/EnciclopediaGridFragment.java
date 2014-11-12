@@ -225,6 +225,7 @@ public class EnciclopediaGridFragment extends Fragment implements Button.OnClick
             listHeight = context.enciclopediaListHeight;
         }
         context.setTitle(R.string.encyclopedia_title);
+        context.mDrawerList.setItemChecked(context.ENCICLOPEDIA_POS, true);
     }
 
     @Override

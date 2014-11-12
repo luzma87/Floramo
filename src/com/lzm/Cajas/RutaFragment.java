@@ -439,6 +439,7 @@ public class RutaFragment extends Fragment implements Button.OnClickListener, Vi
     public void onResume() {
         super.onResume();
         activity.setTitle(R.string.rutas_title);
+        activity.mDrawerList.setItemChecked(activity.RUTAS_POS, true);
     }
 
     @Override

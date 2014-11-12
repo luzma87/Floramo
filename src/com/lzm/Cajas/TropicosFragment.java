@@ -21,25 +21,25 @@ import java.util.concurrent.Executors;
 
 /**
  * Created by luz on 01/10/14.
- *
+ * <p/>
  * Here is your API key:
  * 34a6225b-552c-4e0b-9937-fe12a2541176
  * Best wishes,
  * Heather
  * Missouri Botanical Garden
- *
+ * <p/>
  * Help is here:
  * http://services.tropicos.org/help
  * Example calls (using your api key):
  * name search:
  * http://services.tropicos.org/Name/Search?name=poa+annua&type=wildcard&apikey=34a6225b-552c-4e0b-9937-fe12a2541176&format=xml
- *
+ * <p/>
  * name detail:
  * http://services.tropicos.org/Name/25509881?apikey=34a6225b-552c-4e0b-9937-fe12a2541176&format=xml
- *
+ * <p/>
  * synonyms:
  * http://services.tropicos.org/Name/25509881/Synonyms?apikey=34a6225b-552c-4e0b-9937-fe12a2541176&format=xml
- *
+ * <p/>
  * accepted names:
  * http://services.tropicos.org/Name/25503923/AcceptedNames?apikey=34a6225b-552c-4e0b-9937-fe12a2541176&format=xml
  */
@@ -51,20 +51,21 @@ public class TropicosFragment extends Fragment implements Button.OnClickListener
     EditText txtName;
     EditText txtCommon;
     EditText txtFamily;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.tropicos, container, false);
-        activity=(MapActivity)getActivity();
+        activity = (MapActivity) getActivity();
         buscar = (Button) view.findViewById(R.id.btn_buscar);
         buscar.setOnClickListener(this);
-        txtNameId = (EditText)view.findViewById(R.id.txt_nameId);
+        txtNameId = (EditText) view.findViewById(R.id.txt_nameId);
         txtNameId.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_DOWN) {
                     switch (keyCode) {
                         case KeyEvent.KEYCODE_DPAD_CENTER:
                         case KeyEvent.KEYCODE_ENTER:
-                            InputMethodManager imm = (InputMethodManager)activity.getSystemService(
+                            InputMethodManager imm = (InputMethodManager) activity.getSystemService(
                                     Context.INPUT_METHOD_SERVICE);
                             imm.hideSoftInputFromWindow(txtNameId.getWindowToken(), 0);
                             return true;
@@ -75,14 +76,14 @@ public class TropicosFragment extends Fragment implements Button.OnClickListener
                 return false;
             }
         });
-        txtName = (EditText)view.findViewById(R.id.txt_name);
+        txtName = (EditText) view.findViewById(R.id.txt_name);
         txtName.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_DOWN) {
                     switch (keyCode) {
                         case KeyEvent.KEYCODE_DPAD_CENTER:
                         case KeyEvent.KEYCODE_ENTER:
-                            InputMethodManager imm = (InputMethodManager)activity.getSystemService(
+                            InputMethodManager imm = (InputMethodManager) activity.getSystemService(
                                     Context.INPUT_METHOD_SERVICE);
                             imm.hideSoftInputFromWindow(txtName.getWindowToken(), 0);
                             return true;
@@ -93,14 +94,14 @@ public class TropicosFragment extends Fragment implements Button.OnClickListener
                 return false;
             }
         });
-        txtCommon = (EditText)view.findViewById(R.id.txt_commonname);
+        txtCommon = (EditText) view.findViewById(R.id.txt_commonname);
         txtCommon.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_DOWN) {
                     switch (keyCode) {
                         case KeyEvent.KEYCODE_DPAD_CENTER:
                         case KeyEvent.KEYCODE_ENTER:
-                            InputMethodManager imm = (InputMethodManager)activity.getSystemService(
+                            InputMethodManager imm = (InputMethodManager) activity.getSystemService(
                                     Context.INPUT_METHOD_SERVICE);
                             imm.hideSoftInputFromWindow(txtCommon.getWindowToken(), 0);
                             return true;
@@ -111,14 +112,14 @@ public class TropicosFragment extends Fragment implements Button.OnClickListener
                 return false;
             }
         });
-        txtFamily = (EditText)view.findViewById(R.id.txt_family);
+        txtFamily = (EditText) view.findViewById(R.id.txt_family);
         txtFamily.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_DOWN) {
                     switch (keyCode) {
                         case KeyEvent.KEYCODE_DPAD_CENTER:
                         case KeyEvent.KEYCODE_ENTER:
-                            InputMethodManager imm = (InputMethodManager)activity.getSystemService(
+                            InputMethodManager imm = (InputMethodManager) activity.getSystemService(
                                     Context.INPUT_METHOD_SERVICE);
                             imm.hideSoftInputFromWindow(txtFamily.getWindowToken(), 0);
                             return true;
@@ -131,9 +132,10 @@ public class TropicosFragment extends Fragment implements Button.OnClickListener
         });
         return view;
     }
+
     @Override
     public void onClick(View v) {
-        InputMethodManager imm = (InputMethodManager)activity.getSystemService(
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(
                 Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(txtFamily.getWindowToken(), 0);
 
@@ -143,14 +145,21 @@ public class TropicosFragment extends Fragment implements Button.OnClickListener
             String nameId = ((EditText) view.findViewById(R.id.txt_nameId)).getText().toString();
             String common = ((EditText) view.findViewById(R.id.txt_commonname)).getText().toString();
             String family = ((EditText) view.findViewById(R.id.txt_family)).getText().toString();
-            if(name.trim().length()>0 || nameId.trim().length()>0 || common.trim().length()>0 || family.trim().length()>0){
-                ProgressDialog dialog = ProgressDialog.show(activity, "",getString(R.string.loading), true);
+            if (name.trim().length() > 0 || nameId.trim().length() > 0 || common.trim().length() > 0 || family.trim().length() > 0) {
+                ProgressDialog dialog = ProgressDialog.show(activity, "", getString(R.string.loading), true);
                 ExecutorService queue = Executors.newSingleThreadExecutor();
-                queue.execute(new BusquedaLoader(activity,name,nameId,family,common,dialog));
-            }else{
-                 Toast.makeText(activity, getString(R.string.busqueda_no_parametros), Toast.LENGTH_SHORT).show();
+                queue.execute(new BusquedaLoader(activity, name, nameId, family, common, dialog));
+            } else {
+                Toast.makeText(activity, getString(R.string.busqueda_no_parametros), Toast.LENGTH_SHORT).show();
             }
 
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        activity.setTitle(R.string.tropicos_title);
+        activity.mDrawerList.setItemChecked(activity.TROPICOS_POS, true);
     }
 }

@@ -184,6 +184,7 @@ public class ToolsFragment extends Fragment implements SensorEventListener {
         sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION), SensorManager.SENSOR_DELAY_GAME);
 
         activity.setTitle(R.string.tools_title);
+        activity.mDrawerList.setItemChecked(activity.TOOLS_POS, true);
         super.onResume();
 
     }

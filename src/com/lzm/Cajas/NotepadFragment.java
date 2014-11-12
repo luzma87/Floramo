@@ -101,5 +101,6 @@ public class NotepadFragment extends ListFragment {
     public void onResume() {
         super.onResume();
         activity.setTitle(R.string.notepad_title);
+        activity.mDrawerList.setItemChecked(activity.NOTEPAD_POS, true);
     }
 }

@@ -50,6 +50,7 @@ public class EnciclopediaListFragment extends Fragment implements Button.OnClick
     public void onResume() {
         super.onResume();
         context.setTitle(R.string.encyclopedia_title);
+        context.mDrawerList.setItemChecked(context.ENCICLOPEDIA_POS, true);
     }
 
     @Override

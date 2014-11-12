@@ -39,7 +39,7 @@ import java.util.concurrent.Executors;
 public class MapActivity extends Activity implements Button.OnClickListener, GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener {
     /*DRAWER*/
     private DrawerLayout mDrawerLayout;
-    private ListView mDrawerList;
+    public ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
@@ -47,15 +47,16 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
 
     public int activeFragment = 0;
     public int posSearch = 0;
-    public final int MAP_POS = 0;
-    public final int ENCICLOPEDIA_POS = 1;
-    public final int CAPTURA_POS = 2;
-    public final int RUTAS_POS = 3;
-    public final int TROPICOS_POS = 4;
-    public final int NOTEPAD_POS = 5;
-    public final int NOTA_POS = 6;
-    public final int TOOLS_POS = 7;
-    public final int SETTINGS_POS = 8;
+    public final int INICIO_POS = 0;
+    public final int MAP_POS = 1;
+    public final int ENCICLOPEDIA_POS = 2;
+    public final int CAPTURA_POS = 3;
+    public final int RUTAS_POS = 4;
+    public final int TROPICOS_POS = 5;
+    public final int NOTEPAD_POS = 6;
+    public final int NOTA_POS = 7;
+    public final int TOOLS_POS = 8;
+    public final int SETTINGS_POS = 9;
 
     public final int BUSQUEDA_POS = 18;
 
@@ -256,6 +257,9 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         /*FinDrawer*/
+
+//        Utils.openFragment(this, new InicioFragment(), getString(R.string.inicio_title), null);
+        selectItem(INICIO_POS);
     }
 
     private void restoreMe(Bundle state) {
@@ -707,6 +711,9 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                 final TextView txt = (TextView) v.findViewById(R.id.help_container);
 
                 switch (activeFragment) {
+                    case INICIO_POS:
+                        txt.setText(getString(R.string.help_inicio));
+                        break;
                     case MAP_POS:
                         txt.setText(getString(R.string.help_map));
                         break;
@@ -777,6 +784,12 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         Bundle args = null;
         Boolean skyp = false;
         switch (position) {
+            case INICIO_POS:
+                fragment = new InicioFragment();
+//                this.addListener((FieldListener) fragment);
+                title = getString(R.string.inicio_title);
+                activeFragment = INICIO_POS;
+                break;
             case MAP_POS:
                 if (activeFragment == MAP_POS)
                     skyp = true;

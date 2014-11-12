@@ -104,4 +104,11 @@ public class SettingsCommentsFragment extends Fragment implements View.OnClickLi
             }
         }
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        context.setTitle(R.string.settings_title);
+        context.mDrawerList.setItemChecked(context.SETTINGS_POS, true);
+    }
 }
