@@ -24,19 +24,20 @@ import java.util.List;
  * Created by Svt on 10/6/2014.
  */
 public class BusquedaLoader implements Runnable {
-    String name ;
+    String name;
     String nameId;
-    String common ;
+    String common;
     String family;
     private MapActivity context;
     ProgressDialog dialog;
-    public BusquedaLoader(MapActivity context ,String name, String nameId, String family, String common,ProgressDialog dialog) {
+
+    public BusquedaLoader(MapActivity context, String name, String nameId, String family, String common, ProgressDialog dialog) {
         this.name = name;
         this.nameId = nameId;
         this.family = family;
         this.common = common;
         this.context = context;
-        this.dialog=dialog;
+        this.dialog = dialog;
     }
 
     @Override
@@ -51,28 +52,28 @@ public class BusquedaLoader implements Runnable {
             int serverResponseCode = 0;
             // Name/Search?nameid={nameid}&name={name}&commonname={commonname}&orderby={orderby}&sortorder={sortorder}&pagesize={pagesize}&startrow={startrow}&type={type}&apikey={apikey}&format={format}
             String parameters = "";
-            if(!name.trim().equals("")){
-                parameters+="name="+name.trim();
+            if (!name.trim().equals("")) {
+                parameters += "name=" + name.trim();
             }
-            if(!nameId.trim().equals("")){
-                if(!parameters.equals(""))
-                    parameters+="&";
-                parameters+="nameid="+nameId.trim()+"&type=exact";
+            if (!nameId.trim().equals("")) {
+                if (!parameters.equals(""))
+                    parameters += "&";
+                parameters += "nameid=" + nameId.trim() + "&type=exact";
             }
-            if(!common.trim().equals("")){
-                if(!parameters.equals(""))
-                    parameters+="&";
-                parameters+="commonname="+common.trim();
+            if (!common.trim().equals("")) {
+                if (!parameters.equals(""))
+                    parameters += "&";
+                parameters += "commonname=" + common.trim();
             }
-            if(!family.trim().equals("")){
-                if(!parameters.equals(""))
-                    parameters+="&";
-                parameters+="family="+family.trim();
+            if (!family.trim().equals("")) {
+                if (!parameters.equals(""))
+                    parameters += "&";
+                parameters += "family=" + family.trim();
             }
-            if(!parameters.equals(""))
-                parameters+="&";
-            parameters+="apikey="+key+"&format=json&pagesize=10";
-            urlstr+="?"+parameters;
+            if (!parameters.equals(""))
+                parameters += "&";
+            parameters += "apikey=" + key + "&format=json&pagesize=10";
+            urlstr += "?" + parameters;
 
             // Create http cliient object to send request to server
             HttpClient Client = new DefaultHttpClient();
@@ -92,13 +93,13 @@ public class BusquedaLoader implements Runnable {
             List<SearchResult> result;
             try {
                 JSONArray arr = new JSONArray(SetServerString);
-                result=new ArrayList<SearchResult>();
+                result = new ArrayList<SearchResult>();
                 for (int i = 0; i < arr.length(); i++) {
                     JSONObject obj = arr.getJSONObject(i);
-                    SearchResult curent = new SearchResult(obj.getString("NameId"),obj.getString("ScientificName"),obj.getString("ScientificNameWithAuthors"),obj.getString("Family"),obj.getString("RankAbbreviation"),obj.getString("Author"),obj.getString("DisplayReference"),obj.getString("DisplayDate"));
+                    SearchResult curent = new SearchResult(obj.getString("NameId"), obj.getString("ScientificName"), obj.getString("ScientificNameWithAuthors"), obj.getString("Family"), obj.getString("RankAbbreviation"), obj.getString("Author"), obj.getString("DisplayReference"), obj.getString("DisplayDate"));
                     result.add(curent);
                 }
-                context.showSearchResults(result,dialog);
+                context.showSearchResults(result, dialog);
 
             } catch (Exception e) {
                 e.printStackTrace();

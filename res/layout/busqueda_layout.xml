@@ -3,7 +3,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp">
+    android:padding="10dp">
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -12,67 +12,37 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/busqueda_btn_container"
 
-        android:paddingTop="12dp"
-
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true">
 
         <RelativeLayout
-            android:id="@+id/relative_layout"
-
             android:layout_width="match_parent"
             android:layout_height="48dp">
 
-            <TextView
-                android:id="@+id/busqueda_forma_vida_lbl"
+            <LinearLayout
+                android:id="@+id/busqueda_color_layout"
 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/busqueda_forma_vida"
-                android:textStyle="bold"
-                android:layout_marginTop="20dp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
 
+                android:orientation="horizontal"
+                android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true">
 
-            <Spinner
-                android:id="@id/busqueda_forma_vida_spinner"
+            </LinearLayout>
 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:spinnerMode="dialog"
+            <LinearLayout
+                android:id="@+id/busqueda_forma_vida_layout"
 
-                android:layout_toEndOf="@+id/busqueda_forma_vida_lbl"
-                android:layout_toRightOf="@+id/busqueda_forma_vida_lbl"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp" />
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
 
-            <TextView
-                android:id="@+id/busqueda_color_lbl"
+                android:orientation="horizontal"
+                android:layout_below="@+id/busqueda_color_layout">
 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/busqueda_color"
-                android:textStyle="bold"
-                android:layout_marginTop="20dp"
-
-                android:layout_below="@id/busqueda_forma_vida_spinner"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true" />
-
-            <Spinner
-                android:id="@id/busqueda_color_spinner"
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:spinnerMode="dialog"
-
-                android:layout_below="@id/busqueda_forma_vida_spinner"
-                android:layout_toEndOf="@+id/busqueda_color_lbl"
-                android:layout_toRightOf="@+id/busqueda_color_lbl"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp" />
+            </LinearLayout>
 
             <EditText
                 android:id="@+id/busqueda_nombre_txt"
@@ -80,9 +50,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/busqueda_nombre"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
 
-                android:layout_below="@id/busqueda_color_spinner"
+                android:layout_below="@id/busqueda_forma_vida_layout"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true" />
 
@@ -90,7 +60,8 @@
                 android:id="@+id/busqueda_radiogroup"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/busqueda_nombre_txt">
+                android:layout_below="@id/busqueda_nombre_txt"
+                android:orientation="horizontal">
 
                 <RadioButton
                     android:id="@+id/busqueda_radio_and"
@@ -118,19 +89,7 @@
                 android:layout_below="@id/busqueda_radiogroup"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
-                android:layout_marginTop="20dp" />
-
-            <TextView
-                android:id="@+id/busqueda_info_forma_vida_lbl"
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="FORMA VIDA"
-                android:visibility="gone"
-
-                android:layout_below="@id/busqueda_info_and_or_lbl"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true" />
+                android:layout_marginTop="10dp" />
 
             <TextView
                 android:id="@+id/busqueda_info_color_lbl"
@@ -140,7 +99,19 @@
                 android:text="COLOR"
                 android:visibility="gone"
 
-                android:layout_below="@id/busqueda_info_forma_vida_lbl"
+                android:layout_below="@id/busqueda_info_and_or_lbl"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true" />
+
+            <TextView
+                android:id="@+id/busqueda_info_forma_vida_lbl"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FORMA VIDA"
+                android:visibility="gone"
+
+                android:layout_below="@id/busqueda_info_color_lbl"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true" />
 
@@ -155,6 +126,7 @@
                 android:layout_below="@id/busqueda_info_color_lbl"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true" />
+
         </RelativeLayout>
     </ScrollView>
 
@@ -188,9 +160,5 @@
             android:layout_alignParentBottom="true"
             android:src="@drawable/ic_action_search"
             android:layout_centerHorizontal="true" />
-
-
     </RelativeLayout>
-
-
 </RelativeLayout>

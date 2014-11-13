@@ -339,7 +339,12 @@ public class Especie {
         return e.getAllEspeciesByColor(color);
     }
 
-    public static List<Especie> busqueda(Context context, String formaVida, String color, String nombre, String andOr) {
+    public static List<Especie> busqueda_old(Context context, String formaVida, String color, String nombre, String andOr) {
+        EspecieDbHelper e = new EspecieDbHelper(context);
+        return e.getBusqueda_old(formaVida, color, nombre, andOr);
+    }
+
+    public static List<Especie> busqueda(Context context, List<String> formaVida, List<String> color, String nombre, String andOr) {
         EspecieDbHelper e = new EspecieDbHelper(context);
         return e.getBusqueda(formaVida, color, nombre, andOr);
     }

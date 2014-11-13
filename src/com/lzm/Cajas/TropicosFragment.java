@@ -47,7 +47,6 @@ public class TropicosFragment extends Fragment implements Button.OnClickListener
     MapActivity activity;
     View view;
     private Button buscar;
-    EditText txtNameId;
     EditText txtName;
     EditText txtCommon;
     EditText txtFamily;
@@ -58,24 +57,7 @@ public class TropicosFragment extends Fragment implements Button.OnClickListener
         activity = (MapActivity) getActivity();
         buscar = (Button) view.findViewById(R.id.btn_buscar);
         buscar.setOnClickListener(this);
-        txtNameId = (EditText) view.findViewById(R.id.txt_nameId);
-        txtNameId.setOnKeyListener(new View.OnKeyListener() {
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (event.getAction() == KeyEvent.ACTION_DOWN) {
-                    switch (keyCode) {
-                        case KeyEvent.KEYCODE_DPAD_CENTER:
-                        case KeyEvent.KEYCODE_ENTER:
-                            InputMethodManager imm = (InputMethodManager) activity.getSystemService(
-                                    Context.INPUT_METHOD_SERVICE);
-                            imm.hideSoftInputFromWindow(txtNameId.getWindowToken(), 0);
-                            return true;
-                        default:
-                            break;
-                    }
-                }
-                return false;
-            }
-        });
+
         txtName = (EditText) view.findViewById(R.id.txt_name);
         txtName.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -142,13 +124,12 @@ public class TropicosFragment extends Fragment implements Button.OnClickListener
         if (v.getId() == buscar.getId()) {
 //            System.out.println("entro");
             String name = ((EditText) view.findViewById(R.id.txt_name)).getText().toString();
-            String nameId = ((EditText) view.findViewById(R.id.txt_nameId)).getText().toString();
             String common = ((EditText) view.findViewById(R.id.txt_commonname)).getText().toString();
             String family = ((EditText) view.findViewById(R.id.txt_family)).getText().toString();
-            if (name.trim().length() > 0 || nameId.trim().length() > 0 || common.trim().length() > 0 || family.trim().length() > 0) {
+            if (name.trim().length() > 0 || common.trim().length() > 0 || family.trim().length() > 0) {
                 ProgressDialog dialog = ProgressDialog.show(activity, "", getString(R.string.loading), true);
                 ExecutorService queue = Executors.newSingleThreadExecutor();
-                queue.execute(new BusquedaLoader(activity, name, nameId, family, common, dialog));
+                queue.execute(new BusquedaLoader(activity, name, "", family, common, dialog));
             } else {
                 Toast.makeText(activity, getString(R.string.busqueda_no_parametros), Toast.LENGTH_SHORT).show();
             }

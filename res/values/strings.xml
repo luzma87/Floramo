@@ -156,8 +156,8 @@ Se muestra un máximo de 10 resultados. En la lista, al presionar un registro se
     <string name="busqueda_nombre_cientifico">Nombre científico</string>
     <string name="busqueda_color">Color</string>
     <string name="busqueda_nombre">Familia, género o especie</string>
-    <string name="busqueda_radio_and">Búsqueda con AND</string>
-    <string name="busqueda_radio_or">Búsqueda con OR</string>
+    <string name="busqueda_radio_and">Búsqueda AND</string>
+    <string name="busqueda_radio_or">Búsqueda OR</string>
     <string name="busqueda_forma_vida">Forma de vida</string>
 
     <string name="busqueda_info_and">Búsqueda que concuerde con TODOS los siguientes parámetros:</string>
@@ -208,7 +208,7 @@ Se muestra un máximo de 10 resultados. En la lista, al presionar un registro se
 
     <string name="ruta_lbl_fotos">Fotos:</string>
 
-    <string name="especies_info_flora" translatable="false">Flora web</string>
+    <string name="especies_info_flora">W3Flora descripción</string>
     <string name="especie_info_tropicos" translatable="false">Tropicos ®</string>
 
     <string name="cajas">
