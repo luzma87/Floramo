@@ -77,8 +77,8 @@ public class EncyclopediaSecondLevelAdapter extends BaseExpandableListAdapter {
         ImageView itemFv1 = (ImageView) convertView.findViewById(R.id.encyclopedia_group_item_nivel_3_fv1);
         ImageView itemFv2 = (ImageView) convertView.findViewById(R.id.encyclopedia_group_item_nivel_3_fv2);
 
-        TextView itemColor1 = (TextView) convertView.findViewById(R.id.encyclopedia_group_item_nivel_3_color1);
-        TextView itemColor2 = (TextView) convertView.findViewById(R.id.encyclopedia_group_item_nivel_3_color2);
+        ImageView itemColor1 = (ImageView) convertView.findViewById(R.id.encyclopedia_group_item_nivel_3_cl1);
+        ImageView itemColor2 = (ImageView) convertView.findViewById(R.id.encyclopedia_group_item_nivel_3_cl2);
 
         itemNombreCientifico.setText(labelNombreCientifico);
         itemCantFotos.setText(labelCantFotos);
@@ -100,9 +100,9 @@ public class EncyclopediaSecondLevelAdapter extends BaseExpandableListAdapter {
             itemFv2.setVisibility(View.GONE);
         }
 
-        itemColor1.setText(Utils.getStringResourceByName(context, "global_color_" + especie.color1));
+        itemColor1.setImageResource(Utils.getImageResourceByName(context, "ic_cl_" + especie.color1 + "_tiny"));
         if (especie.color2 != null && !especie.color2.equals("none")) {
-            itemColor2.setText(Utils.getStringResourceByName(context, "global_color_" + especie.color2));
+            itemColor2.setImageResource(Utils.getImageResourceByName(context, "ic_cl_" + especie.color2 + "_tiny"));
             itemColor2.setVisibility(View.VISIBLE);
         } else {
             itemColor2.setVisibility(View.GONE);

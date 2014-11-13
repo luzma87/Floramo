@@ -140,12 +140,13 @@
                 android:layout_alignLeft="@+id/especie_info_especie_lbl"
                 android:layout_below="@id/especie_info_especie_lbl" />
 
-            <TextView
+            <ImageView
                 android:id="@+id/especie_info_color1"
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="color 1"
+
+                android:src="@drawable/ic_cl_red"
 
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
@@ -153,12 +154,13 @@
                 android:layout_toEndOf="@+id/especie_info_color_lbl"
                 android:layout_toRightOf="@+id/especie_info_color_lbl" />
 
-            <TextView
+            <ImageView
                 android:id="@+id/especie_info_color2"
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="color 2"
+
+                android:src="@drawable/ic_cl_blue"
 
                 android:layout_alignStart="@+id/especie_info_color1"
                 android:layout_alignLeft="@+id/especie_info_color1"

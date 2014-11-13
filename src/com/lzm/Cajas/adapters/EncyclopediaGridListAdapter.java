@@ -59,8 +59,8 @@ public class EncyclopediaGridListAdapter extends ArrayAdapter<Especie> {
         TextView itemNombreCientifico = (TextView) convertView.findViewById(R.id.busqueda_results_nombre_cientifico);
         TextView itemNombreFamilia = (TextView) convertView.findViewById(R.id.busqueda_results_familia);
         TextView itemCantFotos = (TextView) convertView.findViewById(R.id.busqueda_results_cant_fotos);
-        TextView itemColor1 = (TextView) convertView.findViewById(R.id.busqueda_results_color1);
-        TextView itemColor2 = (TextView) convertView.findViewById(R.id.busqueda_results_color2);
+        ImageView itemColor1 = (ImageView) convertView.findViewById(R.id.busqueda_results_cl_1);
+        ImageView itemColor2 = (ImageView) convertView.findViewById(R.id.busqueda_results_cl_2);
         ImageView itemFormaVida1 = (ImageView) convertView.findViewById(R.id.busqueda_results_fv_1);
         ImageView itemFormaVida2 = (ImageView) convertView.findViewById(R.id.busqueda_results_fv_2);
 
@@ -70,9 +70,17 @@ public class EncyclopediaGridListAdapter extends ArrayAdapter<Especie> {
         itemNombreFamilia.setText(labelNombreFamilia);
         itemCantFotos.setText(labelCantFotos);
 
-        itemColor1.setText(Utils.getStringResourceByName(context, "global_color_" + especie.color1));
+//        itemColor1.setText(Utils.getStringResourceByName(context, "global_color_" + especie.color1));
+//        if (especie.color2 != null && !especie.color2.equals("none")) {
+//            itemColor2.setText(Utils.getStringResourceByName(context, "global_color_" + especie.color2));
+//            itemColor2.setVisibility(View.VISIBLE);
+//        } else {
+//            itemColor2.setVisibility(View.GONE);
+//        }
+
+        itemColor1.setImageResource(Utils.getImageResourceByName(context, "ic_cl_" + especie.color1 + "_tiny"));
         if (especie.color2 != null && !especie.color2.equals("none")) {
-            itemColor2.setText(Utils.getStringResourceByName(context, "global_color_" + especie.color2));
+            itemColor2.setImageResource(Utils.getImageResourceByName(context, "ic_cl_" + especie.color2 + "_tiny"));
             itemColor2.setVisibility(View.VISIBLE);
         } else {
             itemColor2.setVisibility(View.GONE);
@@ -93,8 +101,8 @@ public class EncyclopediaGridListAdapter extends ArrayAdapter<Especie> {
 
             itemNombreCientifico.setTextColor(newColor);
             itemNombreFamilia.setTextColor(newColor);
-            itemColor1.setTextColor(newColor);
-            itemColor2.setTextColor(newColor);
+//            itemColor1.setTextColor(newColor);
+//            itemColor2.setTextColor(newColor);
 
         } else {
             if (foto != null) {
@@ -105,8 +113,8 @@ public class EncyclopediaGridListAdapter extends ArrayAdapter<Especie> {
 
             itemNombreCientifico.setTextColor(oldColors);
             itemNombreFamilia.setTextColor(oldColors);
-            itemColor1.setTextColor(oldColors);
-            itemColor2.setTextColor(oldColors);
+//            itemColor1.setTextColor(oldColors);
+//            itemColor2.setTextColor(oldColors);
         }
         return convertView;
     }

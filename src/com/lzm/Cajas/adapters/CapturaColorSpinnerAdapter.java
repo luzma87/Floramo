@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.lzm.Cajas.MapActivity;
 import com.lzm.Cajas.R;
@@ -47,7 +48,10 @@ public class CapturaColorSpinnerAdapter extends BaseAdapter {
         LayoutInflater inflater = ((Activity) c).getLayoutInflater();
         View row = inflater.inflate(R.layout.captura_color_select_row, parent, false);
         TextView sub = (TextView) row.findViewById(R.id.captura_row_color_label);
+        ImageView img = (ImageView) row.findViewById(R.id.captura_row_color_img);
+
         sub.setText(Utils.getStringResourceByName(c, "global_color_" + cur_obj.getNombre()));
+        img.setImageResource(Utils.getImageResourceByName(c, "ic_cl_" + cur_obj.nombre));
         return row;
     }
 }

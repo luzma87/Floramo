@@ -5,22 +5,25 @@
     android:orientation="vertical"
     android:padding="3dip">
 
-    <!--<ImageView-->
-    <!--android:id="@+id/image"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:src="@drawable/ic_launcher" />-->
+    <ImageView
+        android:id="@+id/captura_row_color_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_cl_none" />
 
     <TextView
         android:id="@id/captura_row_color_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dip"
-        android:layout_marginLeft="5dip"
-        android:layout_marginTop="2dip"
-        android:padding="3dip"
+        android:padding="3dp"
         android:text="@string/db_name"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+
+        android:layout_toRightOf="@id/captura_row_color_img"
+        android:layout_toEndOf="@id/captura_row_color_img"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="2dp" />
 
     <!--<TextView-->
     <!--android:id="@+id/sub"-->

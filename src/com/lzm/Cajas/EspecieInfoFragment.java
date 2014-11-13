@@ -31,8 +31,8 @@ public class EspecieInfoFragment extends Fragment implements Button.OnClickListe
     TextView txtEspecieInfoGenero;
     TextView txtEspecieInfoEspecie;
 
-    TextView txtEspecieInfoColor1;
-    TextView txtEspecieInfoColor2;
+    ImageView imgEspecieInfoColor1;
+    ImageView imgEspecieInfoColor2;
 
     TextView txtEspecieInfoFormaVida1;
     TextView txtEspecieInfoFormaVida2;
@@ -65,8 +65,8 @@ public class EspecieInfoFragment extends Fragment implements Button.OnClickListe
         txtEspecieInfoGenero = (TextView) view.findViewById(R.id.especie_info_genero);
         txtEspecieInfoEspecie = (TextView) view.findViewById(R.id.especie_info_especie);
 
-        txtEspecieInfoColor1 = (TextView) view.findViewById(R.id.especie_info_color1);
-        txtEspecieInfoColor2 = (TextView) view.findViewById(R.id.especie_info_color2);
+        imgEspecieInfoColor1 = (ImageView) view.findViewById(R.id.especie_info_color1);
+        imgEspecieInfoColor2 = (ImageView) view.findViewById(R.id.especie_info_color2);
 
         txtEspecieInfoFormaVida1 = (TextView) view.findViewById(R.id.especie_info_forma_vida1);
         txtEspecieInfoFormaVida2 = (TextView) view.findViewById(R.id.especie_info_forma_vida2);
@@ -90,13 +90,22 @@ public class EspecieInfoFragment extends Fragment implements Button.OnClickListe
         txtEspecieInfoGenero.setText(especie.genero);
         txtEspecieInfoEspecie.setText(especie.nombre);
 
-        txtEspecieInfoColor1.setText(Utils.getStringResourceByName(context, "global_color_" + especie.color1));
-        if (especie.color2 != null && !especie.color2.equals("none") && !especie.color2.equals("")) {
-            txtEspecieInfoColor2.setText(Utils.getStringResourceByName(context, "global_color_" + especie.color2));
-            txtEspecieInfoColor2.setVisibility(View.VISIBLE);
+//        txtEspecieInfoColor1.setText(Utils.getStringResourceByName(context, "global_color_" + especie.color1));
+//        if (especie.color2 != null && !especie.color2.equals("none") && !especie.color2.equals("")) {
+//            txtEspecieInfoColor2.setText(Utils.getStringResourceByName(context, "global_color_" + especie.color2));
+//            txtEspecieInfoColor2.setVisibility(View.VISIBLE);
+//        } else {
+//            txtEspecieInfoColor2.setVisibility(View.GONE);
+//        }
+
+        imgEspecieInfoColor1.setImageResource(Utils.getImageResourceByName(context, "ic_cl_" + especie.color1 + "_tiny"));
+        if (especie.color2 != null && !especie.color2.equals("none")) {
+            imgEspecieInfoColor2.setImageResource(Utils.getImageResourceByName(context, "ic_cl_" + especie.color2 + "_tiny"));
+            imgEspecieInfoColor2.setVisibility(View.VISIBLE);
         } else {
-            txtEspecieInfoColor2.setVisibility(View.GONE);
+            imgEspecieInfoColor2.setVisibility(View.GONE);
         }
+
         txtEspecieInfoFormaVida1.setText(Utils.getStringResourceByName(context, "global_forma_vida_" + especie.formaVida1));
         imgEspecieInfoFormaVida1.setImageResource(Utils.getImageResourceByName(context, "ic_fv_" + especie.formaVida1));
         if (especie.formaVida2 != null && !especie.formaVida2.equals("none") && !especie.formaVida2.equals("")) {
@@ -178,7 +187,7 @@ public class EspecieInfoFragment extends Fragment implements Button.OnClickListe
 
         Settings sett = Settings.getSettings(context);
         if (view.getId() == btnCajas.getId()) {
-            String url = sett.floraBase + especie.genero+ "+" + especie.nombre;
+            String url = sett.floraBase + especie.genero + "+" + especie.nombre;
 //            System.out.println("::::::::::::::::::::::::::::: URL FLORA" + url);
             Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             startActivity(myIntent);
