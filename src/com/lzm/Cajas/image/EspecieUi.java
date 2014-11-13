@@ -12,18 +12,28 @@ public class EspecieUi {
     public int resId;
     public String tropicosId;
     public Bitmap foto;
+    public long idEspecie;
 
-    public EspecieUi(String nombre,Bitmap foto){
-        this.nombre=nombre;
-        this.foto=foto;
+    public EspecieUi(String nombre, Bitmap foto) {
+        this.nombre = nombre;
+        this.foto = foto;
     }
-    public EspecieUi(String nombre,int resId){
-        this.nombre=nombre;
-        this.resId=resId;
+
+    public EspecieUi(String nombre, int resId) {
+        this.nombre = nombre;
+        this.resId = resId;
     }
-    public EspecieUi(String nombre,int resId,String tropicosId){
-        this.nombre=nombre;
-        this.resId=resId;
-        this.tropicosId=tropicosId;
+
+    public EspecieUi(String nombre, int resId, String tropicosId) {
+        this.nombre = nombre;
+        this.resId = resId;
+        this.tropicosId = tropicosId;
+    }
+
+    public EspecieUi(long idEspecie, String nombre, int resId, String tropicosId) {
+        this.idEspecie = idEspecie;
+        this.nombre = nombre;
+        this.resId = resId;
+        this.tropicosId = tropicosId;
     }
 }

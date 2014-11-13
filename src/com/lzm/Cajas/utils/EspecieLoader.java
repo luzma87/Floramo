@@ -39,11 +39,12 @@ public class EspecieLoader implements Runnable {
         int resId = 0;
         InputStream io = null;
         String nombre = especie.getNombreCientifico();
+        long idEspecie = especie.id;
         EspecieUi ui;
         for (Foto foto : fotos) {
             Coordenada cord = foto.getCoordenada(context);
             if (cord != null) {
-                Bitmap myBitmap;
+                Bitmap myBitmap = null;
                 if (foto.esMia == 1) {
                     File imgFile = new File(foto.path);
                     if (imgFile.exists()) {
@@ -63,18 +64,24 @@ public class EspecieLoader implements Runnable {
                         return;
                     }
                 } else {
-                    String path1 = foto.path.replaceAll("\\.jpg", "").replaceAll("-", "_").toLowerCase();
-                    path1 = "th_" + path1;
-                    resId = Utils.getImageResourceByName(context, path1);
-                    io = context.getResources().openRawResource(resId);
-                    path1 = foto.path.replaceAll("\\.jpg", "").replaceAll("-", "_").toLowerCase();
-                    resId = Utils.getImageResourceByName(context, path1);
+                    try {
+                        String path1 = foto.path.replaceAll("\\.jpg", "").replaceAll("-", "_").toLowerCase();
+                        path1 = "th_" + path1;
+                        resId = Utils.getImageResourceByName(context, path1);
+                        io = context.getResources().openRawResource(resId);
+                        path1 = foto.path.replaceAll("\\.jpg", "").replaceAll("-", "_").toLowerCase();
+                        resId = Utils.getImageResourceByName(context, path1);
 //                    System.out.println("service !!!!! w "+w+" h "+h);
-                    myBitmap = ImageUtils.decodeBitmap(io, w, h);
+                        myBitmap = ImageUtils.decodeBitmap(io, w, h);
+                    } catch (Exception e) {
+
+                    }
                 }
                 final LatLng pos = new LatLng(cord.latitud, cord.longitud);
-                ui = new EspecieUi(nombre, resId, especie.idTropicos.toString());
-                context.setPingEspecie(ui, pos, myBitmap);
+                ui = new EspecieUi(idEspecie, nombre, resId, especie.idTropicos.toString());
+                if (myBitmap != null) {
+                    context.setPingEspecie(ui, pos, myBitmap);
+                }
             }
         }
     }

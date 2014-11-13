@@ -90,14 +90,12 @@ public class ToolsFragment extends Fragment implements SensorEventListener {
         // TextView that will tell the user what degree is he heading
         tvHeading = (TextView) view.findViewById(R.id.tvHeading);
 
-
         valuesAccelerometer = new float[3];
         valuesMagneticField = new float[3];
 
         matrixR = new float[9];
         matrixI = new float[9];
         matrixValues = new float[3];
-
 
         return view;
     }
@@ -163,8 +161,6 @@ public class ToolsFragment extends Fragment implements SensorEventListener {
         // Start the animation
         image.startAnimation(ra);
         currentDegree = -degree;
-
-
     }
 
     @Override
@@ -186,9 +182,7 @@ public class ToolsFragment extends Fragment implements SensorEventListener {
         activity.setTitle(R.string.tools_title);
         activity.mDrawerList.setItemChecked(activity.TOOLS_POS, true);
         super.onResume();
-
     }
-
 
     @Override
     public void onPause() {

@@ -557,6 +557,15 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                                     dialog.dismiss();
                                 }
                             });
+                            builder.setNeutralButton(R.string.dlg_ver, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    Fragment fragment = new EspecieInfoFragment();
+                                    Bundle args = new Bundle();
+                                    args.putLong("especie", current.idEspecie);
+                                    String nombre = current.nombre;
+                                    Utils.openFragment((MapActivity) context, fragment, nombre, args);
+                                }
+                            });
                             dialog = builder.create();
                             dialog.show();
                         } else {
@@ -804,7 +813,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                 activeFragment = CAPTURA_POS;
                 break;
             case ENCICLOPEDIA_POS:
-                fragment = new EnciclopediaListFragment();
+                fragment = new EnciclopediaGridFragment();
                 title = getString(R.string.encyclopedia_title);
                 activeFragment = ENCICLOPEDIA_POS;
                 break;

@@ -291,4 +291,6 @@ Todos los derechos reservados."</string>
     <string name="inicio_buscar_clave">Buscar clave</string>
     <string name="inicio_about_paramo">Acerca del Páramo</string>
     <string name="tropicos_title">Tropicos</string>
+
+    <string name="dlg_ver">Ver datos</string>
 </resources>
