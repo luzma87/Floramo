@@ -53,10 +53,10 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     public final int CAPTURA_POS = 3;
     public final int RUTAS_POS = 4;
     public final int TROPICOS_POS = 5;
-    public final int NOTEPAD_POS = 6;
-    public final int NOTA_POS = 7;
-    public final int TOOLS_POS = 8;
-    public final int SETTINGS_POS = 9;
+//    public final int NOTEPAD_POS = 6;
+//    public final int NOTA_POS = 7;
+    public final int TOOLS_POS = 6;
+    public final int SETTINGS_POS = 7;
 
     public final int BUSQUEDA_POS = 18;
 
@@ -738,10 +738,10 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                     case TROPICOS_POS:
                         txt.setText(getString(R.string.help_tropicos));
                         break;
-                    case NOTEPAD_POS:
-                    case NOTA_POS:
-                        txt.setText(getString(R.string.help_notepad));
-                        break;
+//                    case NOTEPAD_POS:
+//                    case NOTA_POS:
+//                        txt.setText(getString(R.string.help_notepad));
+//                        break;
                     case SETTINGS_POS:
                         txt.setText(getString(R.string.help_configuracion));
                         break;
@@ -827,18 +827,18 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                 title = getString(R.string.especie_info_tropicos);
                 activeFragment = TROPICOS_POS;
                 break;
-            case NOTEPAD_POS:
-                fragment = new NotepadFragment();
-                title = getString(R.string.notepad_title);
-                activeFragment = NOTEPAD_POS;
-                break;
-            case NOTA_POS:
-                fragment = new NotaCreateFrgment();
-                args = new Bundle();
-                args.putLong("nota", -1);
-                title = getString(R.string.nota_create_title);
-                activeFragment = NOTA_POS;
-                break;
+//            case NOTEPAD_POS:
+//                fragment = new NotepadFragment();
+//                title = getString(R.string.notepad_title);
+//                activeFragment = NOTEPAD_POS;
+//                break;
+//            case NOTA_POS:
+//                fragment = new NotaCreateFrgment();
+//                args = new Bundle();
+//                args.putLong("nota", -1);
+//                title = getString(R.string.nota_create_title);
+//                activeFragment = NOTA_POS;
+//                break;
             case TOOLS_POS:
                 fragment = new ToolsFragment();
                 title = getString(R.string.tools_title);

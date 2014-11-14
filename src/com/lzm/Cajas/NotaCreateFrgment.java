@@ -65,6 +65,6 @@ public class NotaCreateFrgment extends Fragment implements Button.OnClickListene
     public void onResume() {
         super.onResume();
         context.setTitle(R.string.notepad_title);
-        context.mDrawerList.setItemChecked(context.NOTA_POS, true);
+//        context.mDrawerList.setItemChecked(context.NOTA_POS, true);
     }
 }

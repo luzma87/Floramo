@@ -63,8 +63,8 @@
         <item>Nueva captura</item>
         <item>Rutas</item>
         <item>Tropicos ®</item>
-        <item>Notas</item>
-        <item>Nueva nota</item>
+        <!--<item>Notas</item>-->
+        <!--<item>Nueva nota</item>-->
         <item>Herramientas</item>
         <item>Acerca de</item>
     </string-array>
