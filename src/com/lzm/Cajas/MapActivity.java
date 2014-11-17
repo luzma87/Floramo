@@ -53,12 +53,21 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     public final int CAPTURA_POS = 3;
     public final int RUTAS_POS = 4;
     public final int TROPICOS_POS = 5;
-//    public final int NOTEPAD_POS = 6;
+    //    public final int NOTEPAD_POS = 6;
 //    public final int NOTA_POS = 7;
     public final int TOOLS_POS = 6;
     public final int SETTINGS_POS = 7;
 
     public final int BUSQUEDA_POS = 18;
+
+    public final int ABOUT_CAJAS_PARAMO_POS = 100;
+    public final int ENCICLOPEDIA2_POS = 200;
+    public final int SHOW_RUTA_POS = 300;
+    public final int SHOW_ESPECIE_POS = 400;
+    public final int BUGS_POS = 500;
+    public final int COMMENTS_POS = 600;
+
+    public String paramFrag = null;
 
     private static final int CAMERA_REQUEST = 1337;
     /*Interfaz*/
@@ -271,18 +280,27 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+//        System.out.println("---LUZMA--- ON Restore State active: " + activeFragment + "   saved: "
+//                + (savedInstanceState == null ? "NONE" : savedInstanceState.getSerializable("activeFragment")));
+//        if (savedInstanceState != null) {
+        selectItem(Integer.parseInt(savedInstanceState.getSerializable("activeFragment").toString()));
+//        }
     }
 
     @Override
     public void onResume() {
         super.onStart();
-//        // TODO Auto-generated method stub
     }
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         // Save the user's current game state
         super.onSaveInstanceState(savedInstanceState);
+//        System.out.println("---LUZMA--- ON Save State 1 active: " + activeFragment + "   saved: "
+//                + (savedInstanceState == null ? "NONE" : savedInstanceState.getSerializable("activeFragment")));
+        savedInstanceState.putSerializable("activeFragment", activeFragment);
+//        System.out.println("---LUZMA--- ON Save State 2 active: " + activeFragment + "   saved: "
+//                + (savedInstanceState == null ? "NONE" : savedInstanceState.getSerializable("activeFragment")));
     }
 
     @Override
@@ -792,6 +810,9 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         Fragment fragment = null;
         Bundle args = null;
         Boolean skyp = false;
+
+        int overrideDrawer = -1;
+
         switch (position) {
             case INICIO_POS:
                 fragment = new InicioFragment();
@@ -850,6 +871,32 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                 title = getString(R.string.settings_title);
                 activeFragment = SETTINGS_POS;
                 break;
+
+            case ABOUT_CAJAS_PARAMO_POS:
+                if (paramFrag != null) {
+                    fragment = new AboutFragment();
+                    if (Integer.parseInt(paramFrag) == AboutFragment.CAJAS) {
+                        title = getString(R.string.inicio_about_cajas);
+                    } else if (Integer.parseInt(paramFrag) == AboutFragment.PARAMO) {
+                        title = getString(R.string.inicio_about_paramo);
+                    }
+                    args = new Bundle();
+                    args.putInt("tipo", Integer.parseInt(paramFrag));
+                    activeFragment = ABOUT_CAJAS_PARAMO_POS;
+                    overrideDrawer = SETTINGS_POS;
+                }
+                break;
+            case ENCICLOPEDIA2_POS:
+                break;
+            case SHOW_RUTA_POS:
+                break;
+            case SHOW_ESPECIE_POS:
+                break;
+            case BUGS_POS:
+                break;
+            case COMMENTS_POS:
+                break;
+
             default:
                 fragment = null;
                 break;
@@ -860,6 +907,9 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         if (drawer) {
             mDrawerList.setItemChecked(position, true);
             mDrawerLayout.closeDrawer(mDrawerList);
+        }
+        if (overrideDrawer > -1) {
+            mDrawerList.setItemChecked(overrideDrawer, true);
         }
     }
 

@@ -7,15 +7,29 @@
 
 
     <Button
-        android:id="@+id/settings_btn_lugares"
+        android:id="@+id/settings_btn_acerca_paramo"
 
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/settings_lugares"
+        android:text="@string/settings_acerca_paramo"
         android:background="@drawable/button_purple"
-        android:drawableLeft="@drawable/ic_settings_lugares"
+        android:drawableLeft="@drawable/ic_settings_about_paramo"
 
         android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/settings_btn_acerca_cajas"
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/settings_acerca_cajas"
+        android:background="@drawable/button_purple"
+        android:drawableLeft="@drawable/ic_settings_lugares"
+        android:layout_marginTop="15dp"
+
+        android:layout_below="@id/settings_btn_acerca_paramo"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -30,7 +44,7 @@
         android:layout_marginTop="15dp"
         android:visibility="gone"
 
-        android:layout_below="@+id/settings_btn_lugares"
+        android:layout_below="@+id/settings_btn_acerca_cajas"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 

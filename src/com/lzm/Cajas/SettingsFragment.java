@@ -4,20 +4,15 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
-import com.lzm.Cajas.db.Foto;
-import com.lzm.Cajas.listeners.FieldListener;
 import com.lzm.Cajas.utils.Utils;
-
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * Created by DELL on 23/07/2014.
@@ -26,7 +21,8 @@ public class SettingsFragment extends Fragment implements Button.OnClickListener
 
     MapActivity context;
 
-    Button btnLugares;
+    Button btnAboutParamo;
+    Button btnAboutCajas;
     Button btnFormasVida;
     Button btnBugs;
     Button btnComments;
@@ -53,8 +49,11 @@ public class SettingsFragment extends Fragment implements Button.OnClickListener
         context = (MapActivity) getActivity();
         View view = inflater.inflate(R.layout.settings_layout, container, false);
 
-        btnLugares = (Button) view.findViewById(R.id.settings_btn_lugares);
-        btnLugares.setOnClickListener(this);
+        btnAboutParamo = (Button) view.findViewById(R.id.settings_btn_acerca_paramo);
+        btnAboutParamo.setOnClickListener(this);
+
+        btnAboutCajas = (Button) view.findViewById(R.id.settings_btn_acerca_cajas);
+        btnAboutCajas.setOnClickListener(this);
 
         btnFormasVida = (Button) view.findViewById(R.id.settings_btn_formas_vida);
         btnFormasVida.setOnClickListener(this);
@@ -77,42 +76,16 @@ public class SettingsFragment extends Fragment implements Button.OnClickListener
     @Override
     public void onClick(View view) {
         Utils.hideSoftKeyboard(this.getActivity());
-        if (view.getId() == btnLugares.getId()) {
-            LayoutInflater inflater = context.getLayoutInflater();
-            View v = inflater.inflate(R.layout.settings_lugar_dialog, null);
-
-            final TextView txt = (TextView) v.findViewById(R.id.lugar_link_dialog_txt);
-            txt.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    String url = getString(R.string.cajas_link);
-                    Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                    startActivity(myIntent);
-                }
-            });
-
-            final AlertDialog.Builder builder = new AlertDialog.Builder(context).setView(v)
-                    .setNeutralButton(R.string.dialog_btn_cerrar, null) //Set to null. We override the onclick
-                    .setTitle(getString(R.string.lugar_title));
-
-            final AlertDialog d = builder.create();
-
-            d.setOnShowListener(new DialogInterface.OnShowListener() {
-                @Override
-                public void onShow(DialogInterface dialog) {
-                    Button cerrar = d.getButton(AlertDialog.BUTTON_NEUTRAL);
-                    cerrar.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            d.dismiss();
-                        }
-                    });
-                }
-            });
-            d.show();
-        } else if (view.getId() == btnFormasVida.getId()) {
-//            SettingsBugsFragment fragment = new SettingsBugsFragment();
-//            Utils.openFragment(context, fragment, getString(R.string.bugs_title));
+        if (view.getId() == btnAboutParamo.getId()) {
+            Fragment about = new AboutFragment();
+            Bundle args = new Bundle();
+            args.putInt("tipo", AboutFragment.PARAMO);
+            Utils.openFragment(context, about, getString(R.string.inicio_about_paramo), args);
+        } else if (view.getId() == btnAboutCajas.getId()) {
+            Fragment about = new AboutFragment();
+            Bundle args = new Bundle();
+            args.putInt("tipo", AboutFragment.CAJAS);
+            Utils.openFragment(context, about, getString(R.string.inicio_about_cajas), args);
         } else if (view.getId() == btnBugs.getId()) {
             SettingsBugsFragment fragment = new SettingsBugsFragment();
             Utils.openFragment(context, fragment, getString(R.string.bugs_title));

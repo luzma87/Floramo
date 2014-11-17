@@ -211,16 +211,20 @@ Se muestra un máximo de 10 resultados. En la lista, al presionar un registro se
     <string name="especies_info_flora">W3Flora descripción</string>
     <string name="especie_info_tropicos" translatable="false">Tropicos ®</string>
 
-    <string name="cajas">
-"El Cajas constituye un escenario único en el mundo dentro del inventario de los paisajes lagunares conocidos. En efecto, a pesar de que existan lugares con ciertas similitudes en el planeta, no hay ninguno que combine tanta variedad lacustre asociada con una gran biodiversidad.
-Su nombre proviene de la palabra quechua “caxas” que quiere decir frío. Otra versión nos habla de que su nombre viene por la apariencia producida por su tipo de formación geológica, que forma “cajas” en las cuales se encuentran las lagunas.
+    <string name="about_cajas">"El macizo del Cajas se encuentra localizado a 30 km al occidente de la ciudad de Cuenca, provincia del Azuay, en el sur del Ecuador. Está dominado por páramo herbáceo con parches esparcidos de bosques.
+Glaciares del Pleistoceno han esculpido el paisaje resultando en un escenario único de topografía irregular con más de 235 lagos y lagunas de belleza sin igual. Dos ríos drenan de las vertientes orientales hacia la ciudad de Cuenca. El clima es frío y húmedo, pero hay una variación climática diaria considerable que puede cambiar rápidamente de vientos suaves a fuertes, de cielo nublado a un sol intenso, de neblina a llovizna y granizo. La temperatura mínima es de –2° C y la máxima durante el día de 18°C. La precipitación media anual es de 1200 mm. Tiene dos vías de acceso: la carretera de primer orden Cuenca-Molleturo-Naranjal y la vía de tercer orden Cuenca-Soldados. El Área de Recreación Cajas fue creada en 1977 y en 1996 cambió a la categoría de Parque Nacional Cajas. Consta de 28.544 hectáreas entre los 3150 y 4450 m snm."</string>
 
-El 90.6% del área corresponde al ecosistema de páramo herbáceo, exceptuando pequeñas áreas, localizadas al sureste (Mazán) y oeste (Canoas), caracterizadas por presentar alturas absolutas inferiores a los 3.600msnm y espacios geográficos variados.
-El Parque Nacional Cajas fue creado el 6 de junio de 1977 como Área Nacional de Recreación, para luego el 26 de julio de 1979 establecer sus límites, y finalmente el 5 de noviembre de 1996, se procede a cambiar la categoría de Área Nacional de Recreación a Parque Nacional Cajas.
-Actualmente tiene una superficie de 28.544 has."
-    </string>
+    <string name="about_cajas_link">http://www.mobot.org/MOBOT/research/paramo/estudio.shtml</string>
 
-    <string name="cajas_link">http://www.etapa.net.ec/PNC/PNC_viscaj_des_gen.aspx</string>
+    <string name="about_paramo">
+<![CDATA["El páramo es un ecosistema de montaña único dominado por pajonales. Se encuentra sobre el límite continuo de bosque y casi hasta el nivel de la nieve perpetua (3000-5000 m), desde Venezuela hasta el norte de Perú y en Panamá y Costa Rica. La palabra páramo se asocia a planicies sin arboledas e inhóspitas. Sin embargo, los páramos tienen una diversidad biológica y endemismo altos y constituyen una biota única.
+Las plantas se han adaptado a las condiciones frías y extremos de alta irradiación solar, la baja presión atmosférica, las dramáticas fluctuaciones diarias de temperatura y las lluvias estacionales. Así, muchas plantas crecen pegadas al suelo en forma de <a href='#'>rosetas</a> o <a href='#'>almohadillas</a>, o tienen las <a href='#'>hojas reducidas</a> y duras, o están recubiertas de una densa capa de <a href='#'>pelos blancos</a> o plateados.
+Los páramos y los bosques andinos funcionan como control de los sistemas hídricos, al absorber agua de lluvia y liberarla lentamente alimentando a ríos y lagunas. El agua capturada en los páramos beneficia a millones de personas que usan este bien tanto para consumo como para riego.
+El efecto del incremento de temperaturas debido al cambio climático ya se observa en los picos más altos de las montañas tropicales con un marcado retroceso de los glaciares. Cambios en el ciclo hidrológico de los páramos pueden traer consecuencias catastróficas e implicaciones económicas inmensas para los países andinos que dependen de este ecosistema para provisión de agua para consumo humano, para la operación de plantas hidroeléctricas, para los sistemas de irrigación."
+]]>
+</string>
+
+    <string name="about_paramo_link">http://www.mobot.org/MOBOT/Research/paramo_flora.shtml</string>
 
 
     <string name="about">
@@ -259,7 +263,8 @@ Todos los derechos reservados."</string>
     <string name="search_autor">Autor</string>
     <string name="search_ver_fotos">Ver fotos</string>
     <string name="search_no_results">No se encontraron resultados</string>
-    <string name="settings_lugares">Acerca del Cajas</string>
+    <string name="settings_acerca_paramo">Acerca del Páramo</string>
+    <string name="settings_acerca_cajas">Acerca del Cajas</string>
     <string name="settings_formas_vida">Formas de vida</string>
     <string name="settings_about">Acerca de esta app</string>
     <string name="settings_bugs">Reportar errores</string>
@@ -290,6 +295,7 @@ Todos los derechos reservados."</string>
     <string name="inicio_ver_nombres">Ver nombres</string>
     <string name="inicio_buscar_clave">Buscar clave</string>
     <string name="inicio_about_paramo">Acerca del Páramo</string>
+    <string name="inicio_about_cajas">Acerca del Cajas</string>
     <string name="tropicos_title">Tropicos</string>
 
     <string name="dlg_ver">Ver datos</string>

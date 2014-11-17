@@ -12,7 +12,7 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
 
-        android:src="@drawable/cajas"
+        android:src="@drawable/about_cajas"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -36,7 +36,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/cajas" />
+                android:text="@string/about_cajas" />
 
             <TextView
                 android:id="@+id/lugar_link_dialog_txt"
@@ -45,7 +45,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/cajas_link" />
+                android:text="@string/about_cajas_link" />
         </LinearLayout>
     </ScrollView>
 

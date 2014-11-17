@@ -9,7 +9,7 @@ public class DbInserter {
     public static void insertDb(SQLiteDatabase db) {
         db.execSQL("INSERT INTO settings (id, floraBase, tropicosBase) VALUES (\"2\", \"http://www.mobot.org/MOBOT/paramo/search_paramo.asp?searchFor=\", \"http://www.tropicos.org/Name/\");");
 
-        db.execSQL("INSERT INTO lugares (id, nombre, nombre_norm, path) VALUES (\"1\", \"Páramo del Cajas, Ecuador\", \"Paramo del Cajas, Ecuador\", \"cajas.jpg\");");
+        db.execSQL("INSERT INTO lugares (id, nombre, nombre_norm, path) VALUES (\"1\", \"Páramo del Cajas, Ecuador\", \"Paramo del Cajas, Ecuador\", \"about_cajas.jpgas.jpg\");");
 
         db.execSQL("INSERT INTO colores(id, nombre) VALUES (\"0\", \"none\");");
 

@@ -206,16 +206,22 @@ It shows a maximum of 10 results. Tapping an item on the list shows its details.
 
     <string name="ruta_lbl_fotos">Pictures:</string>
 
-    <string name="cajas">
-"El Cajas constituye un escenario único en el mundo dentro del inventario de los paisajes lagunares conocidos. En efecto, a pesar de que existan lugares con ciertas similitudes en el planeta, no hay ninguno que combine tanta variedad lacustre asociada con una gran biodiversidad.
-Su nombre proviene de la palabra quechua “caxas” que quiere decir frío. Otra versión nos habla de que su nombre viene por la apariencia producida por su tipo de formación geológica, que forma “cajas” en las cuales se encuentran las lagunas.
+    <string name="about_cajas">"The Cajas massif is located 30 km west of the city of Cuenca, Azuay province in southern Ecuador. It is dominated by herbaceous páramo with scattered patches of forest.
+Pleistocene glaciers carved the landscape resulting in a unique area of irregular topography with more than 235 lakes and lagoons and unparalleled scenic beauty. The climate is cold and humid; there is however, considerable daily weather variation that can change rapidly from calm to strong winds, from cloudy to intense sun, from dry to fog or drizzle, and from hard rain to hail. The minimum daily temperature is –2°C and the maximum is 18°C. The annual mean precipitation is 1200 mm. It has two access roads: the main Cuenca-Molleturo-Naranjal road, and the unpaved Cuenca-Soldados. The Área de Recreación Cajas was created in 1977 and upgraded to Cajas National Park in 1996.  It comprises 28,544 hectares, between 3150 and 4450 m asl. "</string>
 
-El 90.6% del área corresponde al ecosistema de páramo herbáceo, exceptuando pequeñas áreas, localizadas al sureste (Mazán) y oeste (Canoas), caracterizadas por presentar alturas absolutas inferiores a los 3.600msnm y espacios geográficos variados.
-El Parque Nacional Cajas fue creado el 6 de junio de 1977 como Área Nacional de Recreación, para luego el 26 de julio de 1979 establecer sus límites, y finalmente el 5 de noviembre de 1996, se procede a cambiar la categoría de Área Nacional de Recreación a Parque Nacional Cajas.
-Actualmente tiene una superficie de 28.544 has."
+    <string name="about_cajas_link">http://www.mobot.org/MOBOT/research/paramo/study.shtml</string>
+
+    <string name="settings_acerca_paramo">About Páramo</string>
+
+    <string name="about_paramo">
+        <![CDATA["Páramo is a unique mountain ecosystem dominated by bunch-grasses. It is found above the tree line and up to the permanent snow line (3000-5000 m/9000-15000 ft elev.) from Venezuela to northern Peru and on mountains in Panama and Costa Rica. The word páramo i associated to treeless inhospitable plains. However, páramos have high biological diversity and endemism, and constitute a unique biota.
+Plants have adapted to the cold conditions, extreme solar irradiation, low atmospheric pressure, dramatic daily fluctuations in temperature, and seasonal rains. Many plants grow very close to the ground, forming <a href='#'>rosettes</a> and <a href='#'>cushion-plants</a>, or have reduced <a href='#'>hard leaves</a> or are covered with a dense layer of white or <a href='#'>silvery hairs</a>.
+Páramos along with the Andean forests, function as a buffer in the hydrological cycle, which slowly releases the fallen rain water to rivers and lakes. The water captured in the páramos benefits millions of people that use it for consumption and irrigation.
+The effect of the increase in temperatures due to climate change is already observed in peaks on the higher tropical mountains with a marked glacier retreat. Changes in the páramos hydrological cycle can bring catastrophic consequences and immense economic implications for the Andean countries that depend on this ecosystem for provision of water for human consumption, for operation of hydro-electrical plants, irrigation systems."
+]]>
     </string>
 
-    <string name="cajas_link">http://www.etapa.net.ec/PNC/PNC_viscaj_des_gen.aspx</string>
+    <string name="about_paramo_link">http://www.mobot.org/MOBOT/Research/paramo_flora.shtml</string>
 
     <string name="about">
 "We present 100 native plant species found in the páramo of Cajas, Azuay province, Ecuador.
@@ -253,7 +259,7 @@ All rights reserved."</string>
     <string name="search_autor">Author</string>
     <string name="search_ver_fotos">Show picture</string>
     <string name="search_no_results">No results found</string>
-    <string name="settings_lugares">About Cajas</string>
+    <string name="settings_acerca_cajas">About Cajas</string>
     <string name="settings_formas_vida">Life forms</string>
     <string name="settings_about">About this app</string>
     <string name="settings_bugs">Report bugs</string>
@@ -284,6 +290,7 @@ All rights reserved."</string>
     <string name="inicio_ver_nombres">Browse names</string>
     <string name="inicio_buscar_clave">Search key</string>
     <string name="inicio_about_paramo">About Páramo</string>
+    <string name="inicio_about_cajas">About Cajas</string>
     <string name="tropicos_title">Tropicos</string>
     <string name="especies_info_flora">W3Flora description</string>
 
