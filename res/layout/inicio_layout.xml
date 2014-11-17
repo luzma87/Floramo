@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageButton"
-        android:src="@drawable/floramo"
+        android:src="@drawable/ic_floramo"
         android:layout_marginBottom="30dp"
         android:layout_gravity="center" />
 
@@ -41,7 +41,7 @@
             android:background="@drawable/button_blue"
             android:layout_margin="5dp"
 
-            android:drawableLeft="@drawable/ic_action_search"
+            android:drawableLeft="@drawable/ic_inicio_action_search"
             android:text="@string/inicio_buscar_clave" />
 
         <Button
@@ -52,7 +52,7 @@
             android:background="@drawable/button_blue"
             android:layout_margin="5dp"
 
-            android:drawableLeft="@drawable/ic_action_web_site"
+            android:drawableLeft="@drawable/ic_inicio_action_map"
             android:text="@string/map_title" />
 
         <Button

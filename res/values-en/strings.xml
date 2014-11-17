@@ -206,42 +206,45 @@ It shows a maximum of 10 results. Tapping an item on the list shows its details.
 
     <string name="ruta_lbl_fotos">Pictures:</string>
 
-    <string name="about_cajas">"The Cajas massif is located 30 km west of the city of Cuenca, Azuay province in southern Ecuador. It is dominated by herbaceous páramo with scattered patches of forest.
-Pleistocene glaciers carved the landscape resulting in a unique area of irregular topography with more than 235 lakes and lagoons and unparalleled scenic beauty. The climate is cold and humid; there is however, considerable daily weather variation that can change rapidly from calm to strong winds, from cloudy to intense sun, from dry to fog or drizzle, and from hard rain to hail. The minimum daily temperature is –2°C and the maximum is 18°C. The annual mean precipitation is 1200 mm. It has two access roads: the main Cuenca-Molleturo-Naranjal road, and the unpaved Cuenca-Soldados. The Área de Recreación Cajas was created in 1977 and upgraded to Cajas National Park in 1996.  It comprises 28,544 hectares, between 3150 and 4450 m asl. "</string>
-
-    <string name="about_cajas_link">http://www.mobot.org/MOBOT/research/paramo/study.shtml</string>
+    <string name="about_cajas"><![CDATA["<p>The Cajas massif is located 30 km west of the city of Cuenca, Azuay province in southern Ecuador. It is dominated by herbaceous páramo with scattered patches of forest.</p>
+<p>Pleistocene glaciers carved the landscape resulting in a unique area of irregular topography with more than 235 lakes and lagoons and unparalleled scenic beauty. The climate is cold and humid; there is however, considerable daily weather variation that can change rapidly from calm to strong winds, from cloudy to intense sun, from dry to fog or drizzle, and from hard rain to hail. The minimum daily temperature is –2°C and the maximum is 18°C. The annual mean precipitation is 1200 mm. It has two access roads: the main Cuenca-Molleturo-Naranjal road, and the unpaved Cuenca-Soldados. The Área de Recreación Cajas was created in 1977 and upgraded to Cajas National Park in 1996.  It comprises 28,544 hectares, between 3150 and 4450 m asl.</p>
+<br/>
+<p>Read more: <a href='#'>http://www.mobot.org/MOBOT/research/paramo/study.shtml</a></p>"
+]]></string>
 
     <string name="settings_acerca_paramo">About Páramo</string>
 
-    <string name="about_paramo">
-        <![CDATA["Páramo is a unique mountain ecosystem dominated by bunch-grasses. It is found above the tree line and up to the permanent snow line (3000-5000 m/9000-15000 ft elev.) from Venezuela to northern Peru and on mountains in Panama and Costa Rica. The word páramo i associated to treeless inhospitable plains. However, páramos have high biological diversity and endemism, and constitute a unique biota.
-Plants have adapted to the cold conditions, extreme solar irradiation, low atmospheric pressure, dramatic daily fluctuations in temperature, and seasonal rains. Many plants grow very close to the ground, forming <a href='#'>rosettes</a> and <a href='#'>cushion-plants</a>, or have reduced <a href='#'>hard leaves</a> or are covered with a dense layer of white or <a href='#'>silvery hairs</a>.
-Páramos along with the Andean forests, function as a buffer in the hydrological cycle, which slowly releases the fallen rain water to rivers and lakes. The water captured in the páramos benefits millions of people that use it for consumption and irrigation.
-The effect of the increase in temperatures due to climate change is already observed in peaks on the higher tropical mountains with a marked glacier retreat. Changes in the páramos hydrological cycle can bring catastrophic consequences and immense economic implications for the Andean countries that depend on this ecosystem for provision of water for human consumption, for operation of hydro-electrical plants, irrigation systems."
-]]>
-    </string>
+    <string name="about_paramo"><![CDATA["<p>Páramo is a unique mountain ecosystem dominated by bunch-grasses. It is found above the tree line and up to the permanent snow line (3000-5000 m/9000-15000 ft elev.) from Venezuela to northern Peru and on mountains in Panama and Costa Rica. The word páramo i associated to treeless inhospitable plains. However, páramos have high biological diversity and endemism, and constitute a unique biota.</p>
+<p>Plants have adapted to the cold conditions, extreme solar irradiation, low atmospheric pressure, dramatic daily fluctuations in temperature, and seasonal rains. Many plants grow very close to the ground, forming <a href='#'>rosettes</a> and <a href='#'>cushion-plants</a>, or have reduced <a href='#'>hard leaves</a> or are covered with a dense layer of white or <a href='#'>silvery hairs</a>.</p>
+<p>Páramos along with the Andean forests, function as a buffer in the hydrological cycle, which slowly releases the fallen rain water to rivers and lakes. The water captured in the páramos benefits millions of people that use it for consumption and irrigation.</p>
+<p>The effect of the increase in temperatures due to climate change is already observed in peaks on the higher tropical mountains with a marked glacier retreat. Changes in the páramos hydrological cycle can bring catastrophic consequences and immense economic implications for the Andean countries that depend on this ecosystem for provision of water for human consumption, for operation of hydro-electrical plants, irrigation systems.</p>
+<br/>
+<p>Read more: <a href='#'>http://www.mobot.org/MOBOT/Research/paramo_flora.shtml</a></p>"
+]]></string>
 
-    <string name="about_paramo_link">http://www.mobot.org/MOBOT/Research/paramo_flora.shtml</string>
+    <string name="about"><![CDATA["<p>Flóramo is a field guide to identify 100 species of wild plants found in the páramo, a vegetation type at the top of the Andes Mountains of tropical South America. It contains field images, species descriptions, and an identification key using life forms, flower colors or scientific names. A map with location of species, routes for personalized records. Additional features include searches into the Missouri Botanical Garden Tropicos® database. Flóramo currently includes plants found the in the Cajas massif of southern Ecuador, but various species are found beyond this area.</p>
 
-    <string name="about">
-"We present 100 native plant species found in the páramo of Cajas, Azuay province, Ecuador.
-Páramo is a unique ecosystem dominated by bunch-grasses above the tree-line in the Andes mountains.
-The plants are not necessarily the most common species, but they are showy, easy to find, and relatively easy to identify.
-We believe that by recognizing and naming wild plants the user will gain an increased appreciation of the flora of Ecuador and will strive to protect them and the páramo environment."
-    </string>
+<p>Páramo flora full website hosting sites on studies on páramo flora is at:
+<a href='#'>http://www.mobot.org/mobot/research/paramo_flora.shtml</a></p>
+
+<p>The Flora of Cajas project is a collaboration between the Missouri Botanical Garden (<a href='#'>http://www.missouribotanicalgarden.org/</a>) and the Azuay Herbarium (Universidad del Azuay, Cuenca Ecuador) (<a href='#'>http://www.uazuay.edu.ec/HerbarioAzuay/</a>) with Parque Nacional Cajas. We thank Etapa-Parque Nacional Cajas, Ministerio del Ambiente de Ecuador, and funding agencies for field work.</p>
+<p>Flora of Cajas Project full web site and acknowledgments at:
+<a href='#'>http://www.mobot.org/MOBOT/research/paramo/welcome_english.flash.asp</a></p>
+<br/>
+<p>Project contact: C. Ulloa <mailto>carmen.ulloa@mobot.org</mailto></p>"]]></string>
 
     <string name="creditos">"This project is a collaboration between the Missouri Botanical Garden and the Azuay Herbarium (Universidad del Azuay) with Parque Nacional Cajas.
 Project contact: C. Ulloa carmen.ulloa@mobot.org.
 Design and development: L.M. Unda, V. Zapata, Quito
 
 
-Icons:
-'Silhouette of tree of flowers and plants', http://www.freevectorvip.com/silhouette-of-tree-of-flowers-and-plants.html
+'Silhouette of tree of flowers and plants' icons, http://www.freevectorvip.com/silhouette-of-tree-of-flowers-and-plants.html
 Icons from Freepik (http://www.freepik.com) from Flaticon (http://www.flaticon.com), licenced under Creative Commons (http://creativecommons.org/licenses/by/3.0/)
 Icons from OCHA (http://www.unocha.org) from Flaticon (http://www.flaticon.com)  licensed under Creative Commons (http://creativecommons.org/licenses/by/3.0/)
 Icons from Victor Ivlichev, Free Dark Blue Cloud Icons, http://www.aha-soft.com/
 
-All rights reserved."</string>
+All rights reserved.
+©Missouri Botanical Garden, Science and Conservation Division"</string>
     <string name="captura_forma_vida1_label">Life form 1</string>
     <string name="captura_forma_vida2_label">Life form 2</string>
     <string name="captura_lugar_label">Location</string>
