@@ -198,10 +198,10 @@ public class EspecieInfoFragment extends Fragment implements Button.OnClickListe
 //        }
         if (view.getId() == btnDescripcion.getId()) {
             LayoutInflater inflater = context.getLayoutInflater();
-            View v = inflater.inflate(R.layout.especie_info_entry_dialog, null);
+            View v = inflater.inflate(R.layout.especie_info_descripcion_dialog, null);
 
-            ImageView img = (ImageView) v.findViewById(R.id.especie_info_dialog_image);
-            TextView txt = (TextView) v.findViewById(R.id.especie_info_dialog_comentarios);
+            ImageView img = (ImageView) v.findViewById(R.id.especie_descripcion_img);
+            TextView txt = (TextView) v.findViewById(R.id.especie_descripcion_txt);
 
             Foto foto = fotos.get(0);
             String path1 = foto.path.replaceAll("\\.jpg", "").replaceAll("-", "_").toLowerCase();
@@ -211,7 +211,11 @@ public class EspecieInfoFragment extends Fragment implements Button.OnClickListe
                 img.setImageResource(Utils.getImageResourceByName(context, path1));
             }
 
-            txt.setText(especie.descripcionEs);
+            if (context.language.equals("en")) {
+                txt.setText(especie.descripcionEn);
+            } else {
+                txt.setText(especie.descripcionEs);
+            }
 
             final AlertDialog.Builder builder = new AlertDialog.Builder(context).setView(v)
                     .setNeutralButton(R.string.dialog_btn_cerrar, null) //Set to null. We override the onclick

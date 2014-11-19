@@ -128,6 +128,8 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
 
     public Foto fotoSinCoords;
 
+    public String language;
+
     public void setRuta_remote_id(String id) {
         fireEvent("ruta_remote_id", id);
         old_id = ruta_remote_id;
@@ -182,6 +184,9 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
 
         fotoSinCoords = null;
         imageToUpload = null;
+
+        /* el idioma para saber cual mostrar en la descripcion */
+        language = Locale.getDefault().getLanguage();
 
         /*preferencias
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
@@ -268,7 +273,15 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         /*FinDrawer*/
 
 //        Utils.openFragment(this, new InicioFragment(), getString(R.string.inicio_title), null);
-        selectItem(INICIO_POS);
+//        selectItem(INICIO_POS);
+        /* selecciona el fragment de inicio sin BackStack */
+        String title = getString(R.string.inicio_title);
+        Utils.hideSoftKeyboard(this);
+        Fragment fragment = new InicioFragment();
+        activeFragment = INICIO_POS;
+        Utils.openFragment(this, fragment, title, null, false);
+        mDrawerList.setItemChecked(INICIO_POS, true);
+        mDrawerLayout.closeDrawer(mDrawerList);
     }
 
     private void restoreMe(Bundle state) {

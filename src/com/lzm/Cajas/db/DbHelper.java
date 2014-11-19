@@ -17,12 +17,12 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
     // Database Version
-    private static final int DATABASE_VERSION = 12;
+    private static final int DATABASE_VERSION = 14;
 
     // Database Name
 //    private static String DB_PATH = "/data/data/com.tmm.android.chuck/databases/";
-    public static String DB_PATH = Environment.getExternalStorageDirectory().getPath() + "/Floramo/db/";
-//    public static String DB_PATH = "";
+//    public static String DB_PATH = Environment.getExternalStorageDirectory().getPath() + "/Floramo/db/";
+    public static String DB_PATH = "";
     private static final String DATABASE_NAME = "floramoDb.db";
 
     // Table Names
@@ -37,7 +37,6 @@ public class DbHelper extends SQLiteOpenHelper {
     protected static final String TABLE_NOTA = "notas";
     protected static final String TABLE_RUTA = "rutas";
     protected static final String TABLE_COORDENADA = "coordenadas";
-
 
     // Common column names
     protected static final String KEY_ID = "id";
@@ -54,24 +53,43 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(createTableSql(TABLE_COLOR, KEYS_COMMON, ColorDbHelper.KEYS_COLOR));
-        db.execSQL(createTableSql(TABLE_ESPECIE, KEYS_COMMON, EspecieDbHelper.KEYS_ESPECIE));
-        db.execSQL(createTableSql(TABLE_FAMILIA, KEYS_COMMON, FamiliaDbHelper.KEYS_FAMILIA));
-        db.execSQL(createTableSql(TABLE_FOTO, KEYS_COMMON, FotoDbHelper.KEYS_FOTO));
-        db.execSQL(createTableSql(TABLE_GENERO, KEYS_COMMON, GeneroDbHelper.KEYS_GENERO));
-        db.execSQL(createTableSql(TABLE_LUGAR, KEYS_COMMON, LugarDbHelper.KEYS_LUGAR));
-        db.execSQL(createTableSql(TABLE_SETTINGS, KEYS_COMMON, SettingsDbHelper.KEYS_SETTINGS));
-        db.execSQL(createTableSql(TABLE_FORMA_VIDA, KEYS_COMMON, FormaVidaDbHelper.KEYS_FORMA_VIDA));
-        db.execSQL(createTableSql(TABLE_NOTA, KEYS_COMMON, NotaDbHelper.KEYS_NOTA));
-        db.execSQL(createTableSql(TABLE_RUTA, KEYS_COMMON, RutaDbHelper.KEYS_RUTA));
-        db.execSQL(createTableSql(TABLE_COORDENADA, KEYS_COMMON, CoordenadaDbHelper.KEYS_COORDENADA));
+//        System.out.println("*************************************************************************************** ON CREATE DATABASE");
+        createTable(db, TABLE_COLOR, KEYS_COMMON, ColorDbHelper.KEYS_COLOR);
+        createTable(db, TABLE_ESPECIE, KEYS_COMMON, EspecieDbHelper.KEYS_ESPECIE);
+        createTable(db, TABLE_FAMILIA, KEYS_COMMON, FamiliaDbHelper.KEYS_FAMILIA);
+        createTable(db, TABLE_FOTO, KEYS_COMMON, FotoDbHelper.KEYS_FOTO);
+        createTable(db, TABLE_GENERO, KEYS_COMMON, GeneroDbHelper.KEYS_GENERO);
+        createTable(db, TABLE_LUGAR, KEYS_COMMON, LugarDbHelper.KEYS_LUGAR);
+        createTable(db, TABLE_SETTINGS, KEYS_COMMON, SettingsDbHelper.KEYS_SETTINGS);
+        createTable(db, TABLE_FORMA_VIDA, KEYS_COMMON, FormaVidaDbHelper.KEYS_FORMA_VIDA);
+//        createTable(db, TABLE_NOTA, KEYS_COMMON, NotaDbHelper.KEYS_NOTA);
+        createTable(db, TABLE_RUTA, KEYS_COMMON, RutaDbHelper.KEYS_RUTA);
+        createTable(db, TABLE_COORDENADA, KEYS_COMMON, CoordenadaDbHelper.KEYS_COORDENADA);
 
-//        DbInserter.checkDb(db);
         DbInserter.insertDb(db);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i2) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+//        System.out.println("*************************************************************************************** ON UPGRADE DATABASE");
+        if (oldVersion < 14) {
+            upgradeTable(db, TABLE_FAMILIA, KEYS_COMMON, FamiliaDbHelper.KEYS_FAMILIA);
+            upgradeTable(db, TABLE_GENERO, KEYS_COMMON, GeneroDbHelper.KEYS_GENERO);
+            upgradeTable(db, TABLE_ESPECIE, KEYS_COMMON, EspecieDbHelper.KEYS_ESPECIE);
+
+            DbInserter.insertFamilias(db);
+            DbInserter.insertGeneros(db);
+            DbInserter.insertEspecies(db);
+        }
+    }
+
+    public void upgradeTable(SQLiteDatabase db, String tableName, String[] common, String[] columnNames) {
+        db.execSQL("DROP TABLE " + tableName);
+        db.execSQL(createTableSql(tableName, common, columnNames));
+    }
+
+    public void createTable(SQLiteDatabase db, String tableName, String[] common, String[] columnNames) {
+        db.execSQL(createTableSql(tableName, common, columnNames));
     }
 
     /**

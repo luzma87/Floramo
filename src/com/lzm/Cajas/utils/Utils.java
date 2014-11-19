@@ -75,26 +75,44 @@ public class Utils {
     }
 
     public static void openFragment(MapActivity context, Fragment fragment, String title, Bundle args) {
+        openFragment(context, fragment, title, args, true);
+    }
+
+    public static void openFragment(MapActivity context, Fragment fragment, String title, Bundle args, boolean backstack) {
         context.setTitle(title);
         FragmentManager fragmentManager = context.getFragmentManager();
         RelativeLayout mainLayout = (RelativeLayout) context.findViewById(R.id.rl2);
         if (fragment == null) {
-            fragmentManager.beginTransaction()
-                    .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
-                    .hide(fragmentManager.findFragmentById(R.id.content_frame))
-                    .addToBackStack("")
-                    .commit();
+            if (backstack) {
+                fragmentManager.beginTransaction()
+                        .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+                        .hide(fragmentManager.findFragmentById(R.id.content_frame))
+                        .addToBackStack("")
+                        .commit();
+            } else {
+                fragmentManager.beginTransaction()
+                        .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+                        .hide(fragmentManager.findFragmentById(R.id.content_frame))
+                        .commit();
+            }
             mainLayout.setVisibility(View.VISIBLE);
         } else {
             if (args != null) {
                 fragment.setArguments(args);
             }
 //                fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
-            fragmentManager.beginTransaction()
-                    .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
-                    .replace(R.id.content_frame, fragment)
-                    .addToBackStack("")
-                    .commit();
+            if (backstack) {
+                fragmentManager.beginTransaction()
+                        .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+                        .replace(R.id.content_frame, fragment)
+                        .addToBackStack("")
+                        .commit();
+            } else {
+                fragmentManager.beginTransaction()
+                        .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+                        .replace(R.id.content_frame, fragment)
+                        .commit();
+            }
             mainLayout.setVisibility(LinearLayout.GONE);
         }
     }

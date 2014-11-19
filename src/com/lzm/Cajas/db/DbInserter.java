@@ -6,11 +6,16 @@ import android.database.sqlite.SQLiteDatabase;
  * Created by DELL on 28/09/2014.
  */
 public class DbInserter {
-    public static void insertDb(SQLiteDatabase db) {
+
+    public static void insertSettings(SQLiteDatabase db) {
         db.execSQL("INSERT INTO settings (id, floraBase, tropicosBase) VALUES (\"2\", \"http://www.mobot.org/MOBOT/paramo/search_paramo.asp?searchFor=\", \"http://www.tropicos.org/Name/\");");
+    }
 
+    public static void insertLugares(SQLiteDatabase db) {
         db.execSQL("INSERT INTO lugares (id, nombre, nombre_norm, path) VALUES (\"1\", \"Páramo del Cajas, Ecuador\", \"Paramo del Cajas, Ecuador\", \"Cajas.jpg\");");
+    }
 
+    public static void insertColores(SQLiteDatabase db) {
         db.execSQL("INSERT INTO colores(id, nombre) VALUES (\"3\", \"white\");");
         db.execSQL("INSERT INTO colores(id, nombre) VALUES (\"15\", \"green\");");
         db.execSQL("INSERT INTO colores(id, nombre) VALUES (\"29\", \"pink\");");
@@ -20,8 +25,9 @@ public class DbInserter {
         db.execSQL("INSERT INTO colores(id, nombre) VALUES (\"52\", \"brown\");");
         db.execSQL("INSERT INTO colores(id, nombre) VALUES (\"71\", \"red\");");
         db.execSQL("INSERT INTO colores(id, nombre) VALUES (\"127\", \"blue\");");
+    }
 
-
+    public static void insertFormasVida(SQLiteDatabase db) {
         db.execSQL("INSERT INTO formas_vida(id, nombre) VALUES (\"4\", \"cushion\");");
         db.execSQL("INSERT INTO formas_vida(id, nombre) VALUES (\"5\", \"herb\");");
         db.execSQL("INSERT INTO formas_vida(id, nombre) VALUES (\"10\", \"shrub\");");
@@ -30,8 +36,9 @@ public class DbInserter {
         db.execSQL("INSERT INTO formas_vida(id, nombre) VALUES (\"177\", \"acquatic\");");
         db.execSQL("INSERT INTO formas_vida(id, nombre) VALUES (\"240\", \"liana\");");
         db.execSQL("INSERT INTO formas_vida(id, nombre) VALUES (\"275\", \"tree\");");
+    }
 
-
+    public static void insertFamilias(SQLiteDatabase db) {
         db.execSQL("INSERT INTO familias (id, nombre, nombre_norm) VALUES (\"6\", \"Rubiaceae\", \"Rubiaceae\");");
         db.execSQL("INSERT INTO familias (id, nombre, nombre_norm) VALUES (\"16\", \"Apiaceae\", \"Apiaceae\");");
         db.execSQL("INSERT INTO familias (id, nombre, nombre_norm) VALUES (\"23\", \"Asteraceae\", \"Asteraceae\");");
@@ -76,8 +83,9 @@ public class DbInserter {
         db.execSQL("INSERT INTO familias (id, nombre, nombre_norm) VALUES (\"323\", \"Valerianaceae\", \"Valerianaceae\");");
         db.execSQL("INSERT INTO familias (id, nombre, nombre_norm) VALUES (\"338\", \"Violaceae\", \"Violaceae\");");
         db.execSQL("INSERT INTO familias (id, nombre, nombre_norm) VALUES (\"54\", \"Poaceae\", \"Poaceae\");");
+    }
 
-
+    public static void insertGeneros(SQLiteDatabase db) {
         db.execSQL("INSERT INTO generos (id, nombre, nombre_norm, familia_id) VALUES (\"7\", \"Arcytophyllum\", \"Arcytophyllum\", \"6\");");
         db.execSQL("INSERT INTO generos (id, nombre, nombre_norm, familia_id) VALUES (\"17\", \"Arracacia\", \"Arracacia\", \"16\");");
         db.execSQL("INSERT INTO generos (id, nombre, nombre_norm, familia_id) VALUES (\"20\", \"Azorella\", \"Azorella\", \"16\");");
@@ -156,8 +164,9 @@ public class DbInserter {
         db.execSQL("INSERT INTO generos (id, nombre, nombre_norm, familia_id) VALUES (\"343\", \"Werneria\", \"Werneria\", \"23\");");
         db.execSQL("INSERT INTO generos (id, nombre, nombre_norm, familia_id) VALUES (\"350\", \"Xenophyllum\", \"Xenophyllum\", \"23\");");
         db.execSQL("INSERT INTO generos (id, nombre, nombre_norm, familia_id) VALUES (\"217\", \"Chusquea\", \"Chusquea\", \"54\");");
+    }
 
-
+    public static void insertCoords(SQLiteDatabase db) {
         db.execSQL("INSERT INTO coordenadas (id, latitud, longitud, altitud) VALUES (\"355\", \"-2.88361\", \"-79.30861\", \"3680.0\");");
         db.execSQL("INSERT INTO coordenadas (id, latitud, longitud, altitud) VALUES (\"356\", \"-2.88361\", \"-79.30861\", \"3870.0\");");
         db.execSQL("INSERT INTO coordenadas (id, latitud, longitud, altitud) VALUES (\"357\", \"-2.71666\", \"-79.2\", \"3900.0\");");
@@ -337,8 +346,9 @@ public class DbInserter {
         db.execSQL("INSERT INTO coordenadas (id, latitud, longitud, altitud) VALUES (\"531\", \"-2.55\", \"-79.35\", \"3500.0\");");
         db.execSQL("INSERT INTO coordenadas (id, latitud, longitud, altitud) VALUES (\"532\", \"-2.93333\", \"-79.3\", \"3850.0\");");
         db.execSQL("INSERT INTO coordenadas (id, latitud, longitud, altitud) VALUES (\"533\", \"-2.90111\", \"-79.28694\", \"3890.0\");");
+    }
 
-
+    public static void insertEspecies(SQLiteDatabase db) {
         db.execSQL("INSERT INTO especies (id, nombre, nombre_norm, genero_id, color1_id, color2_id, forma_vida1_id, forma_vida2_id, id_tropicos, descripcion_es, descripcion_en, autor) VALUES (\"122\", \"vulcanica\", \"vulcanica\", \"121\", \"29\", \"null\", \"10\", \"null\", \"23200095\", \"Arbustos hasta 3 m de alto, con tallos color rosado rojizo. Hojas elípticas, hasta 10 cm de largo; márgenes ligeramente crenados, los pecíolos color rosado rojizo. Inflorescencia tiene con pocas flores. Flores colgantes, hasta 8 cm de largo, color rosado rojizo, tubulares con 4 sépalos triangulares y 4 pétalos ovados. Frutos carnosos, hasta 1.5 cm de largo, color verde con morado. \nDistribución: Es endémica del Ecuador. En el Cajas se encuentra en los remanentes boscosos en las partes bajas del páramo.\", \"Shrubs up to 3 m tall, with reddish pink stems. Leaves elliptic, up to 10 cm long; margins slightly crenate, the petioles reddish pink. Inflorescence few-flowered. Flowers pendent, up to 8 cm long, reddish pink, tubular with 4 triangular sepals and 4 spathulate petals. Fruits fleshy, up to 1.5 cm long, green with purple. \nDistribution: Endemic to Ecuador. In Cajas it is found in the forests patches in the lower parts of the páramo.\", \"André\");");
         db.execSQL("INSERT INTO especies (id, nombre, nombre_norm, genero_id, color1_id, color2_id, forma_vida1_id, forma_vida2_id, id_tropicos, descripcion_es, descripcion_en, autor) VALUES (\"21\", \"pedunculata\", \"pedunculata\", \"20\", \"15\", \"null\", \"4\", \"5\", \"1703586\", \"Plantas dispuestas en almohadillas muy compactas y grandes hasta de 2 m de diámetro. Hojas amontonadas al final de las ramas, hasta 1 cm de largo, muy duras y brillantes, tienen el ápice profundamente partido en 3 a 5 lóbulos espinosos. Inflorescencia pequeña, mide menos de 1 cm y tiene hasta 20 flores. Flores diminutas, hasta 3 mm de largo, color verde amarillento. \nDistribución: S Colombia a Ecuador. En el Cajas es una especie muy común en varios ambientes.\", \"Cushion-forming plants that form compact mounds up to 2 m in diameter. Leaves clustered at the tip of the branches, up to 1 cm long, very hard and glossy; apex is deeply divided into 3 to 5 spiny lobes. Inflorescence small, less than 1 cm long and with up to 20 flowers. Flowers minute, up to 3 mm long, yellowish green. \nDistribution: S Colombia to Ecuador. In Cajas it is a common species in various environments.\", \"(Spreng.) Mathias & Constance\");");
         db.execSQL("INSERT INTO especies (id, nombre, nombre_norm, genero_id, color1_id, color2_id, forma_vida1_id, forma_vida2_id, id_tropicos, descripcion_es, descripcion_en, autor) VALUES (\"56\", \"intermedia\", \"intermedia\", \"55\", \"52\", \"null\", \"53\", \"5\", \"25512876\", \"Hierbas en macollas densas, hasta 80 cm de diámetro. Hojas lineares y hasta 80 cm de largo; márgenes doblados y dan una apariencia cilíndrica a las hojas. Inflorescencias en llamativas, hasta 90 cm de largo, racimos compuestos con numerosas espiguillas amarillentas. Flores reducidas, hasta 10 mm de largo. \nDistribución: Colombia a Argentina. En el Cajas es la planta dominante en el páramo de pajonal. Sobrevive a las quemas.\", \"Large tussock grasses, up to 80 cm long in diameter. Leaves linear, up to 80 cm long; margins curled inwards along the leaf giving it a cylindrical shape. Inflorescences showy racemes, up to 90 cm long, with numerous yellowish spikelets. Flowers reduced, up to 10 mm long. \nDistribution: Colombia to Argentina. In Cajas it is the dominant plant in the grass páramo. It survives fires.\", \"(J. Presl) Steud.\");");
@@ -439,8 +449,9 @@ public class DbInserter {
         db.execSQL("INSERT INTO especies (id, nombre, nombre_norm, genero_id, color1_id, color2_id, forma_vida1_id, forma_vida2_id, id_tropicos, descripcion_es, descripcion_en, autor) VALUES (\"139\", \"longibarbata\", \"longibarbata\", \"132\", \"15\", \"null\", \"5\", \"null\", \"13801791\", \"Plantas con tallos laxos, algo reclinados en la base, algo leñosos, hasta 80 cm de alto. Hojas lanceoladas, opuestas, hasta 6 cm de largo, y son algo duras. Flores hasta 40 mm de largo, tienen apariencia tubular por los pétalos algo sobrepuestos, algo colgantes, color verde amarillento o amarillo limón, a veces con manchas moradas. \nDistribución: Es endémica del Cajas, crece dentro de los bosques de Polylepis o en el páramo arbustivo.\", \"Plants with lax stems, somewhat reclining at base, somewhat woody, up to 80 cm tall. Leaves opposite, lanceolate, up to 6 cm long, stiff. Flowers 40 mm long, appearing tubular by the overlapping petals, pendent, and yellowish green or lemon yellow, sometimes with purple dots. \nDistribution: Endemic to Cajas, where it is found in the Polylepis forests or in the shrubby páramo.\", \"(Gilg) Fabris\");");
         db.execSQL("INSERT INTO especies (id, nombre, nombre_norm, genero_id, color1_id, color2_id, forma_vida1_id, forma_vida2_id, id_tropicos, descripcion_es, descripcion_en, autor) VALUES (\"118\", \"myrtilloides\", \"myrtilloides\", \"117\", \"15\", \"36\", \"10\", \"null\", \"29100693\", \"Arbustos hasta 3 m de alto. Hojas alternas, hasta 2.5 cm de largo, lanceoladas, con glándulas diminutas. Flores solitarias, colgantes, hasta 1.5 cm de largo, tienen forma de copa y 5 pétalos caedizos, color verde o crema verdoso; estigma es grande y claviforme. Fruto una cápsula seca que eventualmente se abre. \nDistribución: Costa Rica, Panamá, Andes desde Venezuela hasta Argentina. En el Cajas se encuentra en restos de bosques y partes bajas del páramo.\", \"Shrubs up to 3 m tall. Leaves alternate, up to 2.5 cm long, lanceolate, with minute glands. Flowers solitary, pendent, up to 1.5 cm long, cup-shaped with 5 deciduous petals, green or greenish cream; stigma is nail-like and thick. Fruit a dry capsule that eventually opens. \nDistribution: Costa Rica, Panama, and the Andes from Venezuela to Argentina. In Cajas it is found in forest remnants and lower páramo.\", \"L.f.\");");
         db.execSQL("INSERT INTO especies (id, nombre, nombre_norm, genero_id, color1_id, color2_id, forma_vida1_id, forma_vida2_id, id_tropicos, descripcion_es, descripcion_en, autor) VALUES (\"282\", \"paramoanus\", \"paramoanus\", \"281\", \"52\", \"null\", \"177\", \"null\", \"26300337\", \"Hierbas acuáticas sumergidas y flotantes, crecen en grupos densos; tallos de longitud variable de acuerdo a la profundidad del agua. Hojas de dos tipos: las sumergidas son alargadas, hasta 26 cm de largo, color verdoso algo translúcidas; las emergentes son espatuladas, hasta 7 cm de largo, y presentan un color verde-amarillento. Inflorescencias poco llamativas y sumergidas o emergentes, constituyen espigas de 1 cm de largo, color verde claro. Flores diminutas de 1.5 mm de largo. \nDistribución: Venezuela a Bolivia. En el Cajas crece en las lagunas.\", \"Aquatic herbs submerged and floating, forming dense groups; stems of variable length according to the depth of the water. Leaves of two types: those submerged elongate, up to 26 cm long, greenish and translucent; emerging leaves spathulate, up to 7 cm long, yellowish-green. Inflorescences inconspicuous and submerged or emerging, spikes up to 1 cm long, light green. Flowers minute, 1.5 mm long. \nDistribution: Venezuela to Bolivia. In Cajas it grows in the lakes.\", \"Haynes & Holm-Nielsen\");");
+    }
 
-
+    public static void insertFotos(SQLiteDatabase db) {
         db.execSQL("INSERT INTO fotos (id, especie_id, lugar_id, coordenada_id, path) VALUES (\"9\", \"8\", \"1\", \"366\", \"arcyt_fili.jpg\");");
         db.execSQL("INSERT INTO fotos (id, especie_id, lugar_id, coordenada_id, path) VALUES (\"12\", \"11\", \"1\", \"370\", \"arcyt_vern.jpg\");");
         db.execSQL("INSERT INTO fotos (id, especie_id, lugar_id, coordenada_id, path) VALUES (\"13\", \"11\", \"1\", \"370\", \"arcyt_vern_.jpg\");");
@@ -554,5 +565,17 @@ public class DbInserter {
         db.execSQL("INSERT INTO fotos (id, especie_id, lugar_id, coordenada_id, path) VALUES (\"328\", \"327\", \"1\", \"421\", \"valer_henr.jpg\");");
         db.execSQL("INSERT INTO fotos (id, especie_id, lugar_id, coordenada_id, path) VALUES (\"335\", \"334\", \"1\", \"427\", \"valer_rigi.jpg\");");
         db.execSQL("INSERT INTO fotos (id, especie_id, lugar_id, coordenada_id, path) VALUES (\"337\", \"336\", \"1\", \"384\", \"valer_secu.jpg\");");
+    }
+
+    public static void insertDb(SQLiteDatabase db) {
+        insertSettings(db);
+        insertLugares(db);
+        insertColores(db);
+        insertFormasVida(db);
+        insertFamilias(db);
+        insertGeneros(db);
+        insertCoords(db);
+        insertEspecies(db);
+        insertFotos(db);
     }
 }
