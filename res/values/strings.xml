@@ -301,4 +301,5 @@ Todos los derechos reservados.
     <string name="tropicos_title">Tropicos</string>
 
     <string name="dlg_ver">Ver datos</string>
+    <string name="especies_info_descripcion">Descripción</string>
 </resources>

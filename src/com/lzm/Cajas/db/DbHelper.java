@@ -17,12 +17,12 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
     // Database Version
-    private static final int DATABASE_VERSION = 11;
+    private static final int DATABASE_VERSION = 12;
 
     // Database Name
 //    private static String DB_PATH = "/data/data/com.tmm.android.chuck/databases/";
-//    public static String DB_PATH = Environment.getExternalStorageDirectory().getPath() + "/Floramo/db/";
-    public static String DB_PATH = "";
+    public static String DB_PATH = Environment.getExternalStorageDirectory().getPath() + "/Floramo/db/";
+//    public static String DB_PATH = "";
     private static final String DATABASE_NAME = "floramoDb.db";
 
     // Table Names

@@ -298,4 +298,5 @@ All rights reserved.
     <string name="especies_info_flora">W3Flora description</string>
 
     <string name="dlg_ver">Show info.</string>
+    <string name="especies_info_descripcion">Description</string>
 </resources>

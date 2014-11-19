@@ -19,6 +19,10 @@ public class Especie {
     public String nombreComunNorm;
     public String comentarios;
 
+    public String descripcionEn;
+    public String descripcionEs;
+    public String autor;
+
     public Long color1_id;
     public Long color2_id;
 
@@ -176,6 +180,30 @@ public class Especie {
 
     public void setIdTropicos(Long idTropicos) {
         this.idTropicos = idTropicos;
+    }
+
+    public String getDescripcionEn() {
+        return descripcionEn;
+    }
+
+    public void setDescripcionEn(String descripcionEn) {
+        this.descripcionEn = descripcionEn;
+    }
+
+    public String getDescripcionEs() {
+        return descripcionEs;
+    }
+
+    public void setDescripcionEs(String descripcionEs) {
+        this.descripcionEs = descripcionEs;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
     }
 
     //setters

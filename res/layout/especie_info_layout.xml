@@ -138,7 +138,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_alignStart="@+id/especie_info_especie_lbl"
                 android:layout_alignLeft="@+id/especie_info_especie_lbl"
-                android:layout_below="@id/especie_info_especie_lbl" />
+                android:layout_below="@id/especie_info_especie" />
 
             <ImageView
                 android:id="@+id/especie_info_color1"
@@ -342,10 +342,23 @@
         android:drawableLeft="@drawable/ic_action_web_site"
         android:drawablePadding="5dip"
         android:text="@string/especies_info_flora"
+        android:textSize="12sp"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/especie_info_descripcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_blue"
+        style="@style/ButtonText"
+        android:layout_alignParentBottom="true"
+        android:drawableLeft="@drawable/ic_action_chat"
+        android:drawablePadding="5dip"
+        android:text="@string/especies_info_descripcion"
         android:textSize="12sp" />
 
     <Button
-        android:id="@+id/especie_info_ikiam"
+        android:id="@+id/especie_info_floramo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/button_blue"
@@ -354,8 +367,8 @@
         android:drawableLeft="@drawable/ic_tropicos"
         android:drawablePadding="5dip"
         android:text="@string/especie_info_tropicos"
-        android:layout_toEndOf="@+id/especie_info_web"
-        android:layout_toRightOf="@+id/especie_info_web"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:textSize="12sp" />
 
 </RelativeLayout>

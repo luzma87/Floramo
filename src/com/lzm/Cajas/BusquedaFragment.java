@@ -239,7 +239,7 @@ public class BusquedaFragment extends Fragment implements Button.OnClickListener
     @Override
     public void onPause() {
         super.onPause();
-        System.out.println("*************************************************** PAUSE ************************************");
+//        System.out.println("*************************************************** PAUSE ************************************");
     }
 
     @Override

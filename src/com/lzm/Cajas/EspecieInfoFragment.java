@@ -48,8 +48,9 @@ public class EspecieInfoFragment extends Fragment implements Button.OnClickListe
     ImageView[] imageViews;
     int fotoPos;
 
-    Button btnCajas;
+    //    Button btnCajas;
     Button btnTropicos;
+    Button btnDescripcion;
 
     Especie especie;
     List<Foto> fotos;
@@ -78,9 +79,11 @@ public class EspecieInfoFragment extends Fragment implements Button.OnClickListe
 
         imgEspecieInfoImagen = (ImageView) view.findViewById(R.id.especie_info_imagen);
 
-        btnCajas = (Button) view.findViewById(R.id.especie_info_web);
-        btnCajas.setOnClickListener(this);
-        btnTropicos = (Button) view.findViewById(R.id.especie_info_ikiam);
+//        btnCajas = (Button) view.findViewById(R.id.especie_info_web);
+//        btnCajas.setOnClickListener(this);
+        btnDescripcion = (Button) view.findViewById(R.id.especie_info_descripcion);
+        btnDescripcion.setOnClickListener(this);
+        btnTropicos = (Button) view.findViewById(R.id.especie_info_floramo);
         btnTropicos.setOnClickListener(this);
         long especieId = getArguments().getLong("especie");
         especie = Especie.getDatos(context, especieId);
@@ -186,11 +189,50 @@ public class EspecieInfoFragment extends Fragment implements Button.OnClickListe
         boolean band = false;
 
         Settings sett = Settings.getSettings(context);
-        if (view.getId() == btnCajas.getId()) {
-            String url = sett.floraBase + especie.genero + "+" + especie.nombre;
-//            System.out.println("::::::::::::::::::::::::::::: URL FLORA" + url);
-            Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-            startActivity(myIntent);
+//        if (view.getId() == btnCajas.getId()) {
+//            String url = sett.floraBase + especie.genero + "+" + especie.nombre;
+////            System.out.println("::::::::::::::::::::::::::::: URL FLORA" + url);
+//            Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+//            startActivity(myIntent);
+//            band = true;
+//        }
+        if (view.getId() == btnDescripcion.getId()) {
+            LayoutInflater inflater = context.getLayoutInflater();
+            View v = inflater.inflate(R.layout.especie_info_entry_dialog, null);
+
+            ImageView img = (ImageView) v.findViewById(R.id.especie_info_dialog_image);
+            TextView txt = (TextView) v.findViewById(R.id.especie_info_dialog_comentarios);
+
+            Foto foto = fotos.get(0);
+            String path1 = foto.path.replaceAll("\\.jpg", "").replaceAll("-", "_").toLowerCase();
+            if (foto.esMia == 1) {
+                img.setImageBitmap(context.getFotoDialog(foto, context.screenWidth, 300));
+            } else {
+                img.setImageResource(Utils.getImageResourceByName(context, path1));
+            }
+
+            txt.setText(especie.descripcionEs);
+
+            final AlertDialog.Builder builder = new AlertDialog.Builder(context).setView(v)
+                    .setNeutralButton(R.string.dialog_btn_cerrar, null) //Set to null. We override the onclick
+                    .setTitle(especie.genero + " " + especie.nombre);
+
+            final AlertDialog d = builder.create();
+
+            d.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface dialog) {
+                    Button cerrar = d.getButton(AlertDialog.BUTTON_NEUTRAL);
+                    cerrar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            d.dismiss();
+                        }
+                    });
+                }
+            });
+            d.show();
+
             band = true;
         }
         if (view.getId() == btnTropicos.getId()) {

@@ -887,14 +887,38 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                 }
                 break;
             case ENCICLOPEDIA2_POS:
+                fragment = new EnciclopediaListFragment();
+                title = getString(R.string.encyclopedia_title);
+                activeFragment = ENCICLOPEDIA2_POS;
+                overrideDrawer = ENCICLOPEDIA_POS;
                 break;
             case SHOW_RUTA_POS:
+                fragment = new RutaFragment();
+                title = getString(R.string.rutas_title);
+                activeFragment = SHOW_RUTA_POS;
+                overrideDrawer = RUTAS_POS;
                 break;
             case SHOW_ESPECIE_POS:
+                if (paramFrag != null) {
+                    fragment = new EspecieInfoFragment();
+                    title = getString(R.string.especie_info_title);
+                    args = new Bundle();
+                    args.putLong("especie", Long.parseLong(paramFrag));
+                    activeFragment = SHOW_ESPECIE_POS;
+                    overrideDrawer = ENCICLOPEDIA_POS;
+                }
                 break;
             case BUGS_POS:
+                fragment = new SettingsBugsFragment();
+                title = getString(R.string.bugs_title);
+                activeFragment = BUGS_POS;
+                overrideDrawer = SETTINGS_POS;
                 break;
             case COMMENTS_POS:
+                fragment = new SettingsCommentsFragment();
+                title = getString(R.string.comments_activity_title);
+                activeFragment = COMMENTS_POS;
+                overrideDrawer = SETTINGS_POS;
                 break;
 
             default:

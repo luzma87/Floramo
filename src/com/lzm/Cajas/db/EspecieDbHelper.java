@@ -31,8 +31,13 @@ public class EspecieDbHelper extends DbHelper {
     private static final String KEY_ID_TROPICOS = "id_tropicos";
     private static final String KEY_ES_MIA = "es_mia";
 
+    private static final String KEY_DESCRIPCION_ES = "descripcion_es";
+    private static final String KEY_DESCRIPCION_EN = "descripcion_en";
+    private static final String KEY_AUTOR = "autor";
+
     public static final String[] KEYS_ESPECIE = {KEY_NOMBRE_COMUN, KEY_NOMBRE_COMUN_NORM, KEY_NOMBRE, KEY_NOMBRE_NORM,
-            KEY_GENERO_ID, KEY_COLOR1_ID, KEY_COLOR2_ID, KEY_FORMA_VIDA1_ID, KEY_FORMA_VIDA2_ID, KEY_ID_TROPICOS, KEY_ES_MIA};
+            KEY_GENERO_ID, KEY_COLOR1_ID, KEY_COLOR2_ID, KEY_FORMA_VIDA1_ID, KEY_FORMA_VIDA2_ID, KEY_ID_TROPICOS, KEY_ES_MIA,
+            KEY_DESCRIPCION_ES, KEY_DESCRIPCION_EN, KEY_AUTOR};
 
     public EspecieDbHelper(Context context) {
         super(context);
@@ -83,6 +88,9 @@ public class EspecieDbHelper extends DbHelper {
                 "    e.nombre especie," +
                 "    e.id_tropicos tropicos," +
                 "    e.es_mia es_mia," +
+                "    e.descripcion_es desc_es," +
+                "    e.descripcion_en desc_en," +
+                "    e.autor autor," +
                 "    g.nombre genero," +
                 "    f.nombre familia," +
                 "    c1.nombre color1," +
@@ -106,6 +114,9 @@ public class EspecieDbHelper extends DbHelper {
             es.nombre = c.getString(c.getColumnIndex("especie"));
             es.idTropicos = c.getLong(c.getColumnIndex("tropicos"));
             es.esMia = c.getInt(c.getColumnIndex("es_mia"));
+            es.descripcionEn = c.getString(c.getColumnIndex("desc_en"));
+            es.descripcionEs = c.getString(c.getColumnIndex("desc_es"));
+            es.autor = c.getString(c.getColumnIndex("autor"));
             es.genero = c.getString(c.getColumnIndex("genero"));
             es.familia = c.getString(c.getColumnIndex("familia"));
             es.color1 = c.getString(c.getColumnIndex("color1"));
@@ -166,6 +177,9 @@ public class EspecieDbHelper extends DbHelper {
                 "    e.nombre especie," +
                 "    e.id_tropicos tropicos," +
                 "    e.es_mia es_mia," +
+                "    e.descripcion_es desc_es," +
+                "    e.descripcion_en desc_en," +
+                "    e.autor autor," +
                 "    g.nombre genero," +
                 "    f.nombre familia," +
                 "    c1.nombre color1," +
@@ -190,6 +204,9 @@ public class EspecieDbHelper extends DbHelper {
                 es.nombre = c.getString(c.getColumnIndex("especie"));
                 es.idTropicos = c.getLong(c.getColumnIndex("tropicos"));
                 es.esMia = c.getInt(c.getColumnIndex("es_mia"));
+                es.descripcionEn = c.getString(c.getColumnIndex("desc_en"));
+                es.descripcionEs = c.getString(c.getColumnIndex("desc_es"));
+                es.autor = c.getString(c.getColumnIndex("autor"));
                 es.genero = c.getString(c.getColumnIndex("genero"));
                 es.familia = c.getString(c.getColumnIndex("familia"));
                 es.color1 = c.getString(c.getColumnIndex("color1"));
@@ -237,6 +254,9 @@ public class EspecieDbHelper extends DbHelper {
                 "    e.nombre especie," +
                 "    e.id_tropicos tropicos," +
                 "    e.es_mia es_mia," +
+                "    e.descripcion_es desc_es," +
+                "    e.descripcion_en desc_en," +
+                "    e.autor autor," +
                 "    g.nombre genero," +
                 "    f.nombre familia," +
                 "    c1.nombre color1," +
@@ -262,6 +282,9 @@ public class EspecieDbHelper extends DbHelper {
                 es.nombre = c.getString(c.getColumnIndex("especie"));
                 es.idTropicos = c.getLong(c.getColumnIndex("tropicos"));
                 es.esMia = c.getInt(c.getColumnIndex("es_mia"));
+                es.descripcionEn = c.getString(c.getColumnIndex("desc_en"));
+                es.descripcionEs = c.getString(c.getColumnIndex("desc_es"));
+                es.autor = c.getString(c.getColumnIndex("autor"));
                 es.genero = c.getString(c.getColumnIndex("genero"));
                 es.familia = c.getString(c.getColumnIndex("familia"));
                 es.color1 = c.getString(c.getColumnIndex("color1"));
@@ -676,6 +699,9 @@ public class EspecieDbHelper extends DbHelper {
         es.setFormaVida2_id(c.getLong(c.getColumnIndex(KEY_FORMA_VIDA2_ID)));
         es.setIdTropicos(c.getLong(c.getColumnIndex(KEY_ID_TROPICOS)));
         es.setEsMia(c.getInt(c.getColumnIndex(KEY_ES_MIA)));
+        es.setDescripcionEn(c.getString(c.getColumnIndex(KEY_DESCRIPCION_EN)));
+        es.setDescripcionEs(c.getString(c.getColumnIndex(KEY_DESCRIPCION_ES)));
+        es.setAutor(c.getString(c.getColumnIndex(KEY_AUTOR)));
         return es;
     }
 
@@ -690,6 +716,9 @@ public class EspecieDbHelper extends DbHelper {
         values.put(KEY_NOMBRE_NORM, especie.nombreNorm);
         values.put(KEY_ID_TROPICOS, especie.idTropicos);
         values.put(KEY_ES_MIA, especie.esMia);
+        values.put(KEY_DESCRIPCION_EN, especie.descripcionEn);
+        values.put(KEY_DESCRIPCION_ES, especie.descripcionEs);
+        values.put(KEY_AUTOR, especie.autor);
         if (especie.genero_id != null) {
             values.put(KEY_GENERO_ID, especie.genero_id);
         }

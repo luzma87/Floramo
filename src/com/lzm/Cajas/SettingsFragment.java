@@ -93,30 +93,34 @@ public class SettingsFragment extends Fragment implements Button.OnClickListener
             SettingsCommentsFragment fragment = new SettingsCommentsFragment();
             Utils.openFragment(context, fragment, getString(R.string.bugs_title));
         } else if (view.getId() == btnAbout.getId()) {
-            LayoutInflater inflater = context.getLayoutInflater();
-            View v = inflater.inflate(R.layout.settings_about_dialog, null);
-
-            final AlertDialog.Builder builder = new AlertDialog.Builder(context).setView(v)
-                    .setNeutralButton(R.string.dialog_btn_cerrar, null) //Set to null. We override the onclick
-                    .setTitle(getString(R.string.about_title));
-
-            final AlertDialog d = builder.create();
-            final TextView txt = (TextView) v.findViewById(R.id.about_dialog_txt);
-            txt.setText(getString(R.string.about));
-
-            d.setOnShowListener(new DialogInterface.OnShowListener() {
-                @Override
-                public void onShow(DialogInterface dialog) {
-                    Button cerrar = d.getButton(AlertDialog.BUTTON_NEUTRAL);
-                    cerrar.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            d.dismiss();
-                        }
-                    });
-                }
-            });
-            d.show();
+            Fragment about = new AboutFragment();
+            Bundle args = new Bundle();
+            args.putInt("tipo", AboutFragment.APP);
+            Utils.openFragment(context, about, getString(R.string.about_title), args);
+//            LayoutInflater inflater = context.getLayoutInflater();
+//            View v = inflater.inflate(R.layout.settings_about_dialog, null);
+//
+//            final AlertDialog.Builder builder = new AlertDialog.Builder(context).setView(v)
+//                    .setNeutralButton(R.string.dialog_btn_cerrar, null) //Set to null. We override the onclick
+//                    .setTitle(getString(R.string.about_title));
+//
+//            final AlertDialog d = builder.create();
+//            final TextView txt = (TextView) v.findViewById(R.id.about_dialog_txt);
+//            txt.setText(getString(R.string.about));
+//
+//            d.setOnShowListener(new DialogInterface.OnShowListener() {
+//                @Override
+//                public void onShow(DialogInterface dialog) {
+//                    Button cerrar = d.getButton(AlertDialog.BUTTON_NEUTRAL);
+//                    cerrar.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+//                            d.dismiss();
+//                        }
+//                    });
+//                }
+//            });
+//            d.show();
         } else if (view.getId() == btnCreditos.getId()) {
             LayoutInflater inflater = context.getLayoutInflater();
             View v = inflater.inflate(R.layout.settings_creditos_dialog, null);
