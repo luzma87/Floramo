@@ -17,7 +17,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
     // Database Version
-    private static final int DATABASE_VERSION = 14;
+    private static final int DATABASE_VERSION = 15;
 
     // Database Name
 //    private static String DB_PATH = "/data/data/com.tmm.android.chuck/databases/";
@@ -81,6 +81,9 @@ public class DbHelper extends SQLiteOpenHelper {
             DbInserter.insertGeneros(db);
             DbInserter.insertEspecies(db);
         }
+        String sqlFixAquatic = "UPDATE " + TABLE_FORMA_VIDA + " SET " + FormaVidaDbHelper.KEY_NOMBRE + " = \"aquatic\" where " +
+                FormaVidaDbHelper.KEY_NOMBRE + " = \"acquatic\"";
+        db.execSQL(sqlFixAquatic);
     }
 
     public void upgradeTable(SQLiteDatabase db, String tableName, String[] common, String[] columnNames) {
