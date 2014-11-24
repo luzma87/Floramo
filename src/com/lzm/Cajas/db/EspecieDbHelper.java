@@ -19,21 +19,21 @@ public class EspecieDbHelper extends DbHelper {
     private static final String LOG = "EspecieDbHelper";
 
     // ESPECIE Table - column names
-    private static final String KEY_NOMBRE_COMUN = "nombre_comun";
-    private static final String KEY_NOMBRE_COMUN_NORM = "nombre_comun_norm";
-    private static final String KEY_NOMBRE = "nombre";
-    private static final String KEY_NOMBRE_NORM = "nombre_norm";
-    private static final String KEY_GENERO_ID = "genero_id";
-    private static final String KEY_COLOR1_ID = "color1_id";
-    private static final String KEY_COLOR2_ID = "color2_id";
-    private static final String KEY_FORMA_VIDA1_ID = "forma_vida1_id";
-    private static final String KEY_FORMA_VIDA2_ID = "forma_vida2_id";
-    private static final String KEY_ID_TROPICOS = "id_tropicos";
-    private static final String KEY_ES_MIA = "es_mia";
+    public static final String KEY_NOMBRE_COMUN = "nombre_comun";
+    public static final String KEY_NOMBRE_COMUN_NORM = "nombre_comun_norm";
+    public static final String KEY_NOMBRE = "nombre";
+    public static final String KEY_NOMBRE_NORM = "nombre_norm";
+    public static final String KEY_GENERO_ID = "genero_id";
+    public static final String KEY_COLOR1_ID = "color1_id";
+    public static final String KEY_COLOR2_ID = "color2_id";
+    public static final String KEY_FORMA_VIDA1_ID = "forma_vida1_id";
+    public static final String KEY_FORMA_VIDA2_ID = "forma_vida2_id";
+    public static final String KEY_ID_TROPICOS = "id_tropicos";
+    public static final String KEY_ES_MIA = "es_mia";
 
-    private static final String KEY_DESCRIPCION_ES = "descripcion_es";
-    private static final String KEY_DESCRIPCION_EN = "descripcion_en";
-    private static final String KEY_AUTOR = "autor";
+    public static final String KEY_DESCRIPCION_ES = "descripcion_es";
+    public static final String KEY_DESCRIPCION_EN = "descripcion_en";
+    public static final String KEY_AUTOR = "autor";
 
     public static final String[] KEYS_ESPECIE = {KEY_NOMBRE_COMUN, KEY_NOMBRE_COMUN_NORM, KEY_NOMBRE, KEY_NOMBRE_NORM,
             KEY_GENERO_ID, KEY_COLOR1_ID, KEY_COLOR2_ID, KEY_FORMA_VIDA1_ID, KEY_FORMA_VIDA2_ID, KEY_ID_TROPICOS, KEY_ES_MIA,
