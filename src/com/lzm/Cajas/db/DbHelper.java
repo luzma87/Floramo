@@ -85,7 +85,9 @@ public class DbHelper extends SQLiteOpenHelper {
                     "WHERE " + FormaVidaDbHelper.KEY_NOMBRE + " = \"acquatic\"");
             db.execSQL("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_FORMA_VIDA2_ID + " = 5 WHERE " + EspecieDbHelper.KEY_ID + " = 309");
         }
-
+        String sqlFixAquatic = "UPDATE " + TABLE_FORMA_VIDA + " SET " + FormaVidaDbHelper.KEY_NOMBRE + " = \"aquatic\" where " +
+                FormaVidaDbHelper.KEY_NOMBRE + " = \"acquatic\"";
+        db.execSQL(sqlFixAquatic);
     }
 
     public void upgradeTable(SQLiteDatabase db, String tableName, String[] common, String[] columnNames) {
