@@ -292,11 +292,12 @@ All rights reserved.
     <string name="inicio_title">Home</string>
     <string name="inicio_ver_nombres">Browse names</string>
     <string name="inicio_buscar_clave">Search key</string>
-    <string name="inicio_about_paramo">About Páramo</string>
+    <string name="inicio_about_paramo">About Flóramo</string>
     <string name="inicio_about_cajas">About Cajas</string>
     <string name="tropicos_title">Tropicos</string>
     <string name="especies_info_flora">W3Flora description</string>
 
     <string name="dlg_ver">Show info.</string>
     <string name="especies_info_descripcion">Description</string>
+    <string name="inicio_floramo">Flora of the páramo</string>
 </resources>

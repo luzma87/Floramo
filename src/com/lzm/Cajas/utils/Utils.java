@@ -164,4 +164,9 @@ public class Utils {
             e.printStackTrace();
         }
     }
+
+    public static int dp2px(Context context, int dps) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dps * scale + 0.5f);
+    }
 }

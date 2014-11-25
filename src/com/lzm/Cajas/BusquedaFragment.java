@@ -1,8 +1,10 @@
 package com.lzm.Cajas;
 
+import android.annotation.TargetApi;
 import android.app.Fragment;
 import android.app.ListFragment;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,7 +15,6 @@ import android.widget.*;
 import com.lzm.Cajas.db.Especie;
 import com.lzm.Cajas.utils.Utils;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +47,7 @@ public class BusquedaFragment extends Fragment implements Button.OnClickListener
     String searchNombre;
     String searchAndOr;
 
-    private List<String> myData;
+    final int marginPx = 5;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -164,13 +165,23 @@ public class BusquedaFragment extends Fragment implements Button.OnClickListener
     }
 
     private ToggleButton makeToggleButton(Drawable icon, String title) {
+        int padding = 5;
+        int width = 55;
         ToggleButton tb = new ToggleButton(activity);
         tb.setTextOn(title);
+        tb.setTextOff(title);
+        tb.setText(title);
         tb.setCompoundDrawablesWithIntrinsicBounds(null, icon, null, null);
         tb.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
-        tb.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        tb.setPadding(0, 30, 0, 30);
+//        tb.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        tb.setLayoutParams(lp);
+
+        tb.setWidth(Utils.dp2px(activity, width));
+        tb.setPadding(Utils.dp2px(activity, padding), Utils.dp2px(activity, padding), Utils.dp2px(activity, padding), Utils.dp2px(activity, padding));
         tb.setOnCheckedChangeListener(this);
+
         return tb;
     }
 
@@ -287,7 +298,7 @@ public class BusquedaFragment extends Fragment implements Button.OnClickListener
         // kv : May need to replace 'getSherlockActivity()' with 'this' or 'getActivity()'
 //        Display display = activity.getWindowManager().getDefaultDisplay();
         linearLayout.removeAllViews();
-        int maxWidth = activity.screenWidth - 80;
+        int maxWidth = activity.screenWidth - Utils.dp2px(activity, 20);
 //        if (extraView != null) {
 //            maxWidth = display.getWidth() - extraView.getMeasuredWidth() - 20;
 //        } else {
@@ -297,7 +308,7 @@ public class BusquedaFragment extends Fragment implements Button.OnClickListener
 
         LinearLayout.LayoutParams params;
         LinearLayout newLL = new LinearLayout(context);
-        newLL.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        newLL.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         newLL.setGravity(Gravity.LEFT);
         newLL.setOrientation(LinearLayout.HORIZONTAL);
 
@@ -311,21 +322,26 @@ public class BusquedaFragment extends Fragment implements Button.OnClickListener
 
             views[i].measure(0, 0);
             params = new LinearLayout.LayoutParams(views[i].getMeasuredWidth(), ViewGroup.LayoutParams.WRAP_CONTENT);
-            params.setMargins(5, 0, 5, 0);
+            params.setMargins(0, 0, Utils.dp2px(activity, marginPx), 0);
 
             LL.addView(views[i], params);
             LL.measure(0, 0);
-            widthSoFar += views[i].getMeasuredWidth();
+            widthSoFar += views[i].getMeasuredWidth() + marginPx;
             if (widthSoFar >= maxWidth) {
                 linearLayout.addView(newLL);
 
                 newLL = new LinearLayout(context);
-                newLL.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+//                newLL.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                params.setMargins(0, Utils.dp2px(activity, marginPx), 0, 0);
+                newLL.setLayoutParams(params);
+
                 newLL.setOrientation(LinearLayout.HORIZONTAL);
                 newLL.setGravity(Gravity.LEFT);
                 params = new LinearLayout.LayoutParams(LL.getMeasuredWidth(), LL.getMeasuredHeight());
+//                params.setMargins(0, 0, Utils.dp2px(activity, marginPx), 0);
                 newLL.addView(LL, params);
-                widthSoFar = LL.getMeasuredWidth();
+                widthSoFar = LL.getMeasuredWidth() + marginPx;
             } else {
                 newLL.addView(LL);
             }

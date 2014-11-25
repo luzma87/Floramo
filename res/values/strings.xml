@@ -296,10 +296,11 @@ Todos los derechos reservados.
     <string name="inicio_title">Inicio</string>
     <string name="inicio_ver_nombres">Ver nombres</string>
     <string name="inicio_buscar_clave">Buscar clave</string>
-    <string name="inicio_about_paramo">Acerca del Páramo</string>
+    <string name="inicio_about_paramo">Acerca de Flóramo</string>
     <string name="inicio_about_cajas">Acerca del Cajas</string>
     <string name="tropicos_title">Tropicos</string>
 
     <string name="dlg_ver">Ver datos</string>
     <string name="especies_info_descripcion">Descripción</string>
+    <string name="inicio_floramo">Flora del páramo</string>
 </resources>
