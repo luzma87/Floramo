@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/tools_latitud"
+        android:textSize="15sp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/lbl_latitud"
+        android:paddingTop="10dp"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:layout_width="160dp"
+        android:layout_height="40dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="15sp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/lbl_valor_latitud"
+        android:paddingTop="10dp"
+        android:layout_toEndOf="@+id/lbl_latitud"
+        android:layout_toRightOf="@+id/lbl_latitud" />
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/tools_longitud"
+        android:textSize="15sp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/lbl_longitud"
+        android:paddingTop="10dp"
+        android:textStyle="bold|italic"
+        android:layout_below="@+id/lbl_latitud" />
+
+    <TextView
+        android:layout_width="160dp"
+        android:layout_height="40dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="15sp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/lbl_valor_longitud"
+        android:paddingTop="10dp"
+        android:layout_toEndOf="@+id/lbl_longitud"
+        android:layout_toRightOf="@+id/lbl_longitud"
+        android:layout_below="@+id/lbl_latitud" />
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/especie_info_altura"
+        android:textSize="15sp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/lbl_altura"
+        android:paddingTop="10dp"
+        android:textStyle="bold|italic"
+        android:layout_below="@+id/lbl_longitud" />
+
+    <TextView
+        android:layout_width="160dp"
+        android:layout_height="40dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="15sp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/lbl_valor_altura"
+        android:paddingTop="10dp"
+        android:layout_toEndOf="@+id/lbl_altura"
+        android:layout_toRightOf="@+id/lbl_altura"
+        android:layout_below="@+id/lbl_longitud" />
+
+    <TextView
+        android:id="@+id/tvHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
+        android:layout_marginTop="20dp"
+        android:text="Heading: 0.0"
+        android:layout_below="@+id/lbl_altura" />
+
+    <ImageView
+        android:id="@+id/imageViewCompass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvHeading"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/img_compass" />
+
+
+</RelativeLayout>
