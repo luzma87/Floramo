@@ -215,6 +215,22 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         screenHeight = displaymetrics.heightPixels;
         screenWidth = displaymetrics.widthPixels;
 
+        SharedPreferences pref = getSharedPreferences("Ruler", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.clear();
+        editor.putFloat("density", displaymetrics.density);
+        editor.putFloat("xdpm", (float) (displaymetrics.xdpi * displaymetrics.density / 25.4));
+        editor.putFloat("ydpm", (float) (displaymetrics.ydpi * displaymetrics.density / 25.4));
+        editor.commit();
+
+        System.out.println("****************************************************************");
+        System.out.println("DENSITY " + displaymetrics.density);
+        System.out.println("xdpi " + (displaymetrics.xdpi)); //The exact physical pixels per inch of the screen in the X dimension.
+        System.out.println("ydpi " + (displaymetrics.ydpi)); //The exact physical pixels per inch of the screen in the Y dimension.
+        System.out.println("xdpm " + (displaymetrics.xdpi * displaymetrics.density / 25.4));
+        System.out.println("ydpm " + (displaymetrics.ydpi * displaymetrics.density / 25.4));
+        System.out.println("****************************************************************");
+
         /*CORE*/
         locationClient = new LocationClient(this, this, this);
         locationClient.connect();

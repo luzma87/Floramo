@@ -241,7 +241,10 @@ Design and development: L.M. Unda, V. Zapata, Quito
 'Silhouette of tree of flowers and plants' icons, http://www.freevectorvip.com/silhouette-of-tree-of-flowers-and-plants.html
 Icons from Freepik (http://www.freepik.com) from Flaticon (http://www.flaticon.com), licenced under Creative Commons (http://creativecommons.org/licenses/by/3.0/)
 Icons from OCHA (http://www.unocha.org) from Flaticon (http://www.flaticon.com)  licensed under Creative Commons (http://creativecommons.org/licenses/by/3.0/)
+Icons from Google (http://www.google.com) from Flaticon (http://www.flaticon.com)  licensed under Creative Commons (http://creativecommons.org/licenses/by/3.0/)
 Icons from Victor Ivlichev, Free Dark Blue Cloud Icons, http://www.aha-soft.com/
+
+Ruler texture by Joseph Francis (Flickr: Balsa Wood Texture 1) (http://upload.wikimedia.org/wikipedia/commons/c/cb/Balsa_Wood_Texture.jpg) [CC-BY-2.0 (http://creativecommons.org/licenses/by/2.0)], via Wikimedia Commons
 
 All rights reserved.
 ©Missouri Botanical Garden, Science and Conservation Division"</string>
@@ -300,4 +303,13 @@ All rights reserved.
     <string name="dlg_ver">Show info.</string>
     <string name="especies_info_descripcion">Description</string>
     <string name="inicio_floramo">Flora of the páramo</string>
+    <string name="tools_btn_gps">Location</string>
+    <string name="tools_conversion_titulo">Inches/cm conversion</string>
+    <string name="tools_label_conversion">"1 cm = 10 mm = 0.4 inches
+1 inch = 2.5 cm = 25 mm"</string>
+    <string name="global_cm">cm</string>
+    <string name="tools_image_convertir">convert</string>
+    <string name="global_in">inches</string>
+    <string name="tools_label_cm_in">in = cm * 0.39370 = cm / 2.54</string>
+    <string name="tools_label_in_cm">cm = in / 0.39370 = in * 2.54</string>
 </resources>

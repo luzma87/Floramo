@@ -1,7 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true">
+
+    <!--<ImageView-->
+    <!--android:id="@+id/tools_img_ruler"-->
+    <!--android:layout_width="60dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:src="@drawable/ruler"-->
+
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:layout_alignParentEnd="true" />-->
+
+    <com.lzm.Cajas.utils.RulerView
+        android:id="@+id/tools_img_ruler"
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/balsa"
+
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <RelativeLayout
+        android:id="@+id/layout_content"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@id/tools_img_ruler"
+        android:layout_toStartOf="@id/tools_img_ruler"
+        android:padding="15dp">
+
+        <Button
+            android:id="@+id/tools_btn_gps"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tools_btn_gps"
+            android:background="@drawable/button_blue"
+            android:drawableLeft="@drawable/ic_compass"
+            android:drawableStart="@drawable/ic_compass"
+
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/scrollView"
+            android:layout_above="@id/tools_btn_gps"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tools_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tools_conversion_titulo"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+                    android:id="@+id/tools_label_conversion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tools_label_conversion"
+                    android:layout_marginTop="15dp"
+
+                    android:layout_below="@+id/tools_title"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <TextView
+                    android:id="@+id/tools_label_cm_in"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tools_label_cm_in"
+
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@+id/tools_label_conversion"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <TextView
+                    android:id="@+id/tools_label_in_cm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tools_label_in_cm"
+
+                    android:layout_below="@+id/tools_label_cm_in"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <EditText
+                    android:id="@+id/tools_txt_cm"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:ems="5"
+                    android:hint="@string/global_cm"
+                    android:layout_marginTop="35dp"
+
+                    android:layout_below="@+id/tools_label_in_cm"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <ImageButton
+                    android:id="@+id/tools_btn_convert"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_black"
+                    android:src="@drawable/ic_swap"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+
+                    android:layout_alignBottom="@+id/tools_txt_cm"
+                    android:layout_toRightOf="@+id/tools_txt_cm"
+                    android:layout_toEndOf="@+id/tools_txt_cm" />
+
+                <EditText
+                    android:id="@+id/tools_txt_in"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:ems="5"
+                    android:hint="@string/global_in"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+
+                    android:layout_toRightOf="@id/tools_btn_convert"
+                    android:layout_toEndOf="@id/tools_btn_convert"
+                    android:layout_alignTop="@id/tools_txt_cm" />
+            </RelativeLayout>
+        </ScrollView>
+
+    </RelativeLayout>
 </RelativeLayout>
