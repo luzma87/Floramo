@@ -29,6 +29,7 @@ public class BusquedaResultsFragment extends ListFragment {
         super.onActivityCreated(savedInstanceState);
         activity = (MapActivity) getActivity();
 
+        activity.activeFragment = activity.RESULTADO_BUSQUEDA_POS;
         especiesList = activity.especiesBusqueda;
 
         BusquedaResultsEspeciesListAdapter adapter = new BusquedaResultsEspeciesListAdapter(getActivity(), especiesList);

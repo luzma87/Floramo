@@ -61,11 +61,12 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     public final int BUSQUEDA_POS = 18;
 
     public final int ABOUT_CAJAS_PARAMO_POS = 100;
-    public final int ENCICLOPEDIA2_POS = 200;
-    public final int SHOW_RUTA_POS = 300;
-    public final int SHOW_ESPECIE_POS = 400;
-    public final int BUGS_POS = 500;
-    public final int COMMENTS_POS = 600;
+    public final int ENCICLOPEDIA2_POS = 101;
+    public final int SHOW_RUTA_POS = 102;
+    public final int SHOW_ESPECIE_POS = 103;
+    public final int BUGS_POS = 104;
+    public final int COMMENTS_POS = 105;
+    public final int RESULTADO_BUSQUEDA_POS = 106;
 
     public String paramFrag = null;
 
@@ -90,7 +91,13 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     /*Fin mapa*/
 
     Foto imageToUpload;
+
     List<Especie> especiesBusqueda;
+    ArrayList<String> searchFormaVida;
+    ArrayList<String> searchColor;
+    String searchNombre;
+    String searchAndOr;
+
     List<Especie> especies;
     AlertDialog dialog;
     public int screenHeight;
@@ -274,6 +281,9 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
 
 //        Utils.openFragment(this, new InicioFragment(), getString(R.string.inicio_title), null);
 //        selectItem(INICIO_POS);
+//        System.out.println("---LUZMA--- ON CREATE: " + activeFragment + "   saved: "
+//                + (savedInstanceState == null ? "NONE" : savedInstanceState.getSerializable("activeFragment")));
+//        if (savedInstanceState == null) {
         /* selecciona el fragment de inicio sin BackStack */
         String title = getString(R.string.inicio_title);
         Utils.hideSoftKeyboard(this);
@@ -282,6 +292,24 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         Utils.openFragment(this, fragment, title, null, false);
         mDrawerList.setItemChecked(INICIO_POS, true);
         mDrawerLayout.closeDrawer(mDrawerList);
+//        } else {
+//            activeFragment = Integer.parseInt(savedInstanceState.getSerializable("activeFragment").toString());
+//            if (activeFragment == RESULTADO_BUSQUEDA_POS) {
+//                searchFormaVida = savedInstanceState.getStringArrayList("searchFormaVida");
+//                searchColor = savedInstanceState.getStringArrayList("searchColor");
+//                searchNombre = savedInstanceState.getString("searchNombre");
+//                searchAndOr = savedInstanceState.getString("searchAndOr");
+//                especiesBusqueda = Especie.busqueda(this, searchFormaVida, searchColor, searchNombre, searchAndOr);
+//                System.out.println("*****************************************************************************");
+//                System.out.println("Forma de vida: " + searchFormaVida);
+//                System.out.println("Color: " + searchColor);
+//                System.out.println("Nombre: " + searchNombre);
+//                System.out.println("AndOr: " + searchAndOr);
+//                System.out.println("especies: " + especiesBusqueda.size());
+//                System.out.println("*****************************************************************************");
+//            }
+//            selectItem(activeFragment);
+//        }
     }
 
     private void restoreMe(Bundle state) {
@@ -293,10 +321,25 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-//        System.out.println("---LUZMA--- ON Restore State active: " + activeFragment + "   saved: "
+//        System.out.println("---LUZMA--- ON Restore Instance State: " + activeFragment + "   saved: "
 //                + (savedInstanceState == null ? "NONE" : savedInstanceState.getSerializable("activeFragment")));
 //        if (savedInstanceState != null) {
-        selectItem(Integer.parseInt(savedInstanceState.getSerializable("activeFragment").toString()));
+        activeFragment = Integer.parseInt(savedInstanceState.getSerializable("activeFragment").toString());
+        if (activeFragment == RESULTADO_BUSQUEDA_POS) {
+            searchFormaVida = savedInstanceState.getStringArrayList("searchFormaVida");
+            searchColor = savedInstanceState.getStringArrayList("searchColor");
+            searchNombre = savedInstanceState.getString("searchNombre");
+            searchAndOr = savedInstanceState.getString("searchAndOr");
+            especiesBusqueda = Especie.busqueda(this, searchFormaVida, searchColor, searchNombre, searchAndOr);
+//            System.out.println("...........................................................................................");
+//            System.out.println("Forma de vida: " + searchFormaVida);
+//            System.out.println("Color: " + searchColor);
+//            System.out.println("Nombre: " + searchNombre);
+//            System.out.println("AndOr: " + searchAndOr);
+//            System.out.println("especies: " + especiesBusqueda.size());
+//            System.out.println("...........................................................................................");
+        }
+        selectItem(activeFragment);
 //        }
     }
 
@@ -312,6 +355,13 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
 //        System.out.println("---LUZMA--- ON Save State 1 active: " + activeFragment + "   saved: "
 //                + (savedInstanceState == null ? "NONE" : savedInstanceState.getSerializable("activeFragment")));
         savedInstanceState.putSerializable("activeFragment", activeFragment);
+
+        if (activeFragment == RESULTADO_BUSQUEDA_POS && especiesBusqueda != null) {
+            savedInstanceState.putSerializable("searchFormaVida", searchFormaVida);
+            savedInstanceState.putSerializable("searchColor", searchColor);
+            savedInstanceState.putSerializable("searchNombre", searchNombre);
+            savedInstanceState.putSerializable("searchAndOr", searchAndOr);
+        }
 //        System.out.println("---LUZMA--- ON Save State 2 active: " + activeFragment + "   saved: "
 //                + (savedInstanceState == null ? "NONE" : savedInstanceState.getSerializable("activeFragment")));
     }
@@ -933,7 +983,21 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                 activeFragment = COMMENTS_POS;
                 overrideDrawer = SETTINGS_POS;
                 break;
-
+            case BUSQUEDA_POS:
+                fragment = new BusquedaFragment();
+                title = getString(R.string.busqueda_title);
+                activeFragment = BUSQUEDA_POS;
+                break;
+            case RESULTADO_BUSQUEDA_POS:
+                title = getString(R.string.busqueda_title);
+                if (especiesBusqueda != null) {
+                    fragment = new BusquedaResultsFragment();
+                    activeFragment = RESULTADO_BUSQUEDA_POS;
+                } else {
+                    fragment = new BusquedaFragment();
+                    activeFragment = BUSQUEDA_POS;
+                }
+                break;
             default:
                 fragment = null;
                 break;

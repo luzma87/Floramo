@@ -42,8 +42,8 @@ public class BusquedaFragment extends Fragment implements Button.OnClickListener
     TextView lblInfoColor;
     TextView lblInfoNombre;
 
-    List<String> searchFormaVida;
-    List<String> searchColor;
+    ArrayList<String> searchFormaVida;
+    ArrayList<String> searchColor;
     String searchNombre;
     String searchAndOr;
 
@@ -53,6 +53,8 @@ public class BusquedaFragment extends Fragment implements Button.OnClickListener
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         activity = (MapActivity) getActivity();
         View view = inflater.inflate(R.layout.busqueda_layout, container, false);
+
+        activity.activeFragment = activity.BUSQUEDA_POS;
 
         btnBuscar = (ImageButton) view.findViewById(R.id.busqueda_buscar_btn);
         btnBuscar.setOnClickListener(this);
@@ -239,6 +241,11 @@ public class BusquedaFragment extends Fragment implements Button.OnClickListener
         Utils.hideSoftKeyboard(this.getActivity());
         if (v.getId() == btnBuscar.getId()) {
             updateAll();
+            activity.searchFormaVida = new ArrayList<String>(searchFormaVida);
+            activity.searchColor = new ArrayList<String>(searchColor);
+            activity.searchNombre = searchNombre;
+            activity.searchAndOr = searchAndOr;
+
             activity.especiesBusqueda = Especie.busqueda(activity, searchFormaVida, searchColor, searchNombre, searchAndOr);
             ListFragment fragment = new BusquedaResultsFragment();
             Utils.openFragment(activity, fragment, getString(R.string.busqueda_title));

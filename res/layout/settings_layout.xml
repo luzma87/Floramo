@@ -1,115 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/scrollView"
-    android:layout_below="@+id/settings_btn_creditos"
-    android:layout_centerHorizontal="true"
     android:padding="15dp">
 
-    <RelativeLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView"
+        android:layout_centerHorizontal="true">
 
-
-        <Button
-            android:id="@+id/settings_btn_acerca_paramo"
-
+        <RelativeLayout
+            android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/settings_acerca_paramo"
-            android:background="@drawable/button_purple"
-            android:drawableLeft="@drawable/ic_settings_about_paramo"
+            android:layout_height="wrap_content">
 
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
 
-        <Button
-            android:id="@+id/settings_btn_acerca_cajas"
+            <Button
+                android:id="@+id/settings_btn_acerca_paramo"
 
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/settings_acerca_cajas"
-            android:background="@drawable/button_purple"
-            android:drawableLeft="@drawable/ic_settings_lugares"
-            android:layout_marginTop="15dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_acerca_paramo"
+                android:background="@drawable/button_purple"
+                android:drawableLeft="@drawable/ic_settings_about_paramo"
 
-            android:layout_below="@id/settings_btn_acerca_paramo"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
-        <Button
-            android:id="@+id/settings_btn_formas_vida"
+            <Button
+                android:id="@+id/settings_btn_acerca_cajas"
 
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/settings_formas_vida"
-            android:background="@drawable/button_purple"
-            android:drawableLeft="@drawable/ic_settings_formas_vida"
-            android:layout_marginTop="15dp"
-            android:visibility="gone"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_acerca_cajas"
+                android:background="@drawable/button_purple"
+                android:drawableLeft="@drawable/ic_settings_lugares"
+                android:layout_marginTop="15dp"
 
-            android:layout_below="@+id/settings_btn_acerca_cajas"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+                android:layout_below="@id/settings_btn_acerca_paramo"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
-        <Button
-            android:id="@+id/settings_btn_bugs"
+            <Button
+                android:id="@+id/settings_btn_formas_vida"
 
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/settings_bugs"
-            android:background="@drawable/button_purple"
-            android:drawableLeft="@drawable/ic_settings_bug"
-            android:layout_marginTop="15dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_formas_vida"
+                android:background="@drawable/button_purple"
+                android:drawableLeft="@drawable/ic_settings_formas_vida"
+                android:layout_marginTop="15dp"
+                android:visibility="gone"
 
-            android:layout_below="@+id/settings_btn_formas_vida"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+                android:layout_below="@+id/settings_btn_acerca_cajas"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
-        <Button
-            android:id="@+id/settings_btn_comments"
+            <Button
+                android:id="@+id/settings_btn_bugs"
 
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/settings_comments"
-            android:background="@drawable/button_purple"
-            android:drawableLeft="@drawable/ic_settings_comments"
-            android:layout_marginTop="15dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_bugs"
+                android:background="@drawable/button_purple"
+                android:drawableLeft="@drawable/ic_settings_bug"
+                android:layout_marginTop="15dp"
 
-            android:layout_below="@+id/settings_btn_bugs"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+                android:layout_below="@+id/settings_btn_formas_vida"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
-        <Button
-            android:id="@+id/settings_btn_about"
+            <Button
+                android:id="@+id/settings_btn_comments"
 
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/settings_about"
-            android:background="@drawable/button_purple"
-            android:drawableLeft="@drawable/ic_settings_info"
-            android:layout_marginTop="15dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_comments"
+                android:background="@drawable/button_purple"
+                android:drawableLeft="@drawable/ic_settings_comments"
+                android:layout_marginTop="15dp"
 
-            android:layout_below="@+id/settings_btn_comments"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+                android:layout_below="@+id/settings_btn_bugs"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
-        <Button
-            android:id="@+id/settings_btn_creditos"
+            <Button
+                android:id="@+id/settings_btn_about"
 
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/settings_creditos"
-            android:background="@drawable/button_purple"
-            android:drawableLeft="@drawable/ic_settings_creditos"
-            android:layout_marginTop="15dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_about"
+                android:background="@drawable/button_purple"
+                android:drawableLeft="@drawable/ic_settings_info"
+                android:layout_marginTop="15dp"
 
-            android:layout_below="@+id/settings_btn_about"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-    </RelativeLayout>
-</ScrollView>
+                android:layout_below="@+id/settings_btn_comments"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <Button
+                android:id="@+id/settings_btn_creditos"
+
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_creditos"
+                android:background="@drawable/button_purple"
+                android:drawableLeft="@drawable/ic_settings_creditos"
+                android:layout_marginTop="15dp"
+
+                android:layout_below="@+id/settings_btn_about"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/settings_txt_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/version_name"
+
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true" />
+</RelativeLayout>

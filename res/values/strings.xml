@@ -17,9 +17,11 @@
 <resources>
     <string name="bugs_mail" translatable="false">nth.development@gmail.com</string>
     <string name="comments_mail" translatable="false">nth.development@gmail.com</string>
+    <string name="db_name" translatable="false">Floramo</string>
+    <string name="especie_info_tropicos" translatable="false">Tropicos ®</string>
+    <string name="version_name" translatable="false">1.1.1</string>
 
     <string name="app_name">Flóramo</string>
-    <string name="db_name" translatable="false">Floramo</string>
     <string name="menu_title">Navegación</string>
 
     <string name="web_app_not_available">Lo siento, no hay un navegador configurado</string>
@@ -209,7 +211,6 @@ Se muestra un máximo de 10 resultados. En la lista, al presionar un registro se
     <string name="ruta_lbl_fotos">Fotos:</string>
 
     <string name="especies_info_flora">W3Flora descripción</string>
-    <string name="especie_info_tropicos" translatable="false">Tropicos ®</string>
 
     <string name="about_cajas"><![CDATA["<p>El macizo del Cajas se encuentra localizado a 30 km al occidente de la ciudad de Cuenca, provincia del Azuay, en el sur del Ecuador. Está dominado por páramo herbáceo con parches esparcidos de bosques.</p>
 <p>Glaciares del Pleistoceno han esculpido el paisaje resultando en un escenario único de topografía irregular con más de 235 lagos y lagunas de belleza sin igual. Dos ríos drenan de las vertientes orientales hacia la ciudad de Cuenca. El clima es frío y húmedo, pero hay una variación climática diaria considerable que puede cambiar rápidamente de vientos suaves a fuertes, de cielo nublado a un sol intenso, de neblina a llovizna y granizo. La temperatura mínima es de –2° C y la máxima durante el día de 18°C. La precipitación media anual es de 1200 mm. Tiene dos vías de acceso: la carretera de primer orden Cuenca-Molleturo-Naranjal y la vía de tercer orden Cuenca-Soldados. El Área de Recreación Cajas fue creada en 1977 y en 1996 cambió a la categoría de Parque Nacional Cajas. Consta de 28.544 hectáreas entre los 3150 y 4450 m snm.</p>

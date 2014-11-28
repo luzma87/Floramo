@@ -3,6 +3,7 @@ package com.lzm.Cajas.db;
 import android.content.Context;
 
 import java.text.Normalizer;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -372,7 +373,7 @@ public class Especie {
         return e.getBusqueda_old(formaVida, color, nombre, andOr);
     }
 
-    public static List<Especie> busqueda(Context context, List<String> formaVida, List<String> color, String nombre, String andOr) {
+    public static List<Especie> busqueda(Context context, ArrayList<String> formaVida, ArrayList<String> color, String nombre, String andOr) {
         EspecieDbHelper e = new EspecieDbHelper(context);
         return e.getBusqueda(formaVida, color, nombre, andOr);
     }
