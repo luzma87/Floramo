@@ -22,6 +22,9 @@ public class InicioFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         context = (MapActivity) getActivity();
+
+        context.activeFragment = context.INICIO_POS;
+
         View view = inflater.inflate(R.layout.inicio_layout, container, false);
 
         btnBrowse = (Button) view.findViewById(R.id.btn_inicio_ver_nombres);

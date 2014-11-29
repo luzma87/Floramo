@@ -312,4 +312,6 @@ All rights reserved.
     <string name="global_in">inches</string>
     <string name="tools_label_cm_in">in = cm * 0.39370 = cm / 2.54</string>
     <string name="tools_label_in_cm">cm = in / 0.39370 = in * 2.54</string>
+    <string name="tools_label_ruler">"The ruler shows inches in black and centimeters in blue.
+Have in mind that the ruler might have a slight error that depends on your device."</string>
 </resources>

@@ -3,6 +3,7 @@ package com.lzm.Cajas.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
@@ -13,51 +14,104 @@ import com.lzm.Cajas.R;
  * Created by luz on 28/11/14.
  */
 public class RulerView extends View {
-    private SharedPreferences pref;
+    Paint paint;
+    SharedPreferences pref;
+    int dens;
+    int fullLength;
+    int halfLength;
+    int quartLength;
+    int offsetX;
+    int colorCm = Color.BLUE;
+    int colorIn = Color.BLACK;
+
 
     public RulerView(Context context, AttributeSet attrs) {
         super(context, attrs);
+
         setFocusable(true);
+        paint = new Paint();
+        pref = getContext().getSharedPreferences("Ruler", Context.MODE_PRIVATE);
+        dens = (int) pref.getFloat("density", (float) 1.0);
+
+        fullLength = 15 * dens;
+        halfLength = 8 * dens;
+        quartLength = 5 * dens;
+
+        offsetX = 60 * dens;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        int i = 0, x, y;
-        int offset = 50;
-        int maxX = getWidth(), maxY = getHeight();
-
-        String s;
-        Paint paint = new Paint();
-
-        pref = getContext().getSharedPreferences("Ruler", Context.MODE_PRIVATE);
+        int maxY = getHeight();
+        int i = 0;
+        int yCm, yIn;
+        int offsetY = 15 * dens;
 
         // Ticks and Numbers
-        paint.setColor(getResources().getColor(R.color.white));
+        paint.setColor(getResources().getColor(R.color.black));
         paint.setAntiAlias(true);
-        paint.setTextSize(12);
+        paint.setTextSize(12 * dens);
 
-        // X axis
-        int dpm = (int) pref.getFloat("xdpm", (float) 1.0);
+        // Y axis
         do {
-            x = i * dpm + offset;
-            if (i % 10 == 0) {
-                s = Integer.toString(i / 10);
-                canvas.drawText(s, x - (int) (paint.measureText(s) / 2),
-                        offset - 20, paint);
+            double yCmTemp = (i * ((pref.getFloat("ydpm", (float) 1.0) / 25.4) * 5) + offsetY);
+            yCmTemp = yCmTemp + (i * dens);
 
-                paint.setStrokeWidth(2);
-                canvas.drawLine(x, 0, x, 15, paint);
-                canvas.drawLine(x, offset - 15, x, offset, paint);
-            } else if (i % 5 == 0) {
-                paint.setStrokeWidth(1);
-                canvas.drawLine(x, offset - 15, x, offset, paint);
-                canvas.drawLine(x, 0, x, 15, paint);
-            } else {
-                paint.setStrokeWidth(1);
-                canvas.drawLine(x, offset - 10, x, offset, paint);
-                canvas.drawLine(x, 0, x, 10, paint);
+            double yInTemp = (i * (pref.getFloat("ydpm", (float) 1.0) / 4)) + offsetY;
+            yInTemp = yInTemp + (i * dens);
+
+            yCm = (int) Math.ceil(yCmTemp);
+            yIn = (int) Math.ceil(yInTemp);
+
+            if (i % 4 == 0) {
+                //pulgada entera
+                drawIn(i, yIn, canvas);
+                //cm entero
+                drawCm(i, yCm, canvas);
+            } else if (i % 4 == 1) {
+                //cuarto pulgada
+                drawIn(i, yIn, canvas);
+                //medio cm
+                drawCm(i, yCm, canvas);
+            } else if (i % 4 == 2) {
+                //media pulgada
+                drawIn(i, yIn, canvas);
+                //cm entero
+                drawCm(i, yCm, canvas);
+            } else if (i % 4 == 3) {
+                //cuarto pulgada
+                drawIn(i, yIn, canvas);
+                //medio cm
+                drawCm(i, yCm, canvas);
             }
             i++;
-        } while (x < maxX);
+        } while (yCm < maxY);
     }
+
+    private void drawCm(int i, int yCm, Canvas canvas) {
+        int l = i % 2 == 0 ? fullLength : halfLength;
+        paint.setColor(colorCm);
+
+        if (i % 2 == 0) {
+            String s = "" + ((int) (i / 2));
+            canvas.drawText(s, l + (5 * dens), yCm + (2 * dens), paint);
+        }
+
+        paint.setStrokeWidth(dens);
+        canvas.drawLine(0, yCm, l, yCm, paint);
+    }
+
+    private void drawIn(int i, int yIn, Canvas canvas) {
+        int l = i % 4 == 0 ? quartLength : i % 4 == 2 ? halfLength : fullLength;
+        paint.setColor(colorIn);
+        if (i % 4 == 0) {
+            String s = "" + ((int) (i / 4));
+            canvas.drawText(s, offsetX + l - (15 * dens), yIn + (2 * dens), paint);
+        }
+
+        paint.setStrokeWidth(dens);
+        canvas.drawLine(offsetX + l, yIn, offsetX * 2, yIn, paint);
+
+    }
+
 }

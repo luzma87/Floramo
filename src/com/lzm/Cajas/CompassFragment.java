@@ -74,6 +74,8 @@ public class CompassFragment extends Fragment implements SensorEventListener {
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 100 * 30, 5, locationListener);
         Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         activity = (MapActivity) getActivity();
+        activity.activeFragment = activity.GPS_POS;
+
         //myCompass = (Compass)view.findViewById(R.id.mycompass);
         latitud = (TextView) view.findViewById(R.id.lbl_valor_latitud);
         longitud = (TextView) view.findViewById(R.id.lbl_valor_longitud);

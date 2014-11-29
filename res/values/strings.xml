@@ -19,7 +19,7 @@
     <string name="comments_mail" translatable="false">nth.development@gmail.com</string>
     <string name="db_name" translatable="false">Floramo</string>
     <string name="especie_info_tropicos" translatable="false">Tropicos ®</string>
-    <string name="version_name" translatable="false">1.1.1</string>
+    <string name="version_name" translatable="false">1.1.2</string>
 
     <string name="app_name">Flóramo</string>
     <string name="menu_title">Navegación</string>
@@ -316,4 +316,6 @@ Todos los derechos reservados.
     <string name="global_in">pulgadas</string>
     <string name="tools_label_cm_in">in = cm * 0.39370 = cm / 2.54</string>
     <string name="tools_label_in_cm">cm = in / 0.39370 = in * 2.54</string>
+    <string name="tools_label_ruler">"La regla muestra centímetros en azul y pulgadas en negro.
+Tenga en cuenta que la regla puede tener un pequeño error que depende de su teléfono."</string>
 </resources>

@@ -67,6 +67,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     public final int BUGS_POS = 104;
     public final int COMMENTS_POS = 105;
     public final int RESULTADO_BUSQUEDA_POS = 106;
+    public final int GPS_POS = 107;
 
     public String paramFrag = null;
 
@@ -219,17 +220,17 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         SharedPreferences.Editor editor = pref.edit();
         editor.clear();
         editor.putFloat("density", displaymetrics.density);
-        editor.putFloat("xdpm", (float) (displaymetrics.xdpi * displaymetrics.density / 25.4));
-        editor.putFloat("ydpm", (float) (displaymetrics.ydpi * displaymetrics.density / 25.4));
+        editor.putFloat("xdpm", (float) (displaymetrics.xdpi));
+        editor.putFloat("ydpm", (float) (displaymetrics.ydpi));
         editor.commit();
 
-        System.out.println("****************************************************************");
-        System.out.println("DENSITY " + displaymetrics.density);
-        System.out.println("xdpi " + (displaymetrics.xdpi)); //The exact physical pixels per inch of the screen in the X dimension.
-        System.out.println("ydpi " + (displaymetrics.ydpi)); //The exact physical pixels per inch of the screen in the Y dimension.
-        System.out.println("xdpm " + (displaymetrics.xdpi * displaymetrics.density / 25.4));
-        System.out.println("ydpm " + (displaymetrics.ydpi * displaymetrics.density / 25.4));
-        System.out.println("****************************************************************");
+//        System.out.println("****************************************************************");
+//        System.out.println("DENSITY " + displaymetrics.density);
+//        System.out.println("xdpi " + (displaymetrics.xdpi)); //The exact physical pixels per inch of the screen in the X dimension.
+//        System.out.println("ydpi " + (displaymetrics.ydpi)); //The exact physical pixels per inch of the screen in the Y dimension.
+//        System.out.println("xdpm " + (displaymetrics.xdpi * displaymetrics.density / 25.4));
+//        System.out.println("ydpm " + (displaymetrics.ydpi * displaymetrics.density / 25.4));
+//        System.out.println("****************************************************************");
 
         /*CORE*/
         locationClient = new LocationClient(this, this, this);
@@ -1013,6 +1014,12 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                     fragment = new BusquedaFragment();
                     activeFragment = BUSQUEDA_POS;
                 }
+                break;
+            case GPS_POS:
+                title = getString(R.string.tools_title);
+                fragment = new CompassFragment();
+                activeFragment = GPS_POS;
+                overrideDrawer = TOOLS_POS;
                 break;
             default:
                 fragment = null;
