@@ -19,7 +19,7 @@
     <string name="comments_mail" translatable="false">nth.development@gmail.com</string>
     <string name="db_name" translatable="false">Floramo</string>
     <string name="especie_info_tropicos" translatable="false">Tropicos ®</string>
-    <string name="version_name" translatable="false">1.1.2</string>
+    <string name="version_name" translatable="false">1.1.21</string>
 
     <string name="app_name">Flóramo</string>
     <string name="menu_title">Navegación</string>
