@@ -314,4 +314,6 @@ All rights reserved.
     <string name="tools_label_in_cm">cm = in / 0.39370 = in * 2.54</string>
     <string name="tools_label_ruler">"The ruler shows inches in black and centimeters in blue.
 Have in mind that the ruler might have a slight error that depends on your device."</string>
+    <string name="gps_error">"Unable to detect location. Please activate GPS."</string>
+    <string name="gps_location_error">Unable to get your current location.</string>
 </resources>

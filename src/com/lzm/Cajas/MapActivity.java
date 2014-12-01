@@ -189,6 +189,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         super.onCreate(savedInstanceState);
         DbHelper helper = new DbHelper(this);
         helper.getWritableDatabase();
+        helper.close();
 
         fotoSinCoords = null;
         imageToUpload = null;

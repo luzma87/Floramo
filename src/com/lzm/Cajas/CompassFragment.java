@@ -6,6 +6,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -17,6 +18,7 @@ import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 /**
@@ -45,44 +47,70 @@ public class CompassFragment extends Fragment implements SensorEventListener {
 
     TextView readingAzimuth, readingPitch, readingRoll;
 
-    // Define a listener that responds to location updates
-    LocationListener locationListener = new LocationListener() {
-        public void onLocationChanged(Location location) {
-            // Called when a new location is found by the network location provider.
-            updateInterface(location);
-        }
 
-        public void onStatusChanged(String provider, int status, Bundle extras) {
-        }
-
-        public void onProviderEnabled(String provider) {
-        }
-
-        public void onProviderDisabled(String provider) {
-        }
-    };
     private ImageView image;
     private float currentDegree = 0f;
     TextView tvHeading;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        activity = (MapActivity) getActivity();
+
+        // Define a listener that responds to location updates
+        LocationListener locationListener = new LocationListener() {
+            public void onLocationChanged(Location location) {
+                // Called when a new location is found by the network location provider.
+                updateInterface(location);
+            }
+
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+            }
+
+            public void onProviderEnabled(String provider) {
+            }
+
+            public void onProviderDisabled(String provider) {
+            }
+        };
+
         view = inflater.inflate(R.layout.compass_layout, container, false);
-        locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+
+        locationManager = (LocationManager) activity.getSystemService(Context.LOCATION_SERVICE);
+        Criteria criteria = new Criteria();
+        criteria.setAccuracy(Criteria.ACCURACY_FINE);
+        String provider = locationManager.getBestProvider(criteria, true); // null
+
+        if (provider != null) {
 //        String provider, long minTime, float minDistance, LocationListener listener
 //        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000*60*2, 10, locationListener);
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 100 * 30, 5, locationListener);
+//        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 100 * 30, 5, locationListener);
+            locationManager.requestLocationUpdates(provider, 100 * 30, 5, locationListener);
+        } else {
+            Toast msg = Toast.makeText(activity, getString(R.string.gps_error), Toast.LENGTH_LONG);
+            msg.show();
+        }
         Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        activity = (MapActivity) getActivity();
+
+//        System.out.println("***********************************************************************************************");
+//        System.out.println(activity);
+//        System.out.println(locationManager);
+//        System.out.println(provider);
+//        System.out.println(location);
+//        System.out.println("***********************************************************************************************");
         activity.activeFragment = activity.GPS_POS;
 
-        //myCompass = (Compass)view.findViewById(R.id.mycompass);
+//        //myCompass = (Compass)view.findViewById(R.id.mycompass);
         latitud = (TextView) view.findViewById(R.id.lbl_valor_latitud);
         longitud = (TextView) view.findViewById(R.id.lbl_valor_longitud);
         altura = (TextView) view.findViewById(R.id.lbl_valor_altura);
-        latitud.setText("" + location.getLatitude());
-        longitud.setText("" + location.getLongitude());
-        altura.setText("" + location.getAltitude() + " m");
+        if (location != null) {
+            latitud.setText("" + location.getLatitude());
+            longitud.setText("" + location.getLongitude());
+            altura.setText("" + location.getAltitude() + " m");
+        } else {
+            Toast msg = Toast.makeText(activity, getString(R.string.gps_location_error), Toast.LENGTH_LONG);
+            msg.show();
+        }
 
         sensorManager = (SensorManager) activity.getSystemService(activity.SENSOR_SERVICE);
         //sensorAccelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -104,9 +132,11 @@ public class CompassFragment extends Fragment implements SensorEventListener {
 
     public void updateInterface(Location location) {
         // System.out.println("cambio location "+location.getLatitude()+"  "+location.getLongitude()+"  "+location.getAltitude());
-        latitud.setText("" + location.getLatitude());
-        longitud.setText("" + location.getLongitude());
-        altura.setText("" + location.getAltitude() + " m");
+        if (location != null) {
+            latitud.setText("" + location.getLatitude());
+            longitud.setText("" + location.getLongitude());
+            altura.setText("" + location.getAltitude() + " m");
+        }
     }
 
     @Override

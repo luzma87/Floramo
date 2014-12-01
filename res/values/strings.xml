@@ -318,4 +318,6 @@ Todos los derechos reservados.
     <string name="tools_label_in_cm">cm = in / 0.39370 = in * 2.54</string>
     <string name="tools_label_ruler">"La regla muestra centímetros en azul y pulgadas en negro.
 Tenga en cuenta que la regla puede tener un pequeño error que depende de su teléfono."</string>
+    <string name="gps_error">"No se pudo detectar la ubicación. Por favor active el GPS."</string>
+    <string name="gps_location_error">No se pudo obtener su posición</string>
 </resources>
