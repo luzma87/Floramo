@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 import com.lzm.Cajas.utils.RulerView;
 import com.lzm.Cajas.utils.Utils;
 
@@ -49,14 +50,21 @@ public class ToolsFragment extends Fragment {
         btnConvert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (inches2cm) {
-                    double in = Double.parseDouble(txtIn.getText().toString());
-                    double cm = in2cm(in);
-                    txtCm.setText("" + cm);
+                String textInches = txtIn.getText().toString();
+                String textCm = txtCm.getText().toString();
+                if (textInches.trim().equals("") && textCm.trim().equals("")) {
+                    Toast msg = Toast.makeText(context, getString(R.string.tools_convert_error), Toast.LENGTH_LONG);
+                    msg.show();
                 } else {
-                    double cm = Double.parseDouble(txtCm.getText().toString());
-                    double in = cm2in(cm);
-                    txtIn.setText("" + in);
+                    if (inches2cm) {
+                        double in = Double.parseDouble(textInches);
+                        double cm = in2cm(in);
+                        txtCm.setText("" + cm);
+                    } else {
+                        double cm = Double.parseDouble(textCm);
+                        double in = cm2in(cm);
+                        txtIn.setText("" + in);
+                    }
                 }
             }
         });

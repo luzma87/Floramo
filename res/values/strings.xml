@@ -320,4 +320,5 @@ Todos los derechos reservados.
 Tenga en cuenta que la regla puede tener un pequeño error que depende de su teléfono."</string>
     <string name="gps_error">"No se pudo detectar la ubicación. Por favor active el GPS."</string>
     <string name="gps_location_error">No se pudo obtener su posición</string>
+    <string name="tools_convert_error">Nada que convertir!</string>
 </resources>

@@ -316,4 +316,5 @@ All rights reserved.
 Have in mind that the ruler might have a slight error that depends on your device."</string>
     <string name="gps_error">"Unable to detect location. Please activate GPS."</string>
     <string name="gps_location_error">Unable to get your current location.</string>
+    <string name="tools_convert_error">Nothing to convert!</string>
 </resources>
