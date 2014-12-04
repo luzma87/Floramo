@@ -19,7 +19,7 @@
     <string name="comments_mail" translatable="false">nth.development@gmail.com</string>
     <string name="db_name" translatable="false">Floramo</string>
     <string name="especie_info_tropicos" translatable="false">Tropicos ®</string>
-    <string name="version_name" translatable="false">1.1.2.1</string>
+    <string name="version_name" translatable="false">1.1.1</string>
 
     <string name="app_name">Flóramo</string>
     <string name="menu_title">Navegación</string>
@@ -213,45 +213,41 @@ Se muestra un máximo de 10 resultados. En la lista, al presionar un registro se
     <string name="especies_info_flora">W3Flora descripción</string>
 
     <string name="about_cajas"><![CDATA["<p>El macizo del Cajas se encuentra localizado a 30 km al occidente de la ciudad de Cuenca, provincia del Azuay, en el sur del Ecuador. Está dominado por páramo herbáceo con parches esparcidos de bosques.</p>
-<p>Glaciares del Pleistoceno han esculpido el paisaje resultando en un escenario único de topografía irregular con más de 235 lagos y lagunas de belleza sin igual. Dos ríos drenan de las vertientes orientales hacia la ciudad de Cuenca. El clima es frío y húmedo, pero hay una variación climática diaria considerable que puede cambiar rápidamente de vientos suaves a fuertes, de cielo nublado a un sol intenso, de neblina a llovizna y granizo. La temperatura mínima es de –2° C y la máxima durante el día de 18°C. La precipitación media anual es de 1200 mm. Tiene dos vías de acceso: la carretera de primer orden Cuenca-Molleturo-Naranjal y la vía de tercer orden Cuenca-Soldados. El Área de Recreación Cajas fue creada en 1977 y en 1996 cambió a la categoría de Parque Nacional Cajas. Consta de 28.544 hectáreas entre los 3150 y 4450 m snm.</p>
-<br/>
-<p>Lea más: <a href='#'>http://www.mobot.org/MOBOT/research/paramo/estudio.shtml</a></p>"
-]]></string>
+            <p>Glaciares del Pleistoceno han esculpido el paisaje resultando en un escenario único de topografía irregular con más de 235 lagos y lagunas de belleza sin igual. Dos ríos drenan de las vertientes orientales hacia la ciudad de Cuenca. El clima es frío y húmedo, pero hay una variación climática diaria considerable que puede cambiar rápidamente de vientos suaves a fuertes, de cielo nublado a un sol intenso, de neblina a llovizna y granizo. La temperatura mínima es de –2° C y la máxima durante el día de 18°C. La precipitación media anual es de 1200 mm. Tiene dos vías de acceso: la carretera de primer orden Cuenca-Molleturo-Naranjal y la vía de tercer orden Cuenca-Soldados. El Área de Recreación Cajas fue creada en 1977 y en 1996 cambió a la categoría de Parque Nacional Cajas. Consta de 28.544 hectáreas entre los 3150 y 4450 m snm.</p>
+            <br/>
+            <p>Lea más: <a href='link::http://www.mobot.org/MOBOT/research/paramo/study.shtml'>Study area: Cajas National Park</a></p>"]]></string>
 
     <string name="about_paramo"><![CDATA["<p>El páramo es un ecosistema de montaña único dominado por pajonales. Se encuentra sobre el límite continuo de bosque y casi hasta el nivel de la nieve perpetua (3000-5000 m), desde Venezuela hasta el norte de Perú y en Panamá y Costa Rica. La palabra páramo se asocia a planicies sin arboledas e inhóspitas. Sin embargo, los páramos tienen una diversidad biológica y endemismo altos y constituyen una biota única.</p>
-<p>Las plantas se han adaptado a las condiciones frías y extremos de alta irradiación solar, la baja presión atmosférica, las dramáticas fluctuaciones diarias de temperatura y las lluvias estacionales. Así, muchas plantas crecen pegadas al suelo en forma de <a href='#'>rosetas</a> o <a href='#'>almohadillas</a>, o tienen las <a href='#'>hojas reducidas</a> y duras, o están recubiertas de una densa capa de <a href='#'>pelos blancos</a> o plateados.</p>
-<p>Los páramos y los bosques andinos funcionan como control de los sistemas hídricos, al absorber agua de lluvia y liberarla lentamente alimentando a ríos y lagunas. El agua capturada en los páramos beneficia a millones de personas que usan este bien tanto para consumo como para riego.</p>
-<p>El efecto del incremento de temperaturas debido al cambio climático ya se observa en los picos más altos de las montañas tropicales con un marcado retroceso de los glaciares. Cambios en el ciclo hidrológico de los páramos pueden traer consecuencias catastróficas e implicaciones económicas inmensas para los países andinos que dependen de este ecosistema para provisión de agua para consumo humano, para la operación de plantas hidroeléctricas, para los sistemas de irrigación.</p>
-<br/>
-<p>Lea más: <a href='#'>http://www.mobot.org/MOBOT/Research/paramo_flora.shtml</a></p>"
-]]></string>
-
+            <p>Las plantas se han adaptado a las condiciones frías y extremos de alta irradiación solar, la baja presión atmosférica, las dramáticas fluctuaciones diarias de temperatura y las lluvias estacionales. Así, muchas plantas crecen pegadas al suelo en forma de <a href='info::rosette'>rosetas</a> o <a href='info::cushion'>almohadillas</a>, o tienen las <a href='info::leaves'>hojas reducidas</a> y duras, o están recubiertas de una densa capa de <a href='info::hairs'>pelos blancos o plateados</a>.</p>
+            <p>Los páramos y los bosques andinos funcionan como control de los sistemas hídricos, al absorber agua de lluvia y liberarla lentamente alimentando a ríos y lagunas. El agua capturada en los páramos beneficia a millones de personas que usan este bien tanto para consumo como para riego.</p>
+            <p>El efecto del incremento de temperaturas debido al cambio climático ya se observa en los picos más altos de las montañas tropicales con un marcado retroceso de los glaciares. Cambios en el ciclo hidrológico de los páramos pueden traer consecuencias catastróficas e implicaciones económicas inmensas para los países andinos que dependen de este ecosistema para provisión de agua para consumo humano, para la operación de plantas hidroeléctricas, para los sistemas de irrigación.</p>
+            <br/>
+            <p>Lea más: <a href='link::http://www.mobot.org/MOBOT/Research/paramo_flora.shtml'>Proyecto Flora del Páramo</a></p>"]]></string>
 
     <string name="about"><![CDATA["<p>Flóramo es una guía de campo para identificar 100 especies de plantas silvestres que se encuentran en el páramo, un tipo de vegetación se encuentra en la cima de las montañas de los Andes tropicales de América del Sur. Contiene imágenes de campo, descripciones de las especies y una clave de identificación por formas de vida, colores de las flores o nombres científicos. Un mapa con ubicación de las especies, rutas para personalizar registros. Adicionalmente  se puede hace búsqueda en la base de datos Tropicos® del Missouri Botanical Garden. Flóramo actualmente incluye plantas que se encuentran en macizo del Cajas en el sur de Ecuador, pero varias especies se encuentran en otras áreas.</p>
+            <p>El proyecto <a href='link::http://www.mobot.org/mobot/research/paramo_flora.shtml'>Páramo flora</a> se encuentra en el sitio web del Missouri Botanical Garden.</p>
+            <p>El proyecto de la Flora del Cajas es una colaboración entre el <a href='link::http://www.missouribotanicalgarden.org/'>Missouri Botanical Garden</a> y el <a href='link::http://www.uazuay.edu.ec/HerbarioAzuay/'>Herbario Azuay</a> (Universidad del Azuay, Cuenca Ecuador) con el Parque Nacional Cajas. Agradecemos a Etapa-Parque Nacional Cajas, Ministerio del Ambiente de Ecuador y agencias que financiaron el trabajo de campo.</p>
+            <p>El proyecto <a href='link::http://www.mobot.org/MOBOT/research/paramo/welcome.flash.asp'>Flora del Cajas</a>y agradecimientos se encuentran en el sitio web del Missouri Botanical Garden.</p>
+            <br/>
+            <p>Contacto del proyecto: <a href='mailto::carmen.ulloa@mobot.org'>C. Ulloa</a></p>
+            <p>Todos los derechos reservados.</p>
+            <p>©Missouri Botanical Garden, Science and Conservation Division</p>"]]></string>
 
-<p>Páramo flora, sitio web acera de estudios de la flora de los páramos: <a href='#'>http://www.mobot.org/mobot/research/paramo_flora.shtml</a></p>
-
-<p>El proyecto de la Flora del Cajas es una colaboración entre el Missouri Botanical Garden (<a href='#'>http://www.missouribotanicalgarden.org/</a>) y el Herbario Azuay (Universidad del Azuay, Cuenca Ecuador) (<a href='#'>http://www.uazuay.edu.ec/HerbarioAzuay/</a>) con el Parque Nacional Cajas. Agradecemos a Etapa-Parque Nacional Cajas, Ministerio del Ambiente de Ecuador y agencias que financiaron el trabajo de campo.</p>
-<p>Sitio web del proyecto y agradecimientos:
-<a href='#'>http://www.mobot.org/MOBOT/research/paramo/welcome.flash.asp</a></p>
-<br/>
-<p>Contacto del proyecto: C. Ulloa <mailto>carmen.ulloa@mobot.org</mailto></p>"]]></string>
-
-    <string name="creditos">"Este proyecto es una colaboración entre el Missouri Botanical Garden, el Herbario Azuay (Universidad del Azuay) con el Parque Nacional Cajas.
-Contacto del proyecto: C. Ulloa carmen.ulloa@mobot.org
-Diseño y programación: L.M. Unda, V. Zapata, Quito
-
-
-Íconos 'Silhouette of tree of flowers and plants', http://www.freevectorvip.com/silhouette-of-tree-of-flowers-and-plants.html
-Iconos de Freepik (http://www.freepik.com) de Flaticon (http://www.flaticon.com), licenciados con Creative Commons (http://creativecommons.org/licenses/by/3.0/)
-Iconos de OCHA (http://www.unocha.org) de Flaticon (http://www.flaticon.com)  licenciados con Creative Commons (http://creativecommons.org/licenses/by/3.0/)
-Iconos de Google (http://www.google.com) de Flaticon (http://www.flaticon.com)  licenciados con Creative Commons (http://creativecommons.org/licenses/by/3.0/)
-Iconos de Victor Ivlichev, Free Dark Blue Cloud Icons, http://www.aha-soft.com/
-
-Textura de la regla por Joseph Francis (Flickr: Balsa Wood Texture 1) (http://upload.wikimedia.org/wikipedia/commons/c/cb/Balsa_Wood_Texture.jpg) [CC-BY-2.0 (http://creativecommons.org/licenses/by/2.0)], via Wikimedia Commons
-
-Todos los derechos reservados.
-©Missouri Botanical Garden, Science and Conservation Division"</string>
+    <string name="creditos"><![CDATA["<p>El proyecto Flora del Cajas es una colaboración entre el Missouri Botanical Garden, el Herbario Azuay (Universidad del Azuay) con el Parque Nacional Cajas.</p>
+            <p>Contacto del proyecto: <a href='mailto::carmen.ulloa@mobot.org'>C. Ulloa</a></p>
+            <p>Diseño y programación: L.M. Unda, V. Zapata, Quito</p>
+            <br/>
+            <p>Íconos de:</p>
+            <p><a href='link::http://www.freevectorvip.com/silhouette-of-tree-of-flowers-and-plants.html'>Silhouette of tree of flowers and plants'</a></p>
+            <p><a href='link::http://www.freepik.com'>Freepik</a> de <a href='link::http://www.flaticon.com'>Flaticon</a>, licenciados bajo <a href='link::http://creativecommons.org/licenses/by/3.0/'>Creative Commons</a></p>
+            <p><a href='link::http://www.unocha.org'>OCHA</a> de <a href='link::http://www.flaticon.com'>Flaticon</a>, licenciados bajo <a href='link::http://creativecommons.org/licenses/by/3.0/'>Creative Commons</a></p>
+            <p><a href='link::http://www.google.com'>Google</a> de <a href='link::http://www.flaticon.com'>Flaticon</a>, licenciados bajo <a href='link::http://creativecommons.org/licenses/by/3.0/'>Creative Commons</a></p>
+            <p><a href='link::http://www.aha-soft.com/'>Victor Ivlichev</a>, Free Dark Blue Cloud Icons</p>
+            <br/>
+            <p>Textura de la regla: <a href='link::http://commons.wikimedia.org/wiki/File:Balsa_Wood_Texture.jpg'>Close-up of balsa wood showing its grain</a> de Joseph Francis (Flickr: Balsa Wood Texture 1) [<a href='link::http://creativecommons.org/licenses/by/2.0'>CC-BY-2.0</a>], via Wikimedia Commons</p>
+            <br/>
+            <p>Todos los derechos reservados.</p>
+            <p>©Missouri Botanical Garden, Science and Conservation Division</p>"]]></string>
     <string name="captura_forma_vida1_label">Forma de vida 1</string>
     <string name="captura_forma_vida2_label">Forma de vida 2</string>
     <string name="captura_lugar_label">Lugar</string>
@@ -316,9 +312,5 @@ Todos los derechos reservados.
     <string name="global_in">pulgadas</string>
     <string name="tools_label_cm_in">in = cm * 0.39370 = cm / 2.54</string>
     <string name="tools_label_in_cm">cm = in / 0.39370 = in * 2.54</string>
-    <string name="tools_label_ruler">"La regla muestra centímetros en azul y pulgadas en negro.
-Tenga en cuenta que la regla puede tener un pequeño error que depende de su teléfono."</string>
-    <string name="gps_error">"No se pudo detectar la ubicación. Por favor active el GPS."</string>
-    <string name="gps_location_error">No se pudo obtener su posición</string>
-    <string name="tools_convert_error">Nada que convertir!</string>
+    <string name="about_contact">Contactarnos</string>
 </resources>

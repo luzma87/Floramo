@@ -96,8 +96,7 @@ public class SettingsCommentsFragment extends Fragment implements View.OnClickLi
                 String subject = getString(R.string.comments_subject);
                 String txt = androidVersion + "\n" + deviceInfo + "\n\n" + detalles;
 
-                Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                        "mailto", direccion, null));
+                Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", direccion, null));
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
                 emailIntent.putExtra(Intent.EXTRA_TEXT, txt);
                 startActivity(Intent.createChooser(emailIntent, getString(R.string.comments_activity_title)));

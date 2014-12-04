@@ -122,30 +122,32 @@ public class SettingsFragment extends Fragment implements Button.OnClickListener
 //            });
 //            d.show();
         } else if (view.getId() == btnCreditos.getId()) {
-            LayoutInflater inflater = context.getLayoutInflater();
-            View v = inflater.inflate(R.layout.settings_creditos_dialog, null);
-
-            final AlertDialog.Builder builder = new AlertDialog.Builder(context).setView(v)
-                    .setNeutralButton(R.string.dialog_btn_cerrar, null) //Set to null. We override the onclick
-                    .setTitle(getString(R.string.creditos_title));
-
-            final AlertDialog d = builder.create();
-            final TextView txt = (TextView) v.findViewById(R.id.creditos_dialog_txt);
-            txt.setText(getString(R.string.creditos));
-
-            d.setOnShowListener(new DialogInterface.OnShowListener() {
-                @Override
-                public void onShow(DialogInterface dialog) {
-                    Button cerrar = d.getButton(AlertDialog.BUTTON_NEUTRAL);
-                    cerrar.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            d.dismiss();
-                        }
-                    });
-                }
-            });
-            d.show();
+            Fragment about = new CreditsFragment();
+            Utils.openFragment(context, about, getString(R.string.creditos_title));
+//            LayoutInflater inflater = context.getLayoutInflater();
+//            View v = inflater.inflate(R.layout.settings_creditos_dialog, null);
+//
+//            final AlertDialog.Builder builder = new AlertDialog.Builder(context).setView(v)
+//                    .setNeutralButton(R.string.dialog_btn_cerrar, null) //Set to null. We override the onclick
+//                    .setTitle(getString(R.string.creditos_title));
+//
+//            final AlertDialog d = builder.create();
+//            final TextView txt = (TextView) v.findViewById(R.id.creditos_dialog_txt);
+//            txt.setText(getString(R.string.creditos));
+//
+//            d.setOnShowListener(new DialogInterface.OnShowListener() {
+//                @Override
+//                public void onShow(DialogInterface dialog) {
+//                    Button cerrar = d.getButton(AlertDialog.BUTTON_NEUTRAL);
+//                    cerrar.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+//                            d.dismiss();
+//                        }
+//                    });
+//                }
+//            });
+//            d.show();
         }
     }
 

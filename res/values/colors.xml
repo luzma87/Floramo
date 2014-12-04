@@ -3,10 +3,7 @@
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
 
-    <color name="purple_light">#CDE8AE</color>
-    <color name="purple_middle">#9FCF67</color>
-    <color name="purple_dark">#076324</color>
-
+    <color name="floramo_claro">#CDE8AE</color>
+    <color name="floramo_medio">#9FCF67</color>
     <color name="floramo_oscuro">#076324</color>
-    <color name="floramo_claro">#9FCF67</color>
 </resources>

@@ -67,7 +67,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     public final int BUGS_POS = 104;
     public final int COMMENTS_POS = 105;
     public final int RESULTADO_BUSQUEDA_POS = 106;
-    public final int GPS_POS = 107;
+    public final int CREDITOS_POS = 107;
 
     public String paramFrag = null;
 
@@ -189,7 +189,6 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         super.onCreate(savedInstanceState);
         DbHelper helper = new DbHelper(this);
         helper.getWritableDatabase();
-        helper.close();
 
         fotoSinCoords = null;
         imageToUpload = null;
@@ -221,8 +220,8 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         SharedPreferences.Editor editor = pref.edit();
         editor.clear();
         editor.putFloat("density", displaymetrics.density);
-        editor.putFloat("xdpm", (float) (displaymetrics.xdpi));
-        editor.putFloat("ydpm", (float) (displaymetrics.ydpi));
+        editor.putFloat("xdpm", (float) (displaymetrics.xdpi * displaymetrics.density / 25.4));
+        editor.putFloat("ydpm", (float) (displaymetrics.ydpi * displaymetrics.density / 25.4));
         editor.commit();
 
 //        System.out.println("****************************************************************");
@@ -967,6 +966,14 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                     overrideDrawer = SETTINGS_POS;
                 }
                 break;
+            case CREDITOS_POS:
+                if (paramFrag != null) {
+                    fragment = new CreditsFragment();
+                    title = getString(R.string.creditos_title);
+                    activeFragment = CREDITOS_POS;
+                    overrideDrawer = SETTINGS_POS;
+                }
+                break;
             case ENCICLOPEDIA2_POS:
                 fragment = new EnciclopediaListFragment();
                 title = getString(R.string.encyclopedia_title);
@@ -1015,12 +1022,6 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                     fragment = new BusquedaFragment();
                     activeFragment = BUSQUEDA_POS;
                 }
-                break;
-            case GPS_POS:
-                title = getString(R.string.tools_title);
-                fragment = new CompassFragment();
-                activeFragment = GPS_POS;
-                overrideDrawer = TOOLS_POS;
                 break;
             default:
                 fragment = null;
