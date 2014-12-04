@@ -19,7 +19,7 @@
     <string name="comments_mail" translatable="false">nth.development@gmail.com</string>
     <string name="db_name" translatable="false">Floramo</string>
     <string name="especie_info_tropicos" translatable="false">Tropicos ®</string>
-    <string name="version_name" translatable="false">1.1.1</string>
+    <string name="version_name" translatable="false">1.1.2.2</string>
 
     <string name="app_name">Flóramo</string>
     <string name="menu_title">Navegación</string>
@@ -90,7 +90,10 @@ En ambas vistas al presionar un registro de especie se muestra su información d
     <string name="help_configuracion">"Esta pantalla permite ver la información del Parque Nacional Cajas, los créditos y la información de la aplicación.
 También permite enviar sugerencias o comentarios y reportar errores."</string>
     <string name="help_busqueda">"Esta pantalla permite buscar las especies de la enciclopedia del teléfono utilizando filtros."</string>
-    <string name="help_tools">"Esta pantalla muestra una brújula básica, así como las coordenadas y la  altitud a la que se encuentra el usuario."</string>
+    <string name="help_tools">-"Esta pantalla muestra la equivalencia entre centímetros y pulgadas.
+También tiene un convertidor entre las 2 unidades: se puede escribir un valor en centímetros (izquierda) o pulgadas (derecha) y al presionar el botón naranja se mostrará el valor convertido a la otra unidad. La conversión se hace con el último valor ingresado.
+Se muestra también una pequeña regla, con valores en cm a la izquierda en azul, y en pulg. a la derecha en negro. La precisión de la regla depende de su teléfono, pero el error debería ser mínimo.
+El botón de la parte inferior de la pantalla muestra una brújula básica, así como las coordenadas y la  altitud a la que se encuentra el usuario."</string>
     <string name="help_map">"Esta pantalla muestra el mapa. En este se puede iniciar el registro de una ruta y se pueden ver todas las especies regstradas.
 El botón 'Tipo' permite cambiar el tipo de mapa."</string>
     <string name="help_rutas">"Esta pantalla muestra la lista de las rutas registradas. Al presionar un registro se muestra la información detallada de esa ruta.
@@ -313,4 +316,9 @@ Se muestra un máximo de 10 resultados. En la lista, al presionar un registro se
     <string name="tools_label_cm_in">in = cm * 0.39370 = cm / 2.54</string>
     <string name="tools_label_in_cm">cm = in / 0.39370 = in * 2.54</string>
     <string name="about_contact">Contactarnos</string>
+
+    <string name="tools_label_ruler">"La regla muestra centímetros en azul y pulgadas en negro.
+Tenga en cuenta que la regla puede tener un pequeño error que depende de su teléfono."</string>
+    <string name="gps_error">"No se pudo detectar la ubicación. Por favor active el GPS."</string>
+    <string name="gps_location_error">No se pudo obtener su posición</string>
 </resources>

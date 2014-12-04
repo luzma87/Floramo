@@ -86,7 +86,10 @@ In both views, tapping a species will show its details."</string>
     <string name="help_configuracion">"This screen shows information about the Cajas National Park, the credits and information about the app.
 It also allows the user to send comments or suggestions and bug reports."</string>
     <string name="help_busqueda">"This screen allows the user to search species among the ones saved on the device."</string>
-    <string name="help_tools">"This screen shows a basic compass and the coordinates and altitude of the user."</string>
+    <string name="help_tools">"This screen show the equivalence between inches and centimeters.
+It also has a converter between these two units: you can type a value in cm (left) or inches (right) then press the orange button to convert to the other unit. The conversion is made with the last value entered.
+To the right side of the screen is a small ruler with cm values to the left and in blue, and inches values to the right in black. The ruler's accuracy depends on your device, but the error should be minimum.
+The button on the lower part of the screen shows a basic compass and your current coordinates and altitude."</string>
     <string name="help_map">"This screen shows the map. In it you can start the recording of a route and visualize the species in the device.
 The 'Type' button allow you to change the type of map."</string>
     <string name="help_rutas">"This screen shows the list of saved routes. Tapping on one shows its details.
@@ -310,4 +313,10 @@ It shows a maximum of 10 results. Tapping an item on the list shows its details.
     <string name="tools_label_cm_in">in = cm * 0.39370 = cm / 2.54</string>
     <string name="tools_label_in_cm">cm = in / 0.39370 = in * 2.54</string>
     <string name="about_contact">Contact us</string>
+
+     <string name="tools_label_ruler">"The ruler shows inches in black and centimeters in blue.
+Have in mind that the ruler might have a slight error that depends on your device."</string>
+    <string name="gps_error">"Unable to detect location. Please activate GPS."</string>
+    <string name="gps_location_error">Unable to get your current location.</string>
+    <string name="tools_convert_error">Nothing to convert!</string>
 </resources>
