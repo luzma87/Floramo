@@ -664,7 +664,7 @@ public class EspecieDbHelper extends DbHelper {
 
         sql = select + from + joins + where + groupBy;
 
-        System.out.println(sql);
+        //System.out.println(sql);
 
         Cursor c = db.rawQuery(sql, null);
 

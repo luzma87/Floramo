@@ -156,7 +156,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     }
 
     public void setErrorMessage(String msg) {
-        // System.out.println("::: SET ERROR MESSAGE::: " + msg);
+        // //System.out.println("::: SET ERROR MESSAGE::: " + msg);
         fireEvent("errorMessage", msg);
         this.errorMessage = msg;
     }
@@ -206,7 +206,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         esCientifico = settings.getString("esCientifico", "-1");
         titulo = settings.getString("titulo", "-1");
         */
-        //System.out.println("variables name "+userId+"  name "+name);
+        ////System.out.println("variables name "+userId+"  name "+name);
         setContentView(R.layout.activity_map);
 
         activeFragment = MAP_POS;
@@ -225,13 +225,13 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         editor.putFloat("ydpm", (float) (displaymetrics.ydpi));
         editor.commit();
 
-//        System.out.println("****************************************************************");
-//        System.out.println("DENSITY " + displaymetrics.density);
-//        System.out.println("xdpi " + (displaymetrics.xdpi)); //The exact physical pixels per inch of the screen in the X dimension.
-//        System.out.println("ydpi " + (displaymetrics.ydpi)); //The exact physical pixels per inch of the screen in the Y dimension.
-//        System.out.println("xdpm " + (displaymetrics.xdpi * displaymetrics.density / 25.4));
-//        System.out.println("ydpm " + (displaymetrics.ydpi * displaymetrics.density / 25.4));
-//        System.out.println("****************************************************************");
+//        //System.out.println("****************************************************************");
+//        //System.out.println("DENSITY " + displaymetrics.density);
+//        //System.out.println("xdpi " + (displaymetrics.xdpi)); //The exact physical pixels per inch of the screen in the X dimension.
+//        //System.out.println("ydpi " + (displaymetrics.ydpi)); //The exact physical pixels per inch of the screen in the Y dimension.
+//        //System.out.println("xdpm " + (displaymetrics.xdpi * displaymetrics.density / 25.4));
+//        //System.out.println("ydpm " + (displaymetrics.ydpi * displaymetrics.density / 25.4));
+//        //System.out.println("****************************************************************");
 
         /*CORE*/
         locationClient = new LocationClient(this, this, this);
@@ -299,7 +299,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
 
 //        Utils.openFragment(this, new InicioFragment(), getString(R.string.inicio_title), null);
 //        selectItem(INICIO_POS);
-//        System.out.println("---LUZMA--- ON CREATE: " + activeFragment + "   saved: "
+//        //System.out.println("---LUZMA--- ON CREATE: " + activeFragment + "   saved: "
 //                + (savedInstanceState == null ? "NONE" : savedInstanceState.getSerializable("activeFragment")));
 //        if (savedInstanceState == null) {
         /* selecciona el fragment de inicio sin BackStack */
@@ -318,13 +318,13 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
 //                searchNombre = savedInstanceState.getString("searchNombre");
 //                searchAndOr = savedInstanceState.getString("searchAndOr");
 //                especiesBusqueda = Especie.busqueda(this, searchFormaVida, searchColor, searchNombre, searchAndOr);
-//                System.out.println("*****************************************************************************");
-//                System.out.println("Forma de vida: " + searchFormaVida);
-//                System.out.println("Color: " + searchColor);
-//                System.out.println("Nombre: " + searchNombre);
-//                System.out.println("AndOr: " + searchAndOr);
-//                System.out.println("especies: " + especiesBusqueda.size());
-//                System.out.println("*****************************************************************************");
+//                //System.out.println("*****************************************************************************");
+//                //System.out.println("Forma de vida: " + searchFormaVida);
+//                //System.out.println("Color: " + searchColor);
+//                //System.out.println("Nombre: " + searchNombre);
+//                //System.out.println("AndOr: " + searchAndOr);
+//                //System.out.println("especies: " + especiesBusqueda.size());
+//                //System.out.println("*****************************************************************************");
 //            }
 //            selectItem(activeFragment);
 //        }
@@ -339,38 +339,48 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-//        System.out.println("---LUZMA--- ON Restore Instance State: " + activeFragment + "   saved: "
+//        //System.out.println("---LUZMA--- ON Restore Instance State: " + activeFragment + "   saved: "
 //                + (savedInstanceState == null ? "NONE" : savedInstanceState.getSerializable("activeFragment")));
 //        if (savedInstanceState != null) {
         activeFragment = Integer.parseInt(savedInstanceState.getSerializable("activeFragment").toString());
+//        //System.out.println("ON RESTORE::: activo" + activeFragment + "(busqueda=" + RESULTADO_BUSQUEDA_POS + ")");
         if (activeFragment == RESULTADO_BUSQUEDA_POS) {
+            //System.out.println("on restore: haciendo la busueda de nuevo.....");
             searchFormaVida = savedInstanceState.getStringArrayList("searchFormaVida");
             searchColor = savedInstanceState.getStringArrayList("searchColor");
             searchNombre = savedInstanceState.getString("searchNombre");
             searchAndOr = savedInstanceState.getString("searchAndOr");
             especiesBusqueda = Especie.busqueda(this, searchFormaVida, searchColor, searchNombre, searchAndOr);
-//            System.out.println("...........................................................................................");
-//            System.out.println("Forma de vida: " + searchFormaVida);
-//            System.out.println("Color: " + searchColor);
-//            System.out.println("Nombre: " + searchNombre);
-//            System.out.println("AndOr: " + searchAndOr);
-//            System.out.println("especies: " + especiesBusqueda.size());
-//            System.out.println("...........................................................................................");
+//            //System.out.println("...........................................................................................");
+//            //System.out.println("Forma de vida: " + searchFormaVida);
+//            //System.out.println("Color: " + searchColor);
+//            //System.out.println("Nombre: " + searchNombre);
+//            //System.out.println("AndOr: " + searchAndOr);
+//            //System.out.println("especies: " + especiesBusqueda.size());
+//            //System.out.println("...........................................................................................");
         }
         selectItem(activeFragment);
 //        }
     }
 
     @Override
+    public void onPause() {
+//        //System.out.println("on pause");
+        super.onPause();
+    }
+
+    @Override
     public void onResume() {
         super.onStart();
+        //System.out.println("on resume");
     }
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
+//        //System.out.println("******************************* ON SAVE");
         // Save the user's current game state
         super.onSaveInstanceState(savedInstanceState);
-//        System.out.println("---LUZMA--- ON Save State 1 active: " + activeFragment + "   saved: "
+//        //System.out.println("---LUZMA--- ON Save State 1 active: " + activeFragment + "   saved: "
 //                + (savedInstanceState == null ? "NONE" : savedInstanceState.getSerializable("activeFragment")));
         savedInstanceState.putSerializable("activeFragment", activeFragment);
 
@@ -380,13 +390,8 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
             savedInstanceState.putSerializable("searchNombre", searchNombre);
             savedInstanceState.putSerializable("searchAndOr", searchAndOr);
         }
-//        System.out.println("---LUZMA--- ON Save State 2 active: " + activeFragment + "   saved: "
+//        //System.out.println("---LUZMA--- ON Save State 2 active: " + activeFragment + "   saved: "
 //                + (savedInstanceState == null ? "NONE" : savedInstanceState.getSerializable("activeFragment")));
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
     }
 
     @Override
@@ -481,7 +486,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                 int w = res[0] + res[2];
                 int h = res[1] + res[3];
 
-//                System.out.println("w " + w + " h " + h);
+//                //System.out.println("w " + w + " h " + h);
                 Bitmap bmp = Bitmap.createBitmap(w, h, conf);
                 Canvas canvas1 = new Canvas(bmp);
                 Paint color = new Paint();
@@ -544,7 +549,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
          * start a Google Play services activity that can resolve
          * error.
          */
-//        System.out.println("error connection failed");
+//        //System.out.println("error connection failed");
     }
 
     /*MAPS*/
@@ -587,9 +592,9 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     }
 
     public void setUpMapIfNeeded() {
-        //System.out.println("setUpMap if needed" +map);
+        ////System.out.println("setUpMap if needed" +map);
         map = ((MapFragment) getFragmentManager().findFragmentById(R.id.mapF)).getMap();
-        //System.out.println("setUpMap if needed despues" +map);
+        ////System.out.println("setUpMap if needed despues" +map);
         // Do a null check to confirm that we have not already instantiated the map.
         if (map == null) {
             // Try to obtain the map from the SupportMapFragment.
@@ -623,7 +628,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
             public void onInfoWindowClick(Marker marker) {
                 if (dataEspecies.get(marker) != null) {
                     marker.showInfoWindow();
-                    //System.out.println("especie " + marker + "  " + selected + "  " + (selected != marker));
+                    ////System.out.println("especie " + marker + "  " + selected + "  " + (selected != marker));
                     if (selected == null) {
                         selected = marker;
                     } else {
@@ -679,7 +684,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
             public boolean onMarkerClick(final Marker marker) {
                 if (dataEspecies.get(marker) != null) {
                     marker.showInfoWindow();
-                    //System.out.println("especie " + marker + "  " + selected + "  " + (selected != marker));
+                    ////System.out.println("especie " + marker + "  " + selected + "  " + (selected != marker));
                     if (selected == null) {
                         selected = marker;
                     } else {
@@ -875,7 +880,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            // System.out.println("entro?");
+            // //System.out.println("entro?");
             selectItem(position);
         }
     }
@@ -1129,17 +1134,17 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case SvtService.MSG_SET_INT_VALUE:
-//                    System.out.println("Int Message: " + msg.arg1);
+//                    //System.out.println("Int Message: " + msg.arg1);
                     break;
                 case SvtService.MSG_SET_STRING_VALUE:
                     String str1 = msg.getData().getString("str1");
 //                    textStrValue.setText("Str Message: " + str1);
-//                    System.out.println("Str  Message: " + msg.arg1);
+//                    //System.out.println("Str  Message: " + msg.arg1);
                     break;
                 case SvtService.MSG_SET_COORDS:
                     Double latitud = msg.getData().getDouble("latitud");
                     Double longitud = msg.getData().getDouble("logitud");
-//                    System.out.println("Str  Message recibed: " + latitud+"  "+longitud);
+//                    //System.out.println("Str  Message recibed: " + latitud+"  "+longitud);
                     LatLng latlong = new LatLng(latitud, longitud);
                     if (lastPosition == null)
                         lastPosition = map.addMarker(new MarkerOptions().position(latlong).title("Última posición registrada"));
@@ -1147,7 +1152,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                         lastPosition.setPosition(latlong);
                     updatePolyLine(latlong);
                     if (lastestImageIndex != 0) {
-                        //System.out.println("Tomo foto " + lastestImageIndex);
+                        ////System.out.println("Tomo foto " + lastestImageIndex);
                         imageItem = getLatestItem();
                         getFoto();
                         if (imagenes.size() > lastSize) {
@@ -1208,7 +1213,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                     msg.replyTo = mMessenger;
                     msg.arg1 = (int) ruta.id;
                     mService.send(msg);
-                    //System.out.println("Mando mensaje de ruta");
+                    ////System.out.println("Mando mensaje de ruta");
                     attached = true;
                 } catch (RemoteException e) {
                     // In this case the service has crashed before we could even do anything with it
@@ -1220,13 +1225,13 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         public void onServiceDisconnected(ComponentName className) {
             // This is called when the connection with the service has been unexpectedly disconnected - process crashed.
             mService = null;
-            // System.out.println("Disconnected.");
+            // //System.out.println("Disconnected.");
         }
     };
 
     /*IMAGES*/
     public void setImageIndex(int index) {
-        //System.out.println("set image index " + index);
+        ////System.out.println("set image index " + index);
         if (imagenes == null) {
             imagenes = new ArrayList<Bitmap>();
         }
@@ -1236,17 +1241,17 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
             /*Borro una foto*/
             this.lastestImageIndex = 0;
         }
-        //System.out.println("set image index fin "+this.lastestImageIndex);
+        ////System.out.println("set image index fin "+this.lastestImageIndex);
     }
 
     /*Fotos*/
     public void getFoto() {
         if (imageItem != null) {
-            // System.out.println("path "+imageItem.imagePath);
-            //System.out.println("images " + imagenes);
+            // //System.out.println("path "+imageItem.imagePath);
+            ////System.out.println("images " + imagenes);
             int[] res = Utils.getSize(screenWidth);
             Bitmap b = ImageUtils.decodeBitmapPath(imageItem.imagePath, res[0], res[1]);
-            //System.out.println("width " + b.getWidth() + "  " + b.getHeight());
+            ////System.out.println("width " + b.getWidth() + "  " + b.getHeight());
             imagenes.add(b);
             lastIndex++;
             lastestImageIndex = 0;
@@ -1256,8 +1261,8 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
 
     public Bitmap getFotoDialog(Foto image, int width, int heigth) {
         if (image != null) {
-            // System.out.println("path "+imageItem.imagePath);
-            //System.out.println("images " + image.imagePath+"  "+width+"  "+heigth);
+            // //System.out.println("path "+imageItem.imagePath);
+            ////System.out.println("images " + image.imagePath+"  "+width+"  "+heigth);
             Bitmap b = ImageUtils.decodeFile(image.path, width, heigth);
             return b;
 
@@ -1268,8 +1273,8 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
 
     public Bitmap getFotoDialogString(InputStream io, int width, int heigth) {
         if (io != null) {
-            // System.out.println("path "+imageItem.imagePath);
-            //System.out.println("images " + image.imagePath+"  "+width+"  "+heigth);
+            // //System.out.println("path "+imageItem.imagePath);
+            ////System.out.println("images " + image.imagePath+"  "+width+"  "+heigth);
             Bitmap b = ImageUtils.decodeBitmap(io, width, heigth);
             return b;
 
@@ -1289,7 +1294,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
 
             // check if cursus has rows, if not break and exit loop
             if (cursor.moveToFirst()) {
-                //System.out.println("tiene rows "+cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.MINI_THUMB_MAGIC)));
+                ////System.out.println("tiene rows "+cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.MINI_THUMB_MAGIC)));
                 item = new ImageItem();
                 item.prefs = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
                 item.imageId = cursor.getInt(cursor.getColumnIndex(MediaStore.Images.Media._ID));
@@ -1300,7 +1305,7 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
             }
             //cursor.close();
 
-            // System.out.println("salio");
+            // //System.out.println("salio");
             return item;
         }
 

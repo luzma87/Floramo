@@ -49,7 +49,7 @@ public class Utils {
     public static int[] getSize(int sw) {
         int[] res;
         res = (int[]) size.get(sw);
-//        System.out.println("get de !" + sw + "!  " + size.get(sw));
+//        //System.out.println("get de !" + sw + "!  " + size.get(sw));
         if (res != null) {
             return res;
         } else {
@@ -58,7 +58,7 @@ public class Utils {
             int[] last = null;
             while (it.hasNext()) {
                 Map.Entry pairs = (Map.Entry) it.next();
-//                System.out.println(pairs.getKey() + " = " + (int[]) pairs.getValue());
+//                //System.out.println(pairs.getKey() + " = " + (int[]) pairs.getValue());
                 int t = Integer.parseInt(pairs.getKey().toString());
                 if (sw < t) {
                     if (last != null) {
@@ -183,9 +183,9 @@ public class Utils {
         texto.setText(Html.fromHtml(parts[0]));
         texto.setMovementMethod(LinkMovementMethod.getInstance());
 
-        System.out.println("*****************************************");
-        System.out.println("*" + parts[0] + "*");
-        System.out.println("*****************************************");
+        //System.out.println("*****************************************");
+        //System.out.println("*" + parts[0] + "*");
+        //System.out.println("*****************************************");
 
         //cada una de las siguientes partes contiene un link
         for (int i = 1; i < parts.length; i++) {
@@ -210,9 +210,9 @@ public class Utils {
             ClickableSpan cs = new ClickableLinkSpan(context, spanTipo, spanUrl);
             ss.setSpan(cs, 0, spanText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             texto.append(ss);
-            System.out.println("++++++++++++++++++++++++++++++++++++++++++");
-            System.out.println("+" + spanText + "+");
-            System.out.println("++++++++++++++++++++++++++++++++++++++++++");
+            //System.out.println("++++++++++++++++++++++++++++++++++++++++++");
+            //System.out.println("+" + spanText + "+");
+            //System.out.println("++++++++++++++++++++++++++++++++++++++++++");
 
             if (textParts.length == 2) {
                 if (textParts[1].startsWith("</p>")) {
@@ -223,9 +223,9 @@ public class Utils {
                     texto.append(" ");
                 }
                 texto.append(Html.fromHtml(textParts[1]));
-                System.out.println("-------------------------------------------");
-                System.out.println("-" + textParts[1] + "-");
-                System.out.println("-------------------------------------------");
+                //System.out.println("-------------------------------------------");
+                //System.out.println("-" + textParts[1] + "-");
+                //System.out.println("-------------------------------------------");
             }
         }
     }

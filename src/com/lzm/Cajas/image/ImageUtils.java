@@ -154,7 +154,7 @@ public class ImageUtils {
             BitmapFactory.Options o2 = new BitmapFactory.Options();
             o2.inSampleSize = scale;
 
-//            System.out.println("out");
+//            //System.out.println("out");
             return BitmapFactory.decodeStream(new FileInputStream(f), null, o2);
         } catch (FileNotFoundException e) {
             e.printStackTrace();

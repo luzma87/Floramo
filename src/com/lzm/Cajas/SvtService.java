@@ -42,7 +42,7 @@ public class SvtService extends Service implements  GooglePlayServicesClient.Con
     class IncomingHandler extends Handler { // Handler of incoming messages from clients.
         @Override
         public void handleMessage(Message msg) {
-//            System.out.println("service Recibio mensaje "+msg.what+"  "+msg.arg1);
+//            //System.out.println("service Recibio mensaje "+msg.what+"  "+msg.arg1);
             switch (msg.what) {
                 case MSG_REGISTER_CLIENT:
                     mClients.add(msg.replyTo);
@@ -51,7 +51,7 @@ public class SvtService extends Service implements  GooglePlayServicesClient.Con
                     mClients.remove(msg.replyTo);
                     break;
                 case MSG_SET_INT_VALUE:
-//                    System.out.println("set ruta id "+msg.arg1);
+//                    //System.out.println("set ruta id "+msg.arg1);
                     ruta=Ruta.get(context,(long)msg.arg1);
                     break;
                 default:
@@ -85,7 +85,7 @@ public class SvtService extends Service implements  GooglePlayServicesClient.Con
                 // mClients.get(i).send(Message.obtain(null, MSG_SET_INT_VALUE, intvaluetosend, 0));
 
                 //Send data as a String
-//                System.out.println("Send data "+location.getLatitude()+" --- "+location.getLongitude());
+//                //System.out.println("Send data "+location.getLatitude()+" --- "+location.getLongitude());
                 Bundle b = new Bundle();
                 b.putDouble("latitud", location.getLatitude()/*+counter*0.00210*/);
                 b.putDouble("logitud", location.getLongitude()/*+counter*0.00103*/);
@@ -103,7 +103,7 @@ public class SvtService extends Service implements  GooglePlayServicesClient.Con
     @Override
     public void onCreate() {
         super.onCreate();
-//        System.out.println("on create service");
+//        //System.out.println("on create service");
         this.context=this;
         showNotification();
         locationClient = new LocationClient(this, this, this);
@@ -151,7 +151,7 @@ public class SvtService extends Service implements  GooglePlayServicesClient.Con
                 cord.save();
             }
         }catch (Exception e){
-//            System.out.println("error insertando coordenada "+e.getMessage());
+//            //System.out.println("error insertando coordenada "+e.getMessage());
         }
         finally {
             sendMessageToUI(mCurrentLocation);
@@ -201,6 +201,6 @@ public class SvtService extends Service implements  GooglePlayServicesClient.Con
          * start a Google Play services activity that can resolve
          * error.
          */
-//        System.out.println("error connection failed");
+//        //System.out.println("error connection failed");
     }
 }

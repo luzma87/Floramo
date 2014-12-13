@@ -62,7 +62,7 @@ public class ImageTableObserver extends ContentObserver
             application.setImageIndex(latestId);
         }
         this.first=false;
-//        System.out.println("lastest id "+latestId);
+//        //System.out.println("lastest id "+latestId);
 
     }
 

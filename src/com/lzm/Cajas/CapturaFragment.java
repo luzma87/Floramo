@@ -429,7 +429,7 @@ public class CapturaFragment extends Fragment implements Button.OnClickListener,
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
-//        System.out.println("ON TOUCH");
+//        //System.out.println("ON TOUCH");
 //        Utils.hideSoftKeyboard(context);
         return false;
     }

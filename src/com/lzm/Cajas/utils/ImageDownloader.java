@@ -48,12 +48,12 @@ public class ImageDownloader implements Runnable {
         String SetServerString = "";
 
         // Create Request to server and get response
-//        System.out.println("url  "+urlstr);
+//        //System.out.println("url  "+urlstr);
         try {
             HttpGet httpget = new HttpGet(urlstr);
             ResponseHandler<String> responseHandler = new BasicResponseHandler();
             SetServerString = Client.execute(httpget, responseHandler);
-//            System.out.println("response "+SetServerString);
+//            //System.out.println("response "+SetServerString);
 
             JSONArray arr = new JSONArray(SetServerString);
             if(arr.length()>0) {
@@ -63,8 +63,8 @@ public class ImageDownloader implements Runnable {
             for (int i = 0; i < arr.length(); i++) {
                 JSONObject obj = arr.getJSONObject(i);
 
-                //System.out.println("obj "+obj);
-               // System.out.println("image id "+obj.getString("ImageId"));
+                ////System.out.println("obj "+obj);
+               // //System.out.println("image id "+obj.getString("ImageId"));
                 String imageId =  obj.getString("ImageId");
                 current.fotos.add(imageId);
                 if(i==0){

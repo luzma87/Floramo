@@ -32,7 +32,7 @@ public class FotoDownloader  implements Runnable {
     public void run() {
         try{
             String url = "http://tropicos.org/ImageDownload.aspx?imageid="+imageId;
-//            System.out.println("url foto "+url);
+//            //System.out.println("url foto "+url);
             //http://tropicos.org/ImageDownload.aspx?imageid=40773
             URL urlFoto = new URL(url);
             HttpURLConnection connection = (HttpURLConnection) urlFoto.openConnection();

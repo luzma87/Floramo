@@ -29,11 +29,36 @@ public class BusquedaResultsFragment extends ListFragment {
         super.onActivityCreated(savedInstanceState);
         activity = (MapActivity) getActivity();
 
+//        //System.out.println("creando busqueda results.....");
+//        //System.out.println(";;; " + savedInstanceState);
+        if (savedInstanceState != null) {
+//            //System.out.println("... " + savedInstanceState.getSerializable("activeFragment").toString());
+            activity.searchFormaVida = savedInstanceState.getStringArrayList("searchFormaVida");
+            activity.searchColor = savedInstanceState.getStringArrayList("searchColor");
+            activity.searchNombre = savedInstanceState.getString("searchNombre");
+            activity.searchAndOr = savedInstanceState.getString("searchAndOr");
+            activity.especiesBusqueda = Especie.busqueda(activity, activity.searchFormaVida, activity.searchColor, activity.searchNombre, activity.searchAndOr);
+        }
+
         activity.activeFragment = activity.RESULTADO_BUSQUEDA_POS;
         especiesList = activity.especiesBusqueda;
 
+//        //System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>> " + especiesList);
+//        //System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>> " + especiesList.size());
+
         BusquedaResultsEspeciesListAdapter adapter = new BusquedaResultsEspeciesListAdapter(getActivity(), especiesList);
         setListAdapter(adapter);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+//        //System.out.println("save state fragment ");
+        savedInstanceState.putSerializable("activeFragment", activity.activeFragment);
+        savedInstanceState.putSerializable("searchFormaVida", activity.searchFormaVida);
+        savedInstanceState.putSerializable("searchColor", activity.searchColor);
+        savedInstanceState.putSerializable("searchNombre", activity.searchNombre);
+        savedInstanceState.putSerializable("searchAndOr", activity.searchAndOr);
     }
 
     @Override

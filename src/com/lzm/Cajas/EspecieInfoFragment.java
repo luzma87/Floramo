@@ -191,7 +191,7 @@ public class EspecieInfoFragment extends Fragment implements Button.OnClickListe
         Settings sett = Settings.getSettings(context);
 //        if (view.getId() == btnCajas.getId()) {
 //            String url = sett.floraBase + especie.genero + "+" + especie.nombre;
-////            System.out.println("::::::::::::::::::::::::::::: URL FLORA" + url);
+////            //System.out.println("::::::::::::::::::::::::::::: URL FLORA" + url);
 //            Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 //            startActivity(myIntent);
 //            band = true;

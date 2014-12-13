@@ -167,7 +167,7 @@ public class RutaFragment extends Fragment implements Button.OnClickListener, Vi
 
     private void showDlgDelete() {
 
-        System.out.println("---------------------------------------------------- " + fotoPos);
+        //System.out.println("---------------------------------------------------- " + fotoPos);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         // Chain together various setter methods to set the dialog characteristics
@@ -222,13 +222,13 @@ public class RutaFragment extends Fragment implements Button.OnClickListener, Vi
                         im.setImageResource(R.drawable.ic_launcher);
                     }
                 }
-                System.out.println("1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111");
+                //System.out.println("1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111");
                 Foto foto = fotos.get(fotoPos);
-                System.out.println("2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222");
+                //System.out.println("2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222");
                 foto.delete();
-                System.out.println("33333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333");
+                //System.out.println("33333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333");
                 fotos.remove(fotoPos);
-                System.out.println("4444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444");
+                //System.out.println("4444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444");
 
                 Toast.makeText(getActivity(), getString(R.string.ruta_foto_deleted), Toast.LENGTH_LONG).show();
             }
@@ -247,7 +247,7 @@ public class RutaFragment extends Fragment implements Button.OnClickListener, Vi
 
     @Override
     public boolean onLongClick(View v) {
-//        System.out.println("Long click     " + v.getId());
+//        //System.out.println("Long click     " + v.getId());
         Vibrator v1 = (Vibrator) activity.getSystemService(Context.VIBRATOR_SERVICE);
         // Vibrate for 500 milliseconds
         v1.vibrate(100);

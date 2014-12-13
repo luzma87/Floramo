@@ -91,12 +91,12 @@ public class CompassFragment extends Fragment implements SensorEventListener {
         }
         Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
-//        System.out.println("***********************************************************************************************");
-//        System.out.println(activity);
-//        System.out.println(locationManager);
-//        System.out.println(provider);
-//        System.out.println(location);
-//        System.out.println("***********************************************************************************************");
+//        //System.out.println("***********************************************************************************************");
+//        //System.out.println(activity);
+//        //System.out.println(locationManager);
+//        //System.out.println(provider);
+//        //System.out.println(location);
+//        //System.out.println("***********************************************************************************************");
         activity.activeFragment = activity.GPS_POS;
 
 //        //myCompass = (Compass)view.findViewById(R.id.mycompass);
@@ -131,7 +131,7 @@ public class CompassFragment extends Fragment implements SensorEventListener {
     }
 
     public void updateInterface(Location location) {
-        // System.out.println("cambio location "+location.getLatitude()+"  "+location.getLongitude()+"  "+location.getAltitude());
+        // //System.out.println("cambio location "+location.getLatitude()+"  "+location.getLongitude()+"  "+location.getAltitude());
         if (location != null) {
             latitud.setText("" + location.getLatitude());
             longitud.setText("" + location.getLongitude());

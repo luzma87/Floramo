@@ -85,11 +85,11 @@ public class BusquedaLoader implements Runnable {
             String SetServerString = "";
 
             // Create Request to server and get response
-//            System.out.println("url  "+urlstr);
+//            //System.out.println("url  "+urlstr);
             HttpGet httpget = new HttpGet(urlstr);
             ResponseHandler<String> responseHandler = new BasicResponseHandler();
             SetServerString = Client.execute(httpget, responseHandler);
-//            System.out.println("response "+SetServerString);
+//            //System.out.println("response "+SetServerString);
             List<SearchResult> result;
             try {
                 JSONArray arr = new JSONArray(SetServerString);
@@ -106,9 +106,9 @@ public class BusquedaLoader implements Runnable {
             }
 
         } catch (Exception e) {
-//            System.out.println("error busqueda " + e);
+//            //System.out.println("error busqueda " + e);
             for (StackTraceElement ste : e.getStackTrace()) {
-//                System.out.println(ste);
+//                //System.out.println(ste);
             }
         }
     }

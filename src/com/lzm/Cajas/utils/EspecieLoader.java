@@ -71,7 +71,7 @@ public class EspecieLoader implements Runnable {
                         io = context.getResources().openRawResource(resId);
                         path1 = foto.path.replaceAll("\\.jpg", "").replaceAll("-", "_").toLowerCase();
                         resId = Utils.getImageResourceByName(context, path1);
-//                    System.out.println("service !!!!! w "+w+" h "+h);
+//                    //System.out.println("service !!!!! w "+w+" h "+h);
                         myBitmap = ImageUtils.decodeBitmap(io, w, h);
                     } catch (Exception e) {
 

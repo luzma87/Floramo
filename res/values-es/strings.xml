@@ -1,0 +1,318 @@
+<!--
+  Copyright 2013 The Android Open Source Project
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+
+<resources>
+    <string name="app_name">Flóramo</string>
+    <string name="menu_title">Navegación</string>
+
+    <string name="web_app_not_available">Lo siento, no hay un navegador configurado</string>
+    <string name="gallery_app_not_available">Lo siento, no hay una galería configurada</string>
+    <string name="camera_app_not_available">Lo siento, no hay una cámara configurada</string>
+
+    <string name="encyclopedia_title">Ver especies</string>
+    <string name="settings_title">Acerca de</string>
+    <string name="camera_title">Cámara</string>
+    <string name="captura_title">Nueva captura</string>
+    <string name="bugs_title">Reportar errores</string>
+
+    <string name="ruta_nueva">Ruta</string>
+    <string name="ruta_nombre">Ruta</string>
+    <string name="ruta_parar">Parar</string>
+    <string name="ruta_plural">Rutas</string>
+    <string name="ruta_ver_mapa">Mapa</string>
+    <string name="ruta_lbl_distancia">Distancia</string>
+    <string name="ruta_lbl_altura">Altitud</string>
+    <string name="ruta_datos_guardados">Datos guardados</string>
+    <string name="ruta_error_datos">Error al guardar los datos</string>
+    <string name="ruta_nueva_foto">Nueva foto</string>
+    <string name="ruta_lbl_foto">Fotos</string>
+    <string name="mapa_especies">Especies</string>
+    <string name="mapa_tipo">Tipo</string>
+    <string name="mapa_limpiar">Limpiar</string>
+    <string name="gallery_title">Galería</string>
+    <string name="map_title">Mapa</string>
+    <string name="tools_title">Herramientas</string>
+    <string name="busqueda_title">Búsqueda</string>
+    <string name="rutas_title">Rutas</string>
+    <string name="notepad_title">Notas</string>
+    <string name="nota_create_title">Nueva nota</string>
+    <string name="nota_edit_title">Modificar nota</string>
+    <string name="especie_info_title">Info. especie</string>
+
+    <string-array name="options_array">
+        <item>Inicio</item>
+        <item>Mapa</item>
+        <item>Ver especies</item>
+        <item>Nueva captura</item>
+        <item>Rutas</item>
+        <item>Tropicos ®</item>
+        <!--<item>Notas</item>-->
+        <!--<item>Nueva nota</item>-->
+        <item>Herramientas</item>
+        <item>Acerca de</item>
+    </string-array>
+    <string name="drawer_open">Abrir menú de navegación</string>
+    <string name="drawer_close">Cerrar menú de navegación</string>
+    <string name="search_btn_label">Búsqueda</string>
+
+    <string name="help_help">Ayuda</string>
+    <string name="help_captura">"Esta pantalla permite agregar nuevas especies o nuevas fotos a especies existentes."</string>
+    <string name="help_enciclopedia">"Esta pantalla muestra todas las especies. Existen 2 vistas de la enciclopedia que se pueden cambiar con el botón en la parte inferior derecha de la pantalla:
+La primera muestra una lista con 3 niveles de desplegables. El primer nivel corresponde a la familia, el segundo al género, el tercero a la especie.
+
+La segunda es una lista de las especies donde se pueden ver el nombre científico y la familia. Están ordenadas por familia.
+Al presionar el botón de la parte inferior izquierda se cambia entre 'Familia' y 'Nombre científico'. Esto cambia la manera de ordenar las especies.
+El siguiente botón permite cambiar entre orden ascendente y descendente.
+En esta segunda vista se muestra de un color diferente la letra de las especies ingresadas por el usuario.
+Manteniendo presionada la especie se la puede eliminar.
+
+En ambas vistas al presionar un registro de especie se muestra su información detallada."</string>
+    <string name="help_notepad">"Esta pantalla permite escribir y guardar notas."</string>
+    <string name="help_configuracion">"Esta pantalla permite ver la información del Parque Nacional Cajas, los créditos y la información de la aplicación.
+También permite enviar sugerencias o comentarios y reportar errores."</string>
+    <string name="help_busqueda">"Esta pantalla permite buscar las especies de la enciclopedia del teléfono utilizando filtros."</string>
+    <string name="help_tools">-"Esta pantalla muestra la equivalencia entre centímetros y pulgadas.
+También tiene un convertidor entre las 2 unidades: se puede escribir un valor en centímetros (izquierda) o pulgadas (derecha) y al presionar el botón naranja se mostrará el valor convertido a la otra unidad. La conversión se hace con el último valor ingresado.
+Se muestra también una pequeña regla, con valores en cm a la izquierda en azul, y en pulg. a la derecha en negro. La precisión de la regla depende de su teléfono, pero el error debería ser mínimo.
+El botón de la parte inferior de la pantalla muestra una brújula básica, así como las coordenadas y la  altitud a la que se encuentra el usuario."</string>
+    <string name="help_map">"Esta pantalla muestra el mapa. En este se puede iniciar el registro de una ruta y se pueden ver todas las especies regstradas.
+El botón 'Tipo' permite cambiar el tipo de mapa."</string>
+    <string name="help_rutas">"Esta pantalla muestra la lista de las rutas registradas. Al presionar un registro se muestra la información detallada de esa ruta.
+Manteniendo presionada una ruta se la puede eliminar.
+En los detalles de la ruta uede eliminar una foto manteniéndola presionada."</string>
+    <string name="help_tropicos">"Esta pantalla permite efectuar búsquedas directamente en el servidor de Tropicos ® utilizando filtros.
+Se muestra un máximo de 10 resultados. En la lista, al presionar un registro se muestra su información detallada. Esta funcionalidad requiere una conexión a internet."</string>
+
+    <string name="dialog_btn_cerrar">Cerrar</string>
+    <string name="dialog_btn_anterior">Anterior</string>
+    <string name="dialog_btn_siguiente">Siguiente</string>
+
+    <string name="global_yes">Sí</string>
+    <string name="global_no">No</string>
+    <string name="global_ok">Aceptar</string>
+    <string name="global_save">Guardar</string>
+    <string name="global_cancel">Cancelar</string>
+    <string name="global_placeHolder">placeHolder</string>
+    <string name="global_min">min.</string>
+    <string name="global_max">max.</string>
+
+    <string name="global_color_none">-Ninguno-</string>
+    <string name="global_color_blue">Azul</string>
+    <string name="global_color_brown">Café</string>
+    <string name="global_color_green">Verde</string>
+    <string name="global_color_orange">Naranja</string>
+    <string name="global_color_pink">Rosa</string>
+    <string name="global_color_purple">Violeta</string>
+    <string name="global_color_red">Rojo</string>
+    <string name="global_color_white">Blanco</string>
+    <string name="global_color_yellow">Amarillo</string>
+
+    <string name="global_forma_vida_none">-Ninguna-</string>
+    <string name="global_forma_vida_cushion">Almohadilla</string>
+    <string name="global_forma_vida_shrub">Arbusto</string>
+    <string name="global_forma_vida_herb">Hierba</string>
+    <string name="global_forma_vida_grass">Pasto</string>
+    <string name="global_forma_vida_rosette">Roseta</string>
+    <string name="global_forma_vida_aquatic">Acuática</string>
+    <string name="global_forma_vida_liana">Bejuco</string>
+    <string name="global_forma_vida_tree">Árbol</string>
+
+    <string name="global_error_no_connection">No se pudo conectar a Internet.</string>
+
+    <string name="captura_comentarios_label">Comentarios</string>
+    <string name="captura_nombre_familia_label">Familia</string>
+    <string name="captura_nombre_genero_label">Género</string>
+    <string name="captura_nombre_especie_label">Especie</string>
+    <string name="captura_nombre_comun_label">Nombre común</string>
+    <string name="captura_nombre_cientifico_label">Nombre científico</string>
+    <string name="captura_color1_label">Color principal</string>
+    <string name="captura_color2_label">Color secundario</string>
+
+    <string name="captura_error_nombre_comun">Por favor, ingresa el nombre común de la especie</string>
+    <string name="captura_error_nombre_familia">Por favor, ingresa la familia de la especie</string>
+    <string name="captura_error_nombre_genero">Por favor, ingresa el género de la especie</string>
+    <string name="captura_error_nombre_especie">Por favor, ingresa el nombre de la especie</string>
+    <string name="captura_error_seleccion">Por favor, selecciona o toma una foto primero</string>
+    <string name="captura_error_tag_gps">La foto no tiene información geográfica. </string>
+    <string name="captura_success_tag_gps">La foto tiene información geográfica. </string>
+    <string name="captura_error_gps_upload">La foto no tiene información geográfica.</string>
+
+    <string name="captura_success">La foto ha sido guardada.</string>
+
+    <string name="busqueda_nombre_cientifico">Nombre científico</string>
+    <string name="busqueda_color">Color</string>
+    <string name="busqueda_nombre">Familia, género o especie</string>
+    <string name="busqueda_radio_and">Búsqueda AND</string>
+    <string name="busqueda_radio_or">Búsqueda OR</string>
+    <string name="busqueda_forma_vida">Forma de vida</string>
+
+    <string name="busqueda_info_and">Búsqueda que concuerde con TODOS los siguientes parámetros:</string>
+    <string name="busqueda_info_or">Búsqueda que concuerde con AL MENOS UNO de los siguientes parámetros:</string>
+    <string name="busqueda_info_forma_vida">Especies con forma de vida %1$s</string>
+    <string name="busqueda_info_color">Especies con color %1$s</string>
+    <string name="busqueda_info_nombre">Especies con familia, género o especie que contenga %1$s</string>
+
+    <string name="nota_create_title_label">Título</string>
+    <string name="nota_create_contenido_label">Contenido</string>
+
+    <string name="nota_create_dlg_delete_title">Eliminar nota</string>
+    <string name="nota_create_dlg_delete_contenido">¿Está seguro de querer eliminar esta nota?</string>
+    <string name="nota_create_delete">Nota eliminada</string>
+    <string name="nota_create_saved">Nota guardada</string>
+
+    <string name="rutas_dlg_delete_title">Eliminar ruta</string>
+    <string name="rutas_dlg_delete_contenido">¿Está seguro de querer eliminar esta ruta?</string>
+    <string name="rutas_deleted">Ruta eliminada</string>
+
+    <string name="ruta_dlg_delete_foto_title">Eliminar foto</string>
+    <string name="ruta_dlg_delete_foto_contenido">¿Está seguro de querer eliminar esta foto?</string>
+    <string name="ruta_foto_deleted">Foto eliminada</string>
+
+    <string name="encyclopedia_especie_info_ver_mapa">Ver en el mapa</string>
+    <string name="especie_info_altura">Altitud</string>
+    <string name="especie_info_altura_min">Altitud mínima</string>
+    <string name="especie_info_altura_max">Altitud máxima</string>
+    <string name="especie_info_altura_avg">Altitud promedio</string>
+    <string name="especie_info_color_lbl">Color</string>
+    <string name="especie_info_forma_vida_lbl">Forma de vida</string>
+    <!--<string name="especie_info_foto">%1$d foto, mostrando %2$d</string>-->
+    <!--<string name="especie_info_fotos">%1$d fotos, mostrando %2$d</string>-->
+    <plurals name="especie_info_fotos">
+        <item quantity="one">1 foto, mostrando 1</item>
+        <item quantity="other">%1$d fotos, mostrando %2$d</item>
+    </plurals>
+    <!--<string name="encyclopedia_entries_dialog_title">Foto(s)</string>-->
+    <plurals name="encyclopedia_entries_dialog_title">
+        <item quantity="one">Foto</item>
+        <item quantity="other">Fotos</item>
+    </plurals>
+    <string name="encyclopedia_btn_grid">Grid</string>
+    <string name="encyclopedia_btn_list">List</string>
+
+    <string name="tools_latitud">Latitud</string>
+    <string name="tools_longitud">Longitud</string>
+
+    <string name="ruta_lbl_fotos">Fotos:</string>
+
+    <string name="especies_info_flora">W3Flora descripción</string>
+
+    <string name="about_cajas"><![CDATA["<p>El macizo del Cajas se encuentra localizado a 30 km al occidente de la ciudad de Cuenca, provincia del Azuay, en el sur del Ecuador. Está dominado por páramo herbáceo con parches esparcidos de bosques.</p>
+            <p>Glaciares del Pleistoceno han esculpido el paisaje resultando en un escenario único de topografía irregular con más de 235 lagos y lagunas de belleza sin igual. Dos ríos drenan de las vertientes orientales hacia la ciudad de Cuenca. El clima es frío y húmedo, pero hay una variación climática diaria considerable que puede cambiar rápidamente de vientos suaves a fuertes, de cielo nublado a un sol intenso, de neblina a llovizna y granizo. La temperatura mínima es de –2° C y la máxima durante el día de 18°C. La precipitación media anual es de 1200 mm. Tiene dos vías de acceso: la carretera de primer orden Cuenca-Molleturo-Naranjal y la vía de tercer orden Cuenca-Soldados. El Área de Recreación Cajas fue creada en 1977 y en 1996 cambió a la categoría de Parque Nacional Cajas. Consta de 28.544 hectáreas entre los 3150 y 4450 m snm.</p>
+            <br/>
+            <p>Lea más: <a href='link::http://www.mobot.org/MOBOT/research/paramo/study.shtml'>Study area: Cajas National Park</a></p>"]]></string>
+
+    <string name="about_paramo"><![CDATA["<p>El páramo es un ecosistema de montaña único dominado por pajonales. Se encuentra sobre el límite continuo de bosque y casi hasta el nivel de la nieve perpetua (3000-5000 m), desde Venezuela hasta el norte de Perú y en Panamá y Costa Rica. La palabra páramo se asocia a planicies sin arboledas e inhóspitas. Sin embargo, los páramos tienen una diversidad biológica y endemismo altos y constituyen una biota única.</p>
+            <p>Las plantas se han adaptado a las condiciones frías y extremos de alta irradiación solar, la baja presión atmosférica, las dramáticas fluctuaciones diarias de temperatura y las lluvias estacionales. Así, muchas plantas crecen pegadas al suelo en forma de <a href='info::rosette'>rosetas</a> o <a href='info::cushion'>almohadillas</a>, o tienen las <a href='info::leaves'>hojas reducidas</a> y duras, o están recubiertas de una densa capa de <a href='info::hairs'>pelos blancos o plateados</a>.</p>
+            <p>Los páramos y los bosques andinos funcionan como control de los sistemas hídricos, al absorber agua de lluvia y liberarla lentamente alimentando a ríos y lagunas. El agua capturada en los páramos beneficia a millones de personas que usan este bien tanto para consumo como para riego.</p>
+            <p>El efecto del incremento de temperaturas debido al cambio climático ya se observa en los picos más altos de las montañas tropicales con un marcado retroceso de los glaciares. Cambios en el ciclo hidrológico de los páramos pueden traer consecuencias catastróficas e implicaciones económicas inmensas para los países andinos que dependen de este ecosistema para provisión de agua para consumo humano, para la operación de plantas hidroeléctricas, para los sistemas de irrigación.</p>
+            <br/>
+            <p>Lea más: <a href='link::http://www.mobot.org/MOBOT/Research/paramo_flora.shtml'>Proyecto Flora del Páramo</a></p>"]]></string>
+
+    <string name="about"><![CDATA["<p>Flóramo es una guía de campo para identificar 100 especies de plantas silvestres que se encuentran en el páramo, un tipo de vegetación se encuentra en la cima de las montañas de los Andes tropicales de América del Sur. Contiene imágenes de campo, descripciones de las especies y una clave de identificación por formas de vida, colores de las flores o nombres científicos. Un mapa con ubicación de las especies, rutas para personalizar registros. Adicionalmente  se puede hace búsqueda en la base de datos Tropicos® del Missouri Botanical Garden. Flóramo actualmente incluye plantas que se encuentran en macizo del Cajas en el sur de Ecuador, pero varias especies se encuentran en otras áreas.</p>
+            <p>El proyecto <a href='link::http://www.mobot.org/mobot/research/paramo_flora.shtml'>Páramo flora</a> se encuentra en el sitio web del Missouri Botanical Garden.</p>
+            <p>El proyecto de la Flora del Cajas es una colaboración entre el <a href='link::http://www.missouribotanicalgarden.org/'>Missouri Botanical Garden</a> y el <a href='link::http://www.uazuay.edu.ec/HerbarioAzuay/'>Herbario Azuay</a> (Universidad del Azuay, Cuenca Ecuador) con el Parque Nacional Cajas. Agradecemos a Etapa-Parque Nacional Cajas, Ministerio del Ambiente de Ecuador y agencias que financiaron el trabajo de campo.</p>
+            <p>El proyecto <a href='link::http://www.mobot.org/MOBOT/research/paramo/welcome.flash.asp'>Flora del Cajas</a>y agradecimientos se encuentran en el sitio web del Missouri Botanical Garden.</p>
+            <br/>
+            <p>Contacto del proyecto: <a href='mailto::carmen.ulloa@mobot.org'>C. Ulloa</a></p>
+            <p>Todos los derechos reservados.</p>
+            <p>©Missouri Botanical Garden, Science and Conservation Division</p>"]]></string>
+
+    <string name="creditos"><![CDATA["<p>El proyecto Flora del Cajas es una colaboración entre el Missouri Botanical Garden, el Herbario Azuay (Universidad del Azuay) con el Parque Nacional Cajas.</p>
+            <p>Contacto del proyecto: <a href='mailto::carmen.ulloa@mobot.org'>C. Ulloa</a></p>
+            <p>Diseño y programación: L.M. Unda, V. Zapata, Quito</p>
+            <br/>
+            <p>Íconos de:</p>
+            <p><a href='link::http://www.freevectorvip.com/silhouette-of-tree-of-flowers-and-plants.html'>Silhouette of tree of flowers and plants'</a></p>
+            <p><a href='link::http://www.freepik.com'>Freepik</a> de <a href='link::http://www.flaticon.com'>Flaticon</a>, licenciados bajo <a href='link::http://creativecommons.org/licenses/by/3.0/'>Creative Commons</a></p>
+            <p><a href='link::http://www.unocha.org'>OCHA</a> de <a href='link::http://www.flaticon.com'>Flaticon</a>, licenciados bajo <a href='link::http://creativecommons.org/licenses/by/3.0/'>Creative Commons</a></p>
+            <p><a href='link::http://www.google.com'>Google</a> de <a href='link::http://www.flaticon.com'>Flaticon</a>, licenciados bajo <a href='link::http://creativecommons.org/licenses/by/3.0/'>Creative Commons</a></p>
+            <p><a href='link::http://www.aha-soft.com/'>Victor Ivlichev</a>, Free Dark Blue Cloud Icons</p>
+            <br/>
+            <p>Textura de la regla: <a href='link::http://commons.wikimedia.org/wiki/File:Balsa_Wood_Texture.jpg'>Close-up of balsa wood showing its grain</a> de Joseph Francis (Flickr: Balsa Wood Texture 1) [<a href='link::http://creativecommons.org/licenses/by/2.0'>CC-BY-2.0</a>], via Wikimedia Commons</p>
+            <br/>
+            <p>Todos los derechos reservados.</p>
+            <p>©Missouri Botanical Garden, Science and Conservation Division</p>"]]></string>
+    <string name="captura_forma_vida1_label">Forma de vida 1</string>
+    <string name="captura_forma_vida2_label">Forma de vida 2</string>
+    <string name="captura_lugar_label">Lugar</string>
+    <string name="tropicos_name_id">NameId</string>
+    <string name="tropicos">Name</string>
+    <string name="tropicos_commonname">Common name</string>
+    <string name="tropicos_family">Family</string>
+    <string name="tropicos_instrucciones">Ingrese los parámetros de búsqueda</string>
+    <string name="tropicos_buscar">Buscar en Tropicos ®</string>
+    <string name="busqueda_no_parametros">Ingrese al menos un parámetro de búsqueda</string>
+    <string name="loading">Cargando.. espere por favor</string>
+    <string name="search_date">D. Date</string>
+    <string name="search_ref">D. Reference</string>
+    <string name="search_rank">Rank</string>
+    <string name="search_autor">Autor</string>
+    <string name="search_ver_fotos">Ver fotos</string>
+    <string name="search_no_results">No se encontraron resultados</string>
+    <string name="settings_acerca_paramo">Acerca del Páramo</string>
+    <string name="settings_acerca_cajas">Acerca del Cajas</string>
+    <string name="settings_formas_vida">Formas de vida</string>
+    <string name="settings_about">Acerca de esta app</string>
+    <string name="settings_bugs">Reportar errores</string>
+    <string name="settings_comments">Comentarios o sugerencias</string>
+    <string name="bugs_version">Versión de Android</string>
+    <string name="bugs_device">Marca y modelo del teléfono</string>
+    <string name="bugs_descripcion">Descripción del error (obligatorio)</string>
+    <string name="bugs_send">Enviar</string>
+
+    <string name="bugs_descripcion_error">Por favor ingrese la descripción del error</string>
+    <string name="comments_descripcion">Comentarios o sugerencias</string>
+    <string name="comments_descripcion_error">Por favor ingrese comentarios o sugerencias</string>
+    <string name="bugs_activity_title">Enviar bug</string>
+    <string name="bugs_subject">Reporte de bug</string>
+    <string name="comments_subject">Comentarios o sugerencias</string>
+    <string name="comments_activity_title">Enviar comentarios o sugerencias</string>
+    <string name="settings_creditos">Créditos</string>
+    <string name="about_title">Acerca de esta aplicación</string>
+    <string name="creditos_title">Créditos</string>
+    <string name="lugar_title">Acerca del Parque Nacional Cajas</string>
+    <string name="enciclopedia_dlg_delete_contenido">¿Está seguro de querer eliminar esta especie? Se eliminarán también las fotos asociadas (No se eliminarán de la galería del teléfono).</string>
+    <string name="enciclopedia_dlg_delete_title">Eliminar especie</string>
+    <string name="enciclopedia_delete">Especie eliminada exitosamente</string>
+    <string name="busqueda_buscar">Buscar</string>
+    <string name="tools_heading">Orientación: %1$s grados</string>
+    <string name="help_inicio">"Esta pantalla muestra las acciones que puede efectuar con esta aplicación"</string>
+    <string name="inicio_title">Inicio</string>
+    <string name="inicio_ver_nombres">Ver nombres</string>
+    <string name="inicio_buscar_clave">Buscar clave</string>
+    <string name="inicio_about_paramo">Acerca de Flóramo</string>
+    <string name="inicio_about_cajas">Acerca del Cajas</string>
+    <string name="tropicos_title">Tropicos</string>
+
+    <string name="dlg_ver">Ver datos</string>
+    <string name="especies_info_descripcion">Descripción</string>
+    <string name="inicio_floramo">Flora del páramo</string>
+    <string name="tools_btn_gps">Ubicación</string>
+    <string name="tools_conversion_titulo">Conversión pulgadas/cm</string>
+    <string name="tools_label_conversion">"1 cm = 10 mm = 0.4 pulgadas
+1 pulgada = 2.5 cm = 25 mm"</string>
+    <string name="global_cm">cm</string>
+    <string name="tools_image_convertir">convertir</string>
+    <string name="global_in">pulgadas</string>
+    <string name="tools_label_cm_in">in = cm * 0.39370 = cm / 2.54</string>
+    <string name="tools_label_in_cm">cm = in / 0.39370 = in * 2.54</string>
+    <string name="about_contact">Contactarnos</string>
+
+    <string name="tools_label_ruler">"La regla muestra centímetros en azul y pulgadas en negro.
+Tenga en cuenta que la regla puede tener un pequeño error que depende de su teléfono."</string>
+    <string name="gps_error">"No se pudo detectar la ubicación. Por favor active el GPS."</string>
+    <string name="gps_location_error">No se pudo obtener su posición</string>
+</resources>
