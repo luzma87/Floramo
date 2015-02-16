@@ -9,6 +9,7 @@ import android.os.Vibrator;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.lzm.Cajas.adapters.RutasListAdapter;
 import com.lzm.Cajas.db.Nota;
@@ -31,6 +32,11 @@ public class RutasFragment extends ListFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         activity = (MapActivity) getActivity();
+
+        setEmptyText(getResources().getString(R.string.list_no_routes));
+        TextView emptyTextView = (TextView) getListView().getEmptyView();
+        emptyTextView.setTextColor(getResources().getColor(R.color.list_no_results));
+
         list = Ruta.list(activity);
         adapter = new RutasListAdapter(getActivity(), list);
         setListAdapter(adapter);

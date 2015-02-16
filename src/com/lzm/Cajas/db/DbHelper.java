@@ -93,9 +93,12 @@ public class DbHelper extends SQLiteOpenHelper {
             db.execSQL("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR2_ID + " = 36 WHERE " + EspecieDbHelper.KEY_ID + " = 344");
             //Diplostephium ericoides add color white 3
             db.execSQL("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR2_ID + " = 3 WHERE " + EspecieDbHelper.KEY_ID + " = 87");
-        } else if(oldVersion < 17) {
+        } else if (oldVersion < 17) {
             //Diplostephium glandulosum, color de flores solo Lila (parece que esta amarillo y es incorrecto). 47
             db.execSQL("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR1_ID + " = 47 WHERE " + EspecieDbHelper.KEY_ID + " = 89");
+        } else if (oldVersion < 18) {
+            db.execSQL("INSERT INTO formas_vida(id, nombre) VALUES (\"276\", \"fern\");");
+            db.execSQL("INSERT INTO formas_vida(id, nombre) VALUES (\"277\", \"cone\");");
         }
         //System.out.println("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_FORMA_VIDA2_ID + " = 5 WHERE " + EspecieDbHelper.KEY_ID + " = 308");
         //System.out.println("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR2_ID + " = null WHERE " + EspecieDbHelper.KEY_ID + " = 189");

@@ -18,6 +18,9 @@
     <string name="app_name">Flóramo</string>
     <string name="menu_title">Navegación</string>
 
+    <string name="list_no_results">Ningún resultado concuerda con su búsqueda</string>
+    <string name="list_no_routes">No tiene rutas registradas</string>
+
     <string name="web_app_not_available">Lo siento, no hay un navegador configurado</string>
     <string name="gallery_app_not_available">Lo siento, no hay una galería configurada</string>
     <string name="camera_app_not_available">Lo siento, no hay una cámara configurada</string>
@@ -129,6 +132,8 @@ Se muestra un máximo de 10 resultados. En la lista, al presionar un registro se
     <string name="global_forma_vida_aquatic">Acuática</string>
     <string name="global_forma_vida_liana">Bejuco</string>
     <string name="global_forma_vida_tree">Árbol</string>
+    <string name="global_forma_vida_fern">Helecho</string>
+    <string name="global_forma_vida_cone">Cono</string>
 
     <string name="global_error_no_connection">No se pudo conectar a Internet.</string>
 

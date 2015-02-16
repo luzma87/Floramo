@@ -103,6 +103,7 @@ public class BusquedaLoader implements Runnable {
 
             } catch (Exception e) {
                 e.printStackTrace();
+                context.noSearchResults(dialog);
             }
 
         } catch (Exception e) {

@@ -6,4 +6,6 @@
     <color name="floramo_claro">#CDE8AE</color>
     <color name="floramo_medio">#9FCF67</color>
     <color name="floramo_oscuro">#076324</color>
+
+    <color name="list_no_results">#ff3f9a1a</color>
 </resources>

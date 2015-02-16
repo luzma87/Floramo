@@ -3,8 +3,10 @@ package com.lzm.Cajas;
 import android.app.Fragment;
 import android.app.ListFragment;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 import com.lzm.Cajas.adapters.BusquedaResultsEspeciesListAdapter;
 import com.lzm.Cajas.db.Especie;
 import com.lzm.Cajas.db.Foto;
@@ -29,6 +31,10 @@ public class BusquedaResultsFragment extends ListFragment {
         super.onActivityCreated(savedInstanceState);
         activity = (MapActivity) getActivity();
 
+        setEmptyText(getResources().getString(R.string.list_no_results));
+        TextView emptyTextView = (TextView) getListView().getEmptyView();
+        emptyTextView.setTextColor(getResources().getColor(R.color.list_no_results));
+
 //        //System.out.println("creando busqueda results.....");
 //        //System.out.println(";;; " + savedInstanceState);
         if (savedInstanceState != null) {
@@ -43,8 +49,8 @@ public class BusquedaResultsFragment extends ListFragment {
         activity.activeFragment = activity.RESULTADO_BUSQUEDA_POS;
         especiesList = activity.especiesBusqueda;
 
-//        //System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>> " + especiesList);
-//        //System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>> " + especiesList.size());
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>> " + especiesList);
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>> " + especiesList.size());
 
         BusquedaResultsEspeciesListAdapter adapter = new BusquedaResultsEspeciesListAdapter(getActivity(), especiesList);
         setListAdapter(adapter);

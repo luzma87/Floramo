@@ -1408,6 +1408,10 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
                 Utils.openFragment((MapActivity) activity, fragment, getString(R.string.busqueda_title));
             }
         });
+    }
 
+    public void noSearchResults(final ProgressDialog dialog) {
+        dialog.dismiss();
+        Toast.makeText(this, getString(R.string.list_no_results), Toast.LENGTH_SHORT).show();
     }
 }

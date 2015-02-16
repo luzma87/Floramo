@@ -24,6 +24,9 @@
     <string name="app_name">Flóramo</string>
     <string name="menu_title">Navigation</string>
 
+    <string name="list_no_results">No results match your search</string>
+    <string name="list_no_routes">No routes registered</string>
+
     <string name="web_app_not_available">There is no browser configured</string>
     <string name="gallery_app_not_available">There is no gallery configured</string>
     <string name="camera_app_not_available">There is no camera configured</string>
@@ -136,6 +139,8 @@ It shows a maximum of 10 results. Tapping an item on the list shows its details.
     <string name="global_forma_vida_aquatic">Aquatic</string>
     <string name="global_forma_vida_liana">Liana</string>
     <string name="global_forma_vida_tree">Tree</string>
+    <string name="global_forma_vida_fern">Fern</string>
+    <string name="global_forma_vida_cone">Cone</string>
 
     <string name="global_error_no_connection">No Internet connection available</string>
 
