@@ -127,6 +127,7 @@ public class BusquedaFragment extends Fragment implements Button.OnClickListener
         }
     }
 
+
     private void updateFormaVida() {
         String fv = "";
         searchFormaVida = new ArrayList<String>();
