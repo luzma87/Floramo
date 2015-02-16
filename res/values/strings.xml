@@ -19,7 +19,7 @@
     <string name="comments_mail" translatable="false">nth.development@gmail.com</string>
     <string name="db_name" translatable="false">Floramo</string>
     <string name="especie_info_tropicos" translatable="false">Tropicos ®</string>
-    <string name="version_name" translatable="false">1.1.2.3</string>
+    <string name="version_name" translatable="false">1.2.0</string>
 
     <string name="app_name">Flóramo</string>
     <string name="menu_title">Navigation</string>
@@ -129,6 +129,7 @@ It shows a maximum of 10 results. Tapping an item on the list shows its details.
     <string name="global_color_red">Red</string>
     <string name="global_color_white">White</string>
     <string name="global_color_yellow">Yellow</string>
+    <string name="global_color_cone">Fern/Other</string>
 
     <string name="global_forma_vida_none">-None-</string>
     <string name="global_forma_vida_cushion">Cushion</string>
@@ -139,8 +140,6 @@ It shows a maximum of 10 results. Tapping an item on the list shows its details.
     <string name="global_forma_vida_aquatic">Aquatic</string>
     <string name="global_forma_vida_liana">Liana</string>
     <string name="global_forma_vida_tree">Tree</string>
-    <string name="global_forma_vida_fern">Fern</string>
-    <string name="global_forma_vida_cone">Cone</string>
 
     <string name="global_error_no_connection">No Internet connection available</string>
 

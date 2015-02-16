@@ -17,7 +17,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
     // Database Version
-    private static final int DATABASE_VERSION = 17;
+    private static final int DATABASE_VERSION = 19;
 
     // Database Name
 //    private static String DB_PATH = "/data/data/com.tmm.android.chuck/databases/";
@@ -97,8 +97,24 @@ public class DbHelper extends SQLiteOpenHelper {
             //Diplostephium glandulosum, color de flores solo Lila (parece que esta amarillo y es incorrecto). 47
             db.execSQL("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR1_ID + " = 47 WHERE " + EspecieDbHelper.KEY_ID + " = 89");
         } else if (oldVersion < 18) {
-            db.execSQL("INSERT INTO formas_vida(id, nombre) VALUES (\"276\", \"fern\");");
-            db.execSQL("INSERT INTO formas_vida(id, nombre) VALUES (\"277\", \"cone\");");
+            db.execSQL("INSERT INTO colores(id, nombre) VALUES (\"128\", \"cone\");");
+
+//            Huperzia
+            db.execSQL("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR1_ID + " = 128 WHERE " + EspecieDbHelper.KEY_ID + " = 168");
+            db.execSQL("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR2_ID + " = null WHERE " + EspecieDbHelper.KEY_ID + " = 168");
+
+//            Isoetes
+            db.execSQL("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR1_ID + " = 128 WHERE " + EspecieDbHelper.KEY_ID + " = 180");
+            db.execSQL("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR2_ID + " = null WHERE " + EspecieDbHelper.KEY_ID + " = 180");
+
+//            Ephedra
+            db.execSQL("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR1_ID + " = 128 WHERE " + EspecieDbHelper.KEY_ID + " = 103");
+            db.execSQL("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR2_ID + " = null WHERE " + EspecieDbHelper.KEY_ID + " = 103");
+        } else if (oldVersion < 19) {
+//            Equisetum
+            db.execSQL("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR1_ID + " = 128 WHERE " + EspecieDbHelper.KEY_ID + " = 111");
+            db.execSQL("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR2_ID + " = null WHERE " + EspecieDbHelper.KEY_ID + " = 111");
+
         }
         //System.out.println("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_FORMA_VIDA2_ID + " = 5 WHERE " + EspecieDbHelper.KEY_ID + " = 308");
         //System.out.println("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR2_ID + " = null WHERE " + EspecieDbHelper.KEY_ID + " = 189");

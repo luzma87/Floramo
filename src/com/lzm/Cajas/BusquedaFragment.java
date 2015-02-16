@@ -174,6 +174,7 @@ public class BusquedaFragment extends Fragment implements Button.OnClickListener
         tb.setTextOff(title);
         tb.setText(title);
         tb.setCompoundDrawablesWithIntrinsicBounds(null, icon, null, null);
+        tb.setBackgroundDrawable(activity.getResources().getDrawable(R.drawable.button_grey));
         tb.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
 //        tb.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
@@ -190,7 +191,7 @@ public class BusquedaFragment extends Fragment implements Button.OnClickListener
     private void initColores(View view) {
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.busqueda_color_layout);
 
-        coloresNombres = new String[9];
+        coloresNombres = new String[10];
         coloresNombres[0] = "white";
         coloresNombres[1] = "green";
         coloresNombres[2] = "pink";
@@ -200,6 +201,7 @@ public class BusquedaFragment extends Fragment implements Button.OnClickListener
         coloresNombres[6] = "brown";
         coloresNombres[7] = "red";
         coloresNombres[8] = "blue";
+        coloresNombres[9] = "cone";
 
         coloresViews = new ToggleButton[coloresNombres.length];
         for (int i = 0; i < coloresNombres.length; i++) {

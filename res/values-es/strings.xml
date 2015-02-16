@@ -122,6 +122,7 @@ Se muestra un máximo de 10 resultados. En la lista, al presionar un registro se
     <string name="global_color_red">Rojo</string>
     <string name="global_color_white">Blanco</string>
     <string name="global_color_yellow">Amarillo</string>
+    <string name="global_color_cone">Helecho/Otro</string>
 
     <string name="global_forma_vida_none">-Ninguna-</string>
     <string name="global_forma_vida_cushion">Almohadilla</string>
@@ -132,8 +133,6 @@ Se muestra un máximo de 10 resultados. En la lista, al presionar un registro se
     <string name="global_forma_vida_aquatic">Acuática</string>
     <string name="global_forma_vida_liana">Bejuco</string>
     <string name="global_forma_vida_tree">Árbol</string>
-    <string name="global_forma_vida_fern">Helecho</string>
-    <string name="global_forma_vida_cone">Cono</string>
 
     <string name="global_error_no_connection">No se pudo conectar a Internet.</string>
 
