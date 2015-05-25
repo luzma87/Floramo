@@ -19,7 +19,7 @@
     <string name="comments_mail" translatable="false">nth.development@gmail.com</string>
     <string name="db_name" translatable="false">Floramo</string>
     <string name="especie_info_tropicos" translatable="false">Tropicos ®</string>
-    <string name="version_name" translatable="false">1.2.0</string>
+    <string name="version_name" translatable="false">1.2.1.1</string>
 
     <string name="app_name">Flóramo</string>
     <string name="menu_title">Navigation</string>
@@ -233,9 +233,8 @@ It shows a maximum of 10 results. Tapping an item on the list shows its details.
             <p>Read more: <a href='link::http://www.mobot.org/MOBOT/Research/paramo_flora.shtml'>Páramo flora project</a></p>"]]></string>
 
     <string name="about"><![CDATA["<p>Flóramo is a field guide to identify 100 species of wild plants found in the páramo, a vegetation type at the top of the Andes Mountains of tropical South America. It contains field images, species descriptions, and an identification key using life forms, flower colors or scientific names. A map with location of species, routes for personalized records. Additional features include searches into the Missouri Botanical Garden Tropicos® database. Flóramo currently includes plants found the in the Cajas massif of southern Ecuador, but various species are found beyond this area.</p>
-            <p><a href='link::http://www.mobot.org/mobot/research/paramo_flora.shtml'>Páramo flora project</a> is at the Missouri Botanical Garden website.</p>
-            <p>The Flora of Cajas project is a collaboration between the <a href='link::http://www.missouribotanicalgarden.org/'>Missouri Botanical Garden</a> and the <a href='link::http://www.uazuay.edu.ec/HerbarioAzuay/'>Azuay Herbarium</a> (Universidad del Azuay, Cuenca Ecuador) with Parque Nacional Cajas. We thank Etapa-Parque Nacional Cajas, Ministerio del Ambiente de Ecuador, and funding agencies for field work.</p>
-            <p><a href='link::http://www.mobot.org/MOBOT/research/paramo/welcome_english.flash.asp'>Flora of Cajas Project</a> full site and acknowledgments is at the Missouri Botanical Garden website.</p>
+            <p>The Flora of Cajas project is a collaboration between the <a href='link::http://www.missouribotanicalgarden.org/'>Missouri Botanical Garden</a> and the <a href='link::http://www.uazuay.edu.ec/HerbarioAzuay/'>Azuay Herbarium</a> (Universidad del Azuay, Cuenca Ecuador) with Parque Nacional Cajas.</p>
+            <p>We thank the Prometeo program of Ecuador´s Secretaría de Educación Superior, Ciencia, Tecnología e Innovación for a research fellowship to Carmen Ulloa at Universidad del Azuay; to Etapa-Parque Nacional Cajas, Ministerio del Ambiente de Ecuador, and funding agencies for field work.</p>
             <br/>
             <p>Project contact: <a href='mailto::carmen.ulloa@mobot.org'>C. Ulloa</a></p>
             <br/>
@@ -248,6 +247,7 @@ It shows a maximum of 10 results. Tapping an item on the list shows its details.
             <br/>
             <p>Icons from:</p>
             <p><a href='link::http://www.freevectorvip.com/silhouette-of-tree-of-flowers-and-plants.html'>'Silhouette of tree of flowers and plants'</a> icons</p>
+            <p><a href='link::http://www.freevectorvip.com/marine-biology-silhouette.html'>'Marine biology silhouette'</a> icon</p>
             <p><a href='link::http://www.freepik.com'>Freepik</a> from <a href='link::http://www.flaticon.com'>Flaticon</a>, licenced under <a href='link::http://creativecommons.org/licenses/by/3.0/'>Creative Commons</a></p>
             <p><a href='link::http://www.unocha.org'>OCHA</a> from <a href='link::http://www.flaticon.com'>Flaticon</a>, licenced under <a href='link::http://creativecommons.org/licenses/by/3.0/'>Creative Commons</a></p>
             <p><a href='link::http://www.google.com'>Google</a> from <a href='link::http://www.flaticon.com'>Flaticon</a>, licenced under <a href='link::http://creativecommons.org/licenses/by/3.0/'>Creative Commons</a></p>
