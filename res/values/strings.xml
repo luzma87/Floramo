@@ -19,7 +19,7 @@
     <string name="comments_mail" translatable="false">nth.development@gmail.com</string>
     <string name="db_name" translatable="false">Floramo</string>
     <string name="especie_info_tropicos" translatable="false">Tropicos ®</string>
-    <string name="version_name" translatable="false">1.2.1.1</string>
+    <string name="version_name" translatable="false">1.2.1.2</string>
 
     <string name="app_name">Flóramo</string>
     <string name="menu_title">Navigation</string>
@@ -234,7 +234,7 @@ It shows a maximum of 10 results. Tapping an item on the list shows its details.
 
     <string name="about"><![CDATA["<p>Flóramo is a field guide to identify 100 species of wild plants found in the páramo, a vegetation type at the top of the Andes Mountains of tropical South America. It contains field images, species descriptions, and an identification key using life forms, flower colors or scientific names. A map with location of species, routes for personalized records. Additional features include searches into the Missouri Botanical Garden Tropicos® database. Flóramo currently includes plants found the in the Cajas massif of southern Ecuador, but various species are found beyond this area.</p>
             <p>The Flora of Cajas project is a collaboration between the <a href='link::http://www.missouribotanicalgarden.org/'>Missouri Botanical Garden</a> and the <a href='link::http://www.uazuay.edu.ec/HerbarioAzuay/'>Azuay Herbarium</a> (Universidad del Azuay, Cuenca Ecuador) with Parque Nacional Cajas.</p>
-            <p>We thank the Prometeo program of Ecuador´s Secretaría de Educación Superior, Ciencia, Tecnología e Innovación for a research fellowship to Carmen Ulloa at Universidad del Azuay; to Etapa-Parque Nacional Cajas, Ministerio del Ambiente de Ecuador, and funding agencies for field work.</p>
+            <p>We thank the Prometeo program of Ecuador´s Secretaría de Educación Superior, Ciencia, Tecnología e Innovación for a research fellowship to Carmen Ulloa at Universidad del Azuay; to Etapa-Parque Nacional Cajas, Ministerio del Ambiente de Ecuador, and funding agencies for field work; to the National Geographic Society.</p>
             <br/>
             <p>Project contact: <a href='mailto::carmen.ulloa@mobot.org'>C. Ulloa</a></p>
             <br/>
