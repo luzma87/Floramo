@@ -27,12 +27,21 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.*;
 import com.lzm.Cajas.db.*;
-import com.lzm.Cajas.image.*;
+import com.lzm.Cajas.image.EspecieUi;
+import com.lzm.Cajas.image.ImageItem;
+import com.lzm.Cajas.image.ImageTableObserver;
+import com.lzm.Cajas.image.ImageUtils;
 import com.lzm.Cajas.listeners.FieldListener;
-import com.lzm.Cajas.utils.*;
+import com.lzm.Cajas.utils.EspecieDialogImageLoader;
+import com.lzm.Cajas.utils.EspecieLoader;
+import com.lzm.Cajas.utils.SearchResult;
+import com.lzm.Cajas.utils.Utils;
 
 import java.io.InputStream;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -190,6 +199,13 @@ public class MapActivity extends Activity implements Button.OnClickListener, Goo
         super.onCreate(savedInstanceState);
         DbHelper helper = new DbHelper(this);
         helper.getWritableDatabase();
+
+        ArrayList<com.lzm.Cajas.db.Color> colores = com.lzm.Cajas.db.Color.list(this);
+        System.out.println("** COLORES **");
+        System.out.println("...... VERSION    " + DbHelper.DATABASE_VERSION);
+        for (com.lzm.Cajas.db.Color color : colores) {
+            System.out.println("-------------------------------> " + color.id + "     " + color.nombre);
+        }
 
         fotoSinCoords = null;
         imageToUpload = null;

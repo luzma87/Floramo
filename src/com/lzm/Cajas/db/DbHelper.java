@@ -3,7 +3,6 @@ package com.lzm.Cajas.db;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Environment;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -17,7 +16,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
     // Database Version
-    private static final int DATABASE_VERSION = 19;
+    public static final int DATABASE_VERSION = 22;
 
     // Database Name
 //    private static String DB_PATH = "/data/data/com.tmm.android.chuck/databases/";
@@ -93,10 +92,12 @@ public class DbHelper extends SQLiteOpenHelper {
             db.execSQL("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR2_ID + " = 36 WHERE " + EspecieDbHelper.KEY_ID + " = 344");
             //Diplostephium ericoides add color white 3
             db.execSQL("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR2_ID + " = 3 WHERE " + EspecieDbHelper.KEY_ID + " = 87");
-        } else if (oldVersion < 17) {
+        } else if (oldVersion < 22) {
             //Diplostephium glandulosum, color de flores solo Lila (parece que esta amarillo y es incorrecto). 47
             db.execSQL("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR1_ID + " = 47 WHERE " + EspecieDbHelper.KEY_ID + " = 89");
-        } else if (oldVersion < 18) {
+        } else if (oldVersion < 22) {
+            System.out.println("INSERTA EL CONE!!!!!!");
+
             db.execSQL("INSERT INTO colores(id, nombre) VALUES (\"128\", \"cone\");");
 
 //            Huperzia
@@ -110,11 +111,11 @@ public class DbHelper extends SQLiteOpenHelper {
 //            Ephedra
             db.execSQL("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR1_ID + " = 128 WHERE " + EspecieDbHelper.KEY_ID + " = 103");
             db.execSQL("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR2_ID + " = null WHERE " + EspecieDbHelper.KEY_ID + " = 103");
-        } else if (oldVersion < 19) {
+        } else if (oldVersion < 22) {
+            System.out.println("hace el update");
 //            Equisetum
             db.execSQL("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR1_ID + " = 128 WHERE " + EspecieDbHelper.KEY_ID + " = 111");
             db.execSQL("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR2_ID + " = null WHERE " + EspecieDbHelper.KEY_ID + " = 111");
-
         }
         //System.out.println("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_FORMA_VIDA2_ID + " = 5 WHERE " + EspecieDbHelper.KEY_ID + " = 308");
         //System.out.println("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR2_ID + " = null WHERE " + EspecieDbHelper.KEY_ID + " = 189");

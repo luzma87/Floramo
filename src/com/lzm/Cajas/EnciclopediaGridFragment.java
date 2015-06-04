@@ -43,7 +43,7 @@ public class EnciclopediaGridFragment extends Fragment implements Button.OnClick
     String[] sorts;
     String[] keysSorts;
 
-    Integer sortPos = 0;
+    Integer sortPos = 1;
     Map<String, Integer> mapIndex;
     EncyclopediaGridListAdapter adapter;
 
@@ -60,7 +60,7 @@ public class EnciclopediaGridFragment extends Fragment implements Button.OnClick
         context = (MapActivity) getActivity();
         pathFolder = Utils.getFolder(context);
 
-        sort = "f";
+        sort = "n";
         order = "a";
 
         sorts = new String[2];
