@@ -25,6 +25,7 @@ public class DbInserter {
         db.execSQL("INSERT INTO colores(id, nombre) VALUES (\"52\", \"brown\");");
         db.execSQL("INSERT INTO colores(id, nombre) VALUES (\"71\", \"red\");");
         db.execSQL("INSERT INTO colores(id, nombre) VALUES (\"127\", \"blue\");");
+        db.execSQL("INSERT INTO colores(id, nombre) VALUES (\"128\", \"cone\");");
     }
 
     public static void insertFormasVida(SQLiteDatabase db) {
@@ -449,6 +450,31 @@ public class DbInserter {
         db.execSQL("INSERT INTO especies (id, nombre, nombre_norm, genero_id, color1_id, color2_id, forma_vida1_id, forma_vida2_id, id_tropicos, descripcion_es, descripcion_en, autor) VALUES (\"139\", \"longibarbata\", \"longibarbata\", \"132\", \"15\", \"null\", \"5\", \"null\", \"13801791\", \"Plantas con tallos laxos, algo reclinados en la base, algo leñosos, hasta 80 cm de alto. Hojas lanceoladas, opuestas, hasta 6 cm de largo, y son algo duras. Flores hasta 40 mm de largo, tienen apariencia tubular por los pétalos algo sobrepuestos, algo colgantes, color verde amarillento o amarillo limón, a veces con manchas moradas. \nDistribución: Es endémica del Cajas, crece dentro de los bosques de Polylepis o en el páramo arbustivo.\", \"Plants with lax stems, somewhat reclining at base, somewhat woody, up to 80 cm tall. Leaves opposite, lanceolate, up to 6 cm long, stiff. Flowers 40 mm long, appearing tubular by the overlapping petals, pendent, and yellowish green or lemon yellow, sometimes with purple dots. \nDistribution: Endemic to Cajas, where it is found in the Polylepis forests or in the shrubby páramo.\", \"(Gilg) Fabris\");");
         db.execSQL("INSERT INTO especies (id, nombre, nombre_norm, genero_id, color1_id, color2_id, forma_vida1_id, forma_vida2_id, id_tropicos, descripcion_es, descripcion_en, autor) VALUES (\"118\", \"myrtilloides\", \"myrtilloides\", \"117\", \"15\", \"36\", \"10\", \"null\", \"29100693\", \"Arbustos hasta 3 m de alto. Hojas alternas, hasta 2.5 cm de largo, lanceoladas, con glándulas diminutas. Flores solitarias, colgantes, hasta 1.5 cm de largo, tienen forma de copa y 5 pétalos caedizos, color verde o crema verdoso; estigma es grande y claviforme. Fruto una cápsula seca que eventualmente se abre. \nDistribución: Costa Rica, Panamá, Andes desde Venezuela hasta Argentina. En el Cajas se encuentra en restos de bosques y partes bajas del páramo.\", \"Shrubs up to 3 m tall. Leaves alternate, up to 2.5 cm long, lanceolate, with minute glands. Flowers solitary, pendent, up to 1.5 cm long, cup-shaped with 5 deciduous petals, green or greenish cream; stigma is nail-like and thick. Fruit a dry capsule that eventually opens. \nDistribution: Costa Rica, Panama, and the Andes from Venezuela to Argentina. In Cajas it is found in forest remnants and lower páramo.\", \"L.f.\");");
         db.execSQL("INSERT INTO especies (id, nombre, nombre_norm, genero_id, color1_id, color2_id, forma_vida1_id, forma_vida2_id, id_tropicos, descripcion_es, descripcion_en, autor) VALUES (\"282\", \"paramoanus\", \"paramoanus\", \"281\", \"52\", \"null\", \"177\", \"null\", \"26300337\", \"Hierbas acuáticas sumergidas y flotantes, crecen en grupos densos; tallos de longitud variable de acuerdo a la profundidad del agua. Hojas de dos tipos: las sumergidas son alargadas, hasta 26 cm de largo, color verdoso algo translúcidas; las emergentes son espatuladas, hasta 7 cm de largo, y presentan un color verde-amarillento. Inflorescencias poco llamativas y sumergidas o emergentes, constituyen espigas de 1 cm de largo, color verde claro. Flores diminutas de 1.5 mm de largo. \nDistribución: Venezuela a Bolivia. En el Cajas crece en las lagunas.\", \"Aquatic herbs submerged and floating, forming dense groups; stems of variable length according to the depth of the water. Leaves of two types: those submerged elongate, up to 26 cm long, greenish and translucent; emerging leaves spathulate, up to 7 cm long, yellowish-green. Inflorescences inconspicuous and submerged or emerging, spikes up to 1 cm long, light green. Flowers minute, 1.5 mm long. \nDistribution: Venezuela to Bolivia. In Cajas it grows in the lakes.\", \"Haynes & Holm-Nielsen\");");
+
+        //Scirpus rigida add life form herb / aquatic
+        db.execSQL("UPDATE " + EspecieDbHelper.TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_FORMA_VIDA2_ID + " = 5 WHERE " + EspecieDbHelper.KEY_ID + " = 308");
+        //Lachemilla orbiculara delete flower pink (leave only green)
+        db.execSQL("UPDATE " + EspecieDbHelper.TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR2_ID + " = null WHERE " + EspecieDbHelper.KEY_ID + " = 189");
+        //Epidendrum tenicaule add color green 15
+        db.execSQL("UPDATE " + EspecieDbHelper.TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR2_ID + " = 15 WHERE " + EspecieDbHelper.KEY_ID + " = 107");
+        //Werneria nubigena add color yellow 36
+        db.execSQL("UPDATE " + EspecieDbHelper.TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR2_ID + " = 36 WHERE " + EspecieDbHelper.KEY_ID + " = 344");
+        //Diplostephium ericoides add color white 3
+        db.execSQL("UPDATE " + EspecieDbHelper.TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR2_ID + " = 3 WHERE " + EspecieDbHelper.KEY_ID + " = 87");
+        //Diplostephium glandulosum, color de flores solo Lila (parece que esta amarillo y es incorrecto). 47
+        db.execSQL("UPDATE " + EspecieDbHelper.TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR1_ID + " = 47 WHERE " + EspecieDbHelper.KEY_ID + " = 89");
+        //Huperzia
+        db.execSQL("UPDATE " + EspecieDbHelper.TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR1_ID + " = 128 WHERE " + EspecieDbHelper.KEY_ID + " = 168");
+        db.execSQL("UPDATE " + EspecieDbHelper.TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR2_ID + " = null WHERE " + EspecieDbHelper.KEY_ID + " = 168");
+        //Isoetes
+        db.execSQL("UPDATE " + EspecieDbHelper.TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR1_ID + " = 128 WHERE " + EspecieDbHelper.KEY_ID + " = 180");
+        db.execSQL("UPDATE " + EspecieDbHelper.TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR2_ID + " = null WHERE " + EspecieDbHelper.KEY_ID + " = 180");
+        //Ephedra
+        db.execSQL("UPDATE " + EspecieDbHelper.TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR1_ID + " = 128 WHERE " + EspecieDbHelper.KEY_ID + " = 103");
+        db.execSQL("UPDATE " + EspecieDbHelper.TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR2_ID + " = null WHERE " + EspecieDbHelper.KEY_ID + " = 103");
+        //Equisetum
+        db.execSQL("UPDATE " + EspecieDbHelper.TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR1_ID + " = 128 WHERE " + EspecieDbHelper.KEY_ID + " = 111");
+        db.execSQL("UPDATE " + EspecieDbHelper.TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR2_ID + " = null WHERE " + EspecieDbHelper.KEY_ID + " = 111");
     }
 
     public static void insertFotos(SQLiteDatabase db) {
