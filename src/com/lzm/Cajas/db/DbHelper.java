@@ -16,7 +16,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
     // Database Version
-    public static final int DATABASE_VERSION = 23;
+    public static final int DATABASE_VERSION = 24;
 
     // Database Name
 //    private static String DB_PATH = "/data/data/com.tmm.android.chuck/databases/";
