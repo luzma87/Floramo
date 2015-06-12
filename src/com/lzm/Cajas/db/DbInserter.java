@@ -475,6 +475,9 @@ public class DbInserter {
         //Equisetum
         db.execSQL("UPDATE " + EspecieDbHelper.TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR1_ID + " = 128 WHERE " + EspecieDbHelper.KEY_ID + " = 111");
         db.execSQL("UPDATE " + EspecieDbHelper.TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR2_ID + " = null WHERE " + EspecieDbHelper.KEY_ID + " = 111");
+        //Jamesonia goudotii
+        db.execSQL("UPDATE " + EspecieDbHelper.TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR1_ID + " = 128 WHERE " + EspecieDbHelper.KEY_ID + " = 184");
+        db.execSQL("UPDATE " + EspecieDbHelper.TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_COLOR2_ID + " = null WHERE " + EspecieDbHelper.KEY_ID + " = 184");
     }
 
     public static void insertFotos(SQLiteDatabase db) {
